@@ -1,0 +1,495 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ET.FW.Source</name>
+    </assembly>
+    <members>
+        <member name="T:ET.FW.Source.ConfigProtocol">
+            <summary>
+            Source Protocol
+            </summary>
+        </member>
+        <member name="P:ET.FW.Source.ConfigProtocol.ID">
+            <summary>
+            ID of Protocol
+            </summary>
+        </member>
+        <member name="P:ET.FW.Source.ConfigProtocol.Name">
+            <summary>
+            Name of Protocol
+            </summary>
+        </member>
+        <member name="P:ET.FW.Source.ConfigProtocol.ConfigSource">
+            <summary>
+            Gets or sets the config source.
+            </summary>
+            <value>The config source.</value>
+        </member>
+        <member name="P:ET.FW.Source.ConfigProtocol.Protocol">
+            <summary>
+            The Protocol
+            </summary>
+        </member>
+        <member name="P:ET.FW.Source.ConfigProtocol.IsSoft">
+            <summary>
+            Gets a value indicating whether this instance is soft.
+            </summary>
+            <value><c>true</c> if this instance is soft; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:ET.FW.Source.ConfigProtocol.XmlElem">
+            <summary>
+            Xml element
+            </summary>
+        </member>
+        <member name="M:ET.FW.Source.ConfigProtocol.#ctor(System.Xml.XmlNode,ET.FW.Source.ConfigSource)">
+            <summary>
+            The Constructor
+            </summary>
+            <param name="elem">The elem.</param>
+            <param name="configSource">The config source.</param>
+        </member>
+        <member name="T:ET.FW.Source.ConfigSource">
+            <summary>
+            Class Source 
+            </summary>
+        </member>
+        <member name="P:ET.FW.Source.ConfigSource.ID">
+            <summary>
+            ID of Source
+            </summary>
+        </member>
+        <member name="P:ET.FW.Source.ConfigSource.Name">
+            <summary>
+            Name of source (Name is used for GUI and DB storage)
+            </summary>
+        </member>
+        <member name="M:ET.FW.Source.ConfigSource.Rename(System.String)">
+            <summary>
+            Rename source
+            </summary>
+            <param name="newName">new source name</param>
+        </member>
+        <member name="P:ET.FW.Source.ConfigSource.ConfigName">
+            <summary>
+            Config name (used for source in testbench configuration file)
+            </summary>
+        </member>
+        <member name="P:ET.FW.Source.ConfigSource.ET#FW#Source#IConfigSource#Alias">
+            <summary>
+            ConfigName is used as alias
+            </summary>
+        </member>
+        <member name="P:ET.FW.Source.ConfigSource.ChannelAccess">
+            <summary>
+            Associated channel access from environment
+            </summary>
+            <remarks>Property is valid if environment is set up and if a corresponding channel access exists.</remarks>
+        </member>
+        <member name="P:ET.FW.Source.ConfigSource.ConfigProtocols">
+            <summary>
+            List of Protocols
+            </summary>
+        </member>
+        <member name="P:ET.FW.Source.ConfigSource.XmlElem">
+            <summary>
+            Gets or sets the XML elem.
+            </summary>
+            <value>The XML elem.</value>
+        </member>
+        <member name="M:ET.FW.Source.ConfigSource.#ctor(System.Xml.XmlElement)">
+            <summary>
+            The Constructor
+            </summary>
+            <param name="elem">XML element</param>
+        </member>
+        <member name="M:ET.FW.Source.ConfigSource.AddProtocol(System.Byte,ET.FW.Core.Messaging.IProtocol,System.Boolean)">
+            <summary>
+            Add Protocol / update protocol
+            </summary>
+            <remarks>
+            For ETT import this method is called twice for each protocol:
+            - First on parsing of source configuration to create protocol and assign correct ID
+            - Second after testbench protocol creation to set reference to IProtocol
+            </remarks>
+            <param name="id">Unique protocol ID</param>
+            <param name="protocol">Protocol from testbench configuration</param>
+            <param name="isSoft">Flag for software protocols</param>
+            <returns>Config protocol</returns>
+        </member>
+        <member name="M:ET.FW.Source.ConfigSource.RemoveProtocol(ET.FW.Source.ConfigProtocol)">
+            <summary>
+            Removes protocol from source.
+            </summary>
+            <param name="configProtocol">The configuration protocol to remove</param>
+        </member>
+        <member name="M:ET.FW.Source.ConfigSource.GetProtocol(System.String)">
+            <summary>
+            Gets config protocol
+            </summary>
+            <param name="protocolName">Protocol name</param>
+            <returns>Config protocol</returns>
+        </member>
+        <member name="M:ET.FW.Source.ConfigSource.GetProtocol(System.Byte)">
+            <summary>
+            Get Protocol
+            </summary>
+            <param name="protocolID">Protocol id</param>
+            <returns>Config protocol</returns>
+        </member>
+        <member name="M:ET.FW.Source.ConfigSource.GetProtocolID(System.String)">
+            <summary>
+            Get Protocol ID
+            </summary>
+            <param name="protocolName">Protocol name</param>
+            <returns>Protocol id</returns>
+        </member>
+        <member name="M:ET.FW.Source.ConfigSource.GetProtocolName(System.Byte)">
+            <summary>
+            Get Protocol name
+            </summary>
+            <param name="protocolID">Protocol id</param>
+            <returns>Protocol name</returns>
+        </member>
+        <member name="M:ET.FW.Source.ConfigSource.CreateXmlSourceProtocol(System.String,System.Byte)">
+            <summary>
+            Create new node protocol
+            </summary>
+            <param name="protocolName">Protocol name</param>
+            <param name="id">Protocol id</param>
+            <returns>XML node</returns>
+        </member>
+        <member name="M:ET.FW.Source.ConfigSource.RemoveXmlSourceProtocol(System.String)">
+            <summary>
+            Removes the XML node of protocol
+            </summary>
+            <param name="protocolName">Name of the protocol.</param>
+        </member>
+        <member name="T:ET.FW.Source.SourceRegisteredEventArgs">
+            <summary>
+            EventArgs of SourceRegisteredEventHandler
+            </summary>
+        </member>
+        <member name="P:ET.FW.Source.SourceRegisteredEventArgs.Source">
+            <summary>
+            Registered source
+            </summary>
+        </member>
+        <member name="M:ET.FW.Source.SourceRegisteredEventArgs.#ctor(ET.FW.Source.ConfigSource)">
+            <summary>
+            The Constructor
+            </summary>
+            <param name="source">Config source</param>
+        </member>
+        <member name="T:ET.FW.Source.IConfigProtocol">
+            <summary>
+            The Config protocol interface
+            </summary>
+        </member>
+        <member name="P:ET.FW.Source.IConfigProtocol.ID">
+            <summary>
+            ID of Protocol
+            </summary>
+        </member>
+        <member name="P:ET.FW.Source.IConfigProtocol.ConfigSource">
+            <summary>
+            Gets or sets the config source.
+            </summary>
+            <value>The config source.</value>
+        </member>
+        <member name="P:ET.FW.Source.IConfigProtocol.IsSoft">
+            <summary>
+            Gets a value indicating whether this instance is soft.
+            </summary>
+            <value><c>true</c> if this instance is soft; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="T:ET.FW.Source.IConfigSource">
+            <summary>
+            The Config Source Interface
+            </summary>
+        </member>
+        <member name="P:ET.FW.Source.IConfigSource.ID">
+            <summary>
+            ID of Source
+            </summary>
+        </member>
+        <member name="P:ET.FW.Source.IConfigSource.ConfigProtocols">
+            <summary>
+            List of Protocols
+            </summary>
+        </member>
+        <member name="P:ET.FW.Source.IConfigSource.Alias">
+            <summary>
+            Alias of source name
+            </summary>
+        </member>
+        <member name="T:ET.FW.Source.ProtocolRegisteredEventArgs">
+            <summary>
+            EventArgs of ProtocolRegisteredEventHandler
+            </summary>
+        </member>
+        <member name="P:ET.FW.Source.ProtocolRegisteredEventArgs.Protocol">
+            <summary>
+            Registered protocol
+            </summary>
+        </member>
+        <member name="M:ET.FW.Source.ProtocolRegisteredEventArgs.#ctor(ET.FW.Source.ConfigProtocol)">
+            <summary>
+            The Constructor
+            </summary>
+            <param name="protocol">Config protocol</param>
+        </member>
+        <member name="T:ET.FW.Source.SourceConfiguration">
+            <summary>
+            Class to load Configuratons for SourceName
+            </summary>
+        </member>
+        <member name="P:ET.FW.Source.SourceConfiguration.SortedIdSources">
+            <summary>
+            List of all sources sorted by id
+            </summary>
+        </member>
+        <member name="P:ET.FW.Source.SourceConfiguration.SortedIdProtocols">
+            <summary>
+            List of all protocols sorted by id
+            </summary>
+        </member>
+        <member name="P:ET.FW.Source.SourceConfiguration.IProtocolKeyProtocols">
+            <summary>
+            Dictionay of all protocols with key as IProtocol
+            </summary>
+        </member>
+        <member name="P:ET.FW.Source.SourceConfiguration.Filename">
+            <summary>
+            Filename of source Configurations 
+            </summary>
+        </member>
+        <member name="M:ET.FW.Source.SourceConfiguration.#ctor(System.String)">
+            <summary>
+            The Constructor
+            </summary>
+            <param name="name">Name of configuration</param>
+        </member>
+        <member name="M:ET.FW.Source.SourceConfiguration.Load(System.String,System.IO.Stream)">
+            <summary>
+            Load Source Configurations
+            </summary>
+            <param name="filename">Filename of Source Configurations</param>
+            <param name="fileStream">fileStream of Source Configurations</param>
+        </member>
+        <member name="M:ET.FW.Source.SourceConfiguration.Reset">
+            <summary>
+            Reset configuration
+            </summary>
+        </member>
+        <member name="M:ET.FW.Source.SourceConfiguration.SaveConfigurationSource">
+            <summary>
+            Save Source Configurations
+            </summary>
+        </member>
+        <member name="M:ET.FW.Source.SourceConfiguration.CreateXmlSourceID(System.String,System.Byte,System.String)">
+            <summary>
+            Create new node source id
+            </summary>
+            <param name="sourceName">The source name</param>
+            <param name="sourceID">The source id</param>
+            <param name="configName">The configured name</param>
+            <returns>Xml node</returns>
+        </member>
+        <member name="M:ET.FW.Source.SourceConfiguration.InitConfigSource(System.Xml.XmlElement)">
+            <summary>
+            Init config source id
+            </summary>
+            <param name="parent">The parent node</param>
+        </member>
+        <member name="M:ET.FW.Source.SourceConfiguration.AddSourceName(System.String,System.String)">
+            <summary>
+            Create and add new source for given name
+            </summary>
+            <param name="sourceName">Source name</param>
+            <param name="configName">Config name</param>
+            <returns>
+            The newly created source
+            </returns>
+        </member>
+        <member name="M:ET.FW.Source.SourceConfiguration.RemoveSource(System.String)">
+            <summary>
+            Remove source
+            </summary>
+            <param name="configName">The Name</param>
+        </member>
+        <member name="M:ET.FW.Source.SourceConfiguration.AddSourceID(System.Byte)">
+            <summary>
+            Add source id with new name
+            </summary>
+            <param name="sourceID">The id</param>
+            <returns>The name</returns>
+        </member>
+        <member name="M:ET.FW.Source.SourceConfiguration.GetSourceID(System.String)">
+            <summary>
+            Get id from source config name (testbench name)
+            </summary>
+            <param name="configName">Source name in testbench config file</param>
+            <returns>The id</returns>
+        </member>
+        <member name="M:ET.FW.Source.SourceConfiguration.GetSourceName(System.Byte)">
+            <summary>
+            Get name of source id
+            </summary>
+            <param name="sourceID">The id</param>
+            <returns>The name</returns>
+        </member>
+        <member name="M:ET.FW.Source.SourceConfiguration.RegisterSourceProtocol(System.String,ET.FW.Core.Messaging.IProtocol,System.Boolean)">
+            <summary>
+            Add source protocol
+            </summary>
+            <remarks>
+            Protocol is not registered if config source is not available.
+            </remarks>
+            <param name="configName">Source name in testbench config file</param>
+            <param name="protocol">The protocol to add to source</param>
+            <param name="isSoft">if set to <c>true</c> for software protocols.</param>
+        </member>
+        <member name="M:ET.FW.Source.SourceConfiguration.UnregisterSourceProtocol(System.String,System.String)">
+            <summary>
+            Remove the given source protocol
+            </summary>
+            <param name="configName">Source name in testbench config file</param>
+            <param name="protocolName">Name of the protocol.</param>
+        </member>
+        <member name="M:ET.FW.Source.SourceConfiguration.GetProtocolID(System.String,System.String)">
+            <summary>
+            Get Protocol ID
+            </summary>
+            <param name="sourceName">Source name</param>
+            <param name="protocolName">Protocol name</param>
+            <returns>Protocol ID</returns>
+        </member>
+        <member name="M:ET.FW.Source.SourceConfiguration.GetProtocolID(System.Byte,System.String)">
+            <summary>
+            Get protocol id
+            </summary>
+            <param name="sourceID">Source ID</param>
+            <param name="protocolName">Protocol name</param>
+            <returns>Protocol id</returns>
+        </member>
+        <member name="M:ET.FW.Source.SourceConfiguration.GetProtocolName(System.String,System.Byte)">
+            <summary>
+            Get protocol name
+            </summary>
+            <param name="sourceName">Source name</param>
+            <param name="protocolID">Protocol id</param>
+            <returns>Protocol name</returns>
+        </member>
+        <member name="M:ET.FW.Source.SourceConfiguration.GetProtocolName(System.Byte,System.Byte)">
+            <summary>
+            Get protocol name
+            </summary>
+            <param name="sourceID">Source id</param>
+            <param name="protocolID">Protocol id</param>
+            <returns>Protocol name</returns>
+        </member>
+        <member name="M:ET.FW.Source.SourceConfiguration.GetProtocol(System.String,System.Byte)">
+            <summary>
+            Get protocol
+            </summary>
+            <param name="sourceName">Source name</param>
+            <param name="protocolID">Protocol id</param>
+            <returns>Config protocol</returns>
+        </member>
+        <member name="M:ET.FW.Source.SourceConfiguration.GetProtocol(System.Byte,System.Byte)">
+            <summary>
+            Get protocol
+            </summary>
+            <param name="sourceID">Source id</param>
+            <param name="protocolID">Protocol id</param>
+            <returns>Config protocol</returns>
+        </member>
+        <member name="M:ET.FW.Source.SourceConfiguration.GetProtocol(System.String,System.String)">
+            <summary>
+            Get Protocol
+            </summary>
+            <param name="configName">Source name in testbench config file</param>
+            <param name="protocolName">Protocol name</param>
+            <returns>Config protocol</returns>
+        </member>
+        <member name="M:ET.FW.Source.SourceConfiguration.GetProtocol(System.Byte,System.String)">
+            <summary>
+            Get protocol 
+            </summary>
+            <param name="sourceID">Source id</param>
+            <param name="protocolName">Protocol name</param>
+            <returns>Config protocol</returns>
+        </member>
+        <member name="P:ET.FW.Source.SourceConfiguration.Name">
+            <summary>
+            Name of configuration
+            </summary>
+        </member>
+        <member name="E:ET.FW.Source.SourceConfiguration.Initialized">
+            <summary>
+            Event by register new source
+            </summary>
+        </member>
+        <member name="E:ET.FW.Source.SourceConfiguration.SourceRegisteredEvent">
+            <summary>
+            Event by register new source
+            </summary>
+        </member>
+        <member name="E:ET.FW.Source.SourceConfiguration.ProtocolRegisteredEvent">
+            <summary>
+            Event by register new protocol
+            </summary>
+        </member>
+        <member name="M:ET.FW.Source.SourceConfiguration.RaiseSourceRegisteredEvent(ET.FW.Source.ConfigSource)">
+            <summary>
+            Raise event by register new source
+            </summary>
+            <param name="source">config source</param>
+        </member>
+        <member name="M:ET.FW.Source.SourceConfiguration.RaiseProtocolRegisteredEvent(ET.FW.Source.ConfigProtocol)">
+            <summary>
+            Raise event by register new protocol
+            </summary>
+            <param name="protocol">config protocol</param>
+        </member>
+        <member name="M:ET.FW.Source.SourceConfiguration.OnInitializingFinished">
+            <summary>
+            Raises initialized event
+            </summary>
+        </member>
+        <member name="M:ET.FW.Source.SourceConfiguration.ToString">
+            <summary>
+            Returns a string that represents the current object.
+            </summary>
+            <returns>A string that represents the current object.</returns>
+        </member>
+        <member name="M:ET.FW.Source.SourceConfiguration.RegisterSource(System.String,System.String)">
+            <summary>
+            Register source name
+            </summary>
+            <param name="name">The source name</param>
+            <param name="configName">Source config name</param>
+            <returns>The source id</returns>
+        </member>
+        <member name="M:ET.FW.Source.SourceConfiguration.RegisterSource(ET.FW.Core.Hal.IChannelAccess)">
+            <summary>
+            Registers the source and associate it with channel access
+            If source with given name exists already, the channle access is associated with existing source
+            </summary>
+            <param name="channelAccess">The channel access for the source</param>
+        </member>
+        <member name="M:ET.FW.Source.SourceConfiguration.GetSource(System.String)">
+            <summary>
+            Get source by config name
+            </summary>
+            <param name="configName">Source config name.</param>
+            <returns>Config source, null if not found</returns>
+        </member>
+        <member name="P:ET.FW.Source.SourceConfiguration.Sources">
+            <summary>
+            Get all registered sources
+            </summary>
+            <returns>List of registered sources</returns>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,419 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ET.FW.Hal.UserData</name>
+    </assembly>
+    <members>
+        <member name="T:ET.FW.Hal.UserData.IUserDataService">
+            <summary>
+            Service for writing user data
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.UserData.IUserDataService.UserDataSources">
+            <summary>
+            Busses as user data sources
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.UserData.IUserDataService.UserDataProtocols">
+            <summary>
+            Protocols for user data
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.UserData.IUserDataService.GetUserDataSource(System.String)">
+            <summary>
+            get user data source by name
+            </summary>
+            <param name="name">Source name</param>
+            <returns>Source for handling UserData</returns>
+        </member>
+        <member name="M:ET.FW.Hal.UserData.IUserDataService.GetFirstUserDataProtocol">
+            <summary>
+            Get first user data protocol of first source
+            </summary>
+            <returns>Protocol for handling UserData</returns>
+        </member>
+        <member name="M:ET.FW.Hal.UserData.IUserDataService.GetUserDataProtocol(System.String)">
+            <summary>
+            Get user data protocol by name
+            </summary>
+            <param name="name">Protocol name</param>
+            <returns>Protocol for handling UserData</returns>
+        </member>
+        <member name="M:ET.FW.Hal.UserData.IUserDataService.CreateUserData">
+            <summary>
+            Create a new instance of UserDataMessage with first found source and first found protocol
+            </summary>
+            <returns>New instance of UserDataMessage</returns>
+        </member>
+        <member name="M:ET.FW.Hal.UserData.IUserDataService.CreateUserData(System.String)">
+            <summary>
+            Create a new instance of UserDataMessage with protocol name
+            </summary>
+            <param name="protocolName">Protocol name</param>
+            <returns>New instance of UserDataMessage</returns>
+        </member>
+        <member name="M:ET.FW.Hal.UserData.IUserDataService.SaveUserData(ET.FW.Hal.UserData.UserDataMessage)">
+            <summary>
+            Saves user data
+            </summary>
+            <param name="userData">filled user data</param>
+            <returns>True if sucessful, otherwise false</returns>
+        </member>
+        <member name="T:ET.FW.Hal.UserData.Log">
+            <summary>
+            Static wrapper for loggers of this assembly
+            </summary>
+            <example>
+            The example shows a common call to add a message to log
+            <code>
+            Log.Messages.Error("An error occured");
+            </code></example>
+        </member>
+        <member name="P:ET.FW.Hal.UserData.Log.YamData">
+            <summary>
+            Logger with code "HAL"
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.UserData.UserDataService">
+            <summary>
+            Service for writing user data
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.UserData.UserDataService.#ctor(System.String)">
+            <summary>
+            The constructor
+            </summary>
+            <param name="name">Name of service</param>
+        </member>
+        <member name="M:ET.FW.Hal.UserData.UserDataService.Init">
+            <summary>
+            Initializes this service
+            </summary>
+            <returns>
+            <c>true</c> if successfull; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:ET.FW.Hal.UserData.UserDataService.Dispose">
+            <summary>
+            Shutdown the service
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.UserData.UserDataService.UserDataSources">
+            <summary>
+            Busses as user data sources
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.UserData.UserDataService.UserDataProtocols">
+            <summary>
+            Protocols as user data categories
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.UserData.UserDataService.GetUserDataSource(System.String)">
+            <summary>
+            get user data source by name
+            </summary>
+            <param name="name">Source name</param>
+            <returns>Source for handling UserData</returns>
+        </member>
+        <member name="M:ET.FW.Hal.UserData.UserDataService.GetUserDataProtocol(System.String)">
+            <summary>
+            Get user data protocol by name
+            </summary>
+            <param name="name">Protocol name</param>
+            <returns>Protocol for handling UserData</returns>
+        </member>
+        <member name="M:ET.FW.Hal.UserData.UserDataService.GetFirstUserDataProtocol">
+            <summary>
+            Get first user data protocol of first source
+            </summary>
+            <returns>Protocol for handling UserData</returns>
+        </member>
+        <member name="M:ET.FW.Hal.UserData.UserDataService.CreateUserData">
+            <summary>
+            Create a new instance of UserDataMessage with first found source and first found protocol
+            </summary>
+            <returns>New instance of UserDataMessage</returns>
+        </member>
+        <member name="M:ET.FW.Hal.UserData.UserDataService.CreateUserData(System.String)">
+            <summary>
+            Create a new instance of UserDataMessage with protocol name
+            </summary>
+            <param name="protocolName">Protocol name</param>
+            <returns>New instance of UserDataMessage</returns>
+        </member>
+        <member name="M:ET.FW.Hal.UserData.UserDataService.SaveUserData(ET.FW.Hal.UserData.UserDataMessage)">
+            <summary>
+            Saves user data
+            </summary>
+            <param name="userData">filled user data</param>
+            <returns>True if sucessful, otherwise false</returns>
+            <remarks>If message has no reference to user data protocol, the first found protocol of found sources will be use to send message</remarks>
+        </member>
+        <member name="M:ET.FW.Hal.UserData.UserDataService.Start">
+            <summary>
+            Start object
+            </summary>
+            <returns><c>true</c>, if successful</returns>
+        </member>
+        <member name="M:ET.FW.Hal.UserData.UserDataService.Stop">
+            <summary>
+            Stop object
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.UserData.UserDataService.IsRunning">
+            <summary>
+            Indicates if the object is started and still runs
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.UserData.UserDataBus">
+            <summary>
+            Implements the message Bus for user data messages
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.UserData.UserDataBus.#ctor(System.String)">
+            <summary>
+            The Constructor
+            </summary>
+            <param name="name">bus name</param>
+        </member>
+        <member name="M:ET.FW.Hal.UserData.UserDataBus.Init(System.Collections.Generic.IList{ET.FW.Core.Messaging.IProtocol})">
+            <summary>
+            Configure and initialize bus
+            </summary>
+            <param name="protocols">collection of protocols for bus (configured in XML-file)</param>
+            <returns>true if initialization was successful</returns>
+        </member>
+        <member name="P:ET.FW.Hal.UserData.UserDataBus.UserDataProtocols">
+            <summary>
+            Protocol for UserDataMessages
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.UserData.UserDataChannelAccess">
+            <summary>
+            User data channel access.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.UserData.UserDataChannelAccess.#ctor(ET.FW.Core.Hal.IEquipment,System.String,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ET.FW.Hal.UserData.UserDataChannelAccess"/> class.
+            </summary>
+            <param name="equipment">The TextSimulation equipment which contains this channel access</param>
+            <param name="portName">Name of the port e.g. "TextSimulation".</param>
+            <param name="name">Channel access name</param>
+            <param name="portType">Port type for channel access</param>
+        </member>
+        <member name="M:ET.FW.Hal.UserData.UserDataChannelAccess.Start">
+            <summary>
+            Starts the channel access.
+            </summary>
+            <returns>true on sucess</returns>
+        </member>
+        <member name="M:ET.FW.Hal.UserData.UserDataChannelAccess.Stop">
+            <summary>
+            Stops this instance.
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.UserData.UserDataChannelAccess.IsRunning">
+            <summary>
+            Indicates if the object is started and still runs.
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.UserData.UserDataChannelAccess.HWProtocols">
+            <summary>
+            Collection of hardware protocols created by this channel access
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.UserData.UserDataChannelAccess.CreateHardwareProtocol(System.String,System.String)">
+            <summary>
+            Create HW protocol of given type if available
+            </summary>
+            <param name="type">HW protocol type</param>
+            <param name="name">HW protocol name (set in this method)</param>
+            <returns>the newly created protocol, null on error</returns>
+        </member>
+        <member name="M:ET.FW.Hal.UserData.UserDataChannelAccess.SendMessage(ET.FW.Hal.UserData.UserDataMessage)">
+            <summary>
+            Sends the specified binary message.
+            </summary>
+            <param name="message">The message to send.</param>
+            <returns>
+            Send result, which indicates if message could be sent, further errors are not monitored here.
+            </returns>
+        </member>
+        <member name="P:ET.FW.Hal.UserData.UserDataChannelAccess.PortType">
+            <summary>
+            Port type
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.UserData.UserDataEquipment">
+            <summary>
+            Device for a single channel.
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.UserData.UserDataEquipment.ChannelAccesses">
+            <summary>
+            Channel accesses
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.UserData.UserDataEquipment.CreateChannelAccess(System.String,System.String,System.String)">
+            <summary>
+            Create/provide channel access
+            </summary>
+            <param name="portName">Hardware port name</param>
+            <param name="name">Channel access name</param>
+            <param name="portType">Port type for channel access</param>
+            <returns>The newly constructed channel access</returns>
+            <remarks>
+            Each supported channel access must be declared with a <see cref="T:ET.FW.Core.Config.ChannelAccessAttribute" /> or <see cref="T:ET.FW.Core.Config.ChannelAccessRangeAttribute" /> to provide configuration information.
+            </remarks>
+        </member>
+        <member name="M:ET.FW.Hal.UserData.UserDataEquipment.Connect">
+            <summary>
+            Connect to hardware
+            </summary>
+            <returns>
+            true on success
+            </returns>
+        </member>
+        <member name="M:ET.FW.Hal.UserData.UserDataEquipment.Disconnect">
+            <summary>
+            Disconnect hardware
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.UserData.UserDataEquipment.IsConnected">
+            <summary>
+            Check if hardware is connected
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.UserData.UserDataEquipmentManager">
+            <summary>
+            Equipment manager for UserData, class provides instances of UserData equipments
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.UserData.UserDataEquipmentManager.#ctor">
+            <summary>
+            The Constructor.
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.UserData.UserDataMessage">
+            <summary>
+            Message for user data messages
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.UserData.UserDataMessage.#ctor">
+            <summary>
+            The Constructor
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.UserData.UserDataMessage.Serialize(System.IO.BinaryWriter)">
+            <summary>
+            Serializes this message using the specified writer.
+            </summary>
+            <param name="writer">The writer.</param>
+        </member>
+        <member name="M:ET.FW.Hal.UserData.UserDataMessage.Deserialize(System.IO.BinaryReader)">
+            <summary>
+            Deserializes this message using the specified reader.
+            </summary>
+            <param name="reader">The reader.</param>
+        </member>
+        <member name="M:ET.FW.Hal.UserData.UserDataMessage.Translate">
+            <summary>
+            Translate binary message to textual representation
+            </summary>
+            <returns>translation text</returns>
+        </member>
+        <member name="M:ET.FW.Hal.UserData.UserDataMessage.TranslateMessage">
+            <summary>
+            Translate the message
+            </summary>
+            <returns>The MessageTranslation</returns>
+        </member>
+        <member name="P:ET.FW.Hal.UserData.UserDataMessage.Source">
+            <summary>
+            Yam source
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.UserData.UserDataMessage.Target">
+            <summary>
+            Yam target
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.UserData.UserDataMessage.Status">
+            <summary>
+            Yam status
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.UserData.UserDataMessage.Id">
+            <summary>
+            Yam ID
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.UserData.UserDataMessage.Type">
+            <summary>
+            Yam type
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.UserData.UserDataMessage.Text">
+            <summary>
+            Yam text
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.UserData.UserDataMessage.ErrorMessage">
+            <summary>
+            Yam error message
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.UserData.UserDataMessageFactory">
+            <summary>
+            Creates user data messages.
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.UserData.UserDataMessageFactory.Instance">
+            <summary>
+            The only one user data message factory
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.UserData.UserDataMessageFactory.#ctor">
+            <summary>
+            Private constructor, to avoid explicit instantiation
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.UserData.UserDataMessageFactory.ET#FW#Core#Messaging#IMessageFactory#CreateMessage``1(ET.FW.Core.Messaging.IProtocol)">
+            <summary>
+            Creates Message
+            </summary>
+            <typeparam name="TMessage">The message type</typeparam>
+            <param name="protocol">The protocol</param>
+            <returns>Message object</returns>
+        </member>
+        <member name="M:ET.FW.Hal.UserData.UserDataMessageFactory.SerializeMessage(ET.FW.Core.Messaging.IMessage,System.IO.BinaryWriter)">
+            <summary>
+            Write given message to stream
+            </summary>
+            <param name="message">message to serialize</param>
+            <param name="writer">writer to access the stream</param>
+            <returns>true on success</returns>
+        </member>
+        <member name="M:ET.FW.Hal.UserData.UserDataMessageFactory.DeserializeMessage(System.IO.BinaryReader,ET.FW.Core.Messaging.IProtocol,System.Int32)">
+            <summary>
+            Read message from stream
+            </summary>
+            <param name="reader">reader to access the stream</param>
+            <param name="protocol">protocol which is assigned to the message</param>
+            <param name="length">length of message data in bytes</param>
+            <returns>the restored message or null on error</returns>
+        </member>
+        <member name="T:ET.FW.Hal.UserData.UserDataProtocol">
+            <summary>
+            Protocol handling user data messages.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.UserData.UserDataProtocol.#ctor(ET.FW.Hal.Messaging.ITransmitter{ET.FW.Hal.UserData.UserDataMessage})">
+            <summary>
+            Initializes a new instance of the <see cref="T:ET.FW.Hal.UserData.UserDataProtocol"/> class.
+            </summary>
+            <param name="transmitter">HW transmitter to be used by protocol.</param>
+        </member>
+    </members>
+</doc>

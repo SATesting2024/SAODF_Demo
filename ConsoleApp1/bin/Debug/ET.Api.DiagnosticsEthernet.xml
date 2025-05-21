@@ -1,0 +1,2315 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ET.Api.DiagnosticsEthernet</name>
+    </assembly>
+    <members>
+        <member name="T:ET.Api.Diagnostics.Ethernet.GetCurrentZenzefiUser">
+            <summary>
+            GetCurrentZenzefiUser job
+            </summary>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.GetCurrentZenzefiUser.#ctor(System.TimeSpan)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="timeout"></param>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.GetCurrentZenzefiUser.Result">
+            <summary>
+            Result of the type ZenzefiLoginState
+            </summary>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.GetCurrentZenzefiUser.Start">
+            <summary>
+            Start the job
+            </summary>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.GetCurrentZenzefiUser.Abort">
+            <summary>
+            Sets the JobState to Aborted
+            Dispose if zenzefi is not null
+            </summary>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.GetCurrentZenzefiUser.Completed">
+            <summary>
+            Sets the JobState to Completed
+            Dispose if zenzefi is not null
+            </summary>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.GetCurrentZenzefiUser.Failed(ET.FW.Core.Jobs.Error)">
+            <summary>
+            Sets the JobState to Failed
+            Dispose if zenzefi is not null
+            </summary>
+        </member>
+        <member name="T:ET.Api.Diagnostics.Ethernet.GetZenzefiCertificateType">
+            <summary>
+            GetZenzefiCertificateType job
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.GetZenzefiCertificateType.UserRoles">
+            <summary>
+            List of user roles available from the user's certificates
+            </summary>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.GetZenzefiCertificateType.#ctor(System.TimeSpan)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="timeout"></param>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.GetZenzefiCertificateType.Start">
+            <summary>
+            Start the job
+            </summary>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.GetZenzefiCertificateType.Abort">
+            <summary>
+            abort function
+            </summary>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.GetZenzefiCertificateType.Completed">
+            <summary>
+            completed function
+            </summary>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.GetZenzefiCertificateType.Failed(ET.FW.Core.Jobs.Error)">
+            <summary>
+            failed function
+            </summary>
+            <param name="error">error information</param>
+        </member>
+        <member name="T:ET.Api.Diagnostics.Ethernet.ReadEcuDetailsJob">
+            <summary>
+            Job which contains the set of jobs to be called once zenzefi service related jobs are completed
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.ReadEcuDetailsJob.RequestTimeout">
+            <summary>
+            Timeout for one request.
+            Diagnostics service internally check for timeouts and aborts itself if an protocol timeout occurs
+            </summary>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.ReadEcuDetailsJob.#ctor(ET.Api.Diagnostics.Ethernet.DoIPEcu,System.Collections.Generic.IDictionary{ET.Api.Diagnostics.Can.Odx.EcuDiagInfo,System.String},System.TimeSpan)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="ecu">Ecu details</param>
+            <param name="diagRepoDictionary">EcuDiagInfo dictionary</param>
+            <param name="timeout">Timeout value</param>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.ReadEcuDetailsJob.Start">
+            <summary>
+            Start the job
+            </summary>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.ReadEcuDetailsJob.ReadHWPartNumberEnded(System.Object,ET.FW.Core.Jobs.JobStateEventArgs)">
+            <summary>
+            Event handler for first request: Read ECU HW part number
+            </summary>
+            <param name="sender">Read HW part number service</param>
+            <param name="e">event args holding job state</param>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.ReadEcuDetailsJob.ReadHWVersionEnded(System.Object,ET.FW.Core.Jobs.JobStateEventArgs)">
+            <summary>
+            Event handler for second request: Read ECU HW version
+            </summary>
+            <param name="sender">Read HW version service</param>
+            <param name="e">event args holding job state</param>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.ReadEcuDetailsJob.ReadSupplierEnded(System.Object,ET.FW.Core.Jobs.JobStateEventArgs)">
+            <summary>
+            Event handler for third request: Read ECU supplier
+            </summary>
+            <param name="sender">Read supplier service</param>
+            <param name="e">event args holding job state</param>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.ReadEcuDetailsJob.ReadDiagInfoEnded(System.Object,ET.FW.Core.Jobs.JobStateEventArgs)">
+            <summary>
+            Event handler for fourth request: Read diag info
+            </summary>
+            <param name="sender">Read diag info service</param>
+            <param name="e">event args holding job state</param>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.ReadEcuDetailsJob.ReadSWPartNumbersEnded(System.Object,ET.FW.Core.Jobs.JobStateEventArgs)">
+            <summary>
+            Event handler for fifth request: Read SW part numbers
+            </summary>
+            <param name="sender">Read SW part numbers service</param>
+            <param name="e">event args holding job state</param>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.ReadEcuDetailsJob.ReadSWVersionsEnded(System.Object,ET.FW.Core.Jobs.JobStateEventArgs)">
+            <summary>
+            Event handler for sixth request: Read SW versions
+            </summary>
+            <param name="sender">Read SW versions service</param>
+            <param name="e">event args holding job state</param>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.ReadEcuDetailsJob.ReadEcuSerialNumberEnded(System.Object,ET.FW.Core.Jobs.JobStateEventArgs)">
+            <summary>
+            Event handler request: Read serial number versions
+            </summary>
+            <param name="sender">Read SW versions service</param>
+            <param name="e">event args holding job state</param>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.ReadEcuDetailsJob.ReadEStandVersion_Ended(System.Object,ET.FW.Core.Jobs.JobStateEventArgs)">
+            <summary>
+            Event handler request: Read serial number versions
+            </summary>
+            <param name="sender">Read SW versions service</param>
+            <param name="e">event args holding job state</param>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.ReadEcuDetailsJob.ReadEcuCatalogVersion_Ended(System.Object,ET.FW.Core.Jobs.JobStateEventArgs)">
+            <summary>
+            Event handler for job which queries the K-Matrix version
+            Query may fail for some ECUS (MOST based ECUs or older versions).
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">The <see cref="T:ET.FW.Core.Jobs.JobStateEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.ReadEcuDetailsJob.HandleFailedService(ET.FW.Hal.Ethernet.Diagnostics.DiagnosticsService,System.Boolean@)">
+            <summary>
+            Handle failed diagnostics request
+            </summary>
+            <param name="service">failed request</param>
+            <param name="abortQuery">flag indicates, that no further requests should be sent to the ECU</param>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.ReadEcuDetailsJob.Abort">
+            <summary>
+            Abort job
+            </summary>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.ReadEcuDetailsJob.Failed(ET.FW.Core.Jobs.Error)">
+            <summary>
+            Set job to failed
+            </summary>
+            <param name="error">error object</param>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.ReadEcuDetailsJob.Disconnect">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:ET.Api.Diagnostics.Ethernet.ReadSystemDate">
+            <summary>
+            Routine to Read the system date
+            </summary>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.ReadSystemDate.#ctor(ET.FW.Hal.Ethernet.Diagnostics.DoIpTpSession,System.TimeSpan)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ET.Api.Diagnostics.Ethernet.ReadSystemDate"/> class.
+            </summary>
+            <param name="session">TP session to use</param>
+            <param name="timeout">service timeout</param>
+        </member>
+        <member name="P:ET.Api.Diagnostics.Ethernet.ReadSystemDate.Date">
+            <summary>
+            Extract Date information from Response
+            </summary>
+        </member>
+        <member name="T:ET.Api.Diagnostics.Ethernet.ResetSystemDateTime">
+            <summary>
+            Job to Reset System Date and Time
+            </summary>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.ResetSystemDateTime.#ctor(ET.Api.Diagnostics.Ethernet.DoIPEcu,System.TimeSpan)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ET.Api.Diagnostics.Ethernet.ResetSystemDateTime"/> class.
+            </summary>
+            <param name="doIpEcu">Ecu to read data from</param>
+            <param name="timeout">Service timeout</param>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.ResetSystemDateTime.ecu">
+            <summary>
+            DoIPEcu
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.ResetSystemDateTime.currentService">
+            <summary>
+            currentService job
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.ResetSystemDateTime.nonce">
+            <summary>
+            Nounce in byte
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.ResetSystemDateTime.baseTickCount">
+            <summary>
+            Timeout duration
+            </summary>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.ResetSystemDateTime.Start">
+            <summary>
+            Start the job
+            </summary>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.ResetSystemDateTime.synchronizeSecuredSystemDate_Ended(System.Object,ET.FW.Core.Jobs.JobStateEventArgs)">
+            <summary>
+            Event handler for SynchronizeSecuredSystemDate service
+            Once jobstate is completed, Zenzefi time certificate is fetched and signature ownership is verified for the diagnostics user
+            </summary>
+            <param name="sender">SynchronizeSecuredSystemDate</param>
+            <param name="e">event arg of type jobState</param>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.ResetSystemDateTime.VerifyCertificateOwnershipEnded(System.Object,ET.FW.Core.Jobs.JobStateEventArgs)">
+            <summary>
+            Event handler for AuthenticateDiagnosticsUser service
+            Once jobstate is completed, check if the AuthenticationVerificationResult is CertificateVerified
+            </summary>
+            <param name="sender">AuthenticateDiagnosticsUser</param>
+            <param name="e">event arg of type jobState</param>
+        </member>
+        <member name="T:ET.Api.Diagnostics.Ethernet.SynchronizeSecuredSystemDate">
+            <summary>
+            Routine to Synchronize Secured System Date
+            </summary>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.SynchronizeSecuredSystemDate.#ctor(ET.FW.Hal.Ethernet.Diagnostics.DoIpTpSession,System.TimeSpan)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ET.Api.Diagnostics.Ethernet.SynchronizeSecuredSystemDate"/> class.
+            </summary>
+            <param name="session">The session.</param>
+            <param name="timeout">Job timeout.</param>
+        </member>
+        <member name="P:ET.Api.Diagnostics.Ethernet.SynchronizeSecuredSystemDate.Nonce">
+            <summary>
+            Extracts the Nounce byte from the response data
+            </summary>
+        </member>
+        <member name="T:ET.Api.Diagnostics.Ethernet.WriteDataWithStartRoutine">
+            <summary>
+            Routine to Write Data with Start Routine control type for specific identifier
+            </summary>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.WriteDataWithStartRoutine.#ctor(ET.FW.Hal.Ethernet.Diagnostics.DoIpTpSession,System.TimeSpan,System.UInt16,System.Byte[])">
+            <summary>
+            Initializes a new instance of the <see cref="T:ET.Api.Diagnostics.Ethernet.WriteDataWithStartRoutine"/> class.
+            </summary>
+            <param name="session">Session</param>
+            <param name="timeout">Service timeout</param>
+            <param name="identifier">Service ID</param>
+            <param name="data">Payload</param>
+        </member>
+        <member name="P:ET.Api.Diagnostics.Ethernet.WriteDataWithStartRoutine.Result">
+            <summary>
+            Get the Response data
+            </summary>
+        </member>
+        <member name="T:ET.Api.Diagnostics.Ethernet.DiagnosticsEthernetService">
+            <summary>
+            Initializes the Diagnostics Ethernet Service by loading the config, odxd files and fetching required info
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.Ethernet.DiagnosticsEthernetService.Retries">
+            <summary>
+            Number of retries for diagnostics service call
+            If diagnostics service times out, it is repeated Retries times
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.Ethernet.DiagnosticsEthernetService.DiagFolderPath">
+            <summary>
+            Folder path to Diag folder containing diag files like odx-d files
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.Ethernet.DiagnosticsEthernetService.EcuConfigurations">
+            <summary>
+            Configurations for different Ecus from config file
+            </summary>
+            <returns> Array of Name, SupportedNtgs, VCDConfiguration</returns>
+        </member>
+        <member name="P:ET.Api.Diagnostics.Ethernet.DiagnosticsEthernetService.EcuDiagRepositoryDictionary">
+            <summary>
+            Collection of EcuDiagInfos and corresponding odx-d file names
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.Ethernet.DiagnosticsEthernetService.EnableAuthentication">
+            <summary>
+            To enable diagnostics authontication with backend like Zenzefi
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.Ethernet.DiagnosticsEthernetService.EnableOBDDiagnostics">
+            <summary>
+            To enable 4-wire OBD diagnostics
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.Ethernet.DiagnosticsEthernetService.EnableTLS">
+            <summary>
+            To Switch TLS client connection On or Off
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.Ethernet.DiagnosticsEthernetService.EnableTLSEncryption">
+            <summary>
+            To Switch TLS client connection On or Off
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.Ethernet.DiagnosticsEthernetService.TLSVersion">
+            <summary>
+            To set specific TLS version
+            </summary>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.DiagnosticsEthernetService.GetGlobalSession">
+            <summary>
+            Access to global request identifier
+            </summary>
+            <returns>A session for the global request identifier</returns>
+        </member>
+        <member name="P:ET.Api.Diagnostics.Ethernet.DiagnosticsEthernetService.SpecialEcus">
+            <summary>
+            Gets and sets the value from ISpecialEcuCollection Interface
+            </summary>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.DiagnosticsEthernetService.#ctor(System.String)">
+            <summary>
+            Constructor - Intializes the values for Retries, DiagFolderPath, EnableAuthentication, EnableOBDDiagnostics
+            </summary>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.DiagnosticsEthernetService.Init">
+            <summary>
+            Load the config file, read each odx-d files and add the "Name" and "DoIPLogicAddress" values to ecuDiagFileRepository dictionary
+            </summary>
+            <returns>Config file load check</returns>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.DiagnosticsEthernetService.Dispose">
+            <summary>
+            Dispose all Ecu
+            </summary>
+        </member>
+        <member name="T:ET.Api.Diagnostics.Ethernet.DoIPEcu">
+            <summary>
+            Ethernet specific implementation of ECU diagnostics
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.DoIPEcu.RequestTimeout">
+            <summary>
+            Timeout for one request.
+            Diagnostics service internally check for timeouts and aborts itself if an protocol timeout occurs
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.Ethernet.DoIPEcu.Bus">
+            <summary>
+            Ethernet bus for communication with ECU
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.Ethernet.DoIPEcu.UserRole">
+            <summary>
+            The selected UserRole from either DiagnosticsAddon/SystemActivationAddon. Null for InitAddon
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.Ethernet.DoIPEcu.UserRoleNumber">
+            <summary>
+            The value correponding to each user role.
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.Ethernet.DoIPEcu.ConnectionStatus">
+            <summary>
+            The connection status of the TCP channel for diagnostics
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.Ethernet.DoIPEcu.Session">
+            <summary>
+            Ethernet DoIP session for communication with ECU
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.DoIPEcu.tcpChannel">
+            <summary>
+            tcp channel
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.DoIPEcu.version">
+            <summary>
+            version
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.DoIPEcu.doipEntityAddress">
+            <summary>
+            ip
+            </summary>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.DoIPEcu.#ctor(ET.Api.Diagnostics.EcuType,System.String,System.Net.IPAddress,System.UInt16,System.Byte,ET.FW.Hal.Devices.Socket.ITcpChannel)">
+            <summary>
+            Initializing the parameters of DoIP Ecu
+            </summary>
+            <param name="type">Ecu Type</param>
+            <param name="name">Ecu Name</param>
+            <param name="address">IPAddress of Ecu</param>
+            <param name="logicalAddress">logicalAddress of Ecu</param>
+            <param name="version">Ecu Version</param>
+            <param name="channel">TCP channel</param>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.DoIPEcu.#ctor(ET.Api.Diagnostics.EcuType,System.String,System.Net.IPAddress,System.UInt16,System.Byte)">
+            <summary>
+            Initializing the parameters of DoIP Ecu
+            </summary>
+            /// <param name="type">Ecu Type</param>
+            <param name="name">Ecu Name</param>
+            <param name="address">IPAddress of Ecu</param>
+            <param name="logicalAddress">logicalAddress of Ecu</param>
+            <param name="version">Ecu Version</param>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.DoIPEcu.#ctor(ET.Api.Diagnostics.EcuType,ET.FW.Hal.Ethernet.IEthernetBus,System.String,ET.FW.Hal.Ethernet.MacAddress,System.Net.IPAddress,System.UInt16,System.Byte)">
+            <summary>
+            Initializing the parameters of DoIP Ecu
+            </summary>
+            <param name="type">ECU type</param>
+            <param name="bus">Ethernet bus object</param>
+            <param name="name">ECU name</param>
+            <param name="macAddress">MAC address of the ECU</param>
+            <param name="address">IP address of the ECU</param>
+            <param name="logicalAddress">logical address</param>
+            <param name="version">ECU version</param>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.DoIPEcu.Disconnect">
+            <summary>
+            function to Disconnect the eCU
+            </summary>
+            <returns>returns true if its disconnected successfully, else false</returns>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.DoIPEcu.SendRoutingRequest">
+            <summary>
+            Request to send RoutingRequest routine
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.Ethernet.DoIPEcu.Protocol">
+            <summary>
+            Diagnostics protocol supported by ECU
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.Ethernet.DoIPEcu.LogicalAddress">
+            <summary>
+            LogicalAddress of the ECU
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.Ethernet.DoIPEcu.BackendCertSubjKeyId">
+            <summary>
+            BackendCertSubjKeyId of the ECU
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.Ethernet.DoIPEcu.VIN">
+            <summary>
+            VIN read from the ECU
+            </summary>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.DoIPEcu.ReadCurrentDtcs">
+            <summary>
+            Read all identified DTCs
+            </summary>
+            <returns>Job which handles the async operation. On success its result is a list of the requested DTCs</returns>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.DoIPEcu.ReadSupportedDtcs">
+            <summary>
+            Read all supported DTCs
+            </summary>
+            <returns>Job which handles the async operation. On success its result is a list of the requested DTCs</returns>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.DoIPEcu.ClearDtc(System.UInt32)">
+            <summary>
+            Clear single DTC
+            </summary>
+            <param name="code">DTC code to clear</param>
+            <returns>Job which handles the async operation.</returns>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.DoIPEcu.ClearAllDtcs">
+            <summary>
+            Clear all identified DTCs
+            </summary>
+            <returns>
+            Job to monitor async operation
+            </returns>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.DoIPEcu.CreateVariantCoder">
+            <summary>
+            Creates a variant coder
+            </summary>
+            <returns>VariantCoder object</returns>
+            <returns>Job which handles the async operation.</returns>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.DoIPEcu.Reset">
+            <summary>
+            Send reset request to this ECU.
+            </summary>
+            <remarks>
+            Some ECUs do not execute the reset immediately, this devices wait for the HU reset to execute own reset.
+            </remarks>
+            <returns>Job which handles the async operation.</returns>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.DoIPEcu.Dispose">
+            <summary>
+            Dispose ECU
+            </summary>
+        </member>
+        <member name="T:ET.Api.Diagnostics.Ethernet.DoIPEntry">
+            <summary>
+            Details of the DoIPEntry - IPAddress, LogicalAddress, ProtocolVersion, MacAddress, RemotePort
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.DoIPEntry.RemoteAddress">
+            <summary>
+            IPAddress of DoIPEntry
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.DoIPEntry.LogicalAddress">
+            <summary>
+            LogicalAddress of DoIPEntry
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.DoIPEntry.ProtocolVersion">
+            <summary>
+            ProtocolVersion of DoIPEntry
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.DoIPEntry.RemoteMacAddress">
+            <summary>
+            MacAddress of DoIPEntry
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.DoIPEntry.RemotePort">
+            <summary>
+            RemotePort of DoIPEntry
+            </summary>
+        </member>
+        <member name="T:ET.Api.Diagnostics.Ethernet.EcuResetJob">
+            <summary>
+            Job to execute ECU reset (
+            </summary>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.EcuResetJob.#ctor(ET.Api.Diagnostics.Ethernet.DoIPEcu,System.TimeSpan)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ET.Api.Diagnostics.Ethernet.EcuResetJob"/> class.
+            </summary>
+            <param name="ecu">ECU to reset</param>
+            <param name="timeout">job timeout</param>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.EcuResetJob.timeout">
+            <summary>
+            Request timeout
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.EcuResetJob.ecu">
+            <summary>
+            ECU to reset
+            </summary>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.EcuResetJob.Execute">
+            <summary>
+            Execute reset sequence:
+            - enter extended diagnostics session
+            - execute reset service
+            - switch back to normal session
+            </summary>
+        </member>
+        <member name="T:ET.Api.Diagnostics.Ethernet.IDiagnosticsEthernetParameters">
+            <summary>
+            Parameter for Ethernet Diagnostics service
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.Ethernet.IDiagnosticsEthernetParameters.Retries">
+            <summary>
+            Number of retries for diagnostics service call
+            If diagnostics service times out, it is repeated Retries times
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.Ethernet.IDiagnosticsEthernetParameters.DiagFolderPath">
+            <summary>
+            Folder path to Diag folder containing diag files like odx-d files
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.Ethernet.IDiagnosticsEthernetParameters.EcuDiagRepositoryDictionary">
+            <summary>
+            Table of EcuDiagInfos with corresponding odx-d file names
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.Ethernet.IDiagnosticsEthernetParameters.EnableAuthentication">
+            <summary>
+            To enable diagnostics authontication with backend like Zenzefi
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.Ethernet.IDiagnosticsEthernetParameters.EnableOBDDiagnostics">
+            <summary>
+            To enable 4-wire OBD diagnostics
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.Ethernet.IDiagnosticsEthernetParameters.EnableTLS">
+            <summary>
+            To Switch TLS client connection On or Off
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.Ethernet.IDiagnosticsEthernetParameters.EnableTLSEncryption">
+            <summary>
+            To Switch TLS client connection On or Off
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.Ethernet.IDiagnosticsEthernetParameters.TLSVersion">
+            <summary>
+            To set specific TLS version
+            </summary>
+        </member>
+        <member name="T:ET.Api.Diagnostics.Ethernet.IDiagnosticsEthernetService">
+            <summary>
+            Interface for Ethernet Diagnostics service
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.Ethernet.IDiagnosticsEthernetService.Retries">
+            <summary>
+            Number of retries for diagnostics service call
+            If diagnostics service request is not responded by ECU (times out), it is repeated Retries times
+            </summary>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.IDiagnosticsEthernetService.GetGlobalSession">
+            <summary>
+            Access to global request identifier
+            </summary>
+            <returns>A session for the global request identifier</returns>
+        </member>
+        <member name="P:ET.Api.Diagnostics.Ethernet.IDiagnosticsEthernetService.SpecialEcus">
+            <summary>
+            Helper to access special ECUs
+            </summary>
+        </member>
+        <member name="T:ET.Api.Diagnostics.Ethernet.Log">
+            <summary>
+            Static wrapper for loggers of this assembly
+            </summary>
+            <example>
+            The example shows a common call to add a message to log
+            <code>
+            Log.DiagCan.Error("An error occured");
+            </code></example>
+        </member>
+        <member name="P:ET.Api.Diagnostics.Ethernet.Log.DiagEthernet">
+            <summary>
+            Logger with code "DiagEthernet"
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.Ethernet.Log.Uds">
+            <summary>
+            Logger with code "UDS"
+            </summary>
+        </member>
+        <member name="T:ET.Api.Diagnostics.Ethernet.AuthenticateDiagnosticsUser">
+            <summary>
+            Start Authenticate Diagnostic User or Tester via UDS
+            </summary>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.AuthenticateDiagnosticsUser.#ctor(ET.FW.Hal.Ethernet.Diagnostics.DoIpTpSession,ET.Api.Diagnostics.Ethernet.AuthenticationDirectionType,ET.Api.Diagnostics.Ethernet.AuthenticationTaskType,System.TimeSpan,System.Byte[])">
+            <summary>
+            Initializes a new instance of the <see cref="T:ET.FW.Hal.Ethernet.Diagnostics.ReadEcuBackendCertificateIdentifier"/> class.
+            </summary>
+            <param name="session">The session.</param>
+            <param name="direction"></param>
+            <param name="task"></param>
+            <param name="authenticationCerificate"></param>
+            <param name="timeout">Job timeout.</param>
+        </member>
+        <member name="P:ET.Api.Diagnostics.Ethernet.AuthenticateDiagnosticsUser.VerificationResult">
+            <summary>
+            Authentication Verification Result object
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.Ethernet.AuthenticateDiagnosticsUser.AuthenticationResult">
+            <summary>
+            AuthenticationResult response
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.Ethernet.AuthenticateDiagnosticsUser.Result">
+            <summary>
+            RoutineInfo result
+            </summary>
+        </member>
+        <member name="T:ET.Api.Diagnostics.Ethernet.AuthenticationDirectionType">
+            <summary>
+            Authentication Direction Type
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.AuthenticationDirectionType.Unidirectional">
+            <summary>AuthenticationDirectionType</summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.AuthenticationDirectionType.Bidirectional">
+            <summary>Stop Routine - positive response required</summary>
+        </member>
+        <member name="T:ET.Api.Diagnostics.Ethernet.AuthenticationTaskType">
+            <summary>
+            Authentication Task Type
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.AuthenticationTaskType.InitiateAuthentication">
+            <summary>Verify Certificate (Initiate Authentication)</summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.AuthenticationTaskType.VerifyCertificateOwnership">
+            <summary>Verify Certificate Ownership</summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.AuthenticationTaskType.DeAuthenticate">
+            <summary>DeAuthenticate</summary>
+        </member>
+        <member name="T:ET.Api.Diagnostics.Ethernet.AuthenticationVerificationResult">
+            <summary>
+            Authentication Verification Result
+            </summary>//todo Update for remianing results from odx-d file
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.AuthenticationVerificationResult.CertificateVerified">
+            <summary>Certificate verified, Ownership verification necessary</summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.AuthenticationVerificationResult.AuthenticationComplete">
+            <summary>Ownership verified, authentication complete</summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.AuthenticationVerificationResult.DeAuthentication">
+            <summary>
+            De-authentication successful
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.AuthenticationVerificationResult.OwnershipVerified">
+             <summary>
+            Ownership verified, authentication complete, central authentication broadcast triggered
+             </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.AuthenticationVerificationResult.CertificateVerifiedTimeSet">
+             <summary>
+            Certificate verified, Time set
+             </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.AuthenticationVerificationResult.InvalidTimePeriod">
+             <summary>
+            Certificate verification failed - Invalid Time Period
+             </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.AuthenticationVerificationResult.InvalidSignature">
+             <summary>
+            Certificate verification failed - Invalid Signature
+             </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.AuthenticationVerificationResult.InvalidChainOfTrust">
+             <summary>
+            Certificate verification failed - Invalid Chain of Trust
+             </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.AuthenticationVerificationResult.InvalidType">
+             <summary>
+            Certificate verification failed - Invalid Type
+             </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.AuthenticationVerificationResult.InvalidFormat">
+             <summary>
+            Certificate verification failed - Invalid Format
+             </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.AuthenticationVerificationResult.InvalidContent">
+             <summary>
+            Certificate verification failed - Invalid Content
+             </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.AuthenticationVerificationResult.InvalidScope">
+             <summary>
+            Certificate verification failed - Invalid Scope (wrong vehicle, ECU, …)
+             </summary>
+        </member>
+        <member name="T:ET.Api.Diagnostics.Ethernet.ReadEcuCatalogVersionJob">
+            <summary>
+            Job queries the catalog (K-Matrix) verion, the given ECU does support.
+            Job uses the standard data identifiers Software Module Identification Autosar (0xEF00) first. 
+            If the ECU does not support first query, the ID Software Module Information (0xF160) is tried.
+            </summary>
+            <remarks>
+            Job uses UDS protocol, ECUs not supporting UDS cannot be queried.
+            </remarks>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.ReadEcuCatalogVersionJob.#ctor(ET.Api.Diagnostics.Ethernet.DoIPEcu,System.Nullable{System.TimeSpan})">
+            <summary>
+            Initializes a new instance of the <see cref="T:ET.Api.Diagnostics.Ethernet.ReadEcuCatalogVersionJob"/> class.
+            </summary>
+            <param name="ecu">The ECU to query.</param>
+            <param name="timeout">Job timeout.</param>
+        </member>
+        <member name="P:ET.Api.Diagnostics.Ethernet.ReadEcuCatalogVersionJob.Ecu">
+            <summary>
+            ECU to query
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.ReadEcuCatalogVersionJob.service">
+            <summary>
+            The currently active diagnostics service
+            </summary>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.ReadEcuCatalogVersionJob.Start">
+            <summary>
+            Start the job
+            </summary>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.ReadEcuCatalogVersionJob.AutosarIDServiceEnded(System.Object,ET.FW.Core.Jobs.JobStateEventArgs)">
+            <summary>
+            Handle result of first service: Software ID Autosar
+            </summary>
+            <param name="sender">Current diagnostics service</param>
+            <param name="e">The <see cref="T:ET.FW.Core.Jobs.JobStateEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.ReadEcuCatalogVersionJob.SoftwareModuleInformationEnded(System.Object,ET.FW.Core.Jobs.JobStateEventArgs)">
+            <summary>
+            Handle result of second service: Software Module Information
+            </summary>
+            <param name="sender">Current diagnostics service</param>
+            <param name="e">The <see cref="T:ET.FW.Core.Jobs.JobStateEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.ReadEcuCatalogVersionJob.Abort">
+            <summary>
+            Abort this job, currently active diagnostics service is aborted.
+            </summary>
+        </member>
+        <member name="T:ET.Api.Diagnostics.Ethernet.ReadEcuInfoJob">
+            <summary>
+            Job reads version information of one ECU
+            </summary>
+            <remarks>
+            Job tries UDS protocol for detecting ECUs
+            </remarks>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.ReadEcuInfoJob.RequestTimeout">
+            <summary>
+            Timeout for one request.
+            Diagnostics service internally check for timeouts and aborts itself if an protocol timeout occurs
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.ReadEcuInfoJob.ecuDiagRepositoryDictionary">
+            <summary>
+            Collection with EcuDiagInfos and corresponding odx-d file names
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.Ethernet.ReadEcuInfoJob.EcuType">
+            <summary>
+            Access type of ECU which is querried by this job
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.ReadEcuInfoJob.Parameter">
+            <summary>
+            ex
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.ReadEcuInfoJob.session">
+            <summary>
+            TP session for communication with ECU
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.ReadEcuInfoJob.currentService">
+            <summary>
+            Currently executed service (KWP2000 / UDS)
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.ReadEcuInfoJob.zenzefi">
+            <summary>
+            Zenzefi service
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.ReadEcuInfoJob.enableAuthentication">
+            <summary>
+            To check if diagnostics authontication from Zenzefi backend
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.ReadEcuInfoJob.enableTLS">
+            <summary>
+            To Switch TLS client connection On or Off
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.ReadEcuInfoJob.enableTLSEncryption">
+            <summary>
+            To Switch TLS client connection On or Off
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.ReadEcuInfoJob.tlsVersion">
+            <summary>
+            To set specific TLS Version
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.ReadEcuInfoJob.DiagTlsPort">
+            <summary>
+            TCP port for diagnostics routing over TLS
+            </summary>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.ReadEcuInfoJob.#ctor(ET.Api.Diagnostics.EcuType,System.String,System.Net.IPAddress,System.UInt16,System.Byte,ET.Api.Diagnostics.Ethernet.IDiagnosticsEthernetParameters,ET.FW.Hal.Devices.Socket.ITcpChannel)">
+            <summary>
+            Initialize the diagnostics session and parameters of Ethernet Diagnostics service
+            </summary>
+            <param name="type">EcuType</param>
+            <param name="name">ecu name</param>
+            <param name="remoteAddress">remoteAddress</param>
+            <param name="logicalAddress">logicalAddress</param>
+            <param name="protocolVersion">protocolVersion</param>
+            <param name="parameters">DiagnosticsEthernetParameters</param>
+            <param name="channel">TcpChannel</param>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.ReadEcuInfoJob.#ctor(ET.Api.Diagnostics.EcuType,System.String,System.Net.IPAddress,System.UInt16,System.Byte,ET.Api.Diagnostics.Ethernet.IDiagnosticsEthernetParameters)">
+            <summary>
+            Initialize the diagnostics session and parameters of Ethernet Diagnostics service
+            </summary>
+            <param name="type">EcuType</param>
+            <param name="name">ecu name</param>
+            <param name="remoteAddress">remoteAddress</param>
+            <param name="logicalAddress">logicalAddress</param>
+            <param name="protocolVersion">protocolVersion</param>
+            <param name="parameters">DiagnosticsEthernetParameters</param>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.ReadEcuInfoJob.#ctor(ET.Api.Diagnostics.EcuType,System.String,ET.FW.Hal.Ethernet.IEthernetBus,ET.FW.Hal.Ethernet.MacAddress,System.Net.IPAddress,System.UInt16,System.Byte,ET.Api.Diagnostics.Ethernet.IDiagnosticsEthernetParameters)">
+            <summary>
+            Initialize the diagnostics session and parameters of Ethernet Diagnostics service
+            </summary>
+            <param name="type">EcuType</param>
+            <param name="name">ecu name</param>
+            <param name="bus">ethernet bus</param>
+            <param name="macAddress">mac address</param>
+            <param name="remoteAddress">remote address</param>
+            <param name="logicalAddress">logical address</param>
+            <param name="protocolVersion">protocol version</param>
+            <param name="parameters">DiagnosticsEthernetParameters</param>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.ReadEcuInfoJob.Start">
+            <summary>
+            Start the job
+            </summary>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.ReadEcuInfoJob.StartRoutingRequest">
+            <summary>
+            Execute SendRoutingRequest routine
+            </summary>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.ReadEcuInfoJob.RoutingRequestEnded(System.Object,ET.FW.Core.Jobs.JobStateEventArgs)">
+            <summary>
+            Event handler request for SendRoutingRequest 
+            If  SendRoutingRequest JobState is Completed, ReadEcuBackendCertificateIdentifier routine is executed
+            If SendRoutingRequest JobState is not Completed, ReadHWVersion routine is executed
+            </summary>
+            <param name="sender">Send Routing Request service</param>
+            <param name="e">event args holding job state</param>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.ReadEcuInfoJob.StartTLS">
+            <summary>
+            Start TLS session
+            </summary>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.ReadEcuInfoJob.StartTLSRoutingRequest">
+            <summary>
+            Execute SendRoutingRequest routine
+            </summary>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.ReadEcuInfoJob.RoutingRequestTLSEnded(System.Object,ET.FW.Core.Jobs.JobStateEventArgs)">
+            <summary>
+            Event handler request for SendRoutingRequest 
+            If  SendRoutingRequest JobState is Completed, ReadEcuBackendCertificateIdentifier routine is executed
+            If SendRoutingRequest JobState is not Completed, ReadHWVersion routine is executed
+            </summary>
+            <param name="sender">Send Routing Request service</param>
+            <param name="e">event args holding job state</param>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.ReadEcuInfoJob.ReadVinDataIdentifierEnded(System.Object,ET.FW.Core.Jobs.JobStateEventArgs)">
+            <summary>
+            Event handler request for ReadVinDataIdentifier 
+            If ReadVinDataIdentifier JobState is Completed, ReadHWVersion routine is executed
+            If ReadVinDataIdentifier JobState is not Completed, abort and disponse the Ecu 
+            </summary>
+            <param name="sender">Read Vin Data Identifier</param>
+            <param name="e">event args holding job state</param>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.ReadEcuInfoJob.ReadEcuBackendCertificateIdentifierEnded(System.Object,ET.FW.Core.Jobs.JobStateEventArgs)">
+            <summary>
+            Event handler request for ReadEcuBackendCertificateIdentifier 
+            If ReadEcuBackendCertificateIdentifier JobState is Completed, fetch the Zenzefi certificates and check for authentication of diagnostics user
+            If ReadEcuBackendCertificateIdentifier JobState is not Completed, abort and disponse the Ecu 
+            </summary>
+            <param name="sender">Read Ecu Backend Certificate Identifier service</param>
+            <param name="e">event args holding job state</param>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.ReadEcuInfoJob.AuthenticateDiagnosticsUserEnded(System.Object,ET.FW.Core.Jobs.JobStateEventArgs)">
+            <summary>
+            Event handler request for AuthenticateDiagnosticsUser 
+            If AuthenticateDiagnosticsUser JobState is Completed, fetch SignatureOwnership from Zenzefi and check for authentication of diagnostics user
+            If AuthenticateDiagnosticsUser JobState is not Completed, abort and disponse the Ecu 
+            </summary>
+            <param name="sender">Authenticate Diagnostics User service</param>
+            <param name="e">event args holding job state</param>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.ReadEcuInfoJob.SystemDateTimeCheck(ET.Api.Diagnostics.Ethernet.DoIPEcu)">
+            <summary>
+            Check for System Date and Time
+            </summary>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.ReadEcuInfoJob.VerifyCertificateOwnershipEnded(System.Object,ET.FW.Core.Jobs.JobStateEventArgs)">
+            <summary>
+            Event handler request for AuthenticateDiagnosticsUser 
+            If AuthenticateDiagnosticsUser JobState is Completed, ReadVinDataIdentifier routine is executed
+            If AuthenticateDiagnosticsUser JobState is not Completed, abort and disponse the Ecu 
+            </summary>
+            <param name="sender">Authenticate Diagnostics User service</param>
+            <param name="e">event args holding job state</param>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.ReadEcuInfoJob.Abort">
+            <summary>
+            Abort job
+            </summary>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.ReadEcuInfoJob.Failed(ET.FW.Core.Jobs.Error)">
+            <summary>
+            Set job to failed
+            </summary>
+            <param name="error">error object</param>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.ReadEcuInfoJob.HandleFailedService(ET.FW.Hal.Ethernet.Diagnostics.DiagnosticsService,System.Boolean@)">
+            <summary>
+            Handle failed diagnostics request
+            </summary>
+            <param name="service">failed request</param>
+            <param name="abortQuery">flag indicates, that no further requests should be sent to the ECU</param>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.ReadEcuInfoJob.Resetjob">
+            <summary>
+            Reset the job to intial state, Also called from Disconnect
+            use this method to reset the job state for repetetive use of the same job
+            </summary>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.ReadEcuInfoJob.Disconnect">
+            <summary>
+            Disconnects the TCP channel from DoIpECU and Resets the ReadEcuInfoJob to initial state
+            Use this to Disconnect from the ECU once the Diagnostic is done 
+            </summary>
+        </member>
+        <member name="T:ET.Api.Diagnostics.Ethernet.ReadEcuVariantJob">
+            <summary>
+            Job queries the variant of given ECU does support.
+            </summary>
+            <remarks>
+            Job uses UDS protocol, ECUs not supporting UDS cannot be queried.
+            </remarks>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.ReadEcuVariantJob.#ctor(ET.Api.Diagnostics.Ethernet.DoIPEcu,System.Nullable{System.TimeSpan})">
+            <summary>
+            Initializes a new instance of the <see cref="T:ET.Api.Diagnostics.Can.ReadEcuCatalogVersionJob"/> class.
+            </summary>
+            <param name="ecu">The ECU to query.</param>
+            <param name="timeout">Job timeout.</param>
+        </member>
+        <member name="P:ET.Api.Diagnostics.Ethernet.ReadEcuVariantJob.Ecu">
+            <summary>
+            ECU to query
+            </summary>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.ReadEcuVariantJob.Start">
+            <summary>
+            Start the job
+            </summary>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.ReadEcuVariantJob.GetCurrentVariant">
+            <summary>
+            Get the Ecu variant name
+            </summary>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.ReadEcuVariantJob.worker_RunWorkerCompleted(System.Object,System.ComponentModel.RunWorkerCompletedEventArgs)">
+            <summary>
+            Set the job to Completed if Result exists
+            </summary>
+            <param name="sender">Get Current Variant</param>
+            <param name="e">event arg holding completed event data</param>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.ReadEcuVariantJob.TryGetEcuVariant(System.String,System.String@)">
+            <summary>
+            Get Ecu variant from VCD pool
+            </summary>
+            <param name="ecu">Ecu name</param>
+            <param name="variant">Output Variant</param>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.ReadEcuVariantJob.CheckIfPatternMatching(ET.Api.Diagnostics.VariantCoding.EcuPattern,System.String,System.String)">
+            <summary>
+            Check if EcuPattern list is matching with the response from Read identifier diagnostics service
+            </summary>
+            <param name="matchingPattern">Consists of list of VariantMatchingInfo</param>
+            <param name="variant">Ecu Variant</param>
+            <param name="ecuName">Ecu Name</param>
+            <returns>Result of pattern check</returns>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.ReadEcuVariantJob.ValidateMatchingParamValue(ET.Api.Diagnostics.VariantCoding.FragmentMeaning,ET.Api.Diagnostics.VariantCoding.VariantMatchingInfo)">
+            <summary>
+            Check if VariantMatchingInfo and the serviceResponseDetails - name and value are same  
+            </summary>
+            <param name="meaning">Name and value from serviceResponseDetails</param>
+            <param name="matchingsInfos">matchingsInfos of type VariantMatchingInfo</param>
+            <returns>Result of matching parame check</returns>
+        </member>
+        <member name="T:ET.Api.Diagnostics.Ethernet.ReadVcdJob">
+            <summary>
+            Job reads one VCD from a device
+            </summary>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.ReadVcdJob.#ctor(ET.Api.Diagnostics.Ethernet.DoIPEcu,ET.Api.Diagnostics.VariantCoding.CodingInfo.VcdInfo)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ET.Api.Diagnostics.Ethernet.ReadVcdJob"/> class.
+            </summary>
+            <param name="ecu">ECU to read data from</param>
+            <param name="vcdInfo">VCD info of VCD to read</param>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.ReadVcdJob.Start">
+            <summary>
+            Start job: Check parameters and start diagnostics service which reads the data
+            </summary>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.ReadVcdJob.service_Ended(System.Object,ET.FW.Core.Jobs.JobStateEventArgs)">
+            <summary>
+            Diagnostics service enden event handler: Handle service result
+            </summary>
+            <param name="sender">diagnostics service</param>
+            <param name="e">event parameters containig final job state</param>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.ReadVcdJob.InitUds">
+            <summary>
+            Init UDS service
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.ReadVcdJob.ecu">
+            <summary>
+            ECU to read data from
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.Ethernet.ReadVcdJob.vcdInfo">
+            <summary>
+            Information of VCD to read
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.ReadVcdJob.service">
+            <summary>
+            Diagnostics service used to read the data
+            </summary>
+        </member>
+        <member name="T:ET.Api.Diagnostics.Ethernet.ResetTickCount">
+            <summary>
+            Job to Reset tick count
+            </summary>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.ResetTickCount.CalculateX25519(System.Byte[],System.Byte[])">
+            <summary>
+            To perform Encryption of X25519
+            </summary>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.ResetTickCount.CalculateAES128CBC(System.Byte[],System.Int32,System.Byte[],System.Byte[])">
+            <summary>
+            To perform Encryption of AES128CBC
+            </summary>       
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.ResetTickCount.ed25519SignGenerate(System.Byte[],System.Int32,System.Byte[],System.Byte[])">
+            <summary>
+            To calculate signature for STAR3.5
+            </summary>
+            <param name="challenge"></param>
+            <param name="challengeLength"></param>
+            <param name="VSMprivate"></param>
+            <param name="signature"></param>
+            <returns></returns>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.ResetTickCount.IntermediateCert">
+            <summary>
+            Intermediate Certificate for STAR3.5
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.ResetTickCount.BackendCert">
+            <summary>
+            Backend certificate for STAR3.5
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.ResetTickCount.vsmCertificateBytesStar35">
+            <summary>
+            VSMCertificate for STAR35
+            </summary>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.ResetTickCount.#ctor(ET.Api.Diagnostics.Ethernet.DoIPEcu,System.TimeSpan)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ET.Api.Diagnostics.Ethernet.ResetTickCount"/> class.
+            </summary>
+            <param name="doIpEcu">Ecu</param>
+            <param name="timeout">service timeout</param>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.ResetTickCount.Start">
+            <summary>
+            Start the job
+            </summary>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.ResetTickCount.ReadEcuCertificate">
+            <summary>
+            Read ECU Certificate
+            </summary>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.ResetTickCount.ReadEcuCertificate_Ended(System.Object,ET.FW.Core.Jobs.JobStateEventArgs)">
+            <summary>
+            Perform Cryptography, manipulate the signature data and SecOC Ecu Shared Secret Distribution to reset tick count and secret hash key
+            </summary>
+            <param name="sender">ReadEcuCertificate</param>
+            <param name="e">Event arg for Job state</param>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.ResetTickCount.PerformCryptography(System.Byte[],System.Security.Cryptography.ICryptoTransform)">
+            <summary>
+            Perform Cryptography and fetch the aesSignature value
+            </summary>
+            <param name="data">aesInput</param>
+            <param name="cryptoTransform">Encryptor</param>
+            <returns>Array of Signature value</returns>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.ResetTickCount.GetSignature(System.Byte[])">
+            <summary>
+            Get Signature from Zenzefi
+            </summary>
+            <param name="challenge">Signature date</param>
+            <returns>Ecu Signature</returns>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.ResetTickCount.GetSignatureStar35(System.Byte[])">
+            <summary>
+            Get signature for STAR35 using ed25519 algorithm
+            </summary>
+            <param name="challenge">the challenge bytes</param>
+            <returns></returns>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.ResetTickCount.GetTickCountResetData(System.Byte[],System.Byte[],System.Byte[])">
+            <summary>
+            Get ResetTickCountData bytes
+            </summary>
+            <param name="vsmCertificateBytes">vsm certificate</param>
+            <param name="signaturedata">signature data</param>
+            <param name="signature">signature</param>
+            <returns></returns>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.ResetTickCount.WriteTickCount_Ended(System.Object,ET.FW.Core.Jobs.JobStateEventArgs)">
+            <summary>
+            Service result is set based on the WriteDataWithStartRoutine Response data 
+            </summary>
+            <param name="sender">WriteDataWithStartRoutine</param>
+            <param name="e">Event arg for job state</param>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.ResetTickCount.Result">
+            <summary>
+            Result of the type ResetTickcountResult
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.ResetTickCount.ecu">
+            <summary>
+            DoIP Ecu
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.ResetTickCount.currentService">
+            <summary>
+            Currently executed service (KWP2000 / UDS)
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.ResetTickCount.vsmCertificate">
+            <summary>
+            VSM Certificates
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.ResetTickCount.zenzefi">
+            <summary>
+            Create an instance of ZenzefiDiagAuthenticationService
+            </summary>
+        </member>
+        <member name="T:ET.Api.Diagnostics.Ethernet.ResetTickcountResult">
+            <summary>
+            SecOC ECU Shared Secret Distribution Verification Result
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.ResetTickcountResult.CertificateVerified">
+            <summary>Certificate verified, SecOC Key calculated</summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.ResetTickcountResult.InvalidTimePeriod">
+            <summary>Certificate verification failed - Invalid Time Period</summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.ResetTickcountResult.InvalidSignature">
+            <summary>
+            Certificate verification failed - Invalid Signature
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.ResetTickcountResult.InvalidChainofTrust">
+            <summary>
+            Certificate verification failed - Invalid Chain of Trust
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.ResetTickcountResult.InvalidType">
+            <summary>
+            Certificate verification failed - Invalid Type
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.ResetTickcountResult.InvalidFormat">
+            <summary>
+            Certificate verification failed - Invalid Format
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.ResetTickcountResult.InvalidContent">
+            <summary>
+            Certificate verification failed - Invalid Content
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.ResetTickcountResult.InvalidScope">
+            <summary>
+            Certificate verification failed - Invalid Scope (wrong vehicle, ECU, …)
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.ResetTickcountResult.InvalidDataSignature">
+            <summary>
+            Certificate verification failed - Invalid Data Signature
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.ResetTickcountResult.InvalidEncrNonceorSharedSecret">
+            <summary>
+            Certificate verification failed - Invalid Encr. Nonce or shared Secret
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.ResetTickcountResult.SecOcKeygenerationFailed">
+            <summary>
+            Certificate verification failed - SecOC Key generation failed
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.ResetTickcountResult.NotExecuted">
+            <summary>
+            ETFW Invalid Result
+            </summary>
+        </member>
+        <member name="T:ET.Api.Diagnostics.Ethernet.UdpState">
+            <summary>
+            Class consisting of UdpClient, EndPoint
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.UdpState.UdpClient">
+            <summary>
+            UDP client
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.UdpState.EndPoint">
+            <summary>
+            network endpoint
+            </summary>
+        </member>
+        <member name="T:ET.Api.Diagnostics.Ethernet.ScanDoIPEntriesJob">
+            <summary>
+            Job to Scan DoIP Entries
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.ScanDoIPEntriesJob.locAddresses">
+            <summary>
+            IP Address
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.ScanDoIPEntriesJob.rxEvent">
+            <summary>
+            Notifies when an event occurs
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.ScanDoIPEntriesJob.isUdpClientClosed">
+            <summary>
+            Sets to true when socket is closed
+            </summary>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.ScanDoIPEntriesJob.#ctor(System.TimeSpan)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ET.Api.Diagnostics.Ethernet.ScanDoIPEntriesJob"/> class.
+            </summary>
+            <param name="timeout">Service timeout</param>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.ScanDoIPEntriesJob.Start">
+            <summary>
+            Start the job
+            </summary>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.ScanDoIPEntriesJob.ScanDoIpEntries">
+            <summary>
+            Scan for the IP addresses, its Udp port and send Vehicle identification Udp to the remote end point
+            </summary>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.ScanDoIPEntriesJob.ReceiveCallback(System.IAsyncResult)">
+            <summary>
+            Receive Vehicle identification response for the broadcast message
+            </summary>
+            <param name="ar">Status of Asynchronous operation</param>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.ScanDoIPEntriesJob.CollectLocalIpAddresses">
+            <summary>
+            Get the list of IP address of each unicast address in the network interface 
+            </summary>
+            <returns>List of IP address</returns>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.ScanDoIPEntriesJob.GetFreeUdpPort">
+            <summary>
+            Get the free Udp port Id
+            </summary>
+            <returns>Free Udp port Id</returns>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.ScanDoIPEntriesJob.IsPortInExclusionRange(System.Int32@,System.Collections.Generic.List{System.String})">
+            <summary>
+            Checking protocol udp port exclusion ranges
+            </summary>
+            <param name="selectedPort"></param>
+            <param name="portList">The list of ports to check.</param>
+            <returns></returns>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.ScanDoIPEntriesJob.GetExcludedPortRanges">
+            <summary>
+            Runs a netsh command to get the range of ports that are excluded.
+            </summary>
+            <returns>Retruns a list of port number in string.</returns>
+        </member>
+        <member name="T:ET.Api.Diagnostics.Ethernet.ReadSecuredTickCount">
+            <summary>
+            Routine to Read the secured tick count of the Ecu
+            </summary>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.ReadSecuredTickCount.#ctor(ET.FW.Hal.Ethernet.Diagnostics.DoIpTpSession,System.TimeSpan)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ET.Api.Diagnostics.Ethernet.ReadSecuredTickCount"/> class.
+            </summary>
+            <param name="session">TP session to use</param>
+            <param name="timeout">service timeout</param>
+        </member>
+        <member name="P:ET.Api.Diagnostics.Ethernet.ReadSecuredTickCount.SecuredTickCount">
+            <summary>
+            Extract SecuredTickCount information from Response
+            </summary>
+        </member>
+        <member name="T:ET.Api.Diagnostics.Ethernet.SpecialEcus">
+            <summary>
+            Handling of ECUs which are not of predefined types.
+            This class provides access to ECU wrapper objects for ECU types which are not part of the <see cref="T:ET.Api.Diagnostics.EcuType"/> enumeration
+            </summary>
+            <remarks>
+            The ECUs which are provided here are not handled by the standard collection <see cref="T:ET.Api.Diagnostics.IEcuCollection"/>.
+            Please use standard collection for the predefined ECU types!
+            </remarks>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.SpecialEcus.#ctor(ET.Api.Diagnostics.Ethernet.XmlConfig,ET.Api.Diagnostics.Ethernet.IDiagnosticsEthernetParameters)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ET.Api.Diagnostics.Ethernet.SpecialEcus" /> class.
+            </summary>
+            <param name="config"></param>
+            <param name="parameters">Service parameters.</param>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.SpecialEcus.config">
+            <summary>
+            Ethernet configuration from xml file
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.SpecialEcus.parameters">
+            <summary>
+            Parameters for Ethernet diagnostics
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.SpecialEcus.ecuDiagFileRepository">
+            <summary>
+            Parameters for Ethernet diagnostics
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.SpecialEcus.ecus">
+            <summary>
+            Dictionary of Ecu name and interface for diagnostics operations
+            </summary>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.SpecialEcus.QueryEcu(System.String)">
+            <summary>
+            Queries a special ECU by name. The CAN bus is selected automatically according to service configuration.
+            </summary>
+            <param name="ecuIdName">ECU name used as postfix for diagnostics identifiers. E.g. 'TGW' to use the identifiers DIAG_RQ_TGW/DIAG_RS_TGW</param>
+            <returns>Job to monitor async reading of ECU information, the job result contains the requested ECU object</returns>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.SpecialEcus.GetEcuTypeFromOdxName(System.String)">
+            <summary>
+            Get the Ecu type from Odx file
+            </summary>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.SpecialEcus.ReadAll(System.String)">
+            <summary>
+            Scan for the DoIP Entry and run diagnostics routines to read various paramters
+            </summary>
+            <param name ="busName">Bus to be scanned</param>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.SpecialEcus.job_Ended(System.Object,ET.FW.Core.Jobs.JobStateEventArgs)">
+            <summary>
+            Event handler for ReadEcuInfoJob
+            Ecu is disposed of the Jobstate is not completed 
+            </summary>
+            <param name ="sender">ReadEcuInfoJob</param>
+            <param name ="e">Event arg as job state</param>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.SpecialEcus.Remove(System.String)">
+            <summary>
+            Removes the specified ECU/type from collection
+            </summary>
+            <param name="name"></param>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.SpecialEcus.GetEnumerator">
+            <summary>
+            Iterates through the ecu values
+            </summary>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.SpecialEcus.System#Collections#IEnumerable#GetEnumerator">
+            <summary>
+            Enumerator that supports simple iteration over collection
+            </summary>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.SpecialEcus.ReadOne(System.String)">
+            <summary>
+            Reads special ECU by name. Name should as given in odx-d file
+            </summary>
+            <param name="ecuName">Name of the ECU as in odx-d file</param>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.SpecialEcus.Get(System.String)">
+            <summary>
+            Set the job result to Ecu diagnostics info 
+            </summary>
+            <param name="name">Ecu name</param>
+        </member>
+        <member name="P:ET.Api.Diagnostics.Ethernet.SpecialEcus.EcuJobs">
+            <summary>
+            List of all the ECU jobs(IJob object will be created for each ECU available in the network)
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.Ethernet.SpecialEcus.Item(System.String)">
+            <summary>
+            Get the Ecu diagnostics info with Ecu name
+            </summary>
+            <param name="name">Ecu name</param>
+        </member>
+        <member name="T:ET.Api.Diagnostics.Ethernet.SpecialOBDEcus">
+            <summary>
+            Handling of ECUs which are not of predefined types.
+            This class provides access to ECU wrapper objects for ECU types which are not part of the <see cref="T:ET.Api.Diagnostics.EcuType"/> enumeration
+            </summary>
+            <remarks>
+            The ECUs which are provided here are not handled by the standard collection <see cref="T:ET.Api.Diagnostics.IEcuCollection"/>.
+            Please use standard collection for the predefined ECU types!
+            </remarks>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.SpecialOBDEcus.#ctor(ET.Api.Diagnostics.Ethernet.XmlConfig,ET.Api.Diagnostics.Ethernet.IDiagnosticsEthernetParameters)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ET.Api.Diagnostics.Ethernet.SpecialEcus" /> class.
+            </summary>
+            <param name="config"></param>
+            <param name="parameters">Service parameters.</param>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.SpecialOBDEcus.state_changed(System.Object,ET.FW.Core.Common.ValueChangedEventArgs{ET.FW.Hal.Ethernet.NMBusState})">
+            <summary>
+            Ecu DataValid parameter is set to false if bus state is asleep
+            </summary>
+            <param name="sender">sender object</param>
+            <param name="e">NMBusState event args</param>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.SpecialOBDEcus.config">
+            <summary>
+            Ethernet configuration from xml file
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.SpecialOBDEcus.parameters">
+            <summary>
+            Parameters for CAN diagnostics
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.SpecialOBDEcus.ecuDiagFileRepository">
+            <summary>
+            Parameters for Ethernet diagnostics
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.SpecialOBDEcus.ecus">
+            <summary>
+            Internal buffer for ECU information
+            </summary>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.SpecialOBDEcus.QueryEcu(System.String)">
+            <summary>
+            Queries a special ECU by name. The CAN bus is selected automatically according to service configuration.
+            </summary>
+            <param name="ecuIdName">ECU name used as postfix for diagnostics identifiers. E.g. 'TGW' to use the identifiers DIAG_RQ_TGW/DIAG_RS_TGW</param>
+            <returns>Job to monitor async reading of ECU information, the job result contains the requested ECU object</returns>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.SpecialOBDEcus.GetEcuTypeFromOdxName(System.String)">
+            <summary>
+            Get the Ecu type from Odx file
+            </summary>
+            <param name="name">Ecu name</param>
+            <returns>EcuType</returns>
+        </member>
+        <member name="P:ET.Api.Diagnostics.Ethernet.SpecialOBDEcus.EcuJobs">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.SpecialOBDEcus.ReadAll(System.String)">
+            <summary>
+            Sends Vehicle Identification Request on the bus and also search's for ODX files of CAN ECU's
+            Constructs a collection of ReadEcuInfoJob for Diagnostic connections to each Ecu that responded to Vehicle IDentification Request
+            Also searches the ODX file of CAN Ecu's in Diagnostics Folder and Constructs the ReadEcuInfoJob
+            Returns the collection of <see cref="T:ET.Api.Diagnostics.Ethernet.ReadEcuInfoJob"/> of type IJob
+            </summary>
+            <returns>Collection of IJobs </returns>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.SpecialOBDEcus.CheckIfEcuJobExistsAndReset(System.String)">
+            <summary>
+            Checks if the ReadEcuInfoJob for particulat ECU by name "ecuname" exists in the EcuJobs collection
+            if it exists, checks if its possible to reset the job state depending on the ConnectionState of ECU
+            </summary>
+            <param name="ecuname">Name of the ECU</param>
+            <returns>True, if job exists</returns>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.SpecialOBDEcus.job_Ended(System.Object,ET.FW.Core.Jobs.JobStateEventArgs)">
+            <summary>
+            Event handler for ReadEcuInfoJob
+            Ecu is disposed of the Jobstate is not completed 
+            </summary>
+            <param name ="sender">ReadEcuInfoJob</param>
+            <param name ="e">Event arg as job state</param>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.SpecialOBDEcus.Remove(System.String)">
+            <summary>
+            Removes the specified ECU/type from collection
+            </summary>
+            <param name="name"></param>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.SpecialOBDEcus.GetEnumerator">
+            <summary>
+            Iterates through the ecu values
+            </summary>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.SpecialOBDEcus.System#Collections#IEnumerable#GetEnumerator">
+            <summary>
+            Enumerator that supports simple iteration over collection
+            </summary>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.SpecialOBDEcus.ReadOne(System.String)">
+            <summary>
+            Reads special ECU by a name. Name should as given in odx-d file
+            </summary>
+            <param name="ecuName">Name of the ECU as in odx-d file</param>
+            <returns></returns>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.SpecialOBDEcus.Get(System.String)">
+            <summary>
+            Get's the ReadEcuInfoJob of the perticular ECU
+            if the Job already exists in the collection EcuJobs, then Resets the Job to its Inital state and Returns
+            </summary>
+            <param name="name">Ecu name</param>
+            <returns>ReadEcuInfoJob as Ijob</returns>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.SpecialOBDEcus.CheckIfResetPossible(ET.Api.Diagnostics.Ethernet.ReadEcuInfoJob)">
+            <summary>
+            Checks if ReadEcuInfoJob for a DoIpEcu can be Reset or not
+            </summary>
+            <param name="readEcuInfoJob">ReadEcuInfoJob for a particular Doip Ecu</param>
+            <returns> returns true, if doip ecu is null or doipecu connection status is false </returns>
+        </member>
+        <member name="P:ET.Api.Diagnostics.Ethernet.SpecialOBDEcus.Item(System.String)">
+            <summary>
+            Get the Ecu diagnostics info by Ecu name
+            </summary>
+            <param name="name">Ecu name</param>
+        </member>
+        <member name="T:ET.Api.Diagnostics.Ethernet.UdsReadDtcsJob">
+            <summary>
+            Read all supported DTCs with UDS protocol
+            </summary>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.UdsReadDtcsJob.#ctor(ET.FW.Hal.Ethernet.Diagnostics.DoIpTpSession,System.TimeSpan,ET.FW.Hal.Ethernet.Diagnostics.DtcInfoRequestType,System.Collections.Generic.Dictionary{System.UInt32,System.String})">
+            <summary>
+            Constructor without status mask (e.g. for supported DTCs)
+            </summary>
+            <param name="session">CAN TP session</param>
+            <param name="timeout">service timeout</param>
+            <param name="requestType">UDS ReadDtcInfo request type</param>
+            <param name="table"></param>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.UdsReadDtcsJob.#ctor(ET.FW.Hal.Ethernet.Diagnostics.DoIpTpSession,System.TimeSpan,ET.FW.Hal.Ethernet.Diagnostics.DtcInfoRequestType,ET.FW.Hal.Ethernet.Diagnostics.DtcStateUds,System.Collections.Generic.Dictionary{System.UInt32,System.String})">
+            <summary>
+            Constructor with status mask (for subfunctions which require additional status mask)
+            </summary>
+            <param name="session">CAN TP session</param>
+            <param name="timeout">service timeout</param>
+            <param name="requestType">UDS ReadDtcInfo request type</param>
+            <param name="stateMask">UDS DTC state mask</param>
+            <param name="table"></param>
+        </member>
+        <member name="P:ET.Api.Diagnostics.Ethernet.UdsReadDtcsJob.Result">
+            <summary>
+            List of querried DTCs
+            </summary>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.UdsReadDtcsJob.Completed">
+            <summary>
+            Extract result, befor job is completed
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.UdsReadDtcsJob.StateMask">
+            <summary>
+            Mask combines all UDS states which are mapped to common DTC state
+            </summary>
+        </member>
+        <member name="T:ET.Api.Diagnostics.Ethernet.VariantCoderEthernet">
+            <summary>
+            Variant Coding over Ethernet 
+            </summary>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.VariantCoderEthernet.#ctor(ET.Api.Diagnostics.Ethernet.DoIPEcu,ET.Api.Diagnostics.VariantCoding.CodingInfo)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ET.Api.Diagnostics.Can.VariantCoderCan"/> class.
+            </summary>
+            <param name="ecu">ECU object</param>
+            <param name="codingInfo">Coding data</param>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.VariantCoderEthernet.ecu">
+            <summary>
+            ECU object
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.VariantCoderEthernet.session">
+            <summary>
+            TP session for communication with ECU
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.Ethernet.VariantCoderEthernet.IsValid">
+            <summary>
+            Flag for valid variant coder
+            </summary>
+            <returns>Flag</returns>
+        </member>
+        <member name="P:ET.Api.Diagnostics.Ethernet.VariantCoderEthernet.ErrorMessage">
+            <summary>
+            ErrorMessage
+            </summary>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.VariantCoderEthernet.WriteAllFromAedFile(System.String,System.String)">
+            <summary>
+            Write all variant coding domains to ECU from aed file for current configuration
+            </summary>
+            <param name="path">Path of AED File</param>
+            <param name="configuration"></param>
+            <returns>Job to monitor asynchron write operation.</returns>
+        </member>
+        <member name="P:ET.Api.Diagnostics.Ethernet.VariantCoderEthernet.Vcds">
+            <summary>
+            Buffer of VCDs in memory
+            </summary>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.VariantCoderEthernet.Get(System.String)">
+            <summary>
+            Get single Variant Coding Domain from ECU. If VCD ist altready in buffer it is returned directly, otherwise it is read from ECU.
+            </summary>
+            <param name="name">VCD name</param>
+            <returns>Job to monitor asynchron reading of data. On success the Result property holds the VCD data.</returns>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.VariantCoderEthernet.ReadVcd(System.String)">
+            <summary>
+            Read Variant coding domain from ECU
+            </summary>
+            <param name="name">VCD name</param>
+            <returns>Job to monitor asynchron reading of data. On success the Result property holds the VCD data.</returns>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.VariantCoderEthernet.readJob_Ended(System.Object,ET.FW.Core.Jobs.JobStateEventArgs)">
+            <summary>
+            Handles the Ended event of the read job control.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">The <see cref="T:ET.FW.Core.Jobs.JobStateEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.VariantCoderEthernet.WriteAll">
+            <summary>
+            Write all (modified) variant coding domains to ECU
+            </summary>
+            <returns>Job to monitor asynchron write operation.</returns>
+        </member>
+        <member name="P:ET.Api.Diagnostics.Ethernet.VariantCoderEthernet.Names">
+            <summary>
+            Names of all supported variant coding domains of this device.
+            </summary>
+            <returns>The vcd name in array</returns>
+        </member>
+        <member name="P:ET.Api.Diagnostics.Ethernet.VariantCoderEthernet.CodingInfo">
+            <summary>
+            Coding info for ECU;
+            </summary>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.VariantCoderEthernet.Dispose">
+            <summary>
+            Shutdown variant coder
+            </summary>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.VariantCoderEthernet.InitCodingInfo">
+            <summary>
+            Initializes the coding information.
+            </summary>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.VariantCoderEthernet.WriteFromDomain(System.String,System.String)">
+            <summary>
+            Write variant coding domains to ECU from domain name for current configuration
+            </summary>
+            <param name="domainIdentifier">Domain Name</param>
+            <param name="codingData">Variant coding data</param>
+            <returns>Job to monitor asynchronous write operation.</returns>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.VariantCoderEthernet.ReadFromDomain(System.String)">
+            <summary>
+            Read variant coding domains ECU from domain name for current configuration
+            </summary>
+            <param name="domainIdentifier">Domain Name</param>
+            <returns>Job to monitor asynchronous read operation.</returns>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.VariantCoderEthernet.ValidateCodingString(System.String,System.String,System.Byte[]@)">
+            <summary>
+            Validate Current Coding String.
+            </summary>
+            <param name="domainName"></param>
+            <param name="currentCoding"></param>
+            <param name="data"></param>
+            <returns>true if currentCoding is valid otherwise false.</returns>
+        </member>
+        <member name="T:ET.Api.Diagnostics.Ethernet.WriteAllVcdsJob">
+            <summary>
+            Write all given VCDs to ECU
+            </summary>
+            <remarks>
+            Job starts extended diagnostics session on ECU, writes the VCDs and switches ECU back to default session.
+            Job is finished after extended session is ended.
+            Result of end extended session service does not change result of this job:
+            If all internal VCD write servicers are successful and end of extended session fails, this job finishes successful anyway.
+            </remarks>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.WriteAllVcdsJob.#ctor(ET.Api.Diagnostics.Ethernet.DoIPEcu,ET.Api.Diagnostics.VariantCoding.CodingInfo,ET.FW.Core.Common.INamedObjectCollection{ET.Api.Diagnostics.IVcd})">
+            <summary>
+            Initializes a new instance of the <see cref="T:ET.Api.Diagnostics.Ethernet.WriteAllVcdsJob"/> class.
+            </summary>
+            <param name="ecu">ECU to write to</param>
+            <param name="codingInfo">variant coding information of ECU</param>
+            <param name="vcds">VCDs to write</param>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.WriteAllVcdsJob.Start">
+            <summary>
+            Start job. Start first sub job: switch to extended diagnostics session.
+            </summary>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.WriteAllVcdsJob.StartDiagSessionEnded(System.Object,ET.FW.Core.Jobs.JobStateEventArgs)">
+            <summary>
+            First sub job finished:
+            Start sequuence of VCD programming jobs
+            </summary>
+            <param name="sender">event source: first sub job</param>
+            <param name="e">job state</param>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.WriteAllVcdsJob.WriteVcdsEnded(System.Object,ET.FW.Core.Jobs.JobStateEventArgs)">
+            <summary>
+            Write VCD sequence job finished:
+            Start next sub job to stop extended diagnostic session
+            </summary>
+            <param name="sender">event source: sub job</param>
+            <param name="e">job state</param>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.WriteAllVcdsJob.StopDiagSessionEnded(System.Object,ET.FW.Core.Jobs.JobStateEventArgs)">
+            <summary>
+            Stop extended session job finished
+            Finish this job
+            </summary>
+            <param name="sender">event source: sub job</param>
+            <param name="e">job state</param>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.WriteAllVcdsJob.ecu">
+            <summary>
+            ECU to write data to
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.WriteAllVcdsJob.codingInfo">
+            <summary>
+            Information of VCD to write
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.WriteAllVcdsJob.vcds">
+            <summary>
+            VCDs to write to ECU
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.WriteAllVcdsJob.allSuccess">
+            <summary>
+            Flag for successful writing of all VCDs
+            </summary>
+        </member>
+        <member name="T:ET.Api.Diagnostics.Ethernet.WriteDataByIdentifierServiceSecured">
+            <summary>
+            Job to Write Data by Identifier for Service ID
+            </summary>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.WriteDataByIdentifierServiceSecured.#ctor(ET.Api.Diagnostics.Ethernet.DoIPEcu,System.TimeSpan,System.UInt16,System.Nullable{System.Byte},System.Byte[])">
+            <summary>
+            Initializes a new instance of the <see cref="T:ET.Api.Diagnostics.Ethernet.WriteDataByIdentifierServiceSecured"/> class.
+            </summary>
+            <param name="doIpEcu">Ecu</param>
+            <param name="timeout">Service timeout</param>
+            <param name="identifier">Service ID</param>
+            <param name="level"></param>
+            <param name="parameters">list of bytes</param>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.WriteDataByIdentifierServiceSecured.#ctor(ET.Api.Diagnostics.Ethernet.DoIPEcu,System.TimeSpan,System.Nullable{System.Byte},System.Collections.Generic.Dictionary{System.UInt16,System.Byte[]})">
+            <summary>
+            Initializes a new instance of the <see cref="T:ET.Api.Diagnostics.Ethernet.WriteDataByIdentifierServiceSecured"/> class.
+            </summary>
+            <param name="doIpEcu">Ecu</param>
+            <param name="timeout">Service timeout</param>
+            <param name="level"></param>
+            <param name="dict">dictionary</param>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.WriteDataByIdentifierServiceSecured.#ctor(ET.Api.Diagnostics.Ethernet.DoIPEcu,System.TimeSpan,System.UInt16,System.Nullable{System.Byte},System.String,System.Byte[])">
+            <summary>
+            Initializes a new instance of the <see cref="T:ET.Api.Diagnostics.Ethernet.WriteDataByIdentifierServiceSecured"/> class.
+            </summary>
+            <param name="doIpEcu">Ecu</param>
+            <param name="timeout">Service timeout</param>
+            <param name="identifier">Service ID</param>
+            <param name="level"></param>
+            <param name="domainName">Domain name</param>
+            <param name="parameters">list of bytes</param>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.WriteDataByIdentifierServiceSecured.#ctor(ET.Api.Diagnostics.Ethernet.DoIPEcu,System.TimeSpan,ET.FW.Hal.Ethernet.Diagnostics.ServiceID)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ET.Api.Diagnostics.Ethernet.WriteDataByIdentifierServiceSecured"/> class.
+            </summary>
+            <param name="ecu">Ecu</param>
+            <param name="timeout">Service timeout</param>
+            <param name="serviceID">Service ID</param>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.WriteDataByIdentifierServiceSecured.Start">
+            <summary>
+            Start the job
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.Ethernet.WriteDataByIdentifierServiceSecured.Error">
+            <summary>
+            Error (negative response)
+            </summary>
+            <value>Undefined for no error code (could be timeout)</value>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.WriteDataByIdentifierServiceSecured.errorText">
+            <summary>
+            Error as text 
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.Ethernet.WriteDataByIdentifierServiceSecured.ErrorText">
+            <summary>
+            Gets the error desciption when Jobstate is failed
+            </summary>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.WriteDataByIdentifierServiceSecured.SecuredVariantCodingStart">
+            <summary>
+            Secured variant coding is started and data verification paramters from Zenzefi is sent
+            </summary>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.WriteDataByIdentifierServiceSecured.DataVerificationEnded(System.Object,ET.FW.Core.Jobs.JobStateEventArgs)">
+            <summary>
+            Checks data verification and abort, set error text it it fails
+            </summary>
+            <param name="sender">WriteDataWithStartRoutine</param>
+            <param name="e">Event arg for Job state</param>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.WriteDataByIdentifierServiceSecured.WriteVariantCodingData">
+            <summary>
+            Write Variant Coding Data 
+            </summary>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.WriteDataByIdentifierServiceSecured.WriteDataByIdentifier_Ended(System.Object,ET.FW.Core.Jobs.JobStateEventArgs)">
+            <summary>
+            Checks variant coding data writing operation completed or not
+            </summary>
+            <param name="sender">WriteDataWithStartRoutine</param>
+            <param name="e">Event arg for Job state</param>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.WriteDataByIdentifierServiceSecured.Check">
+            <summary>
+            Check whether all domain writing ended
+            </summary>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.WriteDataByIdentifierServiceSecured.WriteCalID">
+            <summary>
+            Write CalId
+            </summary>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.WriteDataByIdentifierServiceSecured.CALID_Ended(System.Object,ET.FW.Core.Jobs.JobStateEventArgs)">
+            <summary>
+            Write Signature
+            </summary>
+            <param name="sender">WriteDataWithStartRoutine</param>
+            <param name="e">Event arg for Job state</param>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.WriteDataByIdentifierServiceSecured.SignatureVerificationService_Ended(System.Object,ET.FW.Core.Jobs.JobStateEventArgs)">
+            <summary>
+            Checks the signature verification and abort, set error text it it fails
+            </summary>
+            <param name="sender">WriteDataWithStartRoutine</param>
+            <param name="e">Event arg for Job state</param>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.WriteDataByIdentifierServiceSecured.CreatePayload">
+            <summary>
+            Initialize request payload: { ServiceID, Identifier, Parameters (opt.) }
+            </summary>
+            <returns>payload byte array</returns>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.WriteDataByIdentifierServiceSecured.count">
+            <summary>
+            Coded domain count 
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.WriteDataByIdentifierServiceSecured.failedDomainCount">
+            <summary>
+            Failed Domain Count 
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.WriteDataByIdentifierServiceSecured.ecu">
+            <summary>
+            DoIP Ecu
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.WriteDataByIdentifierServiceSecured.baseTimeout">
+            <summary>
+            Timeout
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.WriteDataByIdentifierServiceSecured.Parameters">
+            <summary>
+            Payload
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.Ethernet.WriteDataByIdentifierServiceSecured.Identifier">
+            <summary>
+            Service Id
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.WriteDataByIdentifierServiceSecured.DomainName">
+            <summary>
+            Domain name
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.WriteDataByIdentifierServiceSecured.IdentifierList">
+            <summary>
+            Service Id list
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.WriteDataByIdentifierServiceSecured.dataDict">
+            <summary>
+            Data dictionary
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.WriteDataByIdentifierServiceSecured.Subfunction">
+            <summary>
+            Subfunction / (UDS: LEV)
+            </summary>
+            <value>subfunction, null for none</value>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.WriteDataByIdentifierServiceSecured.currentService">
+            <summary>
+            Currently executed service (KWP2000 / UDS)
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.WriteDataByIdentifierServiceSecured.codingSignature">
+            <summary>
+            Signature in Byte
+            </summary>
+        </member>
+        <member name="T:ET.Api.Diagnostics.Ethernet.WriteVcdJob">
+            <summary>
+            Job writes one VCD to an ECU.
+            </summary>
+            <remarks>
+            Job does not start extended diag session before
+            </remarks>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.WriteVcdJob.#ctor(ET.Api.Diagnostics.Ethernet.DoIPEcu,ET.Api.Diagnostics.VariantCoding.CodingInfo.VcdInfo,ET.Api.Diagnostics.IVcd)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ET.Api.Diagnostics.Ethernet.WriteVcdJob"/> class.
+            </summary>
+            <param name="ecu">ECU to write data to</param>
+            <param name="vcdInfo">VCD info of VCD to write</param>
+            <param name="vcd">VCD to write</param>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.WriteVcdJob.Start">
+            <summary>
+            Start job: Check parameters and start diagnostics service which reads the data
+            </summary>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.WriteVcdJob.service_Ended(System.Object,ET.FW.Core.Jobs.JobStateEventArgs)">
+            <summary>
+            Diagnostics service enden event handler: Handle service result
+            </summary>
+            <param name="sender">diagnostics service</param>
+            <param name="e">event parameters containig final job state</param>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.WriteVcdJob.InitUds">
+            <summary>
+            Init UDS service
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.WriteVcdJob.ecu">
+            <summary>
+            ECU to write data to
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.Ethernet.WriteVcdJob.vcdInfo">
+            <summary>
+            Information of VCD to write
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.WriteVcdJob.service">
+            <summary>
+            Diagnostics service used to write the data
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.Ethernet.WriteVcdJob.vcd">
+            <summary>
+            VCD to write to ECU
+            </summary>
+        </member>
+        <member name="T:ET.Api.Diagnostics.Ethernet.ScanDoIpUdpJob">
+            <summary>
+            class which scans all the ECUs in the network by sending a UDP broadcast message
+            </summary>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.ScanDoIpUdpJob.#ctor(System.TimeSpan)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ET.Api.Diagnostics.Ethernet.ScanDoIpUdpJob"/> class.
+            </summary>
+            <param name="timeout">Service timeout</param>
+        </member>
+        <member name="P:ET.Api.Diagnostics.Ethernet.ScanDoIpUdpJob.RetryCount">
+            <summary>
+            Number of retries for this service.
+            </summary>
+            <remarks>
+            Value hast to be set before starting the service, it is decremented on every retry due to timeout
+            </remarks>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.ScanDoIpUdpJob.bus">
+            <summary>
+            Ethernet bus
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.ScanDoIpUdpJob.ethernetProtocol">
+            <summary>
+            Interface for Ethernet protocol
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.ScanDoIpUdpJob.doipProtocol">
+            <summary>
+            Diagnostics communication over Ip
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.ScanDoIpUdpJob.rxEvent">
+            <summary>
+            Notifies when rx event occurs
+            </summary>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.ScanDoIpUdpJob.Start">
+            <summary>
+            Start the job
+            </summary>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.ScanDoIpUdpJob.DoipProtocol_Output(System.Object,ET.FW.Core.Messaging.MessageEventArgs{ET.FW.Hal.Ethernet.Protocols.IDoIPMessage})">
+            <summary>
+            Add Doip Entry of each Vehicle identification Response
+            </summary>
+            <param name="sender"></param>
+            <param name="e">Event arg for message received</param>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.ScanDoIpUdpJob.SendVehicleIdentificationRequest">
+            <summary>
+            Send Vehicle Identification Request Message
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.ScanDoIpUdpJob.timeoutTimer">
+            <summary>
+            Timer used for timeout checking
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.Ethernet.ScanDoIpUdpJob.syncObj">
+            <summary>
+            Synchronization object, used for synchronization of member access
+            </summary>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.ScanDoIpUdpJob.TimeoutHandler(System.Object)">
+            <summary>
+            Response timeout handler
+            </summary>
+            <param name="state">state object, not used here</param>
+        </member>
+        <member name="T:ET.Api.Diagnostics.Ethernet.XmlConfig">
+            <summary>
+            Diagnostics Ethernet configuration from XML file
+            </summary>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ethernet.XmlConfig.LoadFromXml(System.String)">
+            <summary>
+            Load the configuration from file
+            </summary>
+            <param name="path">path of the xml file</param>
+            <returns>configuration object</returns>
+        </member>
+        <member name="P:ET.Api.Diagnostics.Ethernet.XmlConfig.Busses">
+            <summary>
+            Bus(ses) to use for diagnostics services
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.Ethernet.XmlConfig.DbcNames">
+            <summary>
+            Components DBC names
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.Ethernet.XmlConfig.OdxNames">
+            <summary>
+            Components ODX names
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.Ethernet.XmlConfig.EcuConfigurations">
+            <summary>
+            Ecu Variant coding configurations
+            </summary>
+        </member>
+        <member name="T:ET.Api.Diagnostics.Ethernet.XmlConfig.Component">
+            <summary>
+            Component info
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.Ethernet.XmlConfig.Component.Type">
+            <summary>
+            Component ECU type
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.Ethernet.XmlConfig.Component.RegEx">
+            <summary>
+            Regular expression to find diagnostics request and response for the component
+            </summary>
+        </member>
+        <member name="T:ET.Api.Diagnostics.Ethernet.XmlConfig.EcuConfig">
+            <summary>
+            Ecu Configuration
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.Ethernet.XmlConfig.EcuConfig.Name">
+            <summary>
+            Ecu Name
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.Ethernet.XmlConfig.EcuConfig.SupportedNtgs">
+            <summary>
+            Supported Ntgs
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.Ethernet.XmlConfig.EcuConfig.VCDConfiguration">
+            <summary>
+            Variant coding configuration
+            </summary>
+        </member>
+        <member name="T:ET.Api.Diagnostics.Ethernet.XmlConfig.VCDConfiguration">
+            <summary>
+            VCD Configuration
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.Ethernet.XmlConfig.VCDConfiguration.Loader">
+            <summary>
+            File loader type
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.Ethernet.XmlConfig.VCDConfiguration.Source">
+            <summary>
+            File Name used for Variant coding (Ex: *.odx)
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.Ethernet.XmlConfig.VCDConfiguration.VariantName">
+            <summary>
+            Ecu Variant Name
+            </summary>
+        </member>
+    </members>
+</doc>

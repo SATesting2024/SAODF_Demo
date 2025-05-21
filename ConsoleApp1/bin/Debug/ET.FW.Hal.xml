@@ -1,0 +1,3260 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ET.FW.Hal</name>
+    </assembly>
+    <members>
+        <member name="T:ET.FW.Hal.Messaging.IBinarySegmentMessage">
+            <summary>
+            Interface for segmented binary message.
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Messaging.BinarySegmentMessage">
+            <summary>
+            Segmented binary message.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Messaging.BinarySegmentMessage.#ctor(System.Byte[])">
+            <summary>
+            Initializes a new instance of the <see cref="T:ET.FW.Hal.Messaging.BinarySegmentMessage"/> class.
+            </summary>
+            <param name="payload">The binary content of the message.</param>
+        </member>
+        <member name="M:ET.FW.Hal.Messaging.BinarySegmentMessage.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:ET.FW.Hal.Messaging.BinarySegmentMessage"/> class.
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Messaging.BinarySegmentMessage.SegmentType">
+            <summary>
+            Gets or sets the segment type.
+            </summary>
+            <value>The type of the segment.</value>
+        </member>
+        <member name="T:ET.FW.Hal.Messaging.BinaryMessage">
+            <summary>
+            Message used for binary content.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Messaging.BinaryMessage.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:ET.FW.Hal.Messaging.BinaryMessage"/> class.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Messaging.BinaryMessage.#ctor(System.Byte[])">
+            <summary>
+            Initializes a new instance of the <see cref="T:ET.FW.Hal.Messaging.BinaryMessage"/> class.
+            </summary>
+            <param name="payload">The binary content of the message.</param>
+        </member>
+        <member name="T:ET.FW.Hal.Messaging.BinaryMessageType">
+            <summary>
+            Represents the supported binary message types.
+            </summary>
+            <remarks>
+            TAKE CARE:
+            Enum value must match index of corresponding message types in 'types' array
+            </remarks>
+        </member>
+        <member name="F:ET.FW.Hal.Messaging.BinaryMessageType.Undefined">
+            <summary>Message type undefined.</summary>
+        </member>
+        <member name="F:ET.FW.Hal.Messaging.BinaryMessageType.Binary">
+            <summary>Binary message.</summary>
+        </member>
+        <member name="F:ET.FW.Hal.Messaging.BinaryMessageType.BinaryRequest">
+            <summary>Binary request message.</summary>
+        </member>
+        <member name="F:ET.FW.Hal.Messaging.BinaryMessageType.BinaryResponse">
+            <summary>Binary response message.</summary>
+        </member>
+        <member name="F:ET.FW.Hal.Messaging.BinaryMessageType.BinarySegmented">
+            <summary>Segmented binary message.</summary>
+        </member>
+        <member name="T:ET.FW.Hal.Messaging.BinaryMessageFactory">
+            <summary>
+            ET Framework factory for binary messages
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Messaging.BinaryMessageFactory.Instance">
+            <summary>
+            The only one binary message factory
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Messaging.BinaryMessageFactory.#ctor">
+            <summary>
+            Protected constructor, to avoid explicit instantiation
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Messaging.BinaryMessageFactory.types">
+            <summary>
+            Array of all supported message types
+            </summary>
+            <remarks>
+            TAKE CARE:
+            Array index must match corresponding MessageType enum value - 1
+            </remarks>
+        </member>
+        <member name="P:ET.FW.Hal.Messaging.BinaryMessageFactory.Types">
+            <summary>
+            List of all supported types
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Messaging.BinaryMessageFactory.CreateMessage(System.Byte,ET.FW.Core.Messaging.IProtocol)">
+            <summary>
+            Internal method to create message based on message type number
+            </summary>
+            <param name="no">message type number</param>
+            <param name="protocol">protocol to assign to the message</param>
+            <returns>the newly created message</returns>
+        </member>
+        <member name="T:ET.FW.Hal.Messaging.BinaryProtocol">
+            <summary>
+            HW Protocol handling binary messages.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Messaging.BinaryProtocol.#ctor(ET.FW.Hal.Messaging.ITransmitter{ET.FW.Hal.Messaging.IBinaryMessage})">
+            <summary>
+            Initializes a new instance of the <see cref="T:ET.FW.Hal.Messaging.BinaryProtocol" /> class.
+            </summary>
+            <param name="transmitter">The transmitter to use</param>
+        </member>
+        <member name="T:ET.FW.Hal.Messaging.IBinaryRequestMessage">
+            <summary>
+            Binary request message.
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Messaging.BinaryRequestMessage">
+            <summary>
+            Message used for binary requests.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Messaging.BinaryRequestMessage.#ctor(System.Byte[])">
+            <summary>
+            Initializes a new instance of the <see cref="T:ET.FW.Hal.Messaging.BinaryRequestMessage"/> class.
+            </summary>
+            <param name="request">The request.</param>
+        </member>
+        <member name="M:ET.FW.Hal.Messaging.BinaryRequestMessage.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:ET.FW.Hal.Messaging.BinaryRequestMessage"/> class.
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Messaging.BinaryRequestMessage.RequestTag">
+            <summary>
+            Gets or sets the request tag.
+            </summary>
+            <value>The tag attached to the request.</value>
+        </member>
+        <member name="P:ET.FW.Hal.Messaging.BinaryRequestMessage.Timeout">
+            <summary>
+            Gets or sets the timeout.
+            </summary>
+            <value>The request timeout.</value>
+        </member>
+        <member name="T:ET.FW.Hal.Messaging.IBinaryResponseMessage">
+            <summary>
+            Textual response messages
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Messaging.BinaryResponseMessage">
+            <summary>
+            Message used for binary responses.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Messaging.BinaryResponseMessage.#ctor">
+            <summary>
+            Constructor.
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Messaging.BinaryResponseMessage.RequestTag">
+            <summary>
+            Gets or sets the request tag.
+            </summary>
+            <value>The tag attached to the original request.</value>
+        </member>
+        <member name="T:ET.FW.Hal.Messaging.UplinkOnlySoftwareProtocol`2">
+            <summary>
+            Base class for Software protocol which only support uplink messages.
+            Protocol which does message handling in software and has a downlink to a base protocol with other (simpler) messages
+            Protocol implementation does only support handling of uplink messages. Sending of messages is not possible.
+            </summary>
+            <typeparam name="TMessage">Application message type, handled by the protocol</typeparam>
+            <typeparam name="TDownlinkMessage">Downlink message type</typeparam>
+        </member>
+        <member name="M:ET.FW.Hal.Messaging.UplinkOnlySoftwareProtocol`2.#ctor(System.String,ET.FW.Core.Messaging.IProtocol{`1},System.Boolean)">
+            <summary>
+            Constructor.
+            Register for output events from downlink protocol
+            </summary>
+            <param name="name">Name of protocol</param>
+            <param name="downlink">Protocol for downlink</param>
+            <param name="isCacheable">True to cache payload and Translation</param>
+        </member>
+        <member name="M:ET.FW.Hal.Messaging.UplinkOnlySoftwareProtocol`2.#ctor(System.String,ET.FW.Core.Messaging.IProtocol{`1})">
+            <summary>
+            Constructor.
+            Register for output events from downlink protocol
+            </summary>
+            <param name="name">Name of protocol</param>
+            <param name="downlink">Protocol for downlink</param>
+        </member>
+        <member name="M:ET.FW.Hal.Messaging.UplinkOnlySoftwareProtocol`2.SendMessage(`0)">
+            <summary>
+            Send message, not supported here.
+            </summary>
+            <param name="message">message to be sent</param>
+            <returns>Error: sending not supported</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Messaging.UplinkOnlySoftwareProtocol`2.CheckSendMessage(`0)">
+            <summary>
+            Check if given message can be sent over this protocol
+            </summary>
+            <param name="msg">Message to send</param>
+            <returns>Error: sending not supported</returns>
+        </member>
+        <member name="T:ET.FW.Hal.Messaging.EventMessage">
+            <summary>
+            Base class for event message implementations
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Messaging.EventMessage.RxTx">
+            <summary>
+            Received/tranmitted message
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Messaging.EventMessage.EventText">
+            <summary>
+            Textual event description (used e.g. for Translate() )
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Messaging.EventMessage.TranslateMessage">
+            <summary>
+            Translates the Message, i.e. calls the Translate()-Method and returns a
+            new MessageTranslationObject containing the returned value of Trnalsate().<para></para>
+            Override, if another behavior of a certain EventMessage is needed.
+            </summary>
+            <returns>The MessageTranslation</returns>
+        </member>
+        <member name="T:ET.FW.Hal.Messaging.SoftwareProtocolWithEvents`3">
+            <summary>
+            Base class for Software protocol: a protocol which does message handling in software and has a downlink to a base protocol with other (simpler) messages
+            </summary>
+            <typeparam name="TMessage">application message type, handled by the protocol</typeparam>
+            <typeparam name="TDownlinkMessage">downlink message type</typeparam>
+            <typeparam name="TEvent">type of (error) event</typeparam>
+        </member>
+        <member name="M:ET.FW.Hal.Messaging.SoftwareProtocolWithEvents`3.#ctor(System.String,ET.FW.Core.Messaging.IProtocol{`1})">
+            <summary>
+            Constructor.
+            Register for output events from downlink protocol
+            </summary>
+            <param name="name">The name.</param>
+            <param name="downlink">The downlink.</param>
+            <exception cref="T:System.ArgumentNullException">downlink;Cannot instantiate Softwareprotocol without downlink!</exception>
+        </member>
+        <member name="M:ET.FW.Hal.Messaging.SoftwareProtocolWithEvents`3.Dispose">
+            <summary>
+            Dispose the protocol
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Messaging.SoftwareProtocolWithEvents`3.Downlink">
+            <summary>
+            Downlink protocol (could be hardware or software protocol)
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Messaging.SoftwareProtocolWithEvents`3.SendMessage(`0)">
+            <summary>
+            Convert given message to downlink protocol message(s) and send them via downlink
+            </summary>
+            <param name="message">the message to be processed</param>
+            <returns>
+            Send result, which indicates if message could be sent, further errors are not monitored here
+            </returns>
+        </member>
+        <member name="M:ET.FW.Hal.Messaging.SoftwareProtocolWithEvents`3.Downlink_Output(System.Object,ET.FW.Core.Messaging.MessageEventArgs{`1})">
+            <summary>
+            Handler for upcoming messages from downlink protocol
+            </summary>
+            <param name="sender">downlink protocol</param>
+            <param name="e">event parameter containing the message</param>
+            <remarks>
+            Method is called for received and sent(!) messages, so both message types must be handled here!
+            </remarks>
+        </member>
+        <member name="T:ET.FW.Hal.Messaging.ProtocolEvents`1">
+            <summary>
+            Event source implementation for protocols with additional (error) event handling/output
+            </summary>
+            <typeparam name="TEvent">(base) type of event messages to handle</typeparam>
+        </member>
+        <member name="M:ET.FW.Hal.Messaging.ProtocolEvents`1.RaiseOutput(`0)">
+            <summary>
+            Raise event message output event
+            </summary>
+            <param name="message">message to output</param>
+        </member>
+        <member name="T:ET.FW.Hal.Messaging.HardwareProtocol`1">
+            <summary>
+            Protocol, which is directly handled by "hardware" port/channel access
+            Bottom end of stacked protocols
+            </summary>
+            <typeparam name="TMessage">(Base-)Type of message to be handled by the protocol</typeparam>
+        </member>
+        <member name="M:ET.FW.Hal.Messaging.HardwareProtocol`1.#ctor(ET.FW.Hal.Messaging.ITransmitter{`0})">
+            <summary>
+            The Constructor
+            </summary>
+            <param name="transmitter">Transmitter for HW access</param>
+        </member>
+        <member name="M:ET.FW.Hal.Messaging.HardwareProtocol`1.#ctor(ET.FW.Hal.Messaging.ITransmitter{`0},System.Boolean)">
+            <summary>
+            The Constructor
+            </summary>
+            <param name="transmitter">Transmitter for HW access</param>
+            <param name="isCacheable">True to cache payload and Translation</param>
+        </member>
+        <member name="M:ET.FW.Hal.Messaging.HardwareProtocol`1.Receive(`0)">
+            <summary>
+            Handle received message (Rx, Tx Messages or events)
+            </summary>
+            <param name="message">The message to handle</param>
+        </member>
+        <member name="M:ET.FW.Hal.Messaging.HardwareProtocol`1.SendMessage(`0)">
+            <summary>
+            Send message via hardware
+            </summary>
+            <param name="message">the message to be sent</param>
+            <returns>
+            Send result, which indicates if message could be sent, further errors are not monitored here
+            </returns>
+        </member>
+        <member name="F:ET.FW.Hal.Messaging.HardwareProtocol`1.transmitter">
+            <summary>
+            Transmitter used for sending of messages to hardware port
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Messaging.ITransmitter`1">
+            <summary>
+            Interface for hardware port which sends messages
+            </summary>
+            <typeparam name="TMessage">message type to handle</typeparam>
+        </member>
+        <member name="M:ET.FW.Hal.Messaging.ITransmitter`1.SendMessage(`0)">
+            <summary>
+            Send given message via hardware port
+            </summary>
+            <param name="message">message to send</param>
+            <returns>base type of message to send</returns>
+        </member>
+        <member name="T:ET.FW.Hal.Messaging.IBinaryMessage">
+            <summary>
+            Interface used for binary messages.
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Messaging.IControlMessage">
+            <summary>
+            Interface used for control messages.
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Messaging.IEventMessage">
+            <summary>
+            Common event message interface
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Messaging.IEventMessage.EventText">
+            <summary>
+            Textual event description (used e.g. for Translate() )
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Messaging.IEventSource`1">
+            <summary>
+            Interface provides a property for message events
+            </summary>
+            <typeparam name="TEvent">type of event</typeparam>
+            <remarks>
+            Interface can be used to add protocol event handling to some protocols
+            </remarks>
+        </member>
+        <member name="P:ET.FW.Hal.Messaging.IEventSource`1.Events">
+            <summary>
+            Property which provides the events
+            Common base interface IMessageSource enables usage of message filters etc. for the events
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Messaging.IRequestMessage">
+            <summary>
+            Interface used for request messages.
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Messaging.IRequestMessage.RequestTag">
+            <summary>
+            Gets or sets the request tag.
+            </summary>
+            <value>The tag attached to the request.</value>
+        </member>
+        <member name="P:ET.FW.Hal.Messaging.IRequestMessage.Timeout">
+            <summary>
+            Gets or sets the timeout.
+            </summary>
+            <value>The request timeout.</value>
+        </member>
+        <member name="T:ET.FW.Hal.Messaging.IResponseMessage">
+            <summary>
+            Interface used for response messages.
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Messaging.IResponseMessage.RequestTag">
+            <summary>
+            Gets or sets the request tag.
+            </summary>
+            <value>The tag attached to the response.</value>
+            <remarks>Each response message returns the request tag of the corresponding IRequestMessage.</remarks>
+        </member>
+        <member name="T:ET.FW.Hal.Messaging.SegmentType">
+            <summary>
+            Types of segments.
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Messaging.SegmentType.Single">
+            <summary>Single segment.</summary>
+        </member>
+        <member name="F:ET.FW.Hal.Messaging.SegmentType.First">
+            <summary>First segment of multiple segments.</summary>
+        </member>
+        <member name="F:ET.FW.Hal.Messaging.SegmentType.Middle">
+            <summary>Middle segment of multiple segments.</summary>
+        </member>
+        <member name="F:ET.FW.Hal.Messaging.SegmentType.Last">
+            <summary>Last segment of multiple segments.</summary>
+        </member>
+        <member name="T:ET.FW.Hal.Messaging.ISegment">
+            <summary>
+            Interface for segmented messages.
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Messaging.ISegment.SegmentType">
+            <summary>
+            Gets or sets the segment type.
+            </summary>
+            <value>The type of the segment.</value>
+        </member>
+        <member name="T:ET.FW.Hal.Messaging.ISoftwareProtocol`2">
+            <summary>
+            Software protocol: a protocol which does message handling in software and has a downlink to a base protocol with other (simpler) messages
+            </summary>
+            <typeparam name="TMessage">application message type, handled by the protocol</typeparam>
+            <typeparam name="TDownlinkMessage">downlink message type</typeparam>
+        </member>
+        <member name="P:ET.FW.Hal.Messaging.ISoftwareProtocol`2.Downlink">
+            <summary>
+            Downlink protocol (could be hardware or software protocol
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Messaging.ProtocolWithEvents`2">
+            <summary>
+            Protocol implementation base class for protocols which provide messages and (error) events
+            </summary>
+            <typeparam name="TMessage">type of message to be processed by protocol</typeparam>
+            <typeparam name="TEvent">type of (error) event</typeparam>
+        </member>
+        <member name="P:ET.FW.Hal.Messaging.ProtocolWithEvents`2.Events">
+            <summary>
+            Property which provides event output
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Messaging.ProtocolWithEvents`2.events">
+            <summary>
+            Event property implementation
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Messaging.ProtocolWithEvents`2.SimulateMessage(ET.FW.Core.Messaging.IMessage)">
+            <summary> 
+            Simulate message or error event (used for offline mode)
+            </summary>
+            <param name="message">simulated message or event</param>
+            <returns>true if message could be processed</returns>
+        </member>
+        <member name="T:ET.FW.Hal.Messaging.SoftwareProtocol`2">
+            <summary>
+            Base class for Software protocol: a protocol which does message handling in software and has a downlink to a base protocol with other (simpler) messages
+            </summary>
+            <typeparam name="TMessage">application message type, handled by the protocol</typeparam>
+            <typeparam name="TDownlinkMessage">downlink message type</typeparam>
+        </member>
+        <member name="M:ET.FW.Hal.Messaging.SoftwareProtocol`2.#ctor(System.String,ET.FW.Core.Messaging.IProtocol{`1})">
+            <summary>
+            Constructor.
+            Register for output events from downlink protocol
+            </summary>
+            <param name="name">Name of protocol</param>
+            <param name="downlink">Protocol for downlink</param>
+        </member>
+        <member name="M:ET.FW.Hal.Messaging.SoftwareProtocol`2.#ctor(System.String,ET.FW.Core.Messaging.IProtocol{`1},System.Boolean)">
+            <summary>
+            Constructor.
+            Register for output events from downlink protocol
+            </summary>
+            <param name="name">Name of protocol</param>
+            <param name="downlink">Protocol for downlink</param>
+            <param name="isCacheable">True to cache payload and Translation</param>
+        </member>
+        <member name="M:ET.FW.Hal.Messaging.SoftwareProtocol`2.Dispose">
+            <summary>
+            Dispose the protocol
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Messaging.SoftwareProtocol`2.Downlink">
+            <summary>
+            Downlink protocol (could be hardware or software protocol)
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Messaging.SoftwareProtocol`2.SendMessage(`0)">
+            <summary>
+            Convert given message to downlink protocol message(s) and send them via downlink
+            </summary>
+            <param name="message">the message to be processed</param>
+            <returns>
+            Send result, which indicates if message could be sent, further errors are not monitored here
+            </returns>
+        </member>
+        <member name="M:ET.FW.Hal.Messaging.SoftwareProtocol`2.Downlink_Output(System.Object,ET.FW.Core.Messaging.MessageEventArgs{`1})">
+            <summary>
+            Handler for upcoming messages from downlink protocol
+            </summary>
+            <param name="sender">downlink protocol</param>
+            <param name="e">event parameter containing the message</param>
+            <remarks>
+            Method is called for received and sent(!) messages, so both message types must be handled here!
+            </remarks>
+        </member>
+        <member name="T:ET.FW.Hal.Messaging.SoftwareProtocol`3">
+            <summary>
+            Base class for Software protocol: a protocol which does message handling in software and has a downlink to a base protocol with other (simpler) messages
+            </summary>
+            <typeparam name="TMessage">application message type, handled by the protocol</typeparam>
+            <typeparam name="TDownlinkMessage2">downlink message type</typeparam>
+            <typeparam name="TDownlinkMessage1">downlink message type</typeparam>
+        </member>
+        <member name="M:ET.FW.Hal.Messaging.SoftwareProtocol`3.#ctor(System.String,ET.FW.Core.Messaging.IProtocol{`1},ET.FW.Core.Messaging.IProtocol{`2})">
+            <summary>
+            Constructor.
+            Register for output events from downlink protocol
+            </summary>
+            <param name="name">Name of protocol</param>
+            <param name="downlink1">Protocol for downlink1</param>
+            <param name="downlink2">Protocol for downlink2</param>
+        </member>
+        <member name="M:ET.FW.Hal.Messaging.SoftwareProtocol`3.#ctor(System.String,ET.FW.Core.Messaging.IProtocol{`1},ET.FW.Core.Messaging.IProtocol{`2},System.Boolean)">
+            <summary>
+            Constructor.
+            Register for output events from downlink protocol
+            </summary>
+            <param name="name">Name of protocol</param>
+            <param name="downlink1">Protocol for downlink1</param>
+            <param name="downlink2">Protocol for downlink2</param>
+            <param name="isCacheable">True to cache payload and Translation</param>
+        </member>
+        <member name="M:ET.FW.Hal.Messaging.SoftwareProtocol`3.Dispose">
+            <summary>
+            Dispose the protocol
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Messaging.SoftwareProtocol`3.Downlink">
+            <summary>
+            Downlink1 protocol (could be hardware or software protocol)
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Messaging.SoftwareProtocol`3.Downlink2">
+            <summary>
+            Downlink2 protocol (could be hardware or software protocol)
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Messaging.SoftwareProtocol`3.SendMessage(`0)">
+            <summary>
+            Convert given message to downlink protocol message(s) and send them via downlink
+            </summary>
+            <param name="message">the message to be processed</param>
+            <returns>
+            Send result, which indicates if message could be sent, further errors are not monitored here
+            </returns>
+        </member>
+        <member name="M:ET.FW.Hal.Messaging.SoftwareProtocol`3.Downlink_Output(System.Object,ET.FW.Core.Messaging.MessageEventArgs{`1})">
+            <summary>
+            Handler for upcoming messages from downlink1 protocol
+            </summary>
+            <param name="sender">downlink1 protocol</param>
+            <param name="e">event parameter containing the message</param>
+            <remarks>
+            Method is called for received and sent(!) messages, so both message types must be handled here!
+            </remarks>
+        </member>
+        <member name="M:ET.FW.Hal.Messaging.SoftwareProtocol`3.Downlink2_Output(System.Object,ET.FW.Core.Messaging.MessageEventArgs{`2})">
+            <summary>
+            Handler for upcoming messages from downlink2 protocol
+            </summary>
+            <param name="sender">downlink2 protocol</param>
+            <param name="e">event parameter containing the message</param>
+            <remarks>
+            Method is called for received and sent(!) messages, so both message types must be handled here!
+            </remarks>
+        </member>
+        <member name="T:ET.FW.Hal.Catalogs.EventMessageTranslator">
+            <summary>
+            Special "catalog" for translation of event messages.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Catalogs.EventMessageTranslator.Translate(ET.FW.Core.Messaging.IMessage)">
+            <summary>
+            Translate event message
+            </summary>
+            <param name="message">message to translate</param>
+            <returns>The translation or empty string, if message is of wrong type</returns>
+        </member>
+        <member name="T:ET.FW.Hal.Common.RequestJob`1">
+            <summary>
+            Job handling request / response action.
+            </summary>
+            <typeparam name="TResult">Type of result</typeparam>
+        </member>
+        <member name="M:ET.FW.Hal.Common.RequestJob`1.#ctor(System.TimeSpan)">
+            <summary>
+            The Constructor
+            </summary>
+            <param name="timeout">job timeout</param>
+        </member>
+        <member name="M:ET.FW.Hal.Common.RequestJob`1.Execute">
+            <summary>
+            Method for asynchronous execution
+            </summary>
+            <remarks>
+            Method should call Completed() or Failed() to inform JobHandling about job execution result
+            </remarks>
+        </member>
+        <member name="M:ET.FW.Hal.Common.RequestJob`1.OnRequest">
+            <summary>
+            On request function call
+            </summary>
+            <returns>True if request successful</returns>
+        </member>
+        <member name="P:ET.FW.Hal.Common.RequestJob`1.Result">
+            <summary>
+            Result of job execution, property can be read after job execution is finished successfully
+            While job is running or if job ends with an error, the value is undefined (normally null or default value for value types)
+            </summary>
+            <value></value>
+        </member>
+        <member name="T:ET.FW.Hal.Common.RequestJob`2">
+            <summary>
+            Job handling request / response action.
+            </summary>
+            <typeparam name="TResult">Type of result</typeparam>
+            <typeparam name="TParam">Type of request parameter</typeparam>
+        </member>
+        <member name="M:ET.FW.Hal.Common.RequestJob`2.#ctor(System.Func{`1,`0},`1,System.TimeSpan)">
+            <summary>
+            The Constructor
+            </summary>
+            <param name="requestFunc">The request func</param>
+            <param name="param">The request parameter.</param>
+            <param name="timeout">job timeout</param>
+        </member>
+        <member name="M:ET.FW.Hal.Common.RequestJob`2.OnRequest">
+            <summary>
+            On request function call
+            </summary>
+            <returns>True if request successful</returns>
+        </member>
+        <member name="T:ET.FW.Hal.Common.RequestJob`3">
+            <summary>
+            Job handling request / response action.
+            </summary>
+            <typeparam name="TResult">Type of result</typeparam>
+            <typeparam name="TParam1">Type of request parameter1</typeparam>
+            <typeparam name="TParam2">Type of request parameter2</typeparam>
+        </member>
+        <member name="M:ET.FW.Hal.Common.RequestJob`3.#ctor(System.Func{`1,`2,`0},`1,`2,System.TimeSpan)">
+            <summary>
+            The Constructor
+            </summary>
+            <param name="requestFunc">The request func</param>
+            <param name="param1">The request parameter1.</param>
+            <param name="param2">The request parameter2.</param>
+            <param name="timeout">job timeout</param>
+        </member>
+        <member name="M:ET.FW.Hal.Common.RequestJob`3.OnRequest">
+            <summary>
+            On request function call
+            </summary>
+            <returns>True if request successful</returns>
+        </member>
+        <member name="T:ET.FW.Hal.Common.RequestJob`4">
+            <summary>
+            Job handling request / response action.
+            </summary>
+            <typeparam name="TResult">Type of result</typeparam>
+            <typeparam name="TParam1">Type of request parameter1</typeparam>
+            <typeparam name="TParam2">Type of request parameter2</typeparam>
+            <typeparam name="TParam3">Type of request parameter3</typeparam>
+        </member>
+        <member name="M:ET.FW.Hal.Common.RequestJob`4.#ctor(System.Func{`1,`2,`3,`0},`1,`2,`3,System.TimeSpan)">
+            <summary>
+            The Constructor
+            </summary>
+            <param name="requestFunc">The request func</param>
+            <param name="param1">The request parameter1.</param>
+            <param name="param2">The request parameter2.</param>
+            <param name="param3">The request parameter3.</param>
+            <param name="timeout">job timeout</param>
+        </member>
+        <member name="M:ET.FW.Hal.Common.RequestJob`4.OnRequest">
+            <summary>
+            On request function call
+            </summary>
+            <returns>True if request successful</returns>
+        </member>
+        <member name="T:ET.FW.Hal.Daq.DaqCommand">
+            <summary>
+            Commands for request to relay and response from DAQ
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Daq.DaqCommand.GetVoltage">
+            <summary>
+            Get Voltage
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Daq.DaqCommand.SetVoltage">
+            <summary>
+            Set Voltage
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Daq.DaqCommand.GetCurrent">
+            <summary>
+            Get Current
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Daq.DaqCommand.SetCurrent">
+            <summary>
+            Set Current
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Daq.DaqCommand.InitVoltageCurve">
+            <summary>
+            Set Values for Voltage Curve
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Daq.DaqCommand.StartVoltageCurve">
+            <summary>
+            Start Voltage Curve
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Daq.DaqCommand.StopVoltageCurve">
+            <summary>
+            Stop Voltage Curve
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Daq.DaqCommand.CheckVoltageCurve">
+            <summary>
+            Check Voltage Curve
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Daq.DaqCommand.GetDeviceName">
+            <summary>
+            Get Device Namee
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Daq.DaqCommand.Response">
+            <summary>
+            Response
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Daq.DaqCommand.Error">
+            <summary>
+            Error
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Daq.DaqMessage">
+            <summary>
+            Automotive message used for Daq.
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Daq.DaqMessage.DaqKeyValuePairs">
+            <summary>
+            Daq data
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Daq.DaqMessage.Command">
+            <summary>
+            Daq command
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Daq.DaqMessage.Translate">
+            <summary>
+            Translate binary message to textual representation
+            </summary>
+            <returns>message translation</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Daq.DaqMessage.TranslateMessage">
+            <summary>
+            Translate the message
+            </summary>
+            <returns>the MessageTranslation</returns>
+        </member>
+        <member name="T:ET.FW.Hal.Daq.DaqProtocol">
+            <summary>
+            HW Protocol handling relay messages.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Daq.DaqProtocol.#ctor(ET.FW.Hal.Messaging.ITransmitter{ET.FW.Hal.Daq.IDaqMessage})">
+            <summary>
+            Initializes a new instance of the <see cref="T:ET.FW.Hal.Daq.DaqProtocol"/> class.
+            </summary>
+            <param name="transmitter">The transmitter</param>
+        </member>
+        <member name="M:ET.FW.Hal.Daq.DaqProtocol.#ctor(ET.FW.Hal.Messaging.ITransmitter{ET.FW.Hal.Daq.IDaqMessage},System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ET.FW.Hal.Daq.DaqProtocol"/> class.
+            </summary>
+            <param name="transmitter">The transmitter</param>
+            <param name="isCacheable">True to cache payload and Translation</param>
+        </member>
+        <member name="T:ET.FW.Hal.Daq.IDaqMessage">
+            <summary>
+            Interface used for Daq messages.
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Daq.IDaqMessage.DaqKeyValuePairs">
+            <summary>
+            Gets or sets the daq data.
+            </summary>
+            <value>The text.</value>
+            
+        </member>
+        <member name="P:ET.FW.Hal.Daq.IDaqMessage.Command">
+            <summary>
+            Gets or sets the command of Daq.
+            </summary>
+            <value>The command.</value>
+        </member>
+        <member name="T:ET.FW.Hal.Diagnostics.EcuVersion">
+            <summary>
+            ECU version information
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Diagnostics.EcuVersion.#ctor(System.Byte,System.Byte)">
+            <summary>
+            Constructor (used for HW version without patch level)
+            </summary>
+            <param name="year">Version year</param>
+            <param name="week">Version week</param>
+        </member>
+        <member name="M:ET.FW.Hal.Diagnostics.EcuVersion.#ctor(System.Byte,System.Byte,System.Byte)">
+            <summary>
+            Constructor (used for SW version with patch level)
+            </summary>
+            <param name="year">Version year</param>
+            <param name="week">Version week</param>
+            <param name="patch">Patch level</param>
+        </member>
+        <member name="F:ET.FW.Hal.Diagnostics.EcuVersion.Year">
+            <summary>
+            Version year
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Diagnostics.EcuVersion.Week">
+            <summary>
+            Version week
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Diagnostics.EcuVersion.Patch">
+            <summary>
+            Patch level (optional)
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Diagnostics.EcuVersion.ToString">
+            <summary>
+            Create version text (e.g 08/41.02)
+            </summary>
+            <returns>Version as string</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Diagnostics.EcuVersion.TryParse(System.String,ET.FW.Hal.Diagnostics.EcuVersion@)">
+            <summary>
+            Parse version info string
+            </summary>
+            <param name="versionString">string to parse</param>
+            <param name="version">parsed version, if method succeds</param>
+            <returns>true if string is valid and could be parsed</returns>
+            <remarks>
+            String format is 'yy/ww.pp' for SW Version (3 bytes) or 'yy/ww' for HW-Version (2 bytes)
+            </remarks>
+        </member>
+        <member name="M:ET.FW.Hal.Diagnostics.EcuVersion.CompareTo(ET.FW.Hal.Diagnostics.EcuVersion)">
+            <summary>
+            Compares the current object with another object of the same type.
+            </summary>
+            <param name="other">An object to compare with this object.</param>
+            <returns>
+            A value that indicates the relative order of the objects being compared. The return value has the following meanings: Value Meaning Less than zero This object is less than the <paramref name="other" /> parameter.Zero This object is equal to <paramref name="other" />. Greater than zero This object is greater than <paramref name="other" />.
+            </returns>
+        </member>
+        <member name="T:ET.FW.Hal.Diagnostics.IDiagnosticService">
+            <summary>
+            Interface for Diagnostic service job
+            It handles the sending and receiving of the Diagnostic messages
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Diagnostics.IDiagnosticService.RetryCount">
+            <summary>
+            Number of retries for this service.
+            </summary>
+            <remarks>
+            Value hast to be set before starting the service, it is decremented on every retry due to timeout
+            </remarks>
+        </member>
+        <member name="P:ET.FW.Hal.Diagnostics.IDiagnosticService.ErrorText">
+            <summary>
+            Error as text 
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Diagnostics.IDiagnosticService.ResponseValid">
+            <summary>
+            Check if service response data contains valid data
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Diagnostics.IDiagnosticService.ResponseData">
+            <summary>
+            Response message payload data.
+            Array contains complete payload, starting with ServiceID byte.
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Diagnostics.IDiagnosticSession">
+            <summary>
+            Interface for the Diagnostic session
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Diagnostics.IDiagnosticSession.Retries">
+            <summary>
+            Default number of retries for the services which uses this session
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Diagnostics.IDiagnosticSession.IsExtendedSession">
+            <summary>
+            Flag to indicate active extended session
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Diagnostics.IDiagnosticSession.StopExtendedSession">
+            <summary>
+            Switch corresponding ECU back to default session
+            Executes "session control" request and stops cyclic sending of "tester present" messages
+            </summary>
+            <returns>Job to monitor the operation</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Diagnostics.IDiagnosticSession.StartExtendedSession">
+            <summary>
+            Switch corresponding ECU to extended diagnostics session
+            Execute "session control" request and start cyclic sending of "tester present" messages
+            </summary>
+            <returns>Job to monitor the operation</returns>
+            <remarks>DiagProtocol property must have correct value for the ECU, otherwise session start fails.</remarks>
+        </member>
+        <member name="T:ET.FW.Hal.Diagnostics.RoutineControlType">
+            <summary>
+            Routine Control type 
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Diagnostics.RoutineControlType.StartRoutine">
+            <summary>Start Routine - positive response required</summary>
+        </member>
+        <member name="F:ET.FW.Hal.Diagnostics.RoutineControlType.StopRoutine">
+            <summary>Stop Routine - positive response required</summary>
+        </member>
+        <member name="F:ET.FW.Hal.Diagnostics.RoutineControlType.RequestRoutineResults">
+            <summary>Request Routine Results - positive response required</summary>
+        </member>
+        <member name="F:ET.FW.Hal.Diagnostics.RoutineControlType.StartRoutineNoPositiveResponseRequired">
+            <summary>Start Routine - no positive response required</summary>
+        </member>
+        <member name="F:ET.FW.Hal.Diagnostics.RoutineControlType.StoptRoutineNoPositiveResponseRequired">
+            <summary>Stop Routine - no positive response required</summary>
+        </member>
+        <member name="T:ET.FW.Hal.Diagnostics.RoutineInfo">
+            <summary>
+            RoutineInfo Enum
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Diagnostics.RoutineInfo.Completed">
+            <summary>
+            Routine succesfully completed
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Diagnostics.RoutineInfo.InProgress">
+            <summary>
+            Routine in progress
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Diagnostics.RoutineInfo.Stopped">
+            <summary>
+            Routine stopped without results
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Diagnostics.Supplier">
+            <summary>
+            Supplier ID in CAN/MOST diagnostic information data
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.E2E.E2EProfile2">
+            <summary>
+            CRC calcualation for End To End Protection profile 2
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.E2E.E2EProfile2.ProfileName">
+            <summary>
+            The profile name as used in CAN catalog
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.E2E.E2EProfile2.CheckCrc(ET.FW.Core.Messaging.IMessage,ET.FW.Hal.E2E.E2EProtectionDefinition,System.Collections.Generic.List{System.Byte}@)">
+            <summary>
+            Checks the CRC of given message according to provided E2E parameters
+            </summary>
+            <param name="message">The message to check</param>
+            <param name="e2ePara">The E2E protection parameters.</param>
+            <param name="crc">The calculated CRC.</param>
+            <returns>
+            TRUE if CRC is correct
+            </returns>
+            <remarks>
+            Method might throw an exception, if CRC calculation fails.
+            </remarks>
+        </member>
+        <member name="M:ET.FW.Hal.E2E.E2EProfile2.CalculateCrc(System.Byte[],ET.FW.Hal.E2E.E2EProtectionDefinition)">
+            <summary>
+            Calculates the CRC from payload bytes according to provided E2E parameters
+            </summary>
+            <param name="payload">Message payload bytes.</param>
+            <param name="e2ePara">E2E protection parameters.</param>
+            <returns>Calculated CRC</returns>
+            <remarks>Method might throw an exception, if calculation fails.</remarks>
+        </member>
+        <member name="M:ET.FW.Hal.E2E.E2EProfile2.CalculateCRC8H2FProfile2(System.Byte[],System.Int32,System.Int32,System.Byte)">
+            <summary>
+            Calculates the Autosar CRC8 Polynom H2F for Profile 2.
+            </summary>
+            <param name="payload">Message payload bytes</param>
+            <param name="startIdx">The index of first bytes (0 based)</param>
+            <param name="length">Number of the data bytes.</param>
+            <param name="dataID">The data identifier.</param>
+            <returns>
+            Calculated CRC
+            </returns>
+            <remarks>
+            startIdx and length parameters must not include the CRC byte itself
+            </remarks>
+        </member>
+        <member name="F:ET.FW.Hal.E2E.E2EProfile2.CrcTable8H2F">
+            <summary>
+            Table of pre-computed values for CRC8H2F
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.E2E.E2EProfile5">
+            <summary>
+            CRC calcualation for End To End Protection profile 5
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.E2E.E2EProfile5.ProfileName">
+            <summary>
+            The profile name as used in CAN catalog
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.E2E.E2EProfile5.CheckCrc(ET.FW.Core.Messaging.IMessage,ET.FW.Hal.E2E.E2EProtectionDefinition,System.Collections.Generic.List{System.Byte}@)">
+            <summary>
+            Checks the CRC of given message according to provided E2E parameters
+            </summary>
+            <param name="message">The message to check</param>
+            <param name="e2ePara">The E2E protection parameters.</param>
+            <param name="crc">The calculated CRC</param>
+            <returns>TRUE if CRC is correct,else Method might throw an exception, if CRC calculation fails</returns>
+        </member>
+        <member name="M:ET.FW.Hal.E2E.E2EProfile5.CalculateCrc(System.Byte[],ET.FW.Hal.E2E.E2EProtectionDefinition)">
+            <summary>
+            Calculates the CRC from payload bytes according to provided E2E parameters
+            </summary>
+            <param name="payload">Message payload bytes.</param>
+            <param name="e2ePara">E2E protection parameters</param>
+            <returns>Calculated CRC,else Method might throw an exception, if calculation fails.</returns>
+        </member>
+        <member name="M:ET.FW.Hal.E2E.E2EProfile5.CalculateCRC16Profile5(System.Byte[],System.Int32,System.Int32,System.UInt16)">
+            <summary>
+            Calculates the Autosar CRC16 for Profile 5
+            </summary>
+            <param name="payload">Message payload bytes</param>
+            <param name="startIdx">The index of first bytes (0 based)</param>
+            <param name="length">Number of the data bytes</param>
+            <param name="dataID">The data identifier</param>
+            <returns> Calculated CRC, startIdx and length parameters must not include the CRC byte itself</returns>
+        </member>
+        <member name="F:ET.FW.Hal.E2E.E2EProfile5.CrcTable16">
+            <summary>
+            Table of pre-computed values for CRC16
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.E2E.E2EProfile6">
+            <summary>
+            CRC calcualation for End To End Protection profile 6
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.E2E.E2EProfile6.ProfileName">
+            <summary>
+            The profile name as used in Ethernet catalog
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.E2E.E2EProfile6.CheckCrc(ET.FW.Core.Messaging.IMessage,ET.FW.Hal.E2E.E2EProtectionDefinition,System.Collections.Generic.List{System.Byte}@)">
+            <summary>
+            Checks the CRC of given message according to provided E2E parameters
+            </summary>
+            <param name="message">The message to check</param>
+            <param name="e2ePara">The E2E protection parameters.</param>
+            <param name="crc">The calculated CRC</param>
+            <returns>TRUE if CRC is correct,else Method might throw an exception, if CRC calculation fails</returns>
+        </member>
+        <member name="M:ET.FW.Hal.E2E.E2EProfile6.CalculateCrc(System.Byte[],ET.FW.Hal.E2E.E2EProtectionDefinition)">
+            <summary>
+            Calculates the CRC from payload bytes according to provided E2E parameters
+            </summary>
+            <param name="payload">Message payload bytes.</param>
+            <param name="e2ePara">E2E protection parameters</param>
+            <returns>Calculated CRC,else Method might throw an exception, if calculation fails.</returns>
+        </member>
+        <member name="M:ET.FW.Hal.E2E.E2EProfile6.CalculateCRC16Profile6(System.Byte[],System.Int32,System.Int32,System.UInt16)">
+            <summary>
+            Calculates the Autosar CRC16 for Profile 6
+            </summary>
+            <param name="payload">Message payload bytes</param>
+            <param name="startIdx">The index of first bytes (0 based)</param>
+            <param name="length">Number of the data bytes</param>
+            <param name="dataID">The data identifier</param>
+            <returns> Calculated CRC, startIdx and length parameters must not include the CRC byte itself</returns>
+        </member>
+        <member name="F:ET.FW.Hal.E2E.E2EProfile6.CrcTable16">
+            <summary>
+            Table of pre-computed values for CRC16
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.E2E.E2EProfile7">
+            <summary>
+            CRC calcualation for End To End Protection profile 7
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.E2E.E2EProfile7.ProfileName">
+            <summary>
+            The profile name as used in Ethernet catalog
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.E2E.E2EProfile7.CheckCrc(ET.FW.Core.Messaging.IMessage,ET.FW.Hal.E2E.E2EProtectionDefinition,System.Collections.Generic.List{System.Byte}@)">
+            <summary>
+            Checks the CRC of given message according to provided E2E parameters
+            </summary>
+            <param name="message">The message to check</param>
+            <param name="e2ePara">The E2E protection parameters.</param>
+            <param name="crc">The calculated CRC</param>
+            <returns>TRUE if CRC is correct,else Method might throw an exception, if CRC calculation fails</returns>
+        </member>
+        <member name="M:ET.FW.Hal.E2E.E2EProfile7.Reflected_8bits(System.UInt64)">
+            <summary>
+            Function is used to reflect 8 bit data
+            </summary>
+            <param name="data">8 bit data to be reflected</param>
+            <returns>8 bit reflected data</returns>
+        </member>
+        <member name="M:ET.FW.Hal.E2E.E2EProfile7.CalculateCrc(System.Byte[],ET.FW.Hal.E2E.E2EProtectionDefinition)">
+            <summary>
+            Calculates CRC for Profile 7
+            </summary>
+            <param name="payload">Message payload</param>
+            <param name="e2ePara">E2E defination parameters</param>
+            <returns>CRC value calculated for the payload</returns>
+        </member>
+        <member name="F:ET.FW.Hal.E2E.E2EProfile7.CrcTable64">
+            <summary>
+            Table of pre-computed values for CRC64 public readonly ulong[] CrcTable64 = new ulong[]
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.E2E.E2EProtectionDefinition">
+            <summary>
+            End To End Protection configuration for protected data inside CAN message
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.E2E.E2EProtectionDefinition.Profile">
+            <summary>
+            Profile name for calculation
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.E2E.E2EProtectionDefinition.CrcLength">
+            <summary>
+            Size of CRC in bits
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.E2E.E2EProtectionDefinition.CounterLength">
+            <summary>
+            Size of counter in bits
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.E2E.E2EProtectionDefinition.DataLength">
+            <summary>
+            Size of protected data in bits (including counter and CRC)
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.E2E.E2EProtectionDefinition.DataStart">
+            <summary>
+            Bit offset of protected data in message payload
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.E2E.E2EProtectionDefinition.CrcStart">
+            <summary>
+            Bit offset of CRC inside protected data
+            </summary>
+            <remarks>
+            CRC size is always 8 bit
+            </remarks>
+        </member>
+        <member name="P:ET.FW.Hal.E2E.E2EProtectionDefinition.CounterStart">
+            <summary>
+            Bit offset of counter inside protected data
+            </summary>
+            <remarks>
+            Counter is always 4 bit wide
+            </remarks>
+        </member>
+        <member name="P:ET.FW.Hal.E2E.E2EProtectionDefinition.DataIDs">
+            <summary>
+            Data IDs for CRC calculation, null if no IDs are declared
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.E2E.E2EProtectionDefinition.DataIDMode">
+            <summary>
+            Mode for data ID handling
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.E2E.E2EProtectionDefinition.MultiplexorGroup">
+            <summary>
+            Relation to multiplexor group, if any
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.E2E.E2EDataIDMode">
+            <summary>
+            Data ID mode determines how DataIDs are included in CRC calculation
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.E2E.E2EDataIDMode.Undefined">
+            <summary>
+            Not set
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.E2E.E2EDataIDMode.Both">
+            <summary>
+            Both bytes are used.
+            </summary>
+            <remarks>
+            Two bytes are included in the CRC (double ID configuration) This is used in variant 1A.
+            </remarks>
+        </member>
+        <member name="F:ET.FW.Hal.E2E.E2EDataIDMode.Alt">
+            <summary>
+            The two bytes are uses alternating
+            </summary>
+            <remarks>
+            One of the two bytes byte is included, alternating high and low byte, depending on parity of the counter (alternating ID configuration). For even counter low byte is included; For odd counters the high byte is included. This is used in variant 1B.
+            </remarks>
+        </member>
+        <member name="F:ET.FW.Hal.E2E.E2EDataIDMode.Low">
+            <summary>
+            Low byte is used
+            </summary>
+            <remarks>
+            Only low byte is included, high byte is never used. This is applicable if the IDs in a particular system are 8 bits.
+            </remarks>
+        </member>
+        <member name="T:ET.FW.Hal.E2E.IE2EProfile">
+            <summary>
+            Interface for E2E protection profile implementation classes
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.E2E.IE2EProfile.ProfileName">
+            <summary>
+            The profile name as used in CAN catalog
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.E2E.IE2EProfile.CalculateCrc(System.Byte[],ET.FW.Hal.E2E.E2EProtectionDefinition)">
+            <summary>
+            Calculates the CRC from payload bytes according to provided E2E parameters
+            </summary>
+            <param name="payload">The payload.</param>
+            <param name="e2ePara">The e2e para.</param>
+            <returns>Calculated CRC</returns>
+        </member>
+        <member name="M:ET.FW.Hal.E2E.IE2EProfile.CheckCrc(ET.FW.Core.Messaging.IMessage,ET.FW.Hal.E2E.E2EProtectionDefinition,System.Collections.Generic.List{System.Byte}@)">
+            <summary>
+            Checks the CRC of given message according to provided E2E parameters
+            </summary>
+            <param name="message">The message to check</param>
+            <param name="e2ePara">The E2E protection parameters.</param>
+            <param name="crc">The calculated CRC.</param>
+            <returns>
+            TRUE if CRC is correct
+            </returns>
+        </member>
+        <member name="T:ET.FW.Hal.E2E.IE2EProtectionHandler">
+            <summary>
+            Interface for handling of E2E protections
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.E2E.IE2EProtectionHandler.RegisterE2EProtection(System.UInt32,System.UInt16,System.UInt16,System.UInt16,System.UInt16,System.UInt16[],System.UInt16,ET.FW.Hal.E2E.DataIdMode,ET.FW.Hal.E2E.E2EProfile,System.UInt16)">
+            <summary>
+            Registers a E2E Protection for a CAN message
+            </summary>
+            <param name="canId">The CAN message identifier.</param>
+            <param name="counterOffset">Bit offset of Counter in MSB first order. In variants 1A and 1B and 2, CounterOffset is 8. The offset shall be a multiple of 4.</param>
+            <param name="crcOffset">Bit offset of CRC in MSB first order. In variants 1A and 1B and 2, CRCOffset is 0. The offset shall be a multiple of 8.</param>
+            <param name="dataOffset">Bit offset of data in MSB first order.</param>
+            <param name="dataLength">Length of data, in bits. The value shall be a multiple of 8 and shall be ≤ 240.</param>
+            <param name="dataIDs">For Profile 1x :A unique identifier, for protection against masquerading. There are some constraints on the selection of ID values, described in section 'Configuration constraints on Data IDs' Autosar SWS E2E Protection.
+            For Profile 2 : An array of appropriately chosen Data IDs for protection against masquerading.</param>
+            <param name="dataIDNibbleOffset">Bit offset of the low nibble of the high byte of Data ID. This parameter is used by E2ELibrary only if DataIDMode = E2E_P01_DATAID_NIBBLE (otherwise it is ignored by E2ELibrary). For DataIDMode different than E2E_P01_DATAID_NIBBLE, DataIDNibbleOffset shall be initialized to 0</param>
+            <param name="dataIdMode">Inclusion mode of ID in CRC computation (both bytes, alternating, or low byte only of ID included).</param>
+            <param name="profile">The profile used for Protection.</param>
+            <param name="vlanId"></param>
+            <returns>
+            true on success
+            </returns>
+        </member>
+        <member name="M:ET.FW.Hal.E2E.IE2EProtectionHandler.RegisterE2EProtectionForContainerPduMessage(System.UInt32,System.UInt64,System.UInt16,System.UInt16,System.UInt16,System.UInt16,System.UInt16[],System.UInt16,ET.FW.Hal.E2E.DataIdMode,ET.FW.Hal.E2E.E2EProfile)">
+            <summary>
+            Registers a E2E Protection for a container CAN FD message
+            </summary>
+            <param name="containerId">Container CAN Id</param>
+            <param name="pduId">Contained Pdu identifier</param>
+            <param name="counterOffset">Bit offset of Counter in MSB first order. In variants 1A and 1B and 2, CounterOffset is 8. The offset shall be a multiple of 4.</param>
+            <param name="crcOffset">Bit offset of CRC in MSB first order. In variants 1A and 1B and 2, CRCOffset is 0. The offset shall be a multiple of 8.</param>
+            <param name="dataOffset">Bit offset of data in MSB first order.</param>
+            <param name="dataLength">Length of data, in bits. The value shall be a multiple of 8 and shall be ≤ 240.</param>
+            <param name="dataIDs">For Profile 1x :A unique identifier, for protection against masquerading. There are some constraints on the selection of ID values, described in section 'Configuration constraints on Data IDs' Autosar SWS E2E Protection.
+            For Profile 2 : An array of appropriately chosen Data IDs for protection against masquerading.</param>
+            <param name="dataIDNibbleOffset">Bit offset of the low nibble of the high byte of Data ID. This parameter is used by E2ELibrary only if DataIDMode = E2E_P01_DATAID_NIBBLE (otherwise it is ignored by E2ELibrary). For DataIDMode different than E2E_P01_DATAID_NIBBLE, DataIDNibbleOffset shall be initialized to 0</param>
+            <param name="dataIdMode">Inclusion mode of ID in CRC computation (both bytes, alternating, or low byte only of ID included).</param>
+            <param name="profile">The profile used for Protection.</param>
+            <returns>
+            true on success
+            </returns>
+        </member>
+        <member name="M:ET.FW.Hal.E2E.IE2EProtectionHandler.UnRegisterE2EProtectionForContainerPduMessage(System.UInt32,System.UInt64,System.UInt16)">
+            <summary>
+            Unregister the E2E Protection container CAN FD message
+            </summary>
+            <param name="containerId">Container CAN Id.</param>
+            <param name="pduId">Contained Pdu identifier</param>
+            <param name="crcOffset">The start position of the CRC.</param>
+        </member>
+        <member name="M:ET.FW.Hal.E2E.IE2EProtectionHandler.UnRegisterE2EProtection(System.UInt32,System.UInt16)">
+            <summary>
+            Unregister the E2E Protection for a CAN message
+            </summary>
+            <param name="canId">The CAN message identifier.</param>
+            <param name="crcOffset">The start position of the CRC.</param>
+        </member>
+        <member name="T:ET.FW.Hal.E2E.DataIdMode">
+            <summary>
+            The different mode available in AUTOSAR CRC calculation. 
+            There shall be following four inclusion modes for the two-byte Data ID into the calculation of the one-byte CRC:
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.E2E.DataIdMode.Unknown">
+            <summary>
+            Unknown Mode
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.E2E.DataIdMode.E2E_P01_DATAID_BOTH">
+            <summary>
+            both two bytes (double ID configuration) are included in the CRC, first low byte and then high byte (see variant 1A - SWS_E2E_00227)
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.E2E.DataIdMode.E2E_P01_DATAID_ALT">
+            <summary>
+            depending on parity of the counter (alternating ID configuration) the high and the low byte is included (see variant 1B - SWS_E2E_00228). For even counter values the low byte is included and for odd counter values the high byte is included.
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.E2E.DataIdMode.E2E_P01_DATAID_LOW">
+            <summary>
+            only the low byte is included and high byte is never used. This equals to the situation if the Data IDs (in a given application) are only 8 bits.
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.E2E.DataIdMode.E2E_P01_DATAID_NIBBLE">
+            <summary>
+            The mode 3
+            - the high nibble of high byte of DataID is not used (it is 0x0), as the DataID is limited to 12 bits,
+            - the low nibble of high byte of DataID is transmitted explicitly and covered by CRC calculation when computing the CRC over Data.
+            - the low byte is not transmitted, but it is included in the CRC computation as start value (implicit transmission, like for dataIDMode equal to 0, 1 or 2) .
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.E2E.E2EProfile">
+            <summary>
+            The different Profile for the E2E Protection
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.E2E.E2EProfile.Unknown">
+            <summary>
+            unknown Profile
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.E2E.E2EProfile.Profile1">
+            <summary>
+            Autosar Profile 1
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.E2E.E2EProfile.Profile1a">
+            <summary>
+            Autosar Profile 1a
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.E2E.E2EProfile.Profile1b">
+            <summary>
+            Autosar Profile 1b
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.E2E.E2EProfile.Profile2">
+            <summary>
+            Autosar Profile 2
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.E2E.E2EProfile.Autoincrement">
+            <summary>
+            Simple Autoincrement. This is only for internal use
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.E2E.E2EProfile.Profile5">
+            <summary>
+            Autosar Profile 5
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.E2E.E2EProfile.Profile6">
+            <summary>
+            Autosar Profile 6
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.E2E.E2EProfile.Profile7">
+            <summary>
+            Autosar Profile 7
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Equipments.ChannelAccess">
+            <summary>
+            Base class for ET Framework channel access / hardware port
+            </summary>
+            <remarks>
+            Derived channel access implementation classes should be public and decorated with attributes <see cref="T:ET.FW.Core.Config.ChannelTypeAttribute"/> and <see cref="T:ET.FW.Core.Config.HWProtocolAttribute"/> to provide configuration information.
+            </remarks>
+        </member>
+        <member name="M:ET.FW.Hal.Equipments.ChannelAccess.#ctor(ET.FW.Core.Hal.IEquipment,System.String)">
+            <summary>
+            The Constructor
+            </summary>
+            <param name="equipment">The equipment which contains this channel access</param>
+            <param name="name">The name of the channel access</param>
+        </member>
+        <member name="P:ET.FW.Hal.Equipments.ChannelAccess.Equipment">
+            <summary>
+            Equipment which contains this channel access
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Equipments.ChannelAccess.Name">
+            <summary>
+            Channel access name
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Equipments.ChannelAccess.PortName">
+            <summary>
+            Port name e.g. 'COM1' or 'MOST Node'
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Equipments.ChannelAccess.Information">
+            <summary>
+            Retrieves information about the channel access.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Equipments.ChannelAccess.Start">
+            <summary>
+            Start the channel access
+            </summary>
+            <returns>true on success</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Equipments.ChannelAccess.Stop">
+            <summary>
+            Stop the channel access
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Equipments.ChannelAccess.IsRunning">
+            <summary>
+            Check if this channel access is running
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Equipments.ChannelAccess.CreateHardwareProtocol(System.String,System.String)">
+            <summary>
+            Provide Hardware protocol of given type
+            </summary>
+            <param name="type">Type/class name of protocol to provide</param>
+            <param name="name">Name of protocol instance</param>
+            <returns>Matching protocol or null if not available</returns>
+            <remarks>
+            Each supported HW protocol identifier must be declared as <see cref="T:ET.FW.Core.Config.HWProtocolAttribute"/> to provide configuration information.
+            </remarks>
+        </member>
+        <member name="M:ET.FW.Hal.Equipments.ChannelAccess.GetTypeOfHardwareProtocol(System.String,System.String)">
+            <summary>
+            Returns the Type of the Protocol, which is created by CreateHardwareProtocol
+            with the corresponding parameters.<para></para>
+            This method must be overridden by all those ChannelAccesses using protocols,
+            which may define further dependencies via Attributes.
+            </summary>
+            <param name="type">Type/class name of protocol to provide</param>
+            <param name="name">Name of protocol instance</param>
+            <returns>Type of the protocol or null</returns>
+        </member>
+        <member name="T:ET.FW.Hal.Equipments.Equipment">
+            <summary>
+            ET Framework Equipment base class
+            Equipment is a hardware box or interface, that provides one or more hardware ports (channels) for framework use
+            </summary>
+            <remarks>
+            Derived equipment implementation classes should be public and decorated with attributes <see cref="T:ET.FW.Core.Config.EquipmentTypeAttribute"/> and <see cref="T:ET.FW.Core.Config.ChannelAccessAttribute"/> or <see cref="T:ET.FW.Core.Config.ChannelAccessRangeAttribute"/> to provide configuration information.
+            </remarks>
+        </member>
+        <member name="P:ET.FW.Hal.Equipments.Equipment.Name">
+            <summary>
+            Channel access name
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Equipments.Equipment.Type">
+            <summary>
+            Device type
+            </summary>
+            <remarks>
+            Type of the underlying HW device.
+            Value should be set by specialized class, this implementation determines value via reflection
+            </remarks>
+        </member>
+        <member name="P:ET.FW.Hal.Equipments.Equipment.Information">
+            <summary>
+            Retrieves general information about the device. The returned value maybe a multi line String (by using \\r\\n).
+            </summary>
+            <returns>General information about the device.</returns>
+            <example>
+            As example following values may be reported:
+            - Serial numbers identifying parts inside the device.
+            - Hardware dependend addresses like MAC-Address.
+            - Revision of hardware and software components inside the device (Mainboard-, FPGA bitsream Revision e.g.)
+            </example>
+        </member>
+        <member name="P:ET.FW.Hal.Equipments.Equipment.SerialNumber">
+            <summary>
+            Hardware serial number
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Equipments.Equipment.HardwareName_index">
+            <summary>
+            Hardware Index
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Equipments.Equipment.PortName">
+            <summary>
+            Portname from testbench.xml
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Equipments.Equipment.CreateChannelAccess(System.String,System.String,System.String)">
+            <summary>
+            Create/provide channel access
+            </summary>
+            <param name="portName">Hardware port name</param>
+            <param name="name">Channel access name</param>
+            <param name="portType">Port type for channel access</param>
+            <returns>The newly constructed channel access</returns>
+            <remarks>
+            Each supported channel access must be declared with a <see cref="T:ET.FW.Core.Config.ChannelAccessAttribute" /> or <see cref="T:ET.FW.Core.Config.ChannelAccessRangeAttribute" /> to provide configuration information.
+            </remarks>
+        </member>
+        <member name="M:ET.FW.Hal.Equipments.Equipment.GetChannelAccessType(System.String,System.String)">
+            <summary>
+            Returns the Type of the ChannelAccess to be created for portName 
+            with the given name. <para></para>
+            This method must be overridden by all those Equipment using ChannelAccesses,
+            which may have further dependencies, which are described in Attributes.
+            </summary>
+            <param name="portName">Hardware port name</param>
+            <param name="name">Channel access name</param>
+            <returns>Type of the ChannelAccess to be created for portName with the given name. </returns>
+        </member>
+        <member name="M:ET.FW.Hal.Equipments.Equipment.Connect">
+            <summary>
+            Connect to hardware
+            </summary>
+            <returns>true on success</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Equipments.Equipment.Disconnect">
+            <summary>
+            Disconnect hardware
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Equipments.Equipment.IsConnected">
+            <summary>
+            Check if hardware is connected
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Equipments.Equipment.TimestampCorrection">
+            <summary>
+            Timestamp correction (used for external devices with own time base to calculate message timestamp)
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Equipments.Equipment.DefaultLatency">
+            <summary>
+            The equipment specific latency, if not set the default of none is returned
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Equipments.EquipmentManager">
+            <summary>
+            Manager which provides equipment objects for boxes of same type.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Equipments.EquipmentManager.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ET.FW.Hal.Equipments.EquipmentManager"/> class.
+            </summary>
+            <param name="type">equipment type handled by this manager</param>
+        </member>
+        <member name="M:ET.FW.Hal.Equipments.EquipmentManager.Init">
+            <summary>
+            Initialize manager.
+            May be used to find connected devices etc.
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Equipments.EquipmentManager.IsReady">
+            <summary>
+            Equipmnet manager is initialized
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Equipments.EquipmentManager.DisconnectEquipments">
+            <summary>
+            Disconnects all equipments.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Equipments.EquipmentManager.Dispose">
+            <summary>
+            Clean up the manager and dispose all equipments
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Equipments.EquipmentManager.EquipmentType">
+            <summary>
+            Type of equipment handled by this manager
+            </summary>
+            <remarks>
+            Corresponds to XML-Attribute "DeviceType" in testbench.xml config file
+            </remarks>
+        </member>
+        <member name="M:ET.FW.Hal.Equipments.EquipmentManager.CreateEquipment(System.String)">
+            <summary>
+            Create new equipment object, object is not assigned to a special HW
+            </summary>
+            <param name="name">equipment name to set</param>
+            <returns>newly created equipment, null if no equipment available</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Equipments.EquipmentManager.CreateEquipment(System.String,System.String)">
+            <summary>
+            Create equipment for given serial number
+            </summary>
+            <param name="name">equipment name to set</param>
+            <param name="serial">serial number of equipment</param>
+            <returns>newly created eqipment for HW box with given serial number, null if no box with serial available</returns>
+        </member>
+        <member name="P:ET.FW.Hal.Equipments.EquipmentManager.Equipments">
+            <summary>
+            Collection of already configured (created) equipment objects
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Equipments.EquipmentManager.AddEquipment(ET.FW.Core.Hal.IEquipment)">
+            <summary>
+            Add the given Equipment
+            </summary>
+            <param name="equipment">The Equipment to add</param>
+            <exception cref="T:System.ArgumentException">If equipment with name is already exist</exception>
+        </member>
+        <member name="M:ET.FW.Hal.Equipments.EquipmentManager.GetEquiment(System.String)">
+            <summary>
+            Gets equipment object with name
+            </summary>
+            <param name="name">equipment name to get</param>
+            <returns>created equipment, null if no equipment available</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Equipments.EquipmentManager.RemoveEquipment(ET.FW.Core.Hal.IEquipment)">
+            <summary>
+            Remove the given Equipment
+            </summary>
+            <param name="equipment">The Equipment to remove</param>
+        </member>
+        <member name="T:ET.FW.Hal.Equipments.UnsupportedTransmitter`1">
+            <summary>
+            Dummy transmitter for channel accesses, which do not support sending
+            </summary>
+            <typeparam name="TMessage">type of message which cannot be transmitted</typeparam>
+        </member>
+        <member name="M:ET.FW.Hal.Equipments.UnsupportedTransmitter`1.SendMessage(`0)">
+            <summary>
+            Dummy send method
+            </summary>
+            <param name="message">message to be sent</param>
+            <returns>error: not supported</returns>
+        </member>
+        <member name="T:ET.FW.Hal.Equipments.VirtualEquipmentManager`1">
+            <summary>
+            Special equipment manager for virtual equipments which are created on demand e.g. for COM Port or VISA<para></para>
+            Serves as an abstract baseclass.
+            </summary>
+            <typeparam name="TEquipment">Equipment class</typeparam>
+        </member>
+        <member name="M:ET.FW.Hal.Equipments.VirtualEquipmentManager`1.#ctor(System.String)">
+            <summary>
+            The Constructor
+            </summary>
+            <param name="type">equipment type handled by this manager</param>
+        </member>
+        <member name="M:ET.FW.Hal.Equipments.VirtualEquipmentManager`1.CreateEquipment(System.String)">
+            <summary>
+            Create new virtual equipment object
+            </summary>
+            <param name="name">name of equipment</param>
+            <returns>newly created equipment</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Equipments.VirtualEquipmentManager`1.CreateEquipment(System.String,System.String)">
+            <summary>
+            Create new virtual equipment object for given serial
+            Method always fails because virtual equipment is not assigned to real HW with serial numbers
+            </summary>
+            <param name="name">equipment name to set</param>
+            <param name="serial">serial number of equipment</param>
+            <returns>always null</returns>
+        </member>
+        <member name="T:ET.FW.Hal.Framegrabber.FrameGrabberErrorCode">
+            <summary>
+                Enum for the Frame grabber-ErrorCodes
+                <para></para>
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Framegrabber.FrameGrabberErrorCode.ExceptionOccured">
+            <summary>
+            An exception occured
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Framegrabber.FrameGrabberErrorCode.DllNotFound">
+            <summary>
+                driver dll not found
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Framegrabber.FrameGrabberErrorCode.DeviceNotConnected">
+            <summary>
+                Device Not Connected
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Framegrabber.FrameGrabberErrorCode.BitmapError">
+            <summary>
+                Frame Capture Format Error
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Framegrabber.FrameGrabberErrorCode.FrameError">
+            <summary>
+                Frame Capture failed
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Framegrabber.FrameGrabberErrorCode.SignalError">
+            <summary>
+                No signal detected
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Framegrabber.FrameGrabberErrorCode.VideoModeFailed">
+            <summary>
+            Failed to detect video mode
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Framegrabber.FramegrabberErrorDecoder">
+            <summary>
+            Decoder for Framegrabber message ErrorCodes.
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Framegrabber.FramegrabberErrorDecoder.Instance">
+            <summary>
+            The singleton instance.
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Framegrabber.FramegrabberMessage">
+            <summary>
+            Framegrabber message class
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Framegrabber.FramegrabberMessage.Frame">
+            <summary>
+            Captured frame
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Framegrabber.FramegrabberMessage.Command">
+            <summary>
+            Command for grabber
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Framegrabber.FramegrabberMessage.Bpp">
+            <summary>
+            Bpp for captured frame
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Framegrabber.FramegrabberMessage.PixelFormat">
+            <summary>
+            Pixel format for the captured frame
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Framegrabber.FramegrabberMessage.DeviceSerialNumber">
+            <summary>
+            Device serial number
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Framegrabber.FramegrabberMessage.ErrorDecoder">
+            <summary>
+            Error decoder
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Framegrabber.FramegrabberMessage.ToString">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:ET.FW.Hal.Framegrabber.IFramegrabberMessage">
+            <summary>
+            Interface used for Framegrabber message
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Framegrabber.IFramegrabberMessage.Frame">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Framegrabber.IFramegrabberMessage.Command">
+            <summary>
+            Gets or sets the command of relay.
+            </summary>
+            <value>The command.</value>
+        </member>
+        <member name="P:ET.FW.Hal.Framegrabber.IFramegrabberMessage.Bpp">
+            <summary>
+                BPP for image info.
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Framegrabber.IFramegrabberMessage.PixelFormat">
+            <summary>
+                PixelFormat for the image
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Framegrabber.Command">
+            <summary>
+            Commands for request to framegrabber and response from framegrabber
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Framegrabber.Command.GetFrame">
+            <summary>
+            Get frame
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Framegrabber.Command.Set">
+            <summary>
+            Set state
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Framegrabber.Command.State">
+            <summary>
+            State response from grabber
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Framegrabber.Command.Reset">
+            <summary>
+            Reset HW
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Framegrabber.FramegrabberMessageFactory">
+            <summary>
+            ET Framework factory for Framegrabber messages
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Framegrabber.FramegrabberMessageFactory.Instance">
+            <summary>
+            The only one Framegrabber message factory
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Framegrabber.FramegrabberMessageFactory.#ctor">
+            <summary>
+            Protected constructor, to avoid explicit instantiation
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Framegrabber.FramegrabberMessageFactory.types">
+            <summary>
+            Array of all supported message types
+            </summary>
+            <remarks>
+            TAKE CARE:
+            Array index must match corresponding MessageType enum value - 1
+            </remarks>
+        </member>
+        <member name="P:ET.FW.Hal.Framegrabber.FramegrabberMessageFactory.Types">
+            <summary>
+            List of all supported types
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Framegrabber.FramegrabberMessageFactory.CreateMessage(System.Byte,ET.FW.Core.Messaging.IProtocol)">
+            <summary>
+            Internal method to create message based on message type number
+            </summary>
+            <param name="no">message type number</param>
+            <param name="protocol">protocol to assign to the message</param>
+            <returns>the newly created message</returns>
+        </member>
+        <member name="T:ET.FW.Hal.Framegrabber.FramegrabberProtocol">
+            <summary>
+            HW Protocol handling Framegrabber messages.
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Framegrabber.FramegrabberProtocol.IncludeRawDataBytes">
+            <summary>
+            Framegrabber message contains raw data bytes
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Framegrabber.FramegrabberProtocol.#ctor(ET.FW.Hal.Messaging.ITransmitter{ET.FW.Hal.Framegrabber.IFramegrabberMessage},System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ET.FW.Hal.Framegrabber.FramegrabberProtocol"/> class.
+            </summary>
+            <param name="transmitter">The transmitter</param>
+            <param name="isCacheable">True to cache payload and Translation</param>
+        </member>
+        <member name="T:ET.FW.Hal.Framegrabber.FramegrabberProtocolFactory">
+            <summary>
+            Factory for Framegrabber (offline) protocols
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Framegrabber.FramegrabberProtocolFactory.CreateOfflineProtocol(System.String,System.String)">
+            <summary>
+            Create protocol to replace corresponding Hardware protocols in offline mode
+            </summary>
+            <param name="className">classname of hardware protocol</param>
+            <param name="name">name of the hardware protocol</param>
+            <returns>the offline protocol</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Framegrabber.FramegrabberProtocolFactory.GetTypeOfOfflineProtocol(System.String,System.String)">
+            <summary>
+            Returns the Type of the Protocol, which is created by CreateHardwareProtocol
+            with the corresponding parameters.<para></para>
+            This method must be overridden by all those ChannelAccesses using protocols,
+            which may define further dependencies via Attributes.
+            </summary>
+            <param name="type">Type/class name of protocol to provide</param>
+            <param name="name">Name of protocol instance</param>
+            <returns>Type of the protocol or null</returns>
+        </member>
+        <member name="T:ET.FW.Hal.Framegrabber.FramegrabberMessageTranslator">
+            <summary>
+            Special "Catalog" for translation of Framegrabber messages
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Framegrabber.FramegrabberMessageTranslator.Translate(ET.FW.Core.Messaging.IMessage)">
+            <summary>
+            Translate the message
+            </summary>
+            <param name="message">message to translate</param>
+            <returns>the translation or empty string, if message is of wrong type</returns>
+        </member>
+        <member name="T:ET.FW.Hal.Log">
+            <summary>
+            Static wrapper for loggers of this assembly
+            </summary>
+            <example>
+            The example shows a common call to add a message to log
+            <code>
+            Log.Messages.Error("An error occured");
+            </code></example>
+        </member>
+        <member name="P:ET.FW.Hal.Log.Hal">
+            <summary>
+            Logger with code "HAL"
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Log.Offline">
+            <summary>
+            Logger with code "Offline"
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Offline.CommentChannelAccess">
+            <summary>
+            Online and offline channel access for comment messages
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Offline.CommentChannelAccess.#ctor(ET.FW.Core.Hal.IEquipment,System.String,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ET.FW.Hal.Offline.CommentChannelAccess"/> class.
+            </summary>
+            <param name="equipment">The equipment which contains this channel access</param>
+            <param name="portName">Name of the port.</param>
+            <param name="name">The name of the channel access</param>
+            <param name="portType">Type of the port.</param>
+        </member>
+        <member name="M:ET.FW.Hal.Offline.CommentChannelAccess.CreateHardwareProtocol(System.String,System.String)">
+            <summary>
+            Provide offline hardware protocol of given type
+            </summary>
+            <param name="type">Type/class name of protocol to provide</param>
+            <param name="name">Name of protocol instance</param>
+            <returns>
+            Matching protocol or null if not available
+            </returns>
+        </member>
+        <member name="T:ET.FW.Hal.Offline.LoggingChannelAccess">
+            <summary>
+            Online and offline channel access for system/marker logging and attachments
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Offline.LoggingChannelAccess.#ctor(ET.FW.Core.Hal.IEquipment,System.String,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ET.FW.Hal.Offline.LoggingChannelAccess"/> class.
+            </summary>
+            <param name="equipment">The equipment which contains this channel access</param>
+            <param name="portName">Name of the port.</param>
+            <param name="name">The name of the channel access</param>
+            <param name="portType">Type of the port.</param>
+        </member>
+        <member name="M:ET.FW.Hal.Offline.LoggingChannelAccess.CreateHardwareProtocol(System.String,System.String)">
+            <summary>
+            Provide offline hardware protocol of given type
+            </summary>
+            <param name="type">Type/class name of protocol to provide</param>
+            <param name="name">Name of protocol instance</param>
+            <returns>
+            Matching protocol or null if not available
+            </returns>
+        </member>
+        <member name="P:ET.FW.Hal.Offline.LoggingChannelAccess.LogProtocol">
+            <summary>
+            Protocol for logging texts
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Offline.IOfflineChannelAccess">
+            <summary>
+            Offline channel access 
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Offline.IOfflineChannelAccess.PortType">
+            <summary>
+            Port type from config file
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Offline.IOfflineChannelAccess.HWProtocols">
+            <summary>
+            Collection of hardware protocols created by this channel access
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Offline.OfflineChannelAccess">
+            <summary>
+            Dummy channel access for offline trace reading
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Offline.OfflineChannelAccess.#ctor(ET.FW.Core.Hal.IEquipment,System.String,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ET.FW.Hal.Offline.OfflineChannelAccess" /> class.
+            </summary>
+            <param name="equipment">The equipment.</param>
+            <param name="portName">Name of the port.</param>
+            <param name="name">The name.</param>
+            <param name="portType">Port type for channel access</param>
+        </member>
+        <member name="P:ET.FW.Hal.Offline.OfflineChannelAccess.PortType">
+            <summary>
+            Port type from config file
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Offline.OfflineChannelAccess.Start">
+            <summary>
+            Start the channel access
+            </summary>
+            <returns>
+            always true, because there is nothing to start in offline mode.
+            </returns>
+        </member>
+        <member name="M:ET.FW.Hal.Offline.OfflineChannelAccess.Stop">
+            <summary>
+            Stop the channel access
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Offline.OfflineChannelAccess.IsRunning">
+            <summary>
+            Check if this channel access is running
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Offline.OfflineChannelAccess.HWProtocols">
+            <summary>
+            Collection of hardware protocols created by this channel access
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Offline.OfflineChannelAccess.AddProtocol(ET.FW.Core.Messaging.IProtocol)">
+            <summary>
+            Adds newly created protocol.
+            All derived class must use this method to store all created protocols in HWProtocols collection.
+            </summary>
+            <remarks>
+            Protocol null references are ignored
+            </remarks>
+            <param name="hwProtocol">Newly created hardware protocol </param>
+        </member>
+        <member name="M:ET.FW.Hal.Offline.OfflineChannelAccess.CreateHardwareProtocol(System.String,System.String)">
+            <summary>
+            Provide offline hardware protocol of given type
+            </summary>
+            <remarks>
+            Derived classes must use AddProtocol() method to store created protocols at protocol collection.
+            </remarks>
+            <param name="type">Type/class name of protocol to provide</param>
+            <param name="name">Name of protocol instance</param>
+            <returns>
+            Matching protocol or null if not available
+            </returns>
+        </member>
+        <member name="M:ET.FW.Hal.Offline.OfflineChannelAccess.GetTypeOfHardwareProtocol(System.String,System.String)">
+            <summary>
+            Returns the Type of the Protocol, which is created by CreateHardwareProtocol
+            with the corresponding parameters.<para></para>
+            This method must be overridden by all those ChannelAccesses using protocols,
+            which may define further dependencies via Attributes.
+            </summary>
+            <param name="type">Type/class name of protocol to provide</param>
+            <param name="name">Name of protocol instance</param>
+            <returns>
+            Type of the protocol or null
+            </returns>
+        </member>
+        <member name="T:ET.FW.Hal.Offline.OfflineChannelAccesses">
+            <summary>
+            Class to handle different offline channel accesses
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Offline.OfflineChannelAccesses.Instance">
+            <summary>
+            Singleton instance
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Offline.OfflineChannelAccesses.Reset">
+            <summary>
+            Resets singleton
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Offline.OfflineChannelAccesses.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:ET.FW.Hal.Offline.OfflineChannelAccesses"/> class.
+            </summary>
+            <remarks>
+            Collect all offline channel access classes and store them into dictionary, key is port type
+            </remarks>
+        </member>
+        <member name="F:ET.FW.Hal.Offline.OfflineChannelAccesses.offlineChannelAccessTypes">
+            <summary>
+            Dictionary to map port type (key) to channel access type (value)
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Offline.OfflineChannelAccesses.CreateChannelAccess(ET.FW.Core.Hal.IEquipment,System.String,System.String,System.String)">
+            <summary>
+            Create offline channel access for given port type
+            </summary>
+            <remarks>Offline channel access class must have constructor with same parameters as this method</remarks>
+            <param name="equipment">Parent equipment for channel access</param>
+            <param name="portName">Port name</param>
+            <param name="name">Channel access name from config</param>
+            <param name="portType">Port Type, used to determine the channel access type</param>
+            <returns>Offline channel access instance, null if no matching class is found</returns>
+        </member>
+        <member name="T:ET.FW.Hal.Offline.OfflineEquipment">
+            <summary>
+            Dummy equipment for offline traces
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Offline.OfflineEquipment.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ET.FW.Hal.Offline.OfflineEquipment"/> class.
+            </summary>
+            <param name="name">Equipment name</param>
+            <param name="serial">Serial number</param>
+        </member>
+        <member name="M:ET.FW.Hal.Offline.OfflineEquipment.CreateChannelAccess(System.String,System.String,System.String)">
+            <summary>
+            Create/provide channel access
+            </summary>
+            <param name="portName">Hardware port name</param>
+            <param name="name">Channel access name</param>
+            <param name="portType">Port type for channel access</param>
+            <returns>
+            The newly constructed channel access
+            </returns>
+        </member>
+        <member name="M:ET.FW.Hal.Offline.OfflineEquipment.Connect">
+            <summary>
+            Connect to hardware
+            </summary>
+            <returns>
+            always true, because there is nothing to connect in offline mode.
+            </returns>
+        </member>
+        <member name="M:ET.FW.Hal.Offline.OfflineEquipment.Disconnect">
+            <summary>
+            Disconnect hardware
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Offline.OfflineEquipment.IsConnected">
+            <summary>
+            Check if hardware is connected
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Offline.OfflineEquipmentManager">
+            <summary>
+            Equipment manager for offline dummy equipment used to read trace files
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Offline.OfflineEquipmentManager.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:ET.FW.Hal.Offline.OfflineEquipmentManager"/> class.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Offline.OfflineEquipmentManager.CreateEquipment(System.String)">
+            <summary>
+            Create new equipment object, object is not assigned to a special HW
+            </summary>
+            <param name="name">equipment name to set</param>
+            <returns>
+            newly created equipment, null if no equipment available
+            </returns>
+        </member>
+        <member name="M:ET.FW.Hal.Offline.OfflineEquipmentManager.CreateEquipment(System.String,System.String)">
+            <summary>
+            Create equipment for given serial number
+            </summary>
+            <param name="name">equipment name to set</param>
+            <param name="serial">serial number of equipment</param>
+            <returns>newly created eqipment for HW box with given serial number, null if no box with serial available</returns>
+        </member>
+        <member name="T:ET.FW.Hal.Offline.OfflineProtocolFactories">
+            <summary>
+            Handler fotr offline protocol factories
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Offline.OfflineProtocolFactories.factoryTypes">
+            <summary>
+            Dictionary, where all OfflineProtocolFactoryTypes are referenced to the
+            PortTypes, for which they can create an Offline-Protocol.<para></para>
+            Every Factory can support several PortTypes, but one PortType must not
+            reference more than one Factory.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Offline.OfflineProtocolFactories.PrepareFactoryTypes">
+            <summary>
+            Creates a Dictionary containing all IOfflineProtocolFactory-Types found in corresponding Framework- and Usage-DLLs,
+            indexed by a list of those portTypes supported by the corresponding IOfflineProtocolFactory. The supported types
+            are fetched from OfflineProtocolPortTypeAttribute.<para></para>
+            Only those IOfflineProtocolFactory-Types are added to the dictionary, which have at least one OfflineProtocolPortTypeAttribute.<para></para>
+            The returned value is assigned to the member offlineProtocolFactoryTypes.
+            </summary>
+            <returns>Dictionary as described above</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Offline.OfflineProtocolFactories.PrepareFactories">
+            <summary>
+            Create dictionary for offline protocol factories.
+            </summary>
+            <returns>the dictionary</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Offline.OfflineProtocolFactories.GetFactoryType(System.String)">
+            <summary>
+            Gets the type of the offline protocol factory from portType
+            </summary>
+            <param name="portType">portType to search</param>
+            <returns>Matching KeyValuePair with list of portTypes and protocol factory type</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Offline.OfflineProtocolFactories.GetFactory(System.String)">
+            <summary>
+            Returns an existing IOfflineProtocolFactory for the given portType or
+            null, if none exists.
+            </summary>
+            <param name="portType">The portType, for which the IOfflineProtocolFactory is requested.</param>
+            <returns>The found IOfflineProtocolFactory or null, if none exists.</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Offline.OfflineProtocolFactories.GetOrCreateFactory(System.String,ET.FW.Hal.IOfflineProtocolFactory@)">
+            <summary>
+            Returns the existing IOfflineProtocolFactory for the given portType or creates a new one,
+            of none exists.
+            </summary>
+            <param name="portType">The portType for which the corresponding EquipmentManager is requested.</param>
+            <param name="offlineProtocolFactory">out: the found offlineProtocolFactory or null if none exists and none could be created.</param>
+            <returns>TRUE if an offlineProtocolFactory was found or created, FALSE otherwise.</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Offline.OfflineProtocolFactories.TryGetFactory(System.String,ET.FW.Hal.IOfflineProtocolFactory@)">
+            <summary>
+            Returns an existing IOfflineProtocolFactory for the given portType or
+            null, if none exists.
+            </summary>
+            <param name="portType">The portType, for which the IOfflineProtocolFactory is requested.</param>
+            <param name="offlineProtocolFactory">out: The found IOfflineProtocolFactory or null, if none exists.</param>
+            <returns>TRUE if an existing IOfflineProtocolFactory was found, FALSE otherwise.</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Offline.OfflineProtocolFactories.DisposeFactories">
+            <summary>
+            Disposes the offline protocol factories.
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.IOfflineProtocolFactory">
+            <summary>
+            Interface for Factory, which create Offline-Protocols.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.IOfflineProtocolFactory.CreateOfflineProtocol(System.String,System.String)">
+            <summary>
+            Creates an OfflineProtocol for the given className and names it with the given
+            name
+            </summary>
+            <param name="className">ClassName of the OfflineProtocol</param>
+            <param name="name">Name for the OfflineProtocol</param>
+            <returns>The created OfflineProtocol.</returns>
+        </member>
+        <member name="M:ET.FW.Hal.IOfflineProtocolFactory.GetTypeOfOfflineProtocol(System.String,System.String)">
+            <summary>
+            Returns the Type of the Protocol, which is created by CreateHardwareProtocol
+            with the corresponding parameters.<para></para>
+            This method must be overridden by all those ChannelAccesses using protocols,
+            which may define further dependencies via Attributes.
+            </summary>
+            <param name="type">Type/class name of protocol to provide</param>
+            <param name="name">Name of protocol instance</param>
+            <returns>Type of the protocol or null</returns>
+        </member>
+        <member name="T:ET.FW.Hal.Pdu.IPduMessage">
+            <summary>
+            Interface for Autosar Pdu Message
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Pdu.IPduMessage.Length">
+            <summary>
+            Length of data bytes
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Pdu.IPduMessage.PduId">
+            <summary>
+            Id value
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Pdu.IPduMessage.uplink">
+            <summary>
+            The next higher level of the protocol, e.g. an IP message.
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Relay.Catalogs.RelayCatalog">
+            <summary>
+            Providing textual representation of an relay message.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Relay.Catalogs.RelayCatalog.#ctor">
+            <summary>
+            The Constructor
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Relay.Catalogs.RelayCatalog.Translate(ET.FW.Core.Messaging.IMessage)">
+            <summary>
+            Translates a message object containing a UDP message to a string representation.
+            </summary>
+            <param name="message">message object</param>
+            <returns>translation as string</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Relay.Catalogs.RelayCatalog.parseFcat(System.Xml.XmlDocument)">
+            <summary>
+            Parses the whole function catalog and saves all required information.
+            </summary>
+            <param name="doc">The function catalog as XML file.</param>
+        </member>
+        <member name="P:ET.FW.Hal.Relay.Catalogs.RelayCatalog.relayNameMapping">
+            <summary>
+            relay Name Mapping
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Relay.Catalogs.RelayCatalog.relayStateMapping">
+            <summary>
+            relay State Mapping
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Relay.Catalogs.RelayCatalogLoader">
+            <summary>
+            RelayCatalog factory.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Relay.Catalogs.RelayCatalogLoader.Load(ET.FW.Config.Catalogs.CatalogConfiguration,System.String)">
+            <summary>
+            Reads the XML functioncatalog and saves all important information in a RelayCatalog object.
+            </summary>
+            <param name="configuration">catalog configuration</param>
+            <param name="fullSourcePath">full source path</param>
+            <returns>a catalog</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Relay.Catalogs.RelayCatalogLoader.Load(ET.FW.Config.Catalogs.CatalogConfiguration,System.IO.Stream)">
+            <summary>
+            Reads the XML functioncatalog and saves all important information in a ThriftMeCatalog object.
+            </summary>
+            <param name="configuration">catalog configuration</param>
+            <param name="stream">input stream</param>
+            <returns>loaded catalog</returns>
+        </member>
+        <member name="T:ET.FW.Hal.Relay.IRelayMessage">
+            <summary>
+            Interface used for relay messages.
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Relay.IRelayMessage.RelayDatas">
+            <summary>
+            Gets or sets the relay datas.
+            </summary>
+            <value>The text.</value>
+        </member>
+        <member name="P:ET.FW.Hal.Relay.IRelayMessage.Command">
+            <summary>
+            Gets or sets the command of relay.
+            </summary>
+            <value>The command.</value>
+        </member>
+        <member name="T:ET.FW.Hal.Relay.RelayCommand">
+            <summary>
+            Commands for request to relay and response from relay
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Relay.RelayCommand.Get">
+            <summary>
+            Get state
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Relay.RelayCommand.Set">
+            <summary>
+            Set state
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Relay.RelayCommand.State">
+            <summary>
+            State response from relay
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Relay.RelayCommand.Reset">
+            <summary>
+            Reset HW
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Relay.RelayData">
+            <summary>
+            Data of relay = Relay number + State
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Relay.RelayData.#ctor(System.Int32,System.Boolean)">
+            <summary>
+            The constructor
+            </summary>
+            <param name="number">the relay number</param>
+            <param name="state">Relay state</param>
+        </member>
+        <member name="P:ET.FW.Hal.Relay.RelayData.Number">
+            <summary>
+            The relay number
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Relay.RelayData.State">
+            <summary>
+            State of relay
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Relay.RelayData.Bytes">
+            <summary>
+            Byte array
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Relay.RelayProtocol">
+            <summary>
+            HW Protocol handling relay messages.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Relay.RelayProtocol.#ctor(ET.FW.Hal.Messaging.ITransmitter{ET.FW.Hal.Relay.IRelayMessage})">
+            <summary>
+            Initializes a new instance of the <see cref="T:ET.FW.Hal.Relay.RelayProtocol"/> class.
+            </summary>
+            <param name="transmitter">The transmitter</param>
+        </member>
+        <member name="M:ET.FW.Hal.Relay.RelayProtocol.#ctor(ET.FW.Hal.Messaging.ITransmitter{ET.FW.Hal.Relay.IRelayMessage},System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ET.FW.Hal.Relay.RelayProtocol"/> class.
+            </summary>
+            <param name="transmitter">The transmitter</param>
+            <param name="isCacheable">True to cache payload and Translation</param>
+        </member>
+        <member name="T:ET.FW.Hal.Relay.RelayMessageFactory">
+            <summary>
+            ET Framework factory for relay messages
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Relay.RelayMessageFactory.Instance">
+            <summary>
+            The only one relay message factory
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Relay.RelayMessageFactory.#ctor">
+            <summary>
+            Protected constructor, to avoid explicit instantiation
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Relay.RelayMessageFactory.types">
+            <summary>
+            Array of all supported message types
+            </summary>
+            <remarks>
+            TAKE CARE:
+            Array index must match corresponding MessageType enum value - 1
+            </remarks>
+        </member>
+        <member name="P:ET.FW.Hal.Relay.RelayMessageFactory.Types">
+            <summary>
+            List of all supported types
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Relay.RelayMessageFactory.CreateMessage(System.Byte,ET.FW.Core.Messaging.IProtocol)">
+            <summary>
+            Internal method to create message based on message type number
+            </summary>
+            <param name="no">message type number</param>
+            <param name="protocol">protocol to assign to the message</param>
+            <returns>the newly created message</returns>
+        </member>
+        <member name="T:ET.FW.Hal.Relay.RelayMessage">
+            <summary>
+            Automotive message used for relay box.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Relay.RelayMessage.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:ET.FW.Hal.Relay.RelayMessage"/> class.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Relay.RelayMessage.Serialize(System.IO.BinaryWriter)">
+            <summary>
+            Serializes the RelayMessage using the specified writer.
+            </summary>
+            <param name="writer">The writer.</param>
+        </member>
+        <member name="M:ET.FW.Hal.Relay.RelayMessage.Deserialize(System.IO.BinaryReader)">
+            <summary>
+            Deserializes the RelayMessage using the the specified reader.
+            </summary>
+            <param name="reader">The reader.</param>
+        </member>
+        <member name="P:ET.FW.Hal.Relay.RelayMessage.RelayDatas">
+            <summary>
+            Relay datas
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Relay.RelayMessage.Command">
+            <summary>
+            Relay command
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Relay.RelayProtocolFactory">
+            <summary>
+            Factory for Relay (offline) protocols
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Relay.RelayProtocolFactory.CreateOfflineProtocol(System.String,System.String)">
+            <summary>
+            Create protocol to replace corresponding Hardware protocols in offline mode
+            </summary>
+            <param name="className">classname of hardware protocol</param>
+            <param name="name">name of the hardware protocol</param>
+            <returns>the offline protocol</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Relay.RelayProtocolFactory.GetTypeOfOfflineProtocol(System.String,System.String)">
+            <summary>
+            Returns the Type of the Protocol, which is created by CreateHardwareProtocol
+            with the corresponding parameters.<para></para>
+            This method must be overridden by all those ChannelAccesses using protocols,
+            which may define further dependencies via Attributes.
+            </summary>
+            <param name="type">Type/class name of protocol to provide</param>
+            <param name="name">Name of protocol instance</param>
+            <returns>Type of the protocol or null</returns>
+        </member>
+        <member name="T:ET.FW.Hal.SecOC.ISecOcHandler">
+            <summary>
+            Interface for handling of E2E protections
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.SecOC.ISecOcHandler.RegisterSecOc(System.UInt32,System.UInt32,System.Numerics.BigInteger,System.UInt16)">
+            <summary>
+            Register a SecOc protection
+            </summary>
+            <param name="pduId"> Pdu Id</param>
+            <param name="dataId">Data Id for the Pdu</param>
+            <param name="secOcKey">Pdu Specific Keys</param>
+            <param name="vlanId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ET.FW.Hal.SecOC.ISecOcHandler.RegisterSecOcProtectionForContainerPdu(System.UInt32,System.UInt32,System.UInt32,System.Numerics.BigInteger)">
+            <summary>
+            Register a SecOc protection for Container Pdu
+            </summary>
+            <param name="containerId"></param>
+            <param name="pduId">Pdu Id</param>
+            <param name="dataId">Data Id for the Pdu</param>
+            <param name="secOcKey">Pdu Specific Key</param>
+            <returns></returns>
+        </member>
+        <member name="T:ET.FW.Hal.Streaming.StreamTextProtocol">
+            <summary>
+            Hardware protocol handling text messages over Stream.
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Streaming.StreamTextProtocol.splitter">
+            <summary>
+            The splitter for the received messages
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Streaming.StreamTextProtocol.currentRequestSent">
+            <summary>
+            Timestamp of sending the current request message.
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Streaming.StreamTextProtocol.waitResponse">
+            <summary>
+            Wait-for-response event.
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Streaming.StreamTextProtocol.WaitingForResponse">
+            <summary>
+            Gets or sets a value indicating whether we are currently waiting for response.
+            </summary>
+            <value><c>true</c> if waiting for response; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:ET.FW.Hal.Streaming.StreamTextProtocol.CurrentRequestMessage">
+            <summary>
+            The request message currently waiting for response (null if not waiting).
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Streaming.StreamTextProtocol.#ctor(ET.FW.Core.Hal.IOutputChannelAccess{ET.FW.Hal.Messaging.IBinaryMessage})">
+            <summary>
+            Initializes a new instance of the <see cref="T:ET.FW.Hal.Streaming.StreamTextProtocol"/> class.
+            </summary>
+            <param name="channelaccess">Transmitter for HW access</param>
+        </member>
+        <member name="M:ET.FW.Hal.Streaming.StreamTextProtocol.ChannelaccessOutput(System.Object,ET.FW.Core.Messaging.MessageEventArgs{ET.FW.Hal.Messaging.IBinaryMessage})">
+            <summary>
+            Receive the output from the channelaccess.
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The event.</param>
+        </member>
+        <member name="P:ET.FW.Hal.Streaming.StreamTextProtocol.DelimiterString">
+            <summary>
+            Gets or sets the delimiter string.
+            </summary>
+            <value>The delimiter string.</value>
+        </member>
+        <member name="P:ET.FW.Hal.Streaming.StreamTextProtocol.AppendDelimiterStringOnRx">
+            <summary>
+            True if we have to append the delimiter string on a RX Message.
+            </summary>
+            <value>The delimiter string.</value>
+        </member>
+        <member name="P:ET.FW.Hal.Streaming.StreamTextProtocol.UsingDelimiterString">
+            <summary>
+            True if messages are using a delimiter string.
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Streaming.StreamTextProtocol.ResponseTimeout">
+            <summary>
+            The response timeout.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Streaming.StreamTextProtocol.SendMessage(ET.FW.Hal.Text.ITextMessage)">
+            <summary>
+            Sends the specified text message.
+            If the message is an requestMessage, its response is queried and handled.
+            </summary>
+            <param name="message">the message to send</param>
+            <returns>
+            Send result, which indicates if message could be sent, further errors are not monitored here.
+            </returns>
+        </member>
+        <member name="M:ET.FW.Hal.Streaming.StreamTextProtocol.CheckWaitForResponse">
+            <summary>
+            Wait for a response if necessary.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Streaming.StreamTextProtocol.Receive(ET.FW.Hal.Messaging.IBinaryMessage)">
+            <summary>
+            Handle received message (Rx, Tx Messages or events)
+            </summary>
+            <param name="message">The message to handle</param>
+        </member>
+        <member name="M:ET.FW.Hal.Streaming.StreamTextProtocol.NewMessage(ET.FW.Hal.Text.ITextMessage)">
+            <summary>
+            A new message was received. Check if this is a response of a prior request
+            </summary>
+            <param name="message">The message.</param>
+        </member>
+        <member name="M:ET.FW.Hal.Streaming.StreamTextProtocol.BuildMessage(ET.FW.Core.Messaging.IMessage)">
+            <summary>
+            Build up a new Message with parametern of given Message
+            </summary>
+            <param name="lastPart">given message</param>
+            <returns>new message</returns>
+        </member>
+        <member name="T:ET.FW.Hal.Streaming.StreamMessageFactory">
+            <summary>
+            ET Framework factory for binary+text messages for streams
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Streaming.StreamMessageFactory.StreamMessageType">
+            <summary>
+            Represents the supported message types.
+            </summary>
+            <remarks>
+            TAKE CARE:
+            Enum value must match index of corresponding message types in 'types' array
+            </remarks>
+        </member>
+        <member name="F:ET.FW.Hal.Streaming.StreamMessageFactory.StreamMessageType.Undefined">
+            <summary>Message type undefined.</summary>
+        </member>
+        <member name="F:ET.FW.Hal.Streaming.StreamMessageFactory.StreamMessageType.Binary">
+            <summary>Binary message.</summary>
+        </member>
+        <member name="F:ET.FW.Hal.Streaming.StreamMessageFactory.StreamMessageType.BinaryRequest">
+            <summary>Binary request message.</summary>
+        </member>
+        <member name="F:ET.FW.Hal.Streaming.StreamMessageFactory.StreamMessageType.BinaryResponse">
+            <summary>Binary response message.</summary>
+        </member>
+        <member name="F:ET.FW.Hal.Streaming.StreamMessageFactory.StreamMessageType.BinarySegmented">
+            <summary>Segmented binary message.</summary>
+        </member>
+        <member name="F:ET.FW.Hal.Streaming.StreamMessageFactory.StreamMessageType.Text">
+            <summary>Text message.</summary>
+        </member>
+        <member name="F:ET.FW.Hal.Streaming.StreamMessageFactory.StreamMessageType.TextRequest">
+            <summary>Text request message.</summary>
+        </member>
+        <member name="F:ET.FW.Hal.Streaming.StreamMessageFactory.StreamMessageType.TextResponse">
+            <summary>Text response message.</summary>
+        </member>
+        <member name="F:ET.FW.Hal.Streaming.StreamMessageFactory.StreamMessageType.TextSegmented">
+            <summary>Segmented text message.</summary>
+        </member>
+        <member name="P:ET.FW.Hal.Streaming.StreamMessageFactory.Instance">
+            <summary>
+            The only one stream message factory
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Streaming.StreamMessageFactory.#ctor">
+            <summary>
+            Protected constructor, to avoid explicit instantiation
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Streaming.StreamMessageFactory.types">
+            <summary>
+            Array of all supported message types
+            </summary>
+            <remarks>
+            TAKE CARE:
+            Array index must match corresponding MessageType enum value - 1
+            </remarks>
+        </member>
+        <member name="P:ET.FW.Hal.Streaming.StreamMessageFactory.Types">
+            <summary>
+            List of all supported types
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Streaming.StreamMessageFactory.CreateMessage(System.Byte,ET.FW.Core.Messaging.IProtocol)">
+            <summary>
+            Internal method to create message based on message type number
+            </summary>
+            <param name="no">message type number</param>
+            <param name="protocol">protocol to assign to the message</param>
+            <returns>the newly created message</returns>
+        </member>
+        <member name="T:ET.FW.Hal.Streaming.StreamBinProtocol">
+            <summary>
+            Hardware protocol handling text messages over Stream.
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Streaming.StreamBinProtocol.currentRequestSent">
+            <summary>
+            Timestamp of sending the current request message.
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Streaming.StreamBinProtocol.waitResponse">
+            <summary>
+            Wait-for-response event.
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Streaming.StreamBinProtocol.WaitingForResponse">
+            <summary>
+            Gets or sets a value indicating whether we are currently waiting for response.
+            </summary>
+            <value><c>true</c> if waiting for response; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:ET.FW.Hal.Streaming.StreamBinProtocol.CurrentRequestMessage">
+            <summary>
+            The request message currently waiting for response (null if not waiting).
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Streaming.StreamBinProtocol.#ctor(ET.FW.Core.Hal.IOutputChannelAccess{ET.FW.Hal.Messaging.IBinaryMessage})">
+            <summary>
+            Initializes a new instance of the <see cref="T:ET.FW.Hal.Streaming.StreamBinProtocol"/> class.
+            </summary>
+            <param name="channelaccess">Transmitter for HW access</param>
+        </member>
+        <member name="M:ET.FW.Hal.Streaming.StreamBinProtocol.ChannelaccessOutput(System.Object,ET.FW.Core.Messaging.MessageEventArgs{ET.FW.Hal.Messaging.IBinaryMessage})">
+            <summary>
+            Receive the output from the channelaccess.
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The event.</param>
+        </member>
+        <member name="P:ET.FW.Hal.Streaming.StreamBinProtocol.FixedLength">
+            <summary>
+            Gets or sets the length of a received message.
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Streaming.StreamBinProtocol.StartSequence">
+            <summary>
+            Gets or sets the start sequence string.
+            </summary>
+            <value>The start sequence string.</value>
+        </member>
+        <member name="P:ET.FW.Hal.Streaming.StreamBinProtocol.StopSequence">
+            <summary>
+            Gets or sets the stop sequence string.
+            </summary>
+            <value>The stop sequence string.</value>
+        </member>
+        <member name="P:ET.FW.Hal.Streaming.StreamBinProtocol.LengthTagPosition">
+            <summary>
+            Gets or sets the position of the length tag.
+            </summary>
+            <value>The position of the length tag.</value>
+        </member>
+        <member name="P:ET.FW.Hal.Streaming.StreamBinProtocol.LengthTagLength">
+            <summary>
+            Gets or sets the length of the length tag.
+            </summary>
+            <value>The length of the length tag.</value>
+        </member>
+        <member name="P:ET.FW.Hal.Streaming.StreamBinProtocol.UseLittleEndian">
+            <summary>
+            True if little endian is used.
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Streaming.StreamBinProtocol.ResponseTimeout">
+            <summary>
+            The response timeout.
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Streaming.StreamBinProtocol.UsingStartSequence">
+            <summary>
+            True if messages are using a StartSequence.
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Streaming.StreamBinProtocol.UsingStopSequence">
+            <summary>
+            True if messages are using a StopSequence.
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Streaming.StreamBinProtocol.StartSequenceArray">
+            <summary>
+            Gets or sets the StartSequence.
+            </summary>
+            <value>The start sequence.</value>
+        </member>
+        <member name="P:ET.FW.Hal.Streaming.StreamBinProtocol.StopSequenceArray">
+            <summary>
+            Gets or sets the StopSequence.
+            </summary>
+            <value>The stop sequence.</value>
+        </member>
+        <member name="M:ET.FW.Hal.Streaming.StreamBinProtocol.SendMessage(ET.FW.Hal.Messaging.IBinaryMessage)">
+            <summary>
+            Sends the specified binary message.
+            </summary>
+            <param name="message">The message to send.</param>
+            <returns>
+            Send result, which indicates if message could be sent, further errors are not monitored here.
+            </returns>
+        </member>
+        <member name="M:ET.FW.Hal.Streaming.StreamBinProtocol.CheckWaitForResponse">
+            <summary>
+            Wait for a response if necessary.
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Streaming.StreamBinProtocol.State">
+            <summary>
+            State machine states for reading data sent from Kleer.
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Streaming.StreamBinProtocol.State.WaitingForStartSequence">
+            <summary>
+            Waiting for first StartSequence byte.
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Streaming.StreamBinProtocol.State.ReadingStartSequence">
+            <summary>
+            First StartSequence byte read, waiting for the remaining StartSequence bytes.
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Streaming.StreamBinProtocol.State.ReadingData">
+            <summary>
+            StartSequence successfully read, reading data.
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Streaming.StreamBinProtocol.currentState">
+            <summary>
+            Current reading state.
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Streaming.StreamBinProtocol.rxBuffer">
+            <summary>
+            Buffer containing received data.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Streaming.StreamBinProtocol.Receive(ET.FW.Hal.Messaging.IBinaryMessage)">
+            <summary>
+            Handle received message (Rx, Tx Messages or events)
+            </summary>
+            <param name="message">The message to handle</param>
+        </member>
+        <member name="M:ET.FW.Hal.Streaming.StreamBinProtocol.ReadFixedLengthData">
+            <summary>
+            Reads the fixed length data.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Streaming.StreamBinProtocol.FindStartSequence">
+            <summary>
+            Searches for the first byte of the start sequence and removes everything before this in rxBuffer.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Streaming.StreamBinProtocol.ReadStartSequence">
+            <summary>
+            Reads the start sequence and removes it if completely found.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Streaming.StreamBinProtocol.ReadLengthDelimitedData">
+            <summary>
+            Reads the data packet and sends it if complete.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Streaming.StreamBinProtocol.SearchStopSequence">
+            <summary>
+            Searches the stop sequence and removes it if completely found.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Streaming.StreamBinProtocol.CompareWithStopSequence(System.Int32)">
+            <summary>
+            Compares the byte array with  the stop sequence.
+            </summary>
+            <param name="stopSequencePos">The stop sequence pos.</param>
+            <returns>true, if found</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Streaming.StreamBinProtocol.FindStopSequence(System.Int32)">
+            <summary>
+            Finds the stop sequence.
+            </summary>
+            <param name="stopSequencePos">From where to seearch </param>
+            <returns>the start position of the stopsequence</returns>
+        </member>
+        <member name="T:ET.FW.Hal.Text.ITextChannelAccess">
+            <summary>
+            Interface of channel access which provides text protocol
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Text.ITextChannelAccess.TextProtocol">
+            <summary>
+            Text protocol
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Text.OfflineTextChannelAccess">
+            <summary>
+            Channel access for text channels in offline mode
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Text.OfflineTextChannelAccess.#ctor(ET.FW.Core.Hal.IEquipment,System.String,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ET.FW.Hal.Text.OfflineTextChannelAccess" /> class.
+            </summary>
+            <param name="equipment">The equipment.</param>
+            <param name="portName">Name of the port.</param>
+            <param name="name">The name.</param>
+            <param name="portType">Port type for channel access</param>
+        </member>
+        <member name="P:ET.FW.Hal.Text.OfflineTextChannelAccess.TextProtocol">
+            <summary>
+            Text protocol
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Text.OfflineTextChannelAccess.CreateHardwareProtocol(System.String,System.String)">
+            <summary>
+            Provide offline hardware protocol of given type
+            </summary>
+            <param name="type">Type/class name of protocol to provide</param>
+            <param name="name">Name of protocol instance</param>
+            <returns>
+            Matching protocol or null if not available
+            </returns>
+        </member>
+        <member name="T:ET.FW.Hal.Text.TextProtocol">
+            <summary>
+            HW Protocol handling text messages.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Text.TextProtocol.#ctor(ET.FW.Hal.Messaging.ITransmitter{ET.FW.Hal.Text.ITextMessage})">
+            <summary>
+            Initializes a new instance of the <see cref="T:ET.FW.Hal.Text.TextProtocol"/> class.
+            </summary>
+            <param name="transmitter">The transmitter</param>
+        </member>
+        <member name="M:ET.FW.Hal.Text.TextProtocol.#ctor(ET.FW.Hal.Messaging.ITransmitter{ET.FW.Hal.Text.ITextMessage},System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ET.FW.Hal.Text.TextProtocol"/> class.
+            </summary>
+            <param name="transmitter">The transmitter</param>
+            <param name="isCacheable">True to cache payload and Translation</param>
+        </member>
+        <member name="T:ET.FW.Hal.Text.ITextMessage">
+            <summary>
+            Interface used for text messages.
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Text.ITextMessage.Text">
+            <summary>
+            Gets or sets the text.
+            </summary>
+            <value>The text.</value>
+        </member>
+        <member name="P:ET.FW.Hal.Text.ITextMessage.Id">
+            <summary>
+            Gets or sets the id.
+            </summary>
+            <value>The id.</value>
+        </member>
+        <member name="T:ET.FW.Hal.Text.TextMessage">
+            <summary>
+            Automotive message used for text content.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Text.TextMessage.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:ET.FW.Hal.Text.TextMessage"/> class.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Text.TextMessage.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ET.FW.Hal.Text.TextMessage"/> class.
+            </summary>
+            <param name="text">The text.</param>
+        </member>
+        <member name="P:ET.FW.Hal.Text.TextMessage.Text">
+            <summary>
+            Gets or sets the text.
+            </summary>
+            <value>The text.</value>
+        </member>
+        <member name="P:ET.FW.Hal.Text.TextMessage.Id">
+            <summary>
+            Id can be used, if not the view formatter will show "text"
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Text.TextMessage.Serialize(System.IO.BinaryWriter)">
+            <summary>
+            Serializes the TextMessage using the specified writer.
+            </summary>
+            <param name="writer">The writer.</param>
+        </member>
+        <member name="M:ET.FW.Hal.Text.TextMessage.Deserialize(System.IO.BinaryReader)">
+            <summary>
+            Deserializes the TextMessage using the the specified reader.
+            </summary>
+            <param name="reader">The reader.</param>
+        </member>
+        <member name="M:ET.FW.Hal.Text.TextMessage.Translate">
+            <summary>
+            Translate binary message to textual representation
+            </summary>
+            <returns>message translation</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Text.TextMessage.TranslateMessage">
+            <summary>
+            Translate the message
+            </summary>
+            <returns>the MessageTranslation</returns>
+        </member>
+        <member name="T:ET.FW.Hal.Text.TextMessageType">
+            <summary>
+            Represents the supported text message types.
+            </summary>
+            <remarks>
+            TAKE CARE:
+            Enum value must match index of corresponding message types in 'types' array
+            </remarks>
+        </member>
+        <member name="F:ET.FW.Hal.Text.TextMessageType.Undefined">
+            <summary>Message type undefined.</summary>
+        </member>
+        <member name="F:ET.FW.Hal.Text.TextMessageType.Text">
+            <summary>Text message.</summary>
+        </member>
+        <member name="F:ET.FW.Hal.Text.TextMessageType.TextRequest">
+            <summary>Text request message.</summary>
+        </member>
+        <member name="F:ET.FW.Hal.Text.TextMessageType.TextResponse">
+            <summary>Text response message.</summary>
+        </member>
+        <member name="F:ET.FW.Hal.Text.TextMessageType.TextSegmented">
+            <summary>Segmented text message.</summary>
+        </member>
+        <member name="T:ET.FW.Hal.Text.TextMessageFactory">
+            <summary>
+            ET Framework factory for text messages
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Text.TextMessageFactory.Instance">
+            <summary>
+            The only one text message factory
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Text.TextMessageFactory.#ctor">
+            <summary>
+            Protected constructor, to avoid explicit instantiation
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Text.TextMessageFactory.types">
+            <summary>
+            Array of all supported message types
+            </summary>
+            <remarks>
+            TAKE CARE:
+            Array index must match corresponding MessageType enum value - 1
+            </remarks>
+        </member>
+        <member name="P:ET.FW.Hal.Text.TextMessageFactory.Types">
+            <summary>
+            List of all supported types
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Text.TextMessageFactory.CreateMessage(System.Byte,ET.FW.Core.Messaging.IProtocol)">
+            <summary>
+            Internal method to create message based on message type number
+            </summary>
+            <param name="no">message type number</param>
+            <param name="protocol">protocol to assign to the message</param>
+            <returns>the newly created message</returns>
+        </member>
+        <member name="T:ET.FW.Hal.Text.TextMessageTranslator">
+            <summary>
+            Special "Catalog" for translation of text messages
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Text.TextMessageTranslator.Translate(ET.FW.Core.Messaging.IMessage)">
+            <summary>
+            Translate the message
+            </summary>
+            <param name="message">message to translate</param>
+            <returns>the translation or empty string, if message is of wrong type</returns>
+        </member>
+        <member name="T:ET.FW.Hal.Text.ITextRequestMessage">
+            <summary>
+            Textual request message
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Text.TextRequestMessage">
+            <summary>
+            Automotive message used for text requests.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Text.TextRequestMessage.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ET.FW.Hal.Text.TextRequestMessage"/> class.
+            </summary>
+            <param name="text">The text.</param>
+        </member>
+        <member name="M:ET.FW.Hal.Text.TextRequestMessage.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:ET.FW.Hal.Text.TextRequestMessage"/> class.
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Text.TextRequestMessage.RequestTag">
+            <summary>
+            Gets or sets the request tag.
+            </summary>
+            <value>The tag attached to the request.</value>
+        </member>
+        <member name="P:ET.FW.Hal.Text.TextRequestMessage.Timeout">
+            <summary>
+            Gets or sets the timeout.
+            </summary>
+            <value>The request timeout.</value>
+        </member>
+        <member name="T:ET.FW.Hal.Text.ITextResponseMessage">
+            <summary>
+            Textual response messages
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Text.TextResponseMessage">
+            <summary>
+            Automotive message used for text responses.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Text.TextResponseMessage.#ctor">
+            <summary>
+            Constructor.
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Text.TextResponseMessage.RequestTag">
+            <summary>
+            Gets or sets the request tag.
+            </summary>
+            <value>The tag attached to the original request.</value>
+        </member>
+        <member name="T:ET.FW.Hal.Text.ITextSegmentMessage">
+            <summary>
+            Interface for text segmented message.
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Text.TextSegmentMessage">
+            <summary>
+            Segmented text message.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Text.TextSegmentMessage.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ET.FW.Hal.Text.TextSegmentMessage"/> class.
+            </summary>
+            <param name="text">The text content of the message.</param>
+        </member>
+        <member name="M:ET.FW.Hal.Text.TextSegmentMessage.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:ET.FW.Hal.Text.TextSegmentMessage"/> class.
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Text.TextSegmentMessage.SegmentType">
+            <summary>
+            Gets or sets the segment type.
+            </summary>
+            <value>The type of the segment.</value>
+        </member>
+    </members>
+</doc>

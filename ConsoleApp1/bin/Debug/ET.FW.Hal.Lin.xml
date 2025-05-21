@@ -1,0 +1,2443 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ET.FW.Hal.Lin</name>
+    </assembly>
+    <members>
+        <member name="T:ET.FW.Hal.Lin.LinSignalChangedMessage">
+            <summary>
+            The implementation of the message for signal changed event.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.LinSignalChangedMessage.#ctor">
+            <summary>
+            Create a new instance if the <see cref="T:ET.FW.Hal.Lin.LinSignalChangedMessage"/> class.
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.LinSignalChangedMessage.UId">
+            <summary>
+            Unique ID
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.LinSignalChangedMessage.Payload">
+            <summary>
+            Access data bytes
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.LinSignalChangedMessage.Timestamp">
+            <summary>
+            Message timestamp
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.LinSignalChangedMessage.HWTimestamp">
+            <summary>
+            Orignal timestamp of the Hardware (only set if available)
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.LinSignalChangedMessage.RxTx">
+            <summary>
+            Received/transmitted message
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.LinSignalChangedMessage.Protocol">
+            <summary>
+            Assigned protocol
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.LinSignalChangedMessage.Translate">
+            <summary>
+            Translate binary message to textual representation
+            </summary>
+            <returns>The translation</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.LinSignalChangedMessage.TranslateMessage">
+            <summary>
+            Translate binary message to textual representation
+            </summary>
+            <returns>The translation</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.LinSignalChangedMessage.ET#FW#Core#Messaging#IMessage#Serialize(System.IO.BinaryWriter)">
+            <summary>
+            Serializes the specified writer.
+            </summary>
+            <param name="writer">The writer.</param>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.LinSignalChangedMessage.ET#FW#Core#Messaging#IMessage#Deserialize(System.IO.BinaryReader)">
+            <summary>
+            Deserializes the specified reader.
+            </summary>
+            <param name="reader">The reader.</param>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.LinSignalChangedMessage.MessageError">
+            <summary>
+            Proprty for an Error detected with the message.<para></para>
+            MessageError == null means no error has been detected at the time the comparison is made.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.LinSignalChangedMessage.HasError">
+            <summary>
+            Returns, whether an error has been detected for this Message.
+            </summary>
+            <returns>True if has error</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.LinSignalChangedMessage.GetCacheKey">
+            <summary>
+            Returns key for caching.
+            </summary>
+            <returns>Key for caching</returns>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.LinSignalChangedMessage.Id">
+            <summary>
+            Lin message ID (11 bit standard or 29 bit extended)
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.LinSignalChangedMessage.ChangedSignals">
+            <summary>
+            The list of changed signals.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.LinSignalChangedMessage.ET#FW#Hal#Lin#ILinSignalChangedMessage#Fill(ET.FW.Hal.Lin.ILinMessage,System.Collections.Generic.IEnumerable{ET.FW.Hal.Lin.Catalogs.ILinSignal})">
+            <summary>
+            Fill the LinSignalChangedMessage with data from the given LinMessage.
+            </summary>
+            <param name="LinMessage">The original LinMessage to get the data.</param>
+            <param name="changedSignals">List of changed signals</param>
+            <returns><c>true</c> if the operation was completed successfully; otherwise <c>false</c>.</returns>
+        </member>
+        <member name="T:ET.FW.Hal.Lin.ILinSignalChangedMessage">
+            <summary>
+            The message for signal changed event.
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.ILinSignalChangedMessage.Id">
+            <summary>
+            LIN message ID
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.ILinSignalChangedMessage.ChangedSignals">
+            <summary>
+            The list of changed signals.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.ILinSignalChangedMessage.Fill(ET.FW.Hal.Lin.ILinMessage,System.Collections.Generic.IEnumerable{ET.FW.Hal.Lin.Catalogs.ILinSignal})">
+            <summary>
+            Fill the LinSignalChangedMessage with data from the given LinMessage.
+            </summary>
+            <param name="linMessage">The original LinMessage to get the data.</param>
+            <param name="changedSignals">List of changed signals</param>
+            <returns><c>true</c> if the operation was completed successfully; otherwise <c>false</c>.</returns>
+        </member>
+        <member name="T:ET.FW.Hal.Lin.LinNMEvent`1">
+            <summary>
+            CAN NM event base class
+            </summary>
+            <typeparam name="TNMState">The type of the NM state.</typeparam>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.LinNMEvent`1.NMProtocol">
+            <summary>
+            Gets the type of the network management.
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.LinNMEvent`1.Id">
+            <summary>
+            NM node ID
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.LinNMEvent`1.NMState">
+            <summary>
+            The networkmanagement state as byte (value meaning depends on NMProtocol)
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.LinNMEvent`1.Event">
+            <summary>
+            Type of the event.
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.LinNMEvent`1.EventText">
+            <summary>
+            Event text
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Lin.LinNMSignalEvent">
+            <summary>
+            LiN network managment event 
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.LinNMSignalEvent.NMProtocol">
+            <summary>
+            Get type of network management: Signal
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.LinNMSignalEvent.Serialize(System.IO.BinaryWriter)">
+            <summary>
+            Serializes the CanNMEvent using the specified writer.
+            </summary>
+            <param name="writer">The writer.</param>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.LinNMSignalEvent.Deserialize(System.IO.BinaryReader)">
+            <summary>
+            Deserializes the LinNMEvent using the the specified reader.
+            </summary>
+            <param name="reader">The reader.</param>
+        </member>
+        <member name="T:ET.FW.Hal.Lin.LinNMNode">
+            <summary>
+            Represents a single network management (NM) node.
+            </summary>
+            <remarks>Non generic base functionality.</remarks>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.LinNMNode.#ctor(System.Byte)">
+            <summary>
+            The Constructor.
+            </summary>
+            <param name="basicAddress">The network basic address.</param>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.LinNMNode.Id">
+            <summary>
+            Nm Id.
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.LinNMNode.BasicAddress">
+            <summary>
+            Network Management basic address (NWM-Basisadresse)
+            </summary>
+            <remarks>Valid value range: 0..63</remarks>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.LinNMNode.Name">
+            <summary>
+            Descriptive name of this node
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.LinNMNode.Wakeup">
+            <summary>
+            Wakes the node up
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.LinNMNode.StayAwake">
+            <summary>
+            Set stay awake
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.LinNMNode.Observing">
+            <summary>
+            Gets or sets the value indicating whether this node is an observing node.
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.LinNMNode.StayAwakeImpl">
+            <summary>
+            Stay awake implementation.
+            </summary>
+        </member>
+        <member name="E:ET.FW.Hal.Lin.LinNMNode.PropertyChanged">
+            <summary>
+            Represents the method that will handle the PropertyChanged event raised when a 
+            property is changed on a component.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.LinNMNode.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources. 
+            </summary>
+        </member>
+        <member name="E:ET.FW.Hal.Lin.LinNMNode.BusSleepIndication">
+            <summary>
+            This occurs when the node signals its sleep readiness.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.LinNMNode.OnBusSleepIndication">
+            <summary>
+            This function will be called when the node signals its sleep readiness.
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Lin.LinNMNode`1">
+            <summary>
+            Represents a single network management (NM) node based on <c>NMStateType</c>.
+            </summary>
+            <typeparam name="NMStateType">The nm protocol type.</typeparam>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.LinNMNode`1.#ctor(System.Byte)">
+            <summary>
+            The Constructor.
+            </summary>
+            <param name="basicAddress">The network basic address.</param>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.LinNMNode`1.State">
+            <summary>
+            Current nm node state based on <c>NMStateType</c>.
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Lin.NMStateNone">
+            <summary>
+            Network management node states None.
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Lin.NMStateNone.Active">
+            <summary>
+            Always Active
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Lin.NMStateSignal">
+            <summary>
+            Network management node states None.
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Lin.NMStateSignal.Sleeping">
+            <summary>
+            Not Active
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Lin.NMStateSignal.Active">
+            <summary>
+            Bus is Active
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Lin.ILinNetworkManagement">
+            <summary>
+            Network management
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.ILinNetworkManagement.CurrentNodes">
+            <summary>
+            All current (active) Nm nodes
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.ILinNetworkManagement.AddSimulatingNode(System.Byte)">
+            <summary>
+            Add a new simulating NM node.
+            </summary>
+            <param name="nmBasicAddress">The nm basic address in the network.</param>
+            <returns>The nm node.</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.ILinNetworkManagement.AddObservingNode(System.Byte)">
+            <summary>
+            Add a new observing NM node. (Observes HW NM devices)
+            </summary>
+            <param name="nmBasicAddress">The nm basic address in the network.</param>
+            <returns>The nm node.</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.ILinNetworkManagement.RemoveNode(ET.FW.Hal.Lin.LinNMNode)">
+            <summary>
+            Remove a NM node.
+            </summary>
+            <param name="node">NMNode to deregister.</param>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.ILinNetworkManagement.Type">
+            <summary>
+            Nm type.
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.ILinNetworkManagement.Protocol">
+            <summary>
+            Nm protocol.
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.ILinNetworkManagement.State">
+            <summary>
+            Global NM state
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Lin.NMType">
+            <summary>
+            Networkmanagement type
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Lin.NMType.Undefined">
+            <summary>
+            The nm type is undefined
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Lin.NMType.Direct">
+            <summary>
+            Direct nm with special nm messages
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Lin.NMType.Indirect">
+            <summary>
+            Indirect nm without special nm messages
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Lin.NMProtocolType">
+            <summary>
+            Networkmanagement protocol
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Lin.NMProtocolType.None">
+            <summary>
+            No nm used
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Lin.NMProtocolType.Signal">
+            <summary>
+            On/Off is based on signal values
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Lin.NMBusState">
+            <summary>
+            Fundamental bus states
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Lin.NMBusState.Undefined">
+            <summary>
+            State could not be determined
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Lin.NMBusState.Asleep">
+            <summary>
+            Bus is asleep (no messages)
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Lin.NMBusState.Awake">
+            <summary>
+            Bus is awake (messages are fired)
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Lin.ILinNMEvent">
+            <summary>
+            LIN network management events interface
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.ILinNMEvent.NMProtocol">
+            <summary>
+            Gets the NM protocol.
+            </summary>
+            <value>The NM protocol.</value>
+        </member>
+        <member name="T:ET.FW.Hal.Lin.ILinNMEvent`1">
+            <summary>
+            Lin network management events interface
+            </summary>
+            <typeparam name="TNMState">NM state type, depending on protocol</typeparam>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.ILinNMEvent`1.NMState">
+            <summary>
+            The NM state depending on NM protocol
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Lin.ILinSpyEvent">
+            <summary>
+            Interface for common Lin Spy event, used to signal different Lin error conditions e.g. equipment specific status messages
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Lin.ILinStatusEvent">
+            <summary>
+            Interface for common Lin Status event, used to signal different Lin error conditions e.g. equipment specific status messages
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Lin.ILinEvent">
+            <summary>
+            A Lin Event
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.ILinEvent.Event">
+            <summary>
+            Type of the event.
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Lin.LinEventType">
+            <summary>
+            Represents LinEventType event messages.
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Lin.LinEventType.Status">
+            <summary>
+            State change event message.
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Lin.LinEventType.SpyEvent">
+            <summary>
+            A spy event message.
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Lin.LinEventType.Error">
+            <summary>
+            Common Lin error event
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Lin.LinEventType.NM">
+            <summary>
+            NM event
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Lin.ILinErrorEvent">
+            <summary>
+            Interface for common Lin error event, used to signal different Lin error conditions e.g. equipment specific status messages
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Lin.Catalogs.LinSignalDefinitionCreator">
+            <summary>
+            This is a LinSignalDefinition creator helper class
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.Catalogs.LinSignalDefinitionCreator.#ctor(System.String,ET.FW.Hal.Lin.Catalogs.LinMessageDefinition)">
+            <summary>
+            Constructor. Creates a new (empty) LinSignalDefinition
+            </summary>
+            <param name="name">Name of the LinSignal</param>
+            <param name="messageDef">Message relationship</param>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.Catalogs.LinSignalDefinitionCreator.#ctor(System.String,ET.FW.Hal.Lin.Catalogs.LinMessageDefinition,ET.FW.Hal.Lin.Catalogs.LinSignalDefinition)">
+            <summary>
+            Constructor. Creates a new LinSignalDefinition on the base 
+            of an LinSignalDefinition template
+            </summary>
+            <param name="name">Name of the LinSignal</param>
+            <param name="messageDef">Message relationship</param>
+            <param name="template">LinSignalDefinition template</param>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.Catalogs.LinSignalDefinitionCreator.Definition">
+            <summary>
+            Full definition of the signal 
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.Catalogs.LinSignalDefinitionCreator.SetDefaultValue``1(``0)">
+            <summary>
+            Default signal value setter
+            </summary>
+            <typeparam name="T">specific type</typeparam>
+            <param name="value">default value</param>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.Catalogs.LinSignalDefinitionCreator.SetMinValue``1(``0)">
+            <summary>
+            Minimum signal value setter
+            </summary>
+            <typeparam name="T">specific type</typeparam>
+            <param name="value">minimum value</param>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.Catalogs.LinSignalDefinitionCreator.SetMaxValue``1(``0)">
+            <summary>
+            Maximum signal value setter
+            </summary>
+            <typeparam name="T">specific type</typeparam>
+            <param name="value">maximum value</param>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.Catalogs.LinSignalDefinitionCreator.GetDefinition">
+            <summary>
+            Get LinSignalDefinition
+            </summary>
+            <returns>finish LinSignalDefinition</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.Catalogs.LinSignalDefinitionCreator.EvaluateE2EFlags">
+            <summary>
+            Set E2E protection flags based on signal name
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Lin.Catalogs.PayloadExtension">
+            <summary>
+            Helper class for LIN message payload handling
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.Catalogs.PayloadExtension.ToBitField(System.Byte[])">
+            <summary>
+            Converts the byte array to an bit field
+            </summary>
+            <param name="payload">byte array value to convert</param>
+            <returns>converted bit field</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.Catalogs.PayloadExtension.Set(System.Byte[],System.UInt64)">
+            <summary>
+            Set byte array data from integer value
+            Array size is preserved.
+            </summary>
+            <param name="payload">Target byte array</param>
+            <param name="data">64 Bit integer source value</param>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.Catalogs.PayloadExtension.SetSignalBits(System.Byte[],System.UInt64,ET.FW.Hal.Lin.Catalogs.LinSignalDefinition)">
+            <summary>
+            Writes signal bits into message payload
+            </summary>
+            <param name="payload">Target payload.</param>
+            <param name="value">New signal value as bitfield</param>
+            <param name="definition">Signal definition.</param>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.Catalogs.PayloadExtension.WriteSignalBits(System.Byte[],System.UInt64,ET.FW.Hal.Lin.Catalogs.LinSignalDefinition)">
+            <summary>
+            Create new byte array which contains given payload updated with given signal value
+            </summary>
+            <param name="payload">Target payload.</param>
+            <param name="value">New signal value as bitfield</param>
+            <param name="definition">Signal definition.</param>
+            <returns>The updated payload bytes</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.Catalogs.PayloadExtension.GetSignalBits(System.Byte[],ET.FW.Hal.Lin.Catalogs.LinSignalDefinition)">
+            <summary>
+            Extracts signal value from payload byte array
+            </summary>
+            <param name="payload">Payload bytes</param>
+            <param name="definition">Signal definition.</param>
+            <returns>Masked signal bits</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.Catalogs.PayloadExtension.CalculatePosition(System.Int32,ET.FW.Hal.Lin.Catalogs.LinSignalDefinition)">
+            <summary>
+            Calculates the position of bitfield for shifting
+            </summary>
+            <param name="dlc">Number of ayload bytes</param>
+            <param name="definition">Signal definition.</param>
+            <returns>Shift position for signal value</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.Catalogs.PayloadExtension.GenerateNegativeBitMask(System.Int32,System.Int32)">
+            <summary>
+            Generates a negative bit mask with flexible bit length and bit start (lsb of UInt64 bitfield).
+            Example: GenerateNegativeBitMask(12, 11): "...1111111111111111111000000000000111111111111"
+            </summary>
+            <param name="bitLength">Bit length</param>
+            <param name="bitStart">Zero based bit start position</param>
+            <returns>Negative bit mask</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.Catalogs.PayloadExtension.GenerateBitMask(System.Int32)">
+            <summary>
+            BitMask generator, which generates a positive bit mask beginning at 
+            position zero (lsb) of UInt64 bit field.
+            Example: GenerateBitMask(12): "...000000000000000000000111111111111"
+            </summary>
+            <param name="bitLength">Length of the bit field</param>
+            <returns>Bit mask</returns>
+        </member>
+        <member name="T:ET.FW.Hal.Lin.Catalogs.LdfLoader">
+            <summary>
+            ldf importer class
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.Catalogs.LdfLoader.Import(System.String)">
+            <summary>
+            Imports the specified ldf database 
+            </summary>
+            <param name="file">File path</param>
+            <returns>Lin network definition tree</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.Catalogs.LdfLoader.Import(System.IO.Stream)">
+            <summary>
+            Imports the specified Lin database 
+            </summary>
+            <param name="stream">data stream</param>
+            <returns>Lin network definition tree</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.Catalogs.LdfLoader.CheckIfIsDummyDevice(ET.FW.Hal.Lin.Catalogs.LinNetworkDefinition,System.String)">
+            Check if the device definition is available. If not add it as dummy device
+            <param name="network">belonging network</param>
+            <param name="name">device name</param>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.Catalogs.LdfLoader.EvaluateSignalValueType(ET.FW.Hal.Lin.Catalogs.LinSignalDefinition)">
+            <summary>
+            Private type evaluator method
+            </summary>
+            <param name="definition">signal definition</param>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.Catalogs.LdfLoader.IsFloatingPoint(System.Double)">
+            <summary>
+            Private floating point evaluator
+            </summary>
+            <param name="value">The value to check</param>
+            <returns>true if value has fractional part, otherwise false</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.Catalogs.LdfLoader.Load(ET.FW.Config.Catalogs.CatalogConfiguration,System.IO.Stream)">
+            <summary>
+            Loads the catalog
+            </summary>
+            <param name="configuration">Configuration of the catalog</param>
+            <param name="stream">The stream of the source</param>
+            <returns>The newly loaded catalog instance.</returns>
+        </member>
+        <member name="T:ET.FW.Hal.Lin.Catalogs.LinMessageCollection`1">
+            <summary>
+            Collection of LinMessage objects
+            </summary>
+            <typeparam name="T">Message class</typeparam>
+            <remarks>Based on NamedObjectCollection. Is NOT Thread safe.</remarks>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.Catalogs.LinMessageCollection`1.#ctor">
+            <summary>
+            Empty constructor.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.Catalogs.LinMessageCollection`1.#ctor(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Constructs filled collection.
+            </summary>
+            <param name="collection">Collection which implements IEnumerable interface.</param>
+        </member>
+        <member name="F:ET.FW.Hal.Lin.Catalogs.LinMessageCollection`1.messagesById">
+            <summary>
+            Internal msg id dictionary
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.Catalogs.LinMessageCollection`1.Item(System.Byte)">
+            <summary>
+            Get/set Lin message definition by message id
+            </summary>
+            <param name="id">message Id</param>
+            <returns>LinMessageDefinition object</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.Catalogs.LinMessageCollection`1.Add(`0)">
+            <summary>
+            Add a Lin message definition object
+            </summary>
+            <param name="message">Message Definition</param>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.Catalogs.LinMessageCollection`1.TryGetValue(System.Byte,`0@)">
+            <summary>
+            Gets the message associated with the specified id.
+            </summary>
+            <param name="id">The id of the message to get.</param>
+            <param name="message">When this method returns, contains the message associated with the specified id, if the id is found;
+            otherwise, the default value for the message type of the value parameter.This parameter is passed uninitialized.</param>
+            <returns><c>true</c> if the LinMessageCollection contains an message with the specified id; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.Catalogs.LinMessageCollection`1.Contains(System.Byte)">
+            <summary>
+            Evaluates if the collection contains a message by msgId
+            </summary>
+            <param name="id">message ID</param>
+            <returns>true if message with given ID is found</returns>
+        </member>
+        <member name="T:ET.FW.Hal.Lin.Catalogs.LinSignal">
+            <summary>
+            Lin signal class for static signal values.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.Catalogs.LinSignal.#ctor(ET.FW.Hal.Lin.ILinMessage,ET.FW.Hal.Lin.Catalogs.LinSignalDefinition)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ET.FW.Hal.Lin.Catalogs.LinSignal"/> class.
+            Signal value is extracted from payload of given Lin message
+            </summary>
+            <param name="message">Lin message containing signal value</param>
+            <param name="definition">Definition of the Lin signal</param>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.Catalogs.LinSignal.#ctor(ET.FW.Hal.Lin.Catalogs.LinSignalDefinition,System.Byte[])">
+            <summary>
+            Initializes a new instance of the <see cref="T:ET.FW.Hal.Lin.Catalogs.LinSignal"/> class.
+            Signal value is extracted from given message payload bytes.
+            </summary>
+            <param name="definition">The signal definition.</param>
+            <param name="messagePayload">The Lin message payload, used to extract message value</param>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.Catalogs.LinSignal.#ctor(ET.FW.Hal.Lin.Catalogs.LinSignalDefinition)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ET.FW.Hal.Lin.Catalogs.LinSignal"/> class.
+            Signal value is not set here.
+            </summary>
+            <param name="definition">The signal definition.</param>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.Catalogs.LinSignal.#ctor(ET.FW.Hal.Lin.Catalogs.LinSignalDefinition,System.UInt64)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ET.FW.Hal.Lin.Catalogs.LinSignal"/> class.
+            </summary>
+            <param name="definition">Definition of the Lin signal</param>
+            <param name="rawValue">Raw value of signal</param>
+            <remarks>
+            Special constructor only for Clone() methode
+            </remarks>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.Catalogs.LinSignal.Message">
+            <summary>
+            Set message which contains this signal
+            Setter updates the signal values, message reference is not buffered
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.Catalogs.LinSignal.Definition">
+            <summary>
+            Full definition of the signal 
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.Catalogs.LinSignal.Name">
+            <summary>
+            Name of the Signal
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.Catalogs.LinSignal.ToString">
+            <summary>
+            Get the string representation of the object
+            </summary>
+            <returns>the string</returns>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.Catalogs.LinSignal.Unit">
+            <summary>
+            Unit of the real representation of the signal
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.Catalogs.LinSignal.Default">
+            <summary>
+            Gets default value of the signal
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.Catalogs.LinSignal.Maximum">
+            <summary>
+            Gets maximum value of the signal
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.Catalogs.LinSignal.Minimum">
+            <summary>
+            Gets minimum value of the signal
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.Catalogs.LinSignal.GetValue``1">
+            <summary>
+            Get typed value.
+            </summary>
+            <typeparam name="T">type of the value</typeparam>
+            <returns>Signal value</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.Catalogs.LinSignal.SetValue``1(``0)">
+            <summary>
+            Sets typed value.
+            </summary>
+            <typeparam name="T">Type of the value</typeparam>
+            <param name="value">Typed value to set</param>
+            <remarks>
+            Method throws exception, if given value Linnot be set.
+            </remarks>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.Catalogs.LinSignal.Value">
+            <summary>
+            Access signal value as text
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.Catalogs.LinSignal.RawValue">
+            <summary>
+            Access raw value of the signal
+            </summary>
+            <remarks>
+            Value is buffered here. It is not updated, if payload of associated message is modified.
+            </remarks>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.Catalogs.LinSignal.Clone">
+            <summary>
+            Clones this signal
+            </summary>
+            <returns>A copy of this object</returns>
+        </member>
+        <member name="T:ET.FW.Hal.Lin.Catalogs.ILinSignal">
+            <summary>
+            Lin signal interface
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.Catalogs.ILinSignal.Definition">
+            <summary>
+            Full definition of the signal 
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.Catalogs.ILinSignal.Default">
+            <summary>
+            Gets default value of the signal
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.Catalogs.ILinSignal.Maximum">
+            <summary>
+            Gets maximum value of the signal
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.Catalogs.ILinSignal.Minimum">
+            <summary>
+            Gets minimum value of the signal
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.Catalogs.ILinSignal.Value">
+            <summary>
+            Access signal value as string
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.Catalogs.ILinSignal.RawValue">
+            <summary>
+            Access raw value of the signal
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.Catalogs.ILinSignal.GetValue``1">
+            <summary>
+            Get typed value.
+            Method returns the converted real value. Typeparam T must match signal definition.
+            </summary>
+            <typeparam name="T">type of the value</typeparam>
+            <returns>Signal value</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.Catalogs.ILinSignal.SetValue``1(``0)">
+            <summary>
+            Sets typed value.
+            Method converts and sets the given real value. Typeparam T must match signal definition.
+            </summary>
+            <typeparam name="T">Type of the value</typeparam>
+            <param name="value">Typed value to set</param>
+            <remarks>
+            Method throws exception, if given value Linnot be set.
+            </remarks>
+        </member>
+        <member name="T:ET.FW.Hal.Lin.Catalogs.LinDeviceDefinition">
+            <summary>
+            Represents a Lin device which holds diffent Lin message definitions
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.Catalogs.LinDeviceDefinition.#ctor(System.String,ET.FW.Hal.Lin.Catalogs.LinNetworkDefinition)">
+            <summary>
+            The Constructor.
+            </summary>
+            <param name="name">the name of the device</param>
+            <param name="network">network relationship</param>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.Catalogs.LinDeviceDefinition.#ctor(System.String,ET.FW.Hal.Lin.Catalogs.LinNetworkDefinition,System.Boolean)">
+            <summary>
+            The Constructor.
+            </summary>
+            <param name="name">the name of the device</param>
+            <param name="network">network relationship</param>
+            <param name="dummy">inidicates if device definition is a dummy</param>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.Catalogs.LinDeviceDefinition.Name">
+            <summary>
+            Device name
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.Catalogs.LinDeviceDefinition.Description">
+            <summary>
+            Device description
+            </summary>
+            <remarks>
+            Not used for dbc format
+            </remarks>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.Catalogs.LinDeviceDefinition.Dummy">
+            <summary>
+            Indicates if device definition is a dummy 
+            </summary>
+            <remarks>
+            Not used for arxml format
+            </remarks>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.Catalogs.LinDeviceDefinition.Network">
+            <summary>
+            Network belonging of the LinDevice
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.Catalogs.LinDeviceDefinition.Messages">
+            <summary>
+            Device belonging Lin Messages
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.Catalogs.LinDeviceDefinition.Signals">
+            <summary>
+            All transmitting (TX) signals
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.Catalogs.LinDeviceDefinition.NwmNode">
+            <summary>
+            Network Management Node (NWM-Knoten)
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.Catalogs.LinDeviceDefinition.NwmStationAddress">
+            <summary>
+            Network Management Station Address (NWM-Stationsadresse)
+            </summary>
+            <remarks>Valid value range: 0..63</remarks>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.Catalogs.LinDeviceDefinition.ToString">
+            <summary>
+            Returns the string representation of the object
+            </summary>
+            <returns>
+            A <see cref="T:System.String" /> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:ET.FW.Hal.Lin.Catalogs.INamedLinIdObject">
+            <summary>
+            Interface for standard access to object name with id
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.Catalogs.INamedLinIdObject.Id">
+            <summary>
+            Lin message Id
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Lin.Catalogs.LinMessageBuilder">
+            <summary>
+            Helper object to write or to read Lin messages/Frame via signals 
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.Catalogs.LinMessageBuilder.#ctor(ET.FW.Hal.Lin.Catalogs.LinMessageDefinition)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ET.FW.Hal.Lin.Catalogs.LinMessageBuilder"/> class.
+            </summary>
+            <param name="definition">Lin message/Frame definition</param>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.Catalogs.LinMessageBuilder.Message">
+            <summary>
+            Current Payload
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.Catalogs.LinMessageBuilder.Definition">
+            <summary>
+            Message definition
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.Catalogs.LinMessageBuilder.Name">
+            <summary>
+            Name of the message
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.Catalogs.LinMessageBuilder.Id">
+            <summary>
+            Message id
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.Catalogs.LinMessageBuilder.Signals">
+            <summary>
+            All signal which are members of this message
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.Catalogs.LinMessageBuilder.SortedSignals">
+            <summary>
+            Signals sorted by BitStart
+            </summary>
+            <remarks>
+            Signals collection is sorted the same way
+            </remarks>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.Catalogs.LinMessageBuilder.ActiveSignals">
+            <summary>
+            Gets a collection of signals which are currently active.
+            Active signals are not multiplexed or contained in active multiplexor group.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.Catalogs.LinMessageBuilder.CreateSignals(ET.FW.Hal.Lin.Catalogs.LinMessageDefinition)">
+            <summary>
+            Internal signal creation service (signals are sorted by bit position)
+            </summary>
+            <param name="definition">Frame definition</param>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.Catalogs.LinMessageBuilder.Translation">
+            <summary>
+            Gets the message translation.
+            </summary>
+            <remarks>
+            Translation text is buffered until message payload is changed
+            </remarks>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.Catalogs.LinMessageBuilder.Structure">
+            <summary>
+            Gets a list of message signals, the signals are copies of internal signals and will not be changed on Message update
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Lin.Catalogs.LinMessageDefinition">
+            <summary>
+            Represents a Lin frame/Message definition
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.Catalogs.LinMessageDefinition.#ctor(System.String)">
+            <summary>
+            Constructor with name only.
+            </summary>
+            <param name="name">Name of the frame/Message.</param>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.Catalogs.LinMessageDefinition.#ctor(System.String,System.Byte,ET.FW.Hal.Lin.Catalogs.LinDeviceDefinition)">
+            <summary>
+            Constructor with name, ID and sender
+            </summary>
+            <param name="name">name of the message</param>
+            <param name="id">id of the message</param>
+            <param name="sender">sending device</param>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.Catalogs.LinMessageDefinition.Name">
+            <summary>
+            Message name
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.Catalogs.LinMessageDefinition.Id">
+            <summary>
+            Message Id
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.Catalogs.LinMessageDefinition.Dummy">
+            <summary>
+            Indicates if the message defines a dummy
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.Catalogs.LinMessageDefinition.Dlc">
+            <summary>
+            Message length
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.Catalogs.LinMessageDefinition.Description">
+            <summary>
+            Message description
+            </summary>
+            <remarks>
+            Not used for dbc format
+            </remarks>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.Catalogs.LinMessageDefinition.Sender">
+            <summary>
+            LinDevice belonging this message
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.Catalogs.LinMessageDefinition.Signals">
+            <summary>
+            Signals belonging to the message
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.Catalogs.LinMessageDefinition.Receivers">
+            <summary>
+            Message receiving LinDevices
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.Catalogs.LinMessageDefinition.Length">
+            <summary>
+            Frame length
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.Catalogs.LinMessageDefinition.DefaultPayload">
+            <summary>
+            Message default payload from catalog, holds default values of signals.
+            </summary>
+            <remarks>
+            Value is merged from message start/default value and signals default values.
+            Value must not be changed after initialization.
+            </remarks>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.Catalogs.LinMessageDefinition.IsTp">
+            <summary>
+            Flag for messages which are used for Transport Protocol
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.Catalogs.LinMessageDefinition.ToString">
+            <summary>
+            Get String representation of the object
+            </summary>
+            <returns>Name and ID (hex coded) as text</returns>
+        </member>
+        <member name="T:ET.FW.Hal.Lin.Catalogs.LinNetworkDefinition">
+            <summary>
+            Represents the Lin network with different devices
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.Catalogs.LinNetworkDefinition.Name">
+            <summary>
+            The name of the network
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.Catalogs.LinNetworkDefinition.Devices">
+            <summary>
+            Gets all Devices (ECU) in the Lin Network
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.Catalogs.LinNetworkDefinition.Messages">
+            <summary>
+            Gets all Lin messages defined in the network
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.Catalogs.LinNetworkDefinition.Version">
+            <summary>
+            Network version
+            </summary>
+            <remarks>Valid value range: 0..255</remarks>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.Catalogs.LinNetworkDefinition.VersionWeek">
+            <summary>
+            Version week date
+            </summary>
+            <remarks>Valid value range: 0..53</remarks>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.Catalogs.LinNetworkDefinition.VersionYear">
+            <summary>
+            Version year date
+            </summary>
+            <remarks>Valid value range: 0..99</remarks>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.Catalogs.LinNetworkDefinition.Baudrate">
+            <summary>
+            Network baudrate
+            </summary>
+            <remarks>Valid value range: 0..1000000</remarks>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.Catalogs.LinNetworkDefinition.ProtocolVersion">
+            <summary>
+            LIN protocol version
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.Catalogs.LinNetworkDefinition.MasterScheduleTable">
+            <summary>
+            Master node Schedule table
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.Catalogs.LinNetworkDefinition.Id">
+            <summary>
+            Network Id (NWID)
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.Catalogs.LinNetworkDefinition.Signals">
+            <summary>
+            Gets all Lin signals defined in the network
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Lin.Catalogs.LinSignalDefinition">
+            <summary>
+            Lin signal definition
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.Catalogs.LinSignalDefinition.#ctor(System.String,ET.FW.Hal.Lin.Catalogs.LinMessageDefinition)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ET.FW.Hal.Lin.Catalogs.LinSignalDefinition"/> class.
+            </summary>
+            <param name="name">Signal name</param>
+            <param name="message">Message membership</param>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.Catalogs.LinSignalDefinition.#ctor(System.String)">
+            <summary>
+            Testing constructor
+            </summary>
+            <param name="name">Signal name</param>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.Catalogs.LinSignalDefinition.InternalType">
+            <summary>
+            Internal signal type
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.Catalogs.LinSignalDefinition.Name">
+            <summary>
+            Name of the Signal
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.Catalogs.LinSignalDefinition.Description">
+            <summary>
+            Signal description
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.Catalogs.LinSignalDefinition.Message">
+            <summary>
+            Reference to the signal containing message /Frame
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.Catalogs.LinSignalDefinition.IsCrc">
+            <summary>
+            Flag for End2End protection CRC
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.Catalogs.LinSignalDefinition.IsSequenceCounter">
+            <summary>
+            Flag for End2End sequence counter
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.Catalogs.LinSignalDefinition.Receivers">
+            <summary>
+            Reference collection to the receiving Lin devices 
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.Catalogs.LinSignalDefinition.BitLength">
+            <summary>
+            Bit length of the signal
+            </summary>
+            <remarks>Valid value range: 1..64</remarks>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.Catalogs.LinSignalDefinition.BitStart">
+            <summary>
+            Bit start position of the signal in the Lin message
+            </summary>
+            <remarks>Valid value range: 0..63</remarks>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.Catalogs.LinSignalDefinition.Factor">
+            <summary>
+            Value range conversation multiplicator factor. (bit representation - real representation) 
+            </summary>
+            <remarks>Valid value range: double</remarks>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.Catalogs.LinSignalDefinition.Offset">
+            <summary>
+            Value range conversation offset. (bit representation - real representation) 
+            </summary>
+            <remarks>Valid value range: double</remarks>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.Catalogs.LinSignalDefinition.Unit">
+            <summary>
+            Unit of the real representation of the signal
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.Catalogs.LinSignalDefinition.BitwiseMinimum">
+            <summary>
+            Bitwise minimum value
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.Catalogs.LinSignalDefinition.BitwiseMaximum">
+            <summary>
+            Bitwise maximum value
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.Catalogs.LinSignalDefinition.BitwiseDefault">
+            <summary>
+            Bitwise default value (DBC: GenSigStartValue)
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.Catalogs.LinSignalDefinition.Values">
+            <summary>
+            State definitions of the values
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.Catalogs.LinSignalDefinition.GetMinimum``1">
+            <summary>
+            Get allowed minimum
+            </summary>
+            <typeparam name="T">type of the value</typeparam>
+            <returns>Minimum value</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.Catalogs.LinSignalDefinition.GetMaximum``1">
+            <summary>
+            Get allowed maximum
+            </summary>
+            <typeparam name="T">type of the value</typeparam>
+            <returns>Maximum value</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.Catalogs.LinSignalDefinition.GetDefault``1">
+            <summary>
+            Get default value
+            </summary>
+            <typeparam name="T">type of the value</typeparam>
+            <returns>Default value</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.Catalogs.LinSignalDefinition.ConvertToRaw``1(``0)">
+            <summary>
+            Convert signal value to raw value
+            Method handles numerical and textual values
+            </summary>
+            <typeparam name="T">Type of value</typeparam>
+            <param name="value">The Value</param>
+            <returns>Coverted raw value</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.Catalogs.LinSignalDefinition.StringToRaw(System.String)">
+            <summary>
+            Calculate raw value (bitfield) from string value
+            Method handles text constants (e.g. SNA), bool values (e.g. true) and numerical values
+            </summary>
+            <param name="value">string value</param>
+            <returns>raw value</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.Catalogs.LinSignalDefinition.NumericToRaw``1(``0)">
+            <summary>
+            Calculate raw value (bitfield) from specific typed numeric value.
+            Signal value is not modified here.
+            </summary>
+            <typeparam name="T">Type of value</typeparam>
+            <param name="value">value from type T</param>
+            <returns>raw value</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.Catalogs.LinSignalDefinition.RawToValue``1(System.UInt64)">
+            <summary>
+            Get typed value from raw value (bitfield)
+            This method considers value names (enumeration) for string type
+            </summary>
+            <typeparam name="T">Type of signal value</typeparam>
+            <param name="bitValue">raw value of Lin signal</param>
+            <returns>value from type T of Lin signal</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.Catalogs.LinSignalDefinition.RawToString(System.UInt64)">
+            <summary>
+            Calculate string value from given raw value (bitfield)
+            This method considers value names (enumeration)
+            </summary>
+            <param name="bitValue">raw value of Lin signal</param>
+            <returns>string value of signal with unit</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.Catalogs.LinSignalDefinition.RawToStringNoUnit(System.UInt64)">
+            <summary>
+            Calculate string value from given raw value (bitfield)
+            This method considers value names (enumeration)
+            </summary>
+            <param name="bitValue">raw value of Lin signal</param>
+            <returns>string value of signal without unit</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.Catalogs.LinSignalDefinition.TryGetRawValueAsString(System.UInt64,System.String@)">
+            <summary>
+            Try to get string value from given raw value (bitfield) with value names (enumeration)
+            or bool conersion
+            </summary>
+            <param name="bitValue">raw value of Lin signal</param>
+            <param name="value">string value of signal without unit</param>
+            <returns>True  if bitvalue was converted successful</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.Catalogs.LinSignalDefinition.RawToNumeric``1(System.UInt64)">
+            <summary>
+            Calculate specific typed value from given raw value (bitfield)
+            This method considers only numerical values
+            </summary>
+            <typeparam name="T">Type of value</typeparam>
+            <param name="bitValue">raw value</param>
+            <returns>value from type T</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.Catalogs.LinSignalDefinition.ToString">
+            <summary>
+            String representation of the object
+            </summary>
+            <returns>
+            A <see cref="T:System.String" /> that represents this instance.
+            </returns>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.Catalogs.LinSignalDefinition.Clone">
+            <summary>
+            Creates a shallow copy of the current LinSignalDefinition object.
+            </summary>
+            <returns>LinSignalDefinition object</returns>
+        </member>
+        <member name="T:ET.FW.Hal.Lin.Catalogs.ILinCatalog">
+            <summary>
+            Interface for the Lin specifics of the ICatalog
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.Catalogs.ILinCatalog.Network">
+            <summary>
+            Associated Lin network (bus) configuration
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.Catalogs.ILinCatalog.Messages">
+            <summary>
+            All Lin messages in the catalog
+            </summary>		
+            <remarks>Frames could be multiple defined in different networks</remarks>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.Catalogs.ILinCatalog.Signals">
+            <summary>
+            All Lin signals in the catalog
+            </summary>
+            <remarks>Frames could be multiple defined</remarks>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.Catalogs.ILinCatalog.GetStructure(ET.FW.Hal.Lin.ILinMessage)">
+            <summary>
+            Get Signals from of the Lin message
+            </summary>
+            <param name="message">Lin message to translate to signal structure</param>
+            <returns>Lin signals from message</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.Catalogs.ILinCatalog.GetMessageBuilder(ET.FW.Hal.Lin.ILinMessage)">
+            <summary>
+            Gets a new message builder
+            </summary>
+            <param name="message">Lin message to create a new builder</param>
+            <returns>A new message builder</returns>
+        </member>
+        <member name="T:ET.FW.Hal.Lin.Catalogs.LinCatalog">
+            <summary>
+            Represents the complete Lin catalog over all different networks
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.Catalogs.LinCatalog.#ctor(ET.FW.Hal.Lin.Catalogs.LinNetworkDefinition)">
+            <summary>
+            The Constructor.
+            </summary>
+            <param name="network">Lin network definition containing all catalog data</param>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.Catalogs.LinCatalog.Network">
+            <summary>
+            Associated Lin network (bus) configuration
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.Catalogs.LinCatalog.Devices">
+            <summary>
+            All Lin devices in the catalog
+            </summary>
+            <remarks>Devices could be multiple defined in different networks</remarks>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.Catalogs.LinCatalog.Messages">
+            <summary>
+            All Lin messages in the catalog
+            </summary>		
+            <remarks>Messages could be multiple defined in different networks</remarks>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.Catalogs.LinCatalog.Signals">
+            <summary>
+            All Lin signals in the catalog
+            </summary>
+            <remarks>Messages could be multiple defined</remarks>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.Catalogs.LinCatalog.Translate(ET.FW.Core.Messaging.IMessage)">
+            <summary>
+            Translate an IMessage
+            </summary>
+            <remarks>translates only ILinMessages</remarks>
+            <param name="message">the message to translate</param>
+            <returns>a string representation of the message</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.Catalogs.LinCatalog.TranslateLinMessage(ET.FW.Hal.Lin.ILinMessage)">
+            <summary>
+            Translate standard protocol Lin message 
+            </summary>
+            <param name="LinMsg">Lin message</param>
+            <returns>Message translation</returns>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.Catalogs.LinCatalog.CachedMessages">
+            <summary>
+            Holds all Lin messages for the translation
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.Catalogs.LinCatalog.GetMessageBuilder(ET.FW.Hal.Lin.ILinMessage)">
+            <summary>
+            Gets a new instance of message builder
+            </summary>
+            <param name="message">Lin message to create a new builder</param>
+            <returns>A new message builder</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.Catalogs.LinCatalog.GetStructure(ET.FW.Hal.Lin.ILinMessage)">
+            <summary>
+            Get Signals from of the Lin message
+            </summary>
+            <param name="LinMsg">Lin message to translate to signal structure</param>
+            <returns>Signals from Lin message</returns>
+        </member>
+        <member name="T:ET.FW.Hal.Lin.LinBus">
+            <summary>
+            Lin bus API allows sending and receiving of Lin messages
+            </summary>
+            <remarks>
+            Class must be public, because instances are created via reflection
+            </remarks>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.LinBus.#ctor(System.String)">
+            <summary>
+            Constructor with bus name
+            </summary>
+            <param name="name">bus name</param>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.LinBus.Init(System.Collections.Generic.IList{ET.FW.Core.Messaging.IProtocol})">
+            <summary>
+            Configure and initialize bus
+            </summary>
+            <param name="protocols">collection of protocols for bus (configured in XML-file)</param>
+            <returns>true if initialization was successful</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.LinBus.Init(System.Collections.Generic.IList{ET.FW.Core.Messaging.IProtocol},ET.FW.Core.Hal.IChannelAccess,System.Boolean)">
+            <summary>
+            Configure and initialize bus
+            </summary>
+            <param name="protocols">collection of protocols for bus (configured in XML-file)</param>
+            <param name="channelAccess">Channel access, needed for cyclic sending </param>
+            <param name="offline">is true if bus is used offline</param>
+            <returns>true if initialization was successful</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.LinBus.Dispose">
+            <summary>
+            Shutdown bus API
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.LinBus.ChannelAccess">
+            <summary>
+            optional channel access in HAL
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.LinBus.LinProtocol">
+            <summary>
+            Protocol for standard Lin messages
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.LinBus.EventProtocol">
+            <summary>
+            Protocol for Lin event/error pseudo messages
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.LinBus.NetworkManagement">
+            <summary>
+            Gets the network management.
+            </summary>
+            <value>The network management.</value>
+        </member>
+        <member name="T:ET.FW.Hal.Lin.ILinBus">
+            <summary>
+            Lin bus API
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.ILinBus.LinProtocol">
+            <summary>
+            Protocol for transmitting/receiving of Lin standard messages
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.ILinBus.EventProtocol">
+            <summary>
+            Protocol for Lin event/error pseudo messages
+            </summary>
+            <remarks>Protocoll handles standard and spy events</remarks>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.ILinBus.NetworkManagement">
+            <summary>
+            Gets the network management.
+            </summary>
+            <value>The network management.</value>
+        </member>
+        <member name="T:ET.FW.Hal.Lin.LinSpyEvent">
+            <summary>
+            Common Lin error event
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.LinSpyEvent.Text">
+            <summary>
+            Event description in plain text
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.LinSpyEvent.EventText">
+            <summary>
+            Gets the event message.
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.LinSpyEvent.Event">
+            <summary>
+            Type of the event.
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Lin.LinStatusEvent">
+            <summary>
+            Common Lin error event
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.LinStatusEvent.Text">
+            <summary>
+            Event description in plain text
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.LinStatusEvent.EventText">
+            <summary>
+            Gets the event message.
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.LinStatusEvent.Event">
+            <summary>
+            Type of the event.
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Lin.LinMessageFactory">
+            <summary>
+            ET Framework factory for Lin messages
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.LinMessageFactory.Instance">
+            <summary>
+            The only one Lin message factory
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.LinMessageFactory.#ctor">
+            <summary>
+            Private constructor, to avoid explicit instantiation
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Lin.LinMessageFactory.MessageType">
+            <summary>
+            Represents the supported Lin message types.
+            </summary>
+            <remarks>
+            TAKE CARE:
+            Enum value must match index of corresponding message types in 'types' array
+            </remarks>
+        </member>
+        <member name="F:ET.FW.Hal.Lin.LinMessageFactory.MessageType.Undefined">
+            <summary>Message type undefined</summary>
+        </member>
+        <member name="F:ET.FW.Hal.Lin.LinMessageFactory.MessageType.StdMessage">
+            <summary>standard message</summary>
+        </member>
+        <member name="F:ET.FW.Hal.Lin.LinMessageFactory.MessageType.ErrorEvent">
+            <summary>error message</summary>
+        </member>
+        <member name="F:ET.FW.Hal.Lin.LinMessageFactory.MessageType.StatusEvent">
+            <summary>Status event</summary>
+        </member>
+        <member name="F:ET.FW.Hal.Lin.LinMessageFactory.MessageType.SpyEvent">
+            <summary>Spy event</summary>
+        </member>
+        <member name="F:ET.FW.Hal.Lin.LinMessageFactory.MessageType.LinNMSignalEvent">
+            <summary>Singal Network management event</summary>
+        </member>
+        <member name="F:ET.FW.Hal.Lin.LinMessageFactory.MessageType.SignalChanged">
+            <summary>Signal changed message.</summary>
+        </member>
+        <member name="F:ET.FW.Hal.Lin.LinMessageFactory.types">
+            <summary>
+            Array of all supported message types
+            </summary>
+            <remarks>
+            TAKE CARE:
+            Array index must match corresponding MessageType enum value - 1
+            List index must not be changed, because it is used as message type in serialization!
+            </remarks>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.LinMessageFactory.Types">
+            <summary>
+            List of all supported types
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Lin.ILinTransmitter">
+            <summary>
+            Interface for hardware port which sends standard Lin messages 
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Lin.ILinChannelAccess">
+            <summary>
+            The Channel access
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.ILinChannelAccess.NetworkManagement">
+            <summary>
+            Gets the network management.
+            </summary>
+            <value>The network management.</value>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.ILinChannelAccess.StdProtocol">
+            <summary>
+            The Lin Standard Protocol
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.ILinChannelAccess.EventProtocol">
+            <summary>
+            Lin Event protocol
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Lin.ILinMessage">
+            <summary>
+            The Lin Message
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.ILinMessage.Id">
+            <summary>
+            Lin message ID (0..63)
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Lin.LinErrorCode">
+            <summary>
+            Enum for the Lin Error Codes.
+            ErrorCodes from 1 to 255 are common ErrorCodes,
+            those with values greater than 255 are Lin-sepcific.
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Lin.LinErrorCode.MessageCorrupt">
+            <summary>
+            Message is corrupt, HW signalled errors in message
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Lin.LinErrorCode.MessageIncomplete">
+            <summary>
+            Message not complete
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Lin.LinErrorCode.DestinationNotSet">
+            <summary>
+            Destination is not set
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Lin.LinErrorCode.SourceNotSet">
+            <summary>
+            Source is not set
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Lin.LinErrorCode.NoProtocol">
+            <summary>
+            No protocol
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Lin.LinErrorCode.NoCatalog">
+            <summary>
+            No catalog
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Lin.LinErrorCode.ExceptionOccured">
+            <summary>
+            An exception occured
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Lin.LinErrorCode.WrongMessageType">
+            <summary>
+            Wrong message-type
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Lin.LinErrorCode.WrongHwTimestamp">
+            <summary>
+            Wrong Hardware Timestamp
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Lin.LinErrorCode.InavlidE2ECrc">
+            <summary>
+            End To End Protection CRC error
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Lin.LinErrorCode.Unknown">
+            <summary>
+            Unknown Error
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Lin.LinErrorDecoder">
+            <summary>
+            Decoder for LIN message ErrorCodes.
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.LinErrorDecoder.Instance">
+            <summary>
+            The singleton instance.
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Lin.LinMessage">
+            <summary>
+            The Lin Message
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Lin.LinMessage.InvalidID">
+            <summary>
+            Invalid ID used for construction of undefined messages
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.LinMessage.#ctor">
+            <summary>
+            Constructor for message to be sent<para></para>
+            Changed to public for Database
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.LinMessage.#ctor(System.Byte,System.Byte[])">
+            <summary>
+            Constructor for message to be sent
+            </summary>
+            <param name="linId">Lin message ID</param>
+            <param name="payload">Message data bytes</param>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.LinMessage.Id">
+            <summary>
+            Lin message ID (0..63)
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.LinMessage.GetCacheKey">
+            <summary>
+            Get cache key
+            </summary>
+            <returns>The cache key</returns>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.LinMessage.ErrorDecoder">
+            <summary>
+            The Error Decoder to use.
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Lin.Log">
+            <summary>
+            Static wrapper for loggers of this assembly
+            </summary>
+            <example>
+            The example shows a common call to add a message to log
+            <code>
+            Log.Messages.Error("An error occured");
+            </code></example>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.Log.Lin">
+            <summary>
+            Logger with code "Lin"
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Lin.LinEvent">
+            <summary>
+            base class for all the Lin events
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.LinEvent.Event">
+            <summary>
+            type of the event to be used in switch-case statements
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.LinEvent.TranslateMessage">
+            <summary>
+            Translate the message
+            </summary>
+            <returns>The MessageTranslation</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.LinEvent.Translate">
+            <summary>
+            Translate binary message to textual representation
+            </summary>
+            <returns>the translation</returns>
+        </member>
+        <member name="T:ET.FW.Hal.Lin.LinErrorEvent">
+            <summary>
+            Common Lin error event
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.LinErrorEvent.Text">
+            <summary>
+            Event description in plain text
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.LinErrorEvent.EventText">
+            <summary>
+            Gets the event message.
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.LinErrorEvent.Event">
+            <summary>
+            Type of the event.
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Lin.NetworkManagement.LinNetworkManagementBase`1">
+            <summary>
+            Base class for all CanNetworkManagement services.
+            </summary>
+            <typeparam name="TNMProtocol">NM protocol specific state enum</typeparam>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.NetworkManagement.LinNetworkManagementBase`1.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:ET.FW.Hal.Lin.NetworkManagement.LinNetworkManagementBase`1"/> class.
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.NetworkManagement.LinNetworkManagementBase`1.CurrentNodes">
+            <summary>
+            All current (active) Nm nodes
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Lin.NetworkManagement.LinNetworkManagementBase`1.currentNodes">
+            <summary>
+            Internal access to the current nodes.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.NetworkManagement.LinNetworkManagementBase`1.AddSimulatingNode(System.Byte)">
+            <summary>
+            Add a new NM node.
+            </summary>
+            <param name="nmBasicAddress">The nm basic address in the network.</param>
+            <returns>The nm node.</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.NetworkManagement.LinNetworkManagementBase`1.CreateSimulatingNode(System.Byte)">
+            <summary>
+            Creates a simulated node.
+            </summary>
+            <param name="nmBasicAddress">The nm basic address.</param>
+            <returns>The simulated nm node.</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.NetworkManagement.LinNetworkManagementBase`1.AddObservingNode(System.Byte)">
+            <summary>
+            Add a new NM node.
+            </summary>
+            <param name="nmBasicAddress">The nm basic address in the network.</param>
+            <returns>The nm node.</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.NetworkManagement.LinNetworkManagementBase`1.CreateObservingNode(System.Byte)">
+            <summary>
+            Creates a observing node.
+            </summary>
+            <param name="nmBasicAddress">The nm basic address.</param>
+            <returns>The simulated nm node.</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.NetworkManagement.LinNetworkManagementBase`1.RemoveNode(ET.FW.Hal.Lin.LinNMNode)">
+            <summary>
+            Remove a NM node.
+            </summary>
+            <param name="node">NMNode to deregister.</param>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.NetworkManagement.LinNetworkManagementBase`1.Type">
+            <summary>
+            The nm type.
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.NetworkManagement.LinNetworkManagementBase`1.Protocol">
+            <summary>
+            The nm protocol.
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.NetworkManagement.LinNetworkManagementBase`1.State">
+            <summary>
+            Current nm bus state.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.NetworkManagement.LinNetworkManagementBase`1.NodeStateChanged(System.Object,ET.FW.Core.Common.ValueChangedEventArgs{`0})">
+            <summary>
+            Internal mapping node state to bus state
+            </summary>
+            <param name="sender">Event sender: node</param>
+            <param name="e">Event args containing new state</param>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.NetworkManagement.LinNetworkManagementBase`1.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Lin.NetworkManagement.LinNetworkManagementSignalBase">
+            <summary>
+            Base class for Osek based Lin Network Managment implementations.
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.NetworkManagement.LinNetworkManagementSignalBase.Protocol">
+            <summary>
+            The nm protocol.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.NetworkManagement.LinNetworkManagementSignalBase.NodeStateChanged(System.Object,ET.FW.Core.Common.ValueChangedEventArgs{ET.FW.Hal.Lin.NMStateSignal})">
+            <summary>
+            Internal mapping node state to bus state
+            </summary>
+            <param name="sender">Event sender: node</param>
+            <param name="e">Event args containig new state</param>
+        </member>
+        <member name="T:ET.FW.Hal.Lin.NetworkManagement.LinNetworkManagementNone">
+            <summary>
+            Dummy Network Management implementation for no NM
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.NetworkManagement.LinNetworkManagementNone.#ctor">
+            <summary>
+            NM Constructor.
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.NetworkManagement.LinNetworkManagementNone.Protocol">
+            <summary>
+            The nm protocol.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.NetworkManagement.LinNetworkManagementNone.NodeStateChanged(System.Object,ET.FW.Core.Common.ValueChangedEventArgs{ET.FW.Hal.Lin.NMStateNone})">
+            <summary>
+            Internal mapping node state to bus state
+            </summary>
+            <param name="sender">Event sender: node</param>
+            <param name="e">Event args containig new state</param>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.NetworkManagement.LinNetworkManagementNone.Type">
+            <summary>
+            The nm type.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.NetworkManagement.LinNetworkManagementNone.CreateSimulatingNode(System.Byte)">
+            <summary>
+            Creates a simulated node.
+            </summary>
+            <param name="nmBasicAddress">The nm basic address.</param>
+            <returns>The simulated nm node.</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.NetworkManagement.LinNetworkManagementNone.CreateObservingNode(System.Byte)">
+            <summary>
+            Creates a observing node.
+            </summary>
+            <param name="nmBasicAddress">The nm basic address.</param>
+            <returns>The simulated nm node.</returns>
+        </member>
+        <member name="T:ET.FW.Hal.Lin.NetworkManagement.LinNMNoneNode">
+            <summary>
+            Represents a single network management (NM) node for Lin logging.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.NetworkManagement.LinNMNoneNode.#ctor(System.Boolean)">
+            <summary>
+            Node Constructor.
+            </summary>
+            <param name="observing">Observing flag value</param>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.NetworkManagement.LinNMNoneNode.StayAwakeImpl">
+            <summary>
+            Stay awake logic implementation.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.NetworkManagement.LinNMNoneNode.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources. 
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Lin.NetworkManagement.LinNMObservingNodeSignal">
+            <summary>
+            Lin nm observing node 
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.NetworkManagement.LinNMObservingNodeSignal.#ctor(ET.FW.Hal.Lin.ILinChannelAccess,System.Byte)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ET.FW.Hal.Lin.NetworkManagement.LinNMObservingNodeSignal"/> class.
+            </summary>
+            <param name="channel">Lin channel access</param>
+            <param name="basicAddress">The basic address.</param>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.NetworkManagement.LinNMObservingNodeSignal.OnMessageReceived(System.Object,ET.FW.Core.Messaging.MessageEventArgs{ET.FW.Hal.Lin.ILinMessage})">
+            <summary>
+            Internal Uplink notification
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The instance containing the event data.</param>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.NetworkManagement.LinNMObservingNodeSignal.OnNMTimeout(System.Object,System.Timers.ElapsedEventArgs)">
+            <summary>
+            NM timeout handler
+            Switches bus off when timer elapses
+            </summary>
+            <param name="source">The source.</param>
+            <param name="e">The <see cref="T:System.Timers.ElapsedEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.NetworkManagement.LinNMObservingNodeSignal.Destination">
+            <summary>
+            The destination id.
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.NetworkManagement.LinNMObservingNodeSignal.StayAwakeImpl">
+            <summary>
+            Stay awake logic implementation.
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.NetworkManagement.LinNMObservingNodeSignal.LimpHome">
+            <summary>
+            Flag to indicate Limp Home State
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.NetworkManagement.LinNMObservingNodeSignal.Dispose">
+            <summary>
+            Disposes the NmNode with timers and event notifications
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Lin.NetworkManagement.LinNMSignalDefinitions">
+            <summary>
+            Internal helper class which provides the NM signal definitions.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.NetworkManagement.LinNMSignalDefinitions.#ctor(System.String)">
+            <summary>
+            Prevents a default instance of the <see cref="T:ET.FW.Hal.Lin.NetworkManagement.LinNMSignalDefinitions"/> class from being created.
+            </summary>
+            <param name="name">The name of the signal.</param>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.NetworkManagement.LinNMSignalDefinitions.Nw_Id">
+            <summary>
+            Nw_Id Signal definition (OSEK)
+            </summary>
+            <returns>The signal definition.</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.NetworkManagement.LinNMSignalDefinitions.NM_Ud_Srv">
+            <summary>
+            NM_Ud_Srv Signal definition (OSEK)
+            </summary>
+            <returns>The signal definition.</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.NetworkManagement.LinNMSignalDefinitions.NM_Sleep_Ind">
+            <summary>
+            NM_Sleep_Ind Signal definition (OSEK)
+            </summary>
+            <returns>The signal definition.</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.NetworkManagement.LinNMSignalDefinitions.NM_Sleep_Ack">
+            <summary>
+            NM_Sleep_Ack Signal definition (OSEK)
+            </summary>
+            <returns>The signal definition.</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.NetworkManagement.LinNMSignalDefinitions.NM_Ud_Launch">
+            <summary>
+            NM_Ud_Launch Signal definition (OSEK)
+            </summary>
+            <returns>The signal definition.</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.NetworkManagement.LinNMSignalDefinitions.NM_Successor">
+            <summary>
+            NM_Successor Signal definition (OSEK)
+            </summary>
+            <returns>The signal definition.</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.NetworkManagement.LinNMSignalDefinitions.NM_Mode">
+            <summary>
+            NM_Mode Signal definition (OSEK)
+            </summary>
+            <returns>The signal definition.</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.NetworkManagement.LinNMSignalDefinitions.WakeupCnt">
+            <summary>
+            WakeupCnt Signal definition (OSEK)
+            </summary>
+            <returns>The signal definition.</returns>
+        </member>
+        <member name="T:ET.FW.Hal.Lin.NetworkManagement.ObservingNetworkManagementSignal">
+            <summary>
+            Passive Signal Network Management implementation
+            This implementation supports only observing nodes.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.NetworkManagement.ObservingNetworkManagementSignal.#ctor(ET.FW.Hal.Lin.ILinChannelAccess)">
+            <summary>
+            The Constructor.
+            </summary>
+            <param name="channelAccess">The channel access the NM is responsable for</param>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.NetworkManagement.ObservingNetworkManagementSignal.Type">
+            <summary>
+            The NM type.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.NetworkManagement.ObservingNetworkManagementSignal.CreateSimulatingNode(System.Byte)">
+            <summary>
+            Creates a simulated node. Not supported here!
+            </summary>
+            <param name="nmBasicAddress">The NM basic address.</param>
+            <returns>null, simulation is not supported here</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.NetworkManagement.ObservingNetworkManagementSignal.CreateObservingNode(System.Byte)">
+            <summary>
+            Creates an observing node.
+            </summary>
+            <param name="nmBasicAddress">The NM basic address.</param>
+            <returns>The simulated NM node.</returns>
+        </member>
+        <member name="T:ET.FW.Hal.Lin.NodeType">
+            <summary>
+            The Node Type
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Lin.NodeType.None">
+            <summary>
+            The none
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Lin.NodeType.Master">
+            <summary>
+            a master node
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Lin.NodeType.Slave">
+            <summary>
+            a slave node
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Lin.NodeType.Spy">
+            <summary>
+            The spy node
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Lin.OfflineLinChannelAccess">
+            <summary>
+            Lin channel access for offline mode
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.OfflineLinChannelAccess.#ctor(ET.FW.Core.Hal.IEquipment,System.String,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ET.FW.Hal.Lin.OfflineLinChannelAccess" /> class.
+            </summary>
+            <param name="equipment">The equipment.</param>
+            <param name="portName">Name of the port.</param>
+            <param name="name">The name.</param>
+            <param name="portType">Port type for channel access</param>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.OfflineLinChannelAccess.NetworkManagement">
+            <summary>
+            Access to network management
+            </summary>
+            <value>Always null</value>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.OfflineLinChannelAccess.StdProtocol">
+            <summary>
+            Lin Protocol
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.OfflineLinChannelAccess.EventProtocol">
+            <summary>
+            Lin Event protocol
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.OfflineLinChannelAccess.CreateHardwareProtocol(System.String,System.String)">
+            <summary>
+            Provide offline hardware protocol of given type
+            </summary>
+            <param name="type">Type/class name of protocol to provide</param>
+            <param name="name">Name of protocol instance</param>
+            <returns>
+            Matching protocol or null if not available
+            </returns>
+        </member>
+        <member name="T:ET.FW.Hal.Lin.Protocols.LinSpySoftwareProtocol">
+            <summary>
+            Protocol for handling of LIN spy Binary messages.
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.Protocols.LinSpySoftwareProtocol.Catalog">
+            <summary>
+            Gets or sets the Catalog for message re-translation
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.Protocols.LinSpySoftwareProtocol.#ctor(System.String,ET.FW.Core.Messaging.IProtocol{ET.FW.Hal.Messaging.IBinaryMessage})">
+            <summary>
+            Constructor for dynamic creation
+            </summary>
+            <param name="name">Name of the protocol</param>
+            <param name="downlink">Protocol underneeth</param>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.Protocols.LinSpySoftwareProtocol.Downlink_Output(System.Object,ET.FW.Core.Messaging.MessageEventArgs{ET.FW.Hal.Messaging.IBinaryMessage})">
+            <summary>
+            Handler for upcoming messages from downlink protocol
+            </summary>
+            <param name="sender">downlink protocol</param>
+            <param name="e">event parameter containing the message</param>
+            <remarks>
+            Method is called for received and sent(!) messages, so both message types must be handled here!
+            </remarks>
+        </member>
+        <member name="T:ET.FW.Hal.Lin.Protocols.LinSignalSoftwareProtocol">
+            <summary>
+            Protocol for handling of multiple identical Lin signals.
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Lin.Protocols.LinSignalSoftwareProtocol.LinMessageEntry">
+            <summary>
+            Entry of LIN message dictionary
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.Protocols.LinSignalSoftwareProtocol.LinMessageEntry.MessageDefinition">
+            <summary>
+            Message definition from catalog
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.Protocols.LinSignalSoftwareProtocol.LinMessageEntry.Message">
+            <summary>
+            Last message received
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.Protocols.LinSignalSoftwareProtocol.LinMessageEntry.Signals">
+            <summary>
+            Dictionary containing last signal values
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.Protocols.LinSignalSoftwareProtocol.Catalog">
+            <summary>
+            Gets or sets the Catalog for message re-translation
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.Protocols.LinSignalSoftwareProtocol.#ctor(System.String,ET.FW.Core.Messaging.IProtocol{ET.FW.Hal.Lin.ILinMessage})">
+            <summary>
+            Constructor for dynamic creation
+            </summary>
+            <param name="name">Name of the protocol</param>
+            <param name="downlink">Protocol underneeth</param>
+        </member>
+        <member name="P:ET.FW.Hal.Lin.Protocols.LinSignalSoftwareProtocol.EnableE2EProtectionSignals">
+            <summary>
+            Flag to enable handling of E2E protection signals, normally this signals are ignored
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.Protocols.LinSignalSoftwareProtocol.CheckSignal(ET.FW.Hal.Lin.Catalogs.ILinSignal)">
+            <summary>
+            Checks if signal should be handled here
+            </summary>
+            <param name="signal">The signal to get the definition.</param>
+            <returns>true to enable handling of signal</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.Protocols.LinSignalSoftwareProtocol.CheckSignal(ET.FW.Hal.Lin.Catalogs.LinSignalDefinition)">
+            <summary>
+            Checks if signal should be handled here
+            </summary>
+            <param name="definition">The signal definition.</param>
+            <returns>true to enable handling of signal</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.Protocols.LinSignalSoftwareProtocol.Init">
+            <summary>
+            Initialize protocol, create message dictionary
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.Protocols.LinSignalSoftwareProtocol.Downlink_Output(System.Object,ET.FW.Core.Messaging.MessageEventArgs{ET.FW.Hal.Lin.ILinMessage})">
+            <summary>
+            Handler for upcoming messages from downlink protocol, some signals (SQC, CRC) are ignored
+            </summary>
+            <param name="sender">downlink protocol</param>
+            <param name="e">event parameter containing the message</param>
+            <remarks>
+            Method is called for received and sent(!) messages, so both message types must be handled here!
+            </remarks>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.Protocols.LinSignalSoftwareProtocol.CheckValue(ET.FW.Hal.Lin.Catalogs.ILinSignal,ET.FW.Core.Messaging.MessageError@)">
+            <summary>
+            check given signal value
+            </summary>
+            <param name="signal">the singal to check</param>
+            <param name="messageError">The message error.</param>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.Protocols.LinSignalSoftwareProtocol.GenerateLinSignalMessage(ET.FW.Hal.Lin.Protocols.LinSignalSoftwareProtocol.LinMessageEntry,System.Collections.Generic.IEnumerable{ET.FW.Hal.Lin.Catalogs.ILinSignal})">
+            <summary>
+            Create LIN Signal message for protocol output
+            </summary>
+            <param name="messageEntry">Message data</param>
+            <param name="changedSignals">List of changed signals</param>
+        </member>
+        <member name="T:ET.FW.Hal.Lin.Protocols.ILinEventProtocol">
+            <summary>
+            The event protocol
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.Protocols.ILinEventProtocol.CreateMessage(System.Byte,System.Byte[])">
+            <summary>
+            Typesafe creator for Lin messages with message content as parameters.
+            </summary>
+            <param name="linId">Lin ID 0..63</param>
+            <param name="payload">message data</param>
+            <returns>Newly created specialized Lin message object</returns>
+        </member>
+        <member name="T:ET.FW.Hal.Lin.Protocols.LinUplinkOnlyProtocol">
+            <summary>
+            Protocol implementation which only supports signalling of uplink messages.
+            Sending of messages is not possible.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.Protocols.LinUplinkOnlyProtocol.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ET.FW.Core.Messaging.UplinkOnlyProtocol`1"/> class.
+            </summary>
+            <param name="name">The name of the Protocol.</param>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.Protocols.LinUplinkOnlyProtocol.CreateMessage(System.Byte,System.Byte[])">
+            <summary>
+            Typesafe creator for LIN messages with message content as parameters.
+            </summary>
+            <param name="linId">LIN ID</param>
+            <param name="payload">message data</param>
+            <returns>Newly created specialized LIN message object</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.Protocols.LinUplinkOnlyProtocol.GetPayloadCacheKey(ET.FW.Core.Messaging.IMessage)">
+            <summary>
+            Get caching key for payload
+            </summary>
+            <param name="message">Message with payload to cach</param>
+            <returns>Caching key for payload. No caching if key is null or empty</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.Protocols.LinUplinkOnlyProtocol.GetTranslationCacheKey(ET.FW.Core.Messaging.IMessage)">
+            <summary>
+            Get caching key for translation
+            </summary>
+            <param name="message">Message with translation to cach</param>
+            <returns>Caching key for translation. No caching if key is null or empty</returns>
+        </member>
+        <member name="T:ET.FW.Hal.Lin.Protocols.ILinProtocol">
+            <summary>
+            The Lin Protocol
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.Protocols.ILinProtocol.CreateMessage(System.Byte,System.Byte[])">
+            <summary>
+            Typesafe creator for Lin messages with message content as parameters.
+            </summary>
+            <param name="linId">Lin ID 0..63</param>
+            <param name="payload">message data</param>
+            <returns>Newly created specialized Lin message object</returns>
+        </member>
+        <member name="T:ET.FW.Hal.Lin.Protocols.LinProtocol">
+            <summary>
+            The protocol
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.Protocols.LinProtocol.#ctor(ET.FW.Hal.Messaging.ITransmitter{ET.FW.Hal.Lin.ILinMessage})">
+            <summary>
+            Initializes a new instance of the <see cref="T:ET.FW.Hal.Lin.Protocols.LinProtocol"/> class.
+            </summary>
+            <param name="transmitter">HW transmitter to be used by protocol.</param>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.Protocols.LinProtocol.CreateMessage(System.Byte,System.Byte[])">
+            <summary>
+            Typesafe creator for Lin messages with message content as parameters.
+            </summary>
+            <param name="linId">Lin ID 0..63</param>
+            <param name="payload">message data</param>
+            <returns>Newly created specialized Lin message object</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.Protocols.LinProtocol.GetPayloadCacheKey(ET.FW.Core.Messaging.IMessage)">
+            <summary>
+            Get caching key for payload
+            </summary>
+            <param name="message">Message with payload to cach</param>
+            <returns>Caching key for payload. No caching if key is null or empty</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.Protocols.LinProtocol.GetTranslationCacheKey(ET.FW.Core.Messaging.IMessage)">
+            <summary>
+            Get caching key for translation
+            </summary>
+            <param name="message">Message with translation to cach</param>
+            <returns>Caching key for translation. No caching if key is null or empty</returns>
+        </member>
+        <member name="T:ET.FW.Hal.Lin.Protocols.LinEventProtocol">
+            <summary>
+            Hardware protocol for LIN event messages
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Lin.Protocols.LinEventProtocol.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:ET.FW.Hal.Lin.Protocols.LinEventProtocol"/> class.
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Can.Catalogs.ICanTpCatalog">
+            <summary>
+            Interface for the CAN TP subset of the CAN catalog
+            </summary>
+        </member>
+    </members>
+</doc>

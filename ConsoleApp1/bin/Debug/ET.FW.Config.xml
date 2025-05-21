@@ -1,0 +1,3084 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ET.FW.Config</name>
+    </assembly>
+    <members>
+        <member name="T:ET.FW.Config.CatalogFiles">
+            <summary>
+            Handler to provide catalog source files
+            Catalog directory is determined from ConfigSettings provided during construction
+            </summary>
+        </member>
+        <member name="M:ET.FW.Config.CatalogFiles.#ctor(ET.FW.Config.ConfigSettings)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ET.FW.Config.CatalogFiles"/> class.
+            </summary>
+            <param name="settings">configuration module settings.</param>
+        </member>
+        <member name="F:ET.FW.Config.CatalogFiles.catalogDirectory">
+            <summary>
+            Catalogs directory
+            </summary>
+        </member>
+        <member name="M:ET.FW.Config.CatalogFiles.GetCatalogFile(System.String)">
+            <summary>
+            Gets the catalog file with given name.
+            If catalog file does not exist in preseted catalogs directory, the standard directory (Runtime/Catalogs) is tried too.
+            </summary>
+            <param name="source">The catalog source file name.</param>
+            <returns>Wrapper to access the catalog file</returns>
+        </member>
+        <member name="T:ET.FW.Config.Catalogs.Catalog">
+            <summary>
+            Interface for message catalogs (based on IMessage)
+            </summary>
+        </member>
+        <member name="P:ET.FW.Config.Catalogs.Catalog.ID">
+            <summary>
+            Unique ID of catalog
+            </summary>
+        </member>
+        <member name="P:ET.FW.Config.Catalogs.Catalog.IsExternalSource">
+            <summary>
+            Gets or sets a value indicating whether the Catalog is generated internaly (eg. wihtout a file)
+            </summary>
+            <value>
+              <c>true</c> if [external source]; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:ET.FW.Config.Catalogs.Catalog.Source">
+            <summary>
+            The catalog source
+            </summary>
+        </member>
+        <member name="M:ET.FW.Config.Catalogs.Catalog.Translate(ET.FW.Core.Messaging.IMessage)">
+            <summary>
+            Translates a message object to an string representation
+            </summary>
+            <param name="message">message object</param>
+            <returns>translation as string</returns>
+        </member>
+        <member name="M:ET.FW.Config.Catalogs.Catalog.TranslateMessage(ET.FW.Core.Messaging.IMessage)">
+            <summary>
+            Translates a message object to an string representation
+            </summary>
+            <param name="message">message object</param>
+            <returns>translation as MessageTranslation</returns>
+        </member>
+        <member name="T:ET.FW.Config.Catalogs.CatalogCollection">
+            <summary>
+            Catalog collection which loades and holds catalogs on base of a CatalogDefinition
+            </summary>
+            <remarks>Double loading of catalogs will be supressed, if the sources are the same.</remarks>
+        </member>
+        <member name="F:ET.FW.Config.Catalogs.CatalogCollection.CATALOG_MASK">
+            <summary>
+            Catalog mask
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Catalogs.CatalogCollection.syncRoot">
+            <summary>
+            we need this because of our multithreading eviroment
+            </summary>
+        </member>
+        <member name="P:ET.FW.Config.Catalogs.CatalogCollection.Instance">
+            <summary>
+            The one and only Environment instance
+            </summary>
+        </member>
+        <member name="M:ET.FW.Config.Catalogs.CatalogCollection.#ctor(ET.FW.Config.CatalogFiles)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ET.FW.Config.Catalogs.CatalogCollection"/> class.
+            </summary>
+            <param name="files">Provider for catalog files</param>
+        </member>
+        <member name="P:ET.FW.Config.Catalogs.CatalogCollection.CatalogFiles">
+            <summary>
+            Provider for catalog source files. Must be set before the call to Load
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Catalogs.CatalogCollection.IsCatalogChangeLogged">
+            <summary>
+            Flag for logging only once if there is chasnge in catalog or in ignoreECU
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Catalogs.CatalogCollection.IsParsingRequired">
+            <summary>
+            Flag for parsing is required
+            </summary>
+        </member>
+        <member name="M:ET.FW.Config.Catalogs.CatalogCollection.Add(ET.FW.Config.Catalogs.CatalogConfiguration)">
+            <summary>
+            Adds and load a catalog by definition
+            </summary>
+            <param name="configuration">catalog configuration</param>
+        </member>
+        <member name="M:ET.FW.Config.Catalogs.CatalogCollection.Load(ET.FW.Config.Catalogs.CatalogConfiguration)">
+            <summary>
+            Internal load method
+            </summary>
+            <param name="configuration">catalog configuration</param>
+            <returns>the loaded catalog</returns>
+        </member>
+        <member name="F:ET.FW.Config.Catalogs.CatalogCollection.catalogsBySource">
+            <summary>
+            Container for Generated Key and Catalog.
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Catalogs.CatalogCollection.catalogSerializer">
+            <summary>
+            Container for Serializable Data.
+            </summary>
+        </member>
+        <member name="T:ET.FW.Config.Catalogs.CatalogConfiguration">
+            <summary>
+            Catalog configuration holds loading informations about the catalogs
+            </summary>
+        </member>
+        <member name="P:ET.FW.Config.Catalogs.CatalogConfiguration.Protocol">
+            <summary>
+            Protocol belongingship 
+            </summary>
+        </member>
+        <member name="P:ET.FW.Config.Catalogs.CatalogConfiguration.Loader">
+            <summary>
+            Source type depending service loader (e.g. "DbcLoader", "FcatLoader")
+            </summary>
+        </member>
+        <member name="P:ET.FW.Config.Catalogs.CatalogConfiguration.Source">
+            <summary>
+            Source location (e.g. file name)
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Catalogs.CatalogConfiguration.paramField">
+            <summary>
+            the array of set parameters
+            </summary>
+        </member>
+        <member name="P:ET.FW.Config.Catalogs.CatalogConfiguration.Param">
+            <summary>
+            Gets or sets the Param field.
+            </summary>
+            <value>The Parameter.</value>
+        </member>
+        <member name="P:ET.FW.Config.Catalogs.CatalogConfiguration.Key">
+            <summary>
+            Catalog Key
+            Unique key to identify the Catalog
+            </summary>
+        </member>
+        <member name="T:ET.FW.Config.Catalogs.CatalogConfigurationCollection">
+            <summary>
+            Catalog configuration collection
+            </summary>
+        </member>
+        <member name="M:ET.FW.Config.Catalogs.CatalogConfigurationCollection.LoadFromXml(System.String)">
+            <summary>
+            Load the catalogs from Xml
+            </summary>
+            <param name="path">path of the xml file</param>
+            <returns>catalog configuration collection</returns>
+        </member>
+        <member name="M:ET.FW.Config.Catalogs.CatalogConfigurationCollection.SaveToXml(ET.FW.Config.Catalogs.CatalogConfigurationCollection,System.String)">
+            <summary>
+            Save catalogs to Xml
+            </summary>
+            <param name="catalogs"> Catalog configuration collection to save</param>
+            <param name="path">path of the xml file</param>
+        </member>
+        <member name="T:ET.FW.Config.Catalogs.CatalogSerializer">
+            <summary>
+            Class for Serializing all the data of all Arxmls i.e CAN,Ethernet.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Config.Catalogs.CatalogSerializer.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:ET.FW.Config.Catalogs.CatalogSerializer.EnvironmentStateChanged(System.Object,ET.FW.Core.Common.ValueChangedEventArgs{ET.FW.Core.Common.EnviromentState})">
+            <summary>
+            Seriale When going Offline
+            </summary>
+            <param name="o"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:ET.FW.Config.Catalogs.CatalogSerializer.SerializeObject(System.Object)">
+            <summary>
+            Serialize Object
+            </summary>
+        </member>
+        <member name="M:ET.FW.Config.Catalogs.CatalogSerializer.GrantAccess(System.String)">
+            <summary>
+            Method to grant full control for the file 
+            </summary>
+            <param name="fullPath">file path for which the access needs to be given</param>
+        </member>
+        <member name="M:ET.FW.Config.Catalogs.CatalogSerializer.IsAdministrator">
+            <summary>
+            Check if the user has admin rights 
+            </summary>
+            <returns>True for admin users and False for non Admins</returns>
+        </member>
+        <member name="M:ET.FW.Config.Catalogs.CatalogSerializer.DeserializeObject">
+            <summary>
+            Deserialize Object
+            </summary>
+            <returns> Network Definition</returns>
+        </member>
+        <member name="F:ET.FW.Config.Catalogs.CatalogSerializer.IsETFWVersionMatching">
+            <summary>
+            Flag for checking ETFW and Pre-Parsed file version are same
+            </summary>
+        </member>
+        <member name="M:ET.FW.Config.Catalogs.CatalogSerializer.FillDeserializedData(System.Collections.Generic.Dictionary{System.String,ET.FW.Core.Messaging.ICatalog},System.Collections.Generic.Dictionary{System.String,ET.FW.Core.Messaging.ICatalog})">
+            <summary>
+            Desrialize Data
+            </summary>
+        </member>
+        <member name="M:ET.FW.Config.Catalogs.CatalogSerializer.FillSerializableData(ET.FW.Config.Catalogs.CatalogConfiguration,ET.FW.Core.Messaging.ICatalog)">
+            <summary>
+            Collect Serializable Data
+            </summary>
+            <param name="configuration"></param>
+            <param name="newCatalog"></param>
+        </member>
+        <member name="M:ET.FW.Config.Catalogs.CatalogSerializer.RemoveProtocol(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="protocol"></param>
+        </member>
+        <member name="M:ET.FW.Config.Catalogs.CatalogSerializer.SerializeObject">
+            <summary>
+            Serialize Object
+            </summary>
+        </member>
+        <member name="M:ET.FW.Config.Catalogs.CatalogSerializer.GetEtfwVer">
+            <summary>
+            Get ETFW Version
+            </summary>
+            <returns>ETFW Version</returns>
+        </member>
+        <member name="F:ET.FW.Config.Catalogs.CatalogSerializer.isDataChanged">
+            <summary>
+            Check if there is a need to serialize.
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Catalogs.CatalogSerializer.isDeserialized">
+            <summary>
+            Check if the object is deserialized.
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Catalogs.CatalogSerializer.catalogsToSerialize">
+            <summary>
+            Serialization of Catalogs.
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Catalogs.CatalogSerializer.FileName">
+            <summary>
+            File Name
+            </summary>
+        </member>
+        <member name="P:ET.FW.Config.Catalogs.CatalogSerializer.Decoupler">
+            <summary>
+            Event decoupler for incoming events
+            </summary>
+        </member>
+        <member name="T:ET.FW.Config.Catalogs.ICatalogLoader">
+            <summary>
+            Common catalog loader interface for concrete catalog importer/loader
+            </summary>
+            <remarks>
+            All catalog loader implementation classes should be decorated with <see cref="T:ET.FW.Config.Catalogs.SourceFileAttribute"/> attribute and <see cref="T:ET.FW.Config.Catalogs.TargetCatalogAttribute"/> attribute for configuration.
+            </remarks>
+        </member>
+        <member name="M:ET.FW.Config.Catalogs.ICatalogLoader.Load(ET.FW.Config.Catalogs.CatalogConfiguration,System.String)">
+            <summary>
+            Loads the catalog
+            </summary>
+            <param name="configuration">Configuration of the catalog</param>
+            <param name="fullSourcePath">full path of the source</param>
+            <returns>Newly constructed catalog instance</returns>
+        </member>
+        <member name="M:ET.FW.Config.Catalogs.ICatalogLoader.Load(ET.FW.Config.Catalogs.CatalogConfiguration,System.IO.Stream)">
+            <summary>
+            Loads the catalog
+            </summary>
+            <param name="configuration">Configuration of the catalog</param>
+            <param name="stream">The stream of the source</param>
+            <returns>Newly constructed catalog instance</returns>
+        </member>
+        <member name="P:ET.FW.Config.Catalogs.CatalogInfo.ETFWVersion">
+            <summary>
+            Version of the EtFramework
+            </summary>
+        </member>
+        <member name="M:ET.FW.Config.Catalogs.CatalogInfo.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:ET.FW.Config.Catalogs.CatalogInfo.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            
+            </summary>
+            <param name="info"></param>
+            <param name="context"></param>
+        </member>
+        <member name="M:ET.FW.Config.Catalogs.CatalogInfo.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            
+            </summary>
+            <param name="info"></param>
+            <param name="context"></param>
+        </member>
+        <member name="T:ET.FW.Config.Catalogs.SourceFileAttribute">
+            <summary>
+            Attribute to declare catalog loader source file properties
+            </summary>
+        </member>
+        <member name="M:ET.FW.Config.Catalogs.SourceFileAttribute.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:ET.FW.Config.Catalogs.SourceFileAttribute"/> class.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Config.Catalogs.SourceFileAttribute.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ET.FW.Config.Catalogs.SourceFileAttribute"/> class.
+            </summary>
+            <param name="fileExtension">Fie extension for source file</param>
+        </member>
+        <member name="P:ET.FW.Config.Catalogs.SourceFileAttribute.LoadFile">
+            <summary>
+            Flag to indicate if catalog loader loads data from source file.
+            Default: true
+            </summary>
+        </member>
+        <member name="P:ET.FW.Config.Catalogs.SourceFileAttribute.FileExtension">
+            <summary>
+            Gets or sets the file extension of catalog loader source files.
+            </summary>
+        </member>
+        <member name="T:ET.FW.Config.Catalogs.TargetCatalogAttribute">
+            <summary>
+            Attribute to declare output catalog type of catalog loader class
+            </summary>
+            <remarks>
+            Attribute is used in configuration to find matching catalog loader for needed catalog type.
+            </remarks>
+        </member>
+        <member name="M:ET.FW.Config.Catalogs.TargetCatalogAttribute.#ctor(System.Type)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ET.FW.Config.Catalogs.TargetCatalogAttribute"/> class.
+            </summary>
+            <param name="catalogType">Type of output catalog.</param>
+        </member>
+        <member name="P:ET.FW.Config.Catalogs.TargetCatalogAttribute.CatalogType">
+            <summary>
+            Type of output catalog
+            </summary>
+        </member>
+        <member name="T:ET.FW.Config.BusCollection">
+            <summary>
+            Collection of busses
+            </summary>
+        </member>
+        <member name="M:ET.FW.Config.BusCollection.Get``1(System.String)">
+            <summary>
+            Access bus by its type and name 
+            </summary>
+            <typeparam name="TBus">Bus type (interface)</typeparam>
+            <param name="name">Bus name</param>
+            <returns>Instance of bus with given name which implements given type, null if none available</returns>
+        </member>
+        <member name="T:ET.FW.Config.EquipmentCollection">
+            <summary>
+            Collection of equipments
+            </summary>
+        </member>
+        <member name="M:ET.FW.Config.EquipmentCollection.Get``1">
+            <summary>
+            Access equipment item by its type
+            </summary>
+            <typeparam name="TEquipment">Equipment type (interface)</typeparam>
+            <returns>Instance of equipment which implements given type, null if none available</returns>
+        </member>
+        <member name="M:ET.FW.Config.EquipmentCollection.Get``1(System.String)">
+            <summary>
+            Access equipment by its type and name 
+            </summary>
+            <typeparam name="TEquipment">Equipment type (interface)</typeparam>
+            <param name="name">Equipment name</param>
+            <returns>Instance of equipment with given name which implements given type, null if none available</returns>
+        </member>
+        <member name="T:ET.FW.Config.ExternalDeviceCollection">
+            <summary>
+            Collection of external devices
+            </summary>
+        </member>
+        <member name="M:ET.FW.Config.ExternalDeviceCollection.Get``1(System.String)">
+            <summary>
+            Access device by its type and name 
+            </summary>
+            <typeparam name="TDevice">External device type (interface)</typeparam>
+            <param name="name">External device name</param>
+            <returns>Instance of external device with given name which implements given type, null if none available</returns>
+        </member>
+        <member name="T:ET.FW.Config.IBusCollection">
+            <summary>
+            Interface for collection of busses
+            </summary>
+        </member>
+        <member name="M:ET.FW.Config.IBusCollection.Get``1(System.String)">
+            <summary>
+            Access bus by its type and name 
+            </summary>
+            <typeparam name="TBus">Bus type (interface)</typeparam>
+            <param name="name">Bus name</param>
+            <returns>Instance of bus with given name which implements given type, null if none available</returns>
+        </member>
+        <member name="T:ET.FW.Config.IEquipmentCollection">
+            <summary>
+            Interface for collection of equipment items
+            </summary>
+        </member>
+        <member name="M:ET.FW.Config.IEquipmentCollection.Get``1">
+            <summary>
+            Access equipment item by its type
+            </summary>
+            <typeparam name="TEquipment">Equipment type (interface)</typeparam>
+            <returns>Instance of equipment which implements given type, null if none available</returns>
+        </member>
+        <member name="M:ET.FW.Config.IEquipmentCollection.Get``1(System.String)">
+            <summary>
+            Access equipment by its type and name 
+            </summary>
+            <typeparam name="TEquipment">Equipment type (interface)</typeparam>
+            <param name="name">Equipment name</param>
+            <returns>Instance of equipment with given name which implements given type, null if none available</returns>
+        </member>
+        <member name="T:ET.FW.Config.IExternalDeviceCollection">
+            <summary>
+            Interface for collection of external devices
+            </summary>
+        </member>
+        <member name="M:ET.FW.Config.IExternalDeviceCollection.Get``1(System.String)">
+            <summary>
+            Access device by its type and name 
+            </summary>
+            <typeparam name="TDevice">External device type (interface)</typeparam>
+            <param name="name">External device name</param>
+            <returns>Instance of external device with given name which implements given type, null if none available</returns>
+        </member>
+        <member name="T:ET.FW.Config.Job.ConfigExtension">
+            <summary>
+            Config extension
+            </summary>
+        </member>
+        <member name="M:ET.FW.Config.Job.ConfigExtension.Stop(System.Collections.Generic.IEnumerable{ET.FW.Core.Common.IStartable})">
+            <summary>
+            Run the Stop command of the given objectes.
+            </summary>
+            <param name="items">The instances to stop.</param>
+        </member>
+        <member name="M:ET.FW.Config.Job.ConfigExtension.Dispose(System.Collections.Generic.IEnumerable{System.IDisposable})">
+            <summary>
+            Run dispose command of the given objetcs
+            </summary>
+            <param name="items">The instances to dispose.</param>
+        </member>
+        <member name="M:ET.FW.Config.Job.ConfigExtension.Run(System.Collections.Generic.IEnumerable{ET.FW.Core.Jobs.IJob})">
+            <summary>
+            Runs jobs parallel
+            </summary>
+            <param name="jobs">Jobs to run</param>
+        </member>
+        <member name="M:ET.FW.Config.Job.ConfigExtension.Name(System.Object)">
+            <summary>
+            Get name of object
+            </summary>
+            <param name="obj">The object</param>
+            <returns>Name of object</returns>
+        </member>
+        <member name="T:ET.FW.Config.Job.ConfigJob">
+            <summary>
+            Job to do action in config
+            </summary>
+        </member>
+        <member name="P:ET.FW.Config.Job.ConfigJob.Action">
+            <summary>
+            Action to execute
+            </summary>
+        </member>
+        <member name="P:ET.FW.Config.Job.ConfigJob.Text">
+            <summary>
+            Log text for Action
+            </summary>
+        </member>
+        <member name="M:ET.FW.Config.Job.ConfigJob.#ctor(System.Action,System.String)">
+            <summary>
+            The constructor
+            </summary>
+            <param name="action">The action to execute</param>
+            <param name="text">The Text for logging action</param>
+        </member>
+        <member name="M:ET.FW.Config.Job.ConfigJob.Execute">
+            <summary>
+            Execute action
+            </summary>
+        </member>
+        <member name="M:ET.FW.Config.Job.ConfigJob.Abort">
+            <summary>
+            Job aborted on timeout
+            </summary>
+        </member>
+        <member name="T:ET.FW.Config.ConfigSettings">
+            <summary>
+            Configuration specific application settings
+            </summary>
+        </member>
+        <member name="M:ET.FW.Config.ConfigSettings.Create(System.String,System.String,System.String)">
+            <summary>
+            Create a new instance of the ConfigSettings class.
+            </summary>
+            <param name="configPath">The path to access the configuration files.</param>
+            <param name="catalogsPath">The path to access the catalog files.</param>
+            <param name="testbenchName">Variant name for the testbench.xml.</param>
+            <returns>A new instance of the ConfigSettings class.</returns>
+        </member>
+        <member name="P:ET.FW.Config.ConfigSettings.FolderNameConfig">
+            <summary>
+            Name of directory which contains configuration files
+            </summary>
+            <remarks>
+            Note that config directory of ETT-Traces is called Configurations
+            </remarks>
+        </member>
+        <member name="P:ET.FW.Config.ConfigSettings.FolderNameCatalogs">
+            <summary>
+            Name of directory which contains catalog files
+            </summary>
+        </member>
+        <member name="P:ET.FW.Config.ConfigSettings.FileNameTestbench">
+            <summary>
+            Filename of testbench configuration for online mode
+            </summary>
+        </member>
+        <member name="P:ET.FW.Config.ConfigSettings.FileNameTestbenchTemplate">
+            <summary>
+            Filename of testbench configuartion template for online mode
+            </summary>
+        </member>
+        <member name="P:ET.FW.Config.ConfigSettings.FileNameTestbenchExternal">
+            <summary>
+            Filename of testbench configuration for import of foreign trace formats (OTMT, ...)
+            </summary>
+        </member>
+        <member name="P:ET.FW.Config.ConfigSettings.FileNameDefaultTestbenchExternal">
+            <summary>
+            Filename of default testbench configuration for import of foreign trace formats (OTMT, ...)
+            </summary>
+        </member>
+        <member name="T:ET.FW.Config.IServiceCollection">
+            <summary>
+            Interface for collection of Framework services
+            </summary>
+        </member>
+        <member name="M:ET.FW.Config.IServiceCollection.Get``1">
+            <summary>
+            Access service by its type
+            </summary>
+            <typeparam name="TService">service interface type</typeparam>
+            <returns>instance of service which implements given type, null if none available</returns>
+        </member>
+        <member name="M:ET.FW.Config.IServiceCollection.Get``1(System.String)">
+            <summary>
+            Access service by its type and name 
+            </summary>
+            <typeparam name="TService">Service type (interface)</typeparam>
+            <param name="name">Service name</param>
+            <returns>Instance of service with given name which implements given type, null if none available</returns>
+        </member>
+        <member name="T:ET.FW.Config.IOfflineEnvironment">
+            <summary>
+            Public API of offline environment
+            </summary>
+        </member>
+        <member name="P:ET.FW.Config.IOfflineEnvironment.CurrentState">
+            <summary>
+            Gets the state of the Enviroment
+            </summary>
+            <value>The state of the Enviroment.</value>
+        </member>
+        <member name="P:ET.FW.Config.IOfflineEnvironment.Catalogs">
+            <summary>
+            Access to configured catalogs
+            Key is protocol name from config file
+            Value is catalog object or null if catalog is not configured
+            </summary>
+        </member>
+        <member name="P:ET.FW.Config.IOfflineEnvironment.Busses">
+            <summary>
+            Access to configured busses
+            Key is bus name from config file
+            Value is bus object or null if bus is not configured
+            </summary>
+        </member>
+        <member name="P:ET.FW.Config.IOfflineEnvironment.Equipment">
+            <summary>
+            Access to configured equipment items
+            </summary>
+        </member>
+        <member name="P:ET.FW.Config.IOfflineEnvironment.SourceConfiguration">
+            <summary>
+            Source Configuration
+            </summary>
+        </member>
+        <member name="P:ET.FW.Config.IOfflineEnvironment.TestbenchInfo">
+            <summary>
+            Gets the testbench info.
+            </summary>
+            <value>The testbench info.</value>
+        </member>
+        <member name="P:ET.FW.Config.IOfflineEnvironment.VariantInfo">
+            <summary>
+            Variant information of head unit under test
+            </summary>
+        </member>
+        <member name="P:ET.FW.Config.IOfflineEnvironment.VariantInfos">
+            <summary>
+            Variant info base list.
+            </summary>
+        </member>
+        <member name="T:ET.FW.Config.IOnlineEnvironment">
+            <summary>
+            Public API for Environment in Online mode
+            </summary>
+        </member>
+        <member name="P:ET.FW.Config.IOnlineEnvironment.Devices">
+            <summary>
+            Access to configured devices
+            Key is device name from config file
+            Value is device object or null if device is not configured
+            </summary>
+        </member>
+        <member name="P:ET.FW.Config.IOnlineEnvironment.Services">
+            <summary>
+            Access to all configured services from configuration file
+            Key is service name from config file
+            </summary>
+        </member>
+        <member name="T:ET.FW.Config.ITestbenchInfo">
+            <summary>
+            Stores Information about the Testbench
+            </summary>
+        </member>
+        <member name="P:ET.FW.Config.ITestbenchInfo.Name">
+            <summary>
+            Gets the name of the testbench stored in the testbench.xml. If not defined the hostname is used.
+            </summary>
+            <value>The name.</value>
+        </member>
+        <member name="T:ET.FW.Config.ServiceCollection">
+            <summary>
+            Collection of Framework services
+            </summary>
+        </member>
+        <member name="M:ET.FW.Config.ServiceCollection.Get``1">
+            <summary>
+            Access service by its type
+            </summary>
+            <typeparam name="TService">Service type (interface)</typeparam>
+            <returns>Instance of service which implements given type, null if none available</returns>
+        </member>
+        <member name="M:ET.FW.Config.ServiceCollection.Get``1(System.String)">
+            <summary>
+            Access service by its type and name 
+            </summary>
+            <typeparam name="TService">Service type (interface)</typeparam>
+            <param name="name">Service name</param>
+            <returns>Instance of service with given name which implements given type, null if none available</returns>
+        </member>
+        <member name="T:ET.FW.Config.OfflineEnvironment">
+            <summary>
+            Implementation of Environment offline part
+            </summary>
+        </member>
+        <member name="P:ET.FW.Config.OfflineEnvironment.CurrentState">
+            <summary>
+            Gets the state of the Enviroment
+            </summary>
+            <value>The state of the Enviroment.</value>
+        </member>
+        <member name="M:ET.FW.Config.OfflineEnvironment.OnCurrentStateChanged(ET.FW.Core.Common.EnviromentState)">
+            <summary>
+            Method is called when environment state changes. CurrentState observable object is updated to new state.
+            </summary>
+            <param name="newState">The new environment state.</param>
+        </member>
+        <member name="P:ET.FW.Config.OfflineEnvironment.SourceConfiguration">
+            <summary>
+            Source Configuration
+            </summary>
+        </member>
+        <member name="P:ET.FW.Config.OfflineEnvironment.Testbench">
+            <summary>
+            Testbench handling
+            </summary>
+        </member>
+        <member name="M:ET.FW.Config.OfflineEnvironment.#ctor">
+            <summary>
+            Private Constructor
+            </summary>
+        </member>
+        <member name="M:ET.FW.Config.OfflineEnvironment.Init(ET.FW.Config.XML.TestbenchConfiguration,ET.FW.Source.SourceConfiguration,ET.FW.Config.CatalogFiles,System.Boolean)">
+            <summary>
+            Inits the environment using the specified configuration data
+            </summary>
+            <param name="tbConfig">The tb config.</param>
+            <param name="sourceConfiguration">Source configuration</param>
+            <param name="catalogFiles">Provider for catalog source files.</param>
+            <param name="online">Flag for online environment, not used here</param>
+            <remarks>
+            Not to be called from derived classes, because method logs start/end of initialization and sets environment state.
+            Call InitInternal to initialize environment components
+            </remarks>
+        </member>
+        <member name="M:ET.FW.Config.OfflineEnvironment.InitInternal(ET.FW.Config.Testbench,ET.FW.Config.CatalogFiles)">
+            <summary>
+            Internal initilization without logging of start/end and without state update
+            </summary>
+            <param name="testbench">Testbench configuration helper</param>
+            <param name="catalogFiles">The catalog files.</param>
+            <returns>true on success</returns>
+            <remarks>
+            Method without logging of start/end and without state update, can be called from derived classes
+            </remarks>
+        </member>
+        <member name="M:ET.FW.Config.OfflineEnvironment.Shutdown">
+            <summary>
+            Stops everthing
+            </summary>
+            <remarks>
+            Do not call this method from derived class, because it implements state changes and logging for start and end of shutdown
+            Call ShutdownInternal for shutting down of environment components.
+            </remarks>
+        </member>
+        <member name="M:ET.FW.Config.OfflineEnvironment.ShutdownInternal">
+            <summary>
+            Shuts down environment components
+            </summary>
+            <remarks>
+            Internal method without state change and logging of start/end, can be called from derived classes
+            </remarks>
+        </member>
+        <member name="P:ET.FW.Config.OfflineEnvironment.Busses">
+            <summary>
+            Access to configured busses
+            Key is bus name from config file
+            Value is bus object or null if bus is not configured
+            </summary>
+        </member>
+        <member name="P:ET.FW.Config.OfflineEnvironment.Equipment">
+            <summary>
+            Access to configured equipment items
+            </summary>
+        </member>
+        <member name="P:ET.FW.Config.OfflineEnvironment.Catalogs">
+            <summary>
+            Access to configured catalogs
+            Key is protocol name from config file
+            Value is catalog object or null if catalog is not configured
+            </summary>
+        </member>
+        <member name="P:ET.FW.Config.OfflineEnvironment.VariantInfo">
+            <summary>
+            Variant information of head unit under test
+            </summary>
+        </member>
+        <member name="P:ET.FW.Config.OfflineEnvironment.VariantInfos">
+            <summary>
+            Variant info base list.
+            </summary>
+        </member>
+        <member name="P:ET.FW.Config.OfflineEnvironment.TestbenchInfo">
+            <summary>
+            Gets the testbench info.
+            </summary>
+            <value>The testbench info.</value>
+        </member>
+        <member name="T:ET.FW.Config.OfflineTestbench">
+            <summary>
+            Offline Testbench configuration handling.
+            Class uses testbench configuration (from xml file) and sets up the offline environment objects
+            </summary>
+        </member>
+        <member name="M:ET.FW.Config.OfflineTestbench.#ctor(ET.FW.Config.IOfflineEnvironment,ET.FW.Source.SourceConfiguration,ET.FW.Config.XML.TestbenchConfiguration)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ET.FW.Config.Testbench"/> class.
+            </summary>
+            <param name="env">Environment instance</param>
+            <param name="sourceConfiguration">Source Configuration</param>
+            <param name="config">testbench configuration</param>
+        </member>
+        <member name="M:ET.FW.Config.OfflineTestbench.Init">
+            <summary>
+            Initializes the Testbench for being used in Offline-Mode
+            </summary>
+        </member>
+        <member name="M:ET.FW.Config.OfflineTestbench.Shutdown">
+            <summary>
+            Shutdowns this offline Config.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Config.OfflineTestbench.GetEquipmentManager(System.String)">
+            <summary>
+            Returns an existing EquipmentManager for offline mode or null, if none exists.
+            </summary>
+            <param name="deviceType">The deviceType, for which the EquipmentManager is requested.</param>
+            <returns>
+            The found EquipmentManager or null, if none exists.
+            </returns>
+        </member>
+        <member name="M:ET.FW.Config.OfflineTestbench.GetOrCreateEquipmentManager(System.String,ET.FW.Core.Hal.IEquipmentManager@)">
+            <summary>
+            Returns the existing EquipmentManager for offline mode or creates a new one, if none exists.
+            </summary>
+            <param name="deviceType">The deviceType for which the corresponding EquipmentManager is requested.</param>
+            <param name="equipmentManager">out: the found equipmentManager or null if none exists and none could be created.</param>
+            <returns>
+            TRUE if an equipmentManager was found or created, FALSE otherwise.
+            </returns>
+        </member>
+        <member name="F:ET.FW.Config.OnlineTestbench.namedTimestampCorrections">
+            <summary>
+            collection of named timestamp-corrections. replaces the timestampCorrectionList
+            </summary>
+        </member>
+        <member name="M:ET.FW.Config.OnlineTestbench.#ctor(ET.FW.Config.IOnlineEnvironment,ET.FW.Source.SourceConfiguration,ET.FW.Config.XML.TestbenchConfiguration)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ET.FW.Config.OnlineTestbench"/> class.
+            </summary>
+            <param name="env">Environment instance</param>
+            <param name="sourceConfiguration">Source Configuration</param>
+            <param name="config">testbench configuration</param>
+        </member>
+        <member name="M:ET.FW.Config.OnlineTestbench.Init">
+            <summary>
+            Initializes the Testbench for being used in Online-Mode
+            </summary>
+        </member>
+        <member name="M:ET.FW.Config.OnlineTestbench.Shutdown">
+            <summary>
+            Shutdowns this Online Config.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Config.OnlineTestbench.GetTypeOfElement(ET.FW.Config.XML.CFBase)">
+            <summary>
+            Returns the type of what is going to be created for the given cfElement.
+            Might return null if no type could be determined or the subsystem does not support this
+            determination. This is ok, as long as no attributes are used, which are relevant for the
+            thread-using initialization.
+            </summary>
+            <param name="cfElement">element to be inspected</param>
+            <returns>Type to be created for the object</returns>
+        </member>
+        <member name="M:ET.FW.Config.OnlineTestbench.StartDependenciesForOldInit(ET.FW.Config.XML.CFBase)">
+            <summary>
+            Starts the dependencies for old init.
+            </summary>
+            <param name="cfElement">Elemet to handle</param>
+        </member>
+        <member name="M:ET.FW.Config.OnlineTestbench.SetupEquipment(ET.FW.Config.XML.CFEquipment,ET.FW.Core.Hal.IEquipment)">
+            <summary>
+            Initialize equipment and connect it
+            </summary>
+            <param name="config">Configuration from file</param>
+            <param name="equipment">Equipment to initialize</param>
+            <returns>true on success</returns>
+        </member>
+        <member name="M:ET.FW.Config.OnlineTestbench.SetupChannelAccess(ET.FW.Config.XML.CFChannelAccess,ET.FW.Core.Hal.IChannelAccess)">
+            <summary>
+            Initialize channel access and start it
+            </summary>
+            <param name="config">Configuration from file</param>
+            <param name="channelAccess">Channel access to initialize</param>
+        </member>
+        <member name="M:ET.FW.Config.OnlineTestbench.StartAllChannelAccesses">
+            <summary>
+            Start all ET channel accesses
+            </summary>
+        </member>
+        <member name="M:ET.FW.Config.OnlineTestbench.StopAllChannelAccesses">
+            <summary>
+            Stops all channel accesses
+            </summary>
+        </member>
+        <member name="P:ET.FW.Config.OnlineTestbench.Devices">
+            <summary>
+            Access to configured devices
+            Key is device name from config file
+            Value is device object or null if device is not configured
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.OnlineTestbench.externalDeviceLists">
+            <summary>
+            Dictionary of external device classes lists per assembly
+            </summary>
+        </member>
+        <member name="M:ET.FW.Config.OnlineTestbench.GetExternalDeviceList(System.String)">
+            <summary>
+            Gets list of extrenal device classes of an assembly from dictionary
+            If list does not exist, it is created
+            </summary>
+            <param name="assembly">Assembly name, null or empty string for default assemblies</param>
+            <returns>List with external device classes</returns>
+        </member>
+        <member name="M:ET.FW.Config.OnlineTestbench.InstantiateAllDevices">
+            <summary>
+            Reads all devices from the config file
+            </summary>
+        </member>
+        <member name="M:ET.FW.Config.OnlineTestbench.DisposeAllDevices">
+            <summary>
+            Disposes all devices
+            </summary>
+        </member>
+        <member name="M:ET.FW.Config.OnlineTestbench.ReadAndInstantiateDevice(ET.FW.Config.XML.CFDevice)">
+            <summary>
+            Reads the and instantiate device.
+            </summary>
+            <param name="device">Device configuration</param>
+            <returns>true on success</returns>
+        </member>
+        <member name="P:ET.FW.Config.OnlineTestbench.Services">
+            <summary>
+            Access to all configured services from "services.xml" configuration file
+            Key is service name from config file
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.OnlineTestbench.serviceLists">
+            <summary>
+            Dictionary of service classes lists per assembly
+            </summary>
+        </member>
+        <member name="M:ET.FW.Config.OnlineTestbench.GetServiceList(System.String)">
+            <summary>
+            Gets list of service classes of an assembly form dictionary
+            If list does not exist, it is created
+            </summary>
+            <param name="assembly">Assembly name</param>
+            <returns>List with service classes</returns>
+        </member>
+        <member name="M:ET.FW.Config.OnlineTestbench.PrepareServices">
+            <summary>
+            Prepares the services.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Config.OnlineTestbench.InstantiateServicesToStart">
+            <summary>
+            Instantiates the services to start.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Config.OnlineTestbench.StopAndDisposeServices">
+            <summary>
+            Stops and diposes all services
+            </summary>
+        </member>
+        <member name="M:ET.FW.Config.OnlineTestbench.InitAndStartServiceDependency(ET.FW.Config.XML.CFServiceDependency)">
+            <summary>
+            Starts the Service reference in the given CFServiceDependency
+            </summary>
+            <param name="cfServiceDependency">service dependency</param>
+            <returns>true on success</returns>
+        </member>
+        <member name="M:ET.FW.Config.OnlineTestbench.InitAndStartService(ET.FW.Config.XML.CFServices)">
+            <summary>
+            Initializes the given service and starts it, if needed.
+            </summary>
+            <param name="preparedService">The service to initialize</param>
+            <returns>FALSE, if the service could not be initialized or an exception occured, TRUE otherwise</returns>
+        </member>
+        <member name="M:ET.FW.Config.OnlineTestbench.ReadService(ET.FW.Config.XML.CFServices)">
+            <summary>
+            Reads the service refereneced in the parameter, i.e. initializes it and sets it's parameters.
+            </summary>
+            <param name="service">service configuration</param>
+            <returns>true on success</returns>
+        </member>
+        <member name="T:ET.FW.Config.Testbench">
+            <summary>
+            Testbench configuration handling.
+            Class uses testbench configuration (from xml file) and sets up the environment objects
+            </summary>
+        </member>
+        <member name="P:ET.FW.Config.Testbench.Busses">
+            <summary>
+            Access to configured busses
+            Key is bus name from config file
+            Value is bus object or null if bus is not configured
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Testbench.busList">
+            <summary>
+            List of IBus implementation classes
+            </summary>
+        </member>
+        <member name="M:ET.FW.Config.Testbench.ReadAndInstantiateBus(ET.FW.Config.XML.CFBus,System.Boolean)">
+            <summary>
+            Read and instantiate a bus.
+            </summary>
+            <param name="bus">Bus configuration</param>
+            <param name="offline">Flag for offline environment</param>
+            <returns>true on success</returns>
+        </member>
+        <member name="M:ET.FW.Config.Testbench.InstantiateAllBusses(System.Boolean)">
+            <summary>
+            Parse all configured Busses and calls the Instantiation
+            </summary>
+            <param name="offline">Flag for offline environment</param>
+        </member>
+        <member name="M:ET.FW.Config.Testbench.DisposeAllBusses">
+            <summary>
+            Disposes all busses
+            </summary>
+        </member>
+        <member name="P:ET.FW.Config.Testbench.Equipments">
+            <summary>
+            Access to configured equipment items
+            </summary>
+        </member>
+        <member name="M:ET.FW.Config.Testbench.InstantiateAllEquipments">
+            <summary>
+            Instantiate all the equipments
+            </summary>
+        </member>
+        <member name="M:ET.FW.Config.Testbench.GetEquipment(ET.FW.Config.XML.CFEquipment,System.Boolean)">
+            <summary>
+            Get the equipment
+            </summary>
+            <param name="equipment">a CFEquipment</param>
+            <param name="verbose">verbose output if set to true</param>
+            <returns>the equipment</returns>
+        </member>
+        <member name="M:ET.FW.Config.Testbench.GetEquipment(System.String,System.String,System.Boolean)">
+            <summary>
+            Get the equipment
+            </summary>
+            <param name="deviceType">the deviceType</param>
+            <param name="name">the name</param>
+            <param name="verbose">the verbosity</param>
+            <returns>the equipment</returns>
+        </member>
+        <member name="M:ET.FW.Config.Testbench.InitEquipmentManager(System.String)">
+            <summary>
+            Inits EquipmentManager
+            </summary>
+            <param name="deviceType">Device type of EquipmentManager</param>
+        </member>
+        <member name="M:ET.FW.Config.Testbench.GetOrInstantiateEquipment(ET.FW.Config.XML.CFEquipment)">
+            <summary>
+            Returns the already instantiated equipment or instantiates it.
+            </summary>
+            <param name="config">Configuration for the required equipment</param>
+            <returns>The found or created equipment</returns>
+        </member>
+        <member name="M:ET.FW.Config.Testbench.SetupEquipment(ET.FW.Config.XML.CFEquipment,ET.FW.Core.Hal.IEquipment)">
+            <summary>
+            Initialize equipment and connect it
+            </summary>
+            <param name="config">Configuration from file</param>
+            <param name="equipment">Equipment to initialize</param>
+            <returns>true on success</returns>
+        </member>
+        <member name="M:ET.FW.Config.Testbench.SetParameters(System.Object,System.String,ET.FW.Config.XML.CFParam[],System.Boolean,ET.FW.Core.Common.Parameter[])">
+            <summary>
+            Sets the paramters to a target.
+            </summary>
+            <param name="target">The object to which the parameters shall be set.</param>
+            <param name="targetDescription">A descrition to use if an error occurs.</param>
+            <param name="parameters">The parameters to set, i.e. those read from the testbench.xml</param>
+            <param name="doSetByReflectionIfNeeded">TRUE to set parameters via reflection if target does not implment IParametrizable</param>
+            <param name="additionalParameters">optional additional parameters.</param>
+            <returns>TRUE if the parameters could be set, FALSE otherwise</returns>
+        </member>
+        <member name="M:ET.FW.Config.Testbench.ReadParameter(ET.FW.Config.XML.CFParam[])">
+            <summary>
+            Reads the parameter from a Node
+            </summary>
+            <param name="pr">The node to read the parameter from</param>
+            <returns>a dictionary whith uppercase of the parameter</returns>
+        </member>
+        <member name="P:ET.FW.Config.Testbench.Catalogs">
+            <summary>
+            Access to configured catalogs
+            Key is protocol name from config file
+            Value is catalog object or null if catalog is not configured
+            </summary>
+        </member>
+        <member name="M:ET.FW.Config.Testbench.InstantiateProtocols">
+            <summary>
+            Instantiate and Register Protocols
+            </summary>
+        </member>
+        <member name="M:ET.FW.Config.Testbench.InstantiateAllHardProtocols">
+            <summary>
+            Parse all configured hard protocols and call the instantiation
+            </summary>
+        </member>
+        <member name="M:ET.FW.Config.Testbench.InstantiateHardProtocol(ET.FW.Config.XML.CFProtocol)">
+            <summary>
+            Instantiates the hard protocol.
+            </summary>
+            <param name="cfProtocol">protocol configuration</param>
+            <returns>true on success</returns>
+        </member>
+        <member name="F:ET.FW.Config.Testbench.softProtocolList">
+            <summary>
+            List of software protocol implementation classes
+            </summary>
+        </member>
+        <member name="M:ET.FW.Config.Testbench.InstantiateAllSoftProtocols">
+            <summary>
+            Parse all configured software protocols  and call the instantiation
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Testbench.protocolsToRegister">
+            <summary>
+            protocols to Register
+            </summary>
+        </member>
+        <member name="M:ET.FW.Config.Testbench.RegisterAllProtocols">
+            <summary>
+            Register All Protocols
+            </summary>
+        </member>
+        <member name="M:ET.FW.Config.Testbench.InstantiateSoftProtocol(ET.FW.Config.XML.CFProtocol)">
+            <summary>
+            Instantiates the software protocol.
+            </summary>
+            <param name="cfProtocol">Protocol configuration</param>
+            <returns>true on success</returns>
+        </member>
+        <member name="M:ET.FW.Config.Testbench.CheckProtocol(ET.FW.Config.XML.CFProtocol)">
+            <summary>
+            Check protocol XML data before creation
+            </summary>
+            <param name="cfProtocol">Protocol element to check</param>
+            <returns>true, if data is ok</returns>
+        </member>
+        <member name="M:ET.FW.Config.Testbench.SetupProtocol(ET.FW.Config.XML.CFProtocol,ET.FW.Core.Messaging.IProtocol)">
+            <summary>
+            Initialize the protocol.
+            </summary>
+            <param name="config">Protocol configuration.</param>
+            <param name="protocol">The protocol instance.</param>
+        </member>
+        <member name="M:ET.FW.Config.Testbench.DisposeAllProtocols">
+            <summary>
+            Disposes all protocols
+            </summary>
+        </member>
+        <member name="M:ET.FW.Config.Testbench.GetMatchingChannelAccess(ET.FW.Config.XML.CFProtocol)">
+            <summary>
+            Gets the matching channel access configuration
+            </summary>
+            <param name="protocol">Protocol configuration</param>
+            <returns>channel access configuration, if found, null otherwise</returns>
+        </member>
+        <member name="M:ET.FW.Config.Testbench.CreateCatalogForProtocol(ET.FW.Config.XML.CFProtocol,ET.FW.Core.Messaging.IProtocol)">
+            <summary>
+            Creates the catalog for protocol and adds catalog reference to protocol
+            </summary>
+            <param name="cfProtocol">Protocol configuration</param>
+            <param name="protocol">The protocol instance</param>
+        </member>
+        <member name="P:ET.FW.Config.Testbench.SourceConfiguration">
+            <summary>
+            Source Configuration
+            </summary>
+        </member>
+        <member name="P:ET.FW.Config.Testbench.Config">
+            <summary>
+            Testbench configuration (parsed data of config file)
+            </summary>
+        </member>
+        <member name="P:ET.FW.Config.Testbench.Protocols">
+            <summary>
+            Collection of all protocolls from config file
+            </summary>
+        </member>
+        <member name="P:ET.FW.Config.Testbench.ChannelAccesses">
+            <summary>
+            Access to configured busses
+            Key is bus name from config file
+            Value is bus object or null if bus is not configured
+            </summary>
+        </member>
+        <member name="P:ET.FW.Config.Testbench.VariantInfo">
+            <summary>
+            Variant information of head unit under test
+            </summary>
+        </member>
+        <member name="P:ET.FW.Config.Testbench.VariantInfos">
+            <summary>
+            Variant info base list.
+            </summary>
+        </member>
+        <member name="P:ET.FW.Config.Testbench.TestbenchInfo">
+            <summary>
+            Gets the testbench info.
+            </summary>
+            <value>The testbench info.</value>
+        </member>
+        <member name="P:ET.FW.Config.Testbench.ReservedNames">
+            <summary>
+            List of reserved names of configuration objects, that are instantiating currently 
+            </summary>
+        </member>
+        <member name="M:ET.FW.Config.Testbench.#ctor(ET.FW.Config.IOfflineEnvironment,ET.FW.Source.SourceConfiguration,ET.FW.Config.XML.TestbenchConfiguration)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ET.FW.Config.Testbench"/> class.
+            </summary>
+            <param name="env">Environment instance</param>
+            <param name="sourceConfiguration">Source configuration</param>
+            <param name="config">testbench configuration</param>
+        </member>
+        <member name="M:ET.FW.Config.Testbench.Init">
+            <summary>
+            Initializes the Testbench
+            </summary>
+        </member>
+        <member name="M:ET.FW.Config.Testbench.Shutdown">
+            <summary>
+            Shutdowns this Online Config.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Config.Testbench.FillVariantInfoDictionaryAndSetDefaultVariantInfo">
+            <summary>
+            Fills the variant info dictionary.
+            </summary>
+            <remarks>compacts hu and ic variant infos in one dictionary, finds the
+            default hu variant info and sets the master variant info property</remarks>
+        </member>
+        <member name="M:ET.FW.Config.Testbench.GetTypeOfElement(ET.FW.Config.XML.CFBase)">
+            <summary>
+            Returns the type of what is going to be created for the given cfElement.
+            Might return null if no type could be determined or the subsystem does not support this
+            determination. This is ok, as long as no attributes are used, which are relevant for the
+            thread-using initialization.
+            </summary>
+            <param name="cfElement">element to be inspected</param>
+            <returns>Type to be created for the object</returns>
+        </member>
+        <member name="M:ET.FW.Config.Testbench.AnalyseDependenciesFromAttributes(ET.FW.Config.XML.CFBase)">
+            <summary>
+            Analyses the dependencies of the given cfElement, which are described using attributes.
+            Returns an empty list, of no dependencies could be found.
+            </summary>
+            <param name="cfElement">Elemet to be inspected</param>
+            <returns>List of dependencies</returns>
+        </member>
+        <member name="M:ET.FW.Config.Testbench.AnalyseDependenciesFromAttributes(System.Type,ET.FW.Config.XML.CFBase)">
+            <summary>
+            Analyses the dependencies for the given type, which are described in it's
+            class-attributes. Currently only regards service-attributes. 
+            </summary>
+            <param name="type">The type for which the Attributes shall be analysed</param>
+            <param name="cfElement">The corresponding CFBase-element</param>
+            <returns>List of CFServiceDependency objects</returns>
+        </member>
+        <member name="M:ET.FW.Config.Testbench.StartDependenciesForOldInit(ET.FW.Config.XML.CFBase)">
+            <summary>
+            Starts the dependencies for old init.
+            </summary>
+            <param name="cfElement">Elemet to handle</param>
+        </member>
+        <member name="M:ET.FW.Config.Testbench.SortByConfigObjects``2(System.Collections.Generic.IList{``0},System.Collections.Generic.IList{``1})">
+            <summary>
+            Sorts InitObjects by ConfigObjects
+            </summary>
+            <typeparam name="TConfig">Config type</typeparam>
+            <typeparam name="TInit">Init type</typeparam>
+            <param name="configObjects">Config objects</param>
+            <param name="initObjects">Initialized objects</param>
+        </member>
+        <member name="F:ET.FW.Config.Testbench.equipmentManagerTypes">
+            <summary>
+            Dictionary, where the EquipmentManagerTypes are references to the
+            corresponding Equipments. Used to determine, which EquipmentManager
+            to instantiate for a new Equipment.
+            </summary>
+        </member>
+        <member name="P:ET.FW.Config.Testbench.EquipmentManagers">
+            <summary>
+            Dictionary holding all created EquipmentManagers. One instance of an
+            EquipmentManager may be referenced with multiple keys if it is used for
+            multiple equipment-types.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Config.Testbench.DisposeEquipmentManagers">
+            <summary>
+            Disposes the equipment managers.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Config.Testbench.PrepareEquipmentManagerTypes">
+            <summary>
+            Creates a Dictionary containing all EquipmentManager-Types found in corresponding Framework- and Usage-DLLs,
+            indexed by a list of those deviceTypes supported by the corresponding EquipmentManager. The supported types
+            are fetched from EquipmentTypeAttributes.<para></para>
+            Only those EquipmentManager-Types are added to the dictionary, which have at least one EquipmentTypeAttribute.<para></para>
+            The returned value is assigned to the member equipmentManagerTypes.
+            </summary>
+            <returns>The dictionary as described above</returns>
+        </member>
+        <member name="M:ET.FW.Config.Testbench.PrepareEquipmentManagers">
+            <summary>
+            Prepares the equipment managers.
+            </summary>
+            <returns>Dictionary of equipment managers</returns>
+        </member>
+        <member name="M:ET.FW.Config.Testbench.GetEquipmentManagerType(System.String)">
+            <summary>
+            Gets the type of the equipment manager.
+            </summary>
+            <param name="deviceType">Type of the device.</param>
+            <returns>KeyvaluePair of device type names and associated equipment manager</returns>
+        </member>
+        <member name="M:ET.FW.Config.Testbench.GetEquipmentManager(System.String)">
+            <summary>
+            Returns an existing EquipmentManager for the given deviceType or
+            null, if none exists.
+            </summary>
+            <param name="deviceType">The deviceType, for which the EquipmentManager is requested.</param>
+            <returns>The found EquipmentManager or null, if none exists.</returns>
+        </member>
+        <member name="M:ET.FW.Config.Testbench.GetOrCreateEquipmentManager(System.String,ET.FW.Core.Hal.IEquipmentManager@)">
+            <summary>
+            Returns the existing EquipmentManager for the given deviceType or creates a new one,
+            of none exists.
+            </summary>
+            <param name="deviceType">The deviceType for which the corresponding EquipmentManager is requested.</param>
+            <param name="equipmentManager">out: the found equipmentManager or null if none exists and none could be created.</param>
+            <returns>TRUE if an equipmentManager was found or created, FALSE otherwise.</returns>
+        </member>
+        <member name="M:ET.FW.Config.Testbench.TryGetEquipmentManager(System.String,ET.FW.Core.Hal.IEquipmentManager@)">
+            <summary>
+            Returns an existing EquipmentManager for the given deviceType or
+            null, if none exists.
+            </summary>
+            <param name="deviceType">The deviceType, for which the EquipmentManager is requested.</param>
+            <param name="equipmentManager">out: The found EquipmentManager or null, if none exists.</param>
+            <returns>TRUE if an existing EquipmentManager was found, FALSE otherwise.</returns>
+        </member>
+        <member name="M:ET.FW.Config.Testbench.CreateChannelAccesses(ET.FW.Core.Hal.IEquipment,ET.FW.Config.XML.CFEquipment)">
+            <summary>
+            Creates channel accesses for equipment
+            </summary>
+            <param name="equipment">The equipment</param>
+            <param name="cfequipment">the configured equipment</param>
+        </member>
+        <member name="M:ET.FW.Config.Testbench.DisposeAllChannelAccesses">
+            <summary>
+            Disposes all channel accesses
+            </summary>
+        </member>
+        <member name="M:ET.FW.Config.Testbench.InstantiateChannelAccess(ET.FW.Config.XML.CFChannelAccess,ET.FW.Core.Hal.IEquipment)">
+            <summary>
+            Makes the Instantiation for the given Node
+            </summary>
+            <param name="config">the current XML node</param>
+            <param name="equipment">Equipment of channelaccess</param>
+            <returns>the ChannelAccess(BUS)</returns>
+        </member>
+        <member name="M:ET.FW.Config.Testbench.SetupChannelAccess(ET.FW.Config.XML.CFChannelAccess,ET.FW.Core.Hal.IChannelAccess)">
+            <summary>
+            Initialize channel access and start it
+            </summary>
+            <param name="config">Configuration from file</param>
+            <param name="channelAccess">Channel access to initialize</param>
+        </member>
+        <member name="M:ET.FW.Config.Testbench.RegisterChannelAccesses(System.Collections.Generic.IList{ET.FW.Config.XML.CFEquipment})">
+            <summary>
+            Register channel accesses sorted by equipments
+            </summary>
+            <param name="sortedEquipments">Sorted equipments</param>
+        </member>
+        <member name="T:ET.FW.Config.TestbenchInfo">
+            <summary>
+            Holds Infomration about the Testbench
+            </summary>
+        </member>
+        <member name="M:ET.FW.Config.TestbenchInfo.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:ET.FW.Config.TestbenchInfo"/> class.
+            </summary>
+        </member>
+        <member name="P:ET.FW.Config.TestbenchInfo.Name">
+            <summary>
+            Gets the name of the testbench stored in the testbench.xml. If not defined the hostname is used.
+            </summary>
+            <value>The name.</value>
+        </member>
+        <member name="M:ET.FW.Config.TestbenchInfo.ToString">
+            <summary>
+            Return string representation of object
+            </summary>
+            <returns>variant info as string</returns>
+        </member>
+        <member name="T:ET.FW.Config.Environment">
+            <summary>
+            Test environment, providing access to central framework objects like hardware devices or services
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Environment.syncRoot">
+            <summary>
+            we need this because of our multithreading eviroment
+            </summary>
+        </member>
+        <member name="P:ET.FW.Config.Environment.Instance">
+            <summary>
+            The one and only Environment instance
+            </summary>
+        </member>
+        <member name="M:ET.FW.Config.Environment.#ctor">
+            <summary>
+            Private Constructor
+            </summary>
+        </member>
+        <member name="M:ET.FW.Config.Environment.Init(ET.FW.Config.XML.TestbenchConfiguration,ET.FW.Source.SourceConfiguration,ET.FW.Config.CatalogFiles,System.Boolean)">
+            <summary>
+            Inits the environment using the specified configuration data
+            </summary>
+            <param name="tbConfig">The tb config.</param>
+            <param name="sourceConfiguration">Source configuration</param>
+            <param name="catalogFiles">Provider for catalog source files.</param>
+            <param name="online">Flag for online environment</param>
+            <remarks>
+            Not to be called from derived classes, because method logs start/end of initialization and sets environment state.
+            Call InitInternal to initialize environment components
+            </remarks>
+        </member>
+        <member name="M:ET.FW.Config.Environment.Shutdown">
+            <summary>
+            Stops everthing
+            </summary>
+            <remarks>
+            Do not call this method from derived class, because it implements state changes and logging for start and end of shutdown
+            Call ShutdownInternal for shutting down of environment components.
+            </remarks>
+        </member>
+        <member name="P:ET.FW.Config.Environment.Devices">
+            <summary>
+            Access to configured devices
+            Key is device name from config file
+            Value is device object or null if device is not configured
+            </summary>
+        </member>
+        <member name="P:ET.FW.Config.Environment.Services">
+            <summary>
+            Access to all configured services from "services.xml" configuration file
+            Key is service name from config file
+            </summary>
+        </member>
+        <member name="T:ET.FW.Config.Log">
+            <summary>
+            Static wrapper for loggers of this assembly
+            </summary>
+            <example>
+            The example shows a common call to add a message to log
+            <code>
+            Log.General.Error("An error occured");
+            </code></example>
+        </member>
+        <member name="P:ET.FW.Config.Log.Config">
+            <summary>
+            Logger with code "Config"
+            </summary>
+        </member>
+        <member name="T:ET.FW.Config.Variants.Availability">
+            <summary>
+            Availability of system components
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.Availability.Undefined">
+            <summary>
+            Availability not configured
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.Availability.Available">
+            <summary>
+            Feature/component available
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.Availability.NotAvailable">
+            <summary>
+            Feature/component not available
+            </summary>
+        </member>
+        <member name="T:ET.FW.Config.Variants.ChangeYear">
+            <summary>
+            Change Year
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.ChangeYear.Undefined">
+            <summary>
+            Undefined
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.ChangeYear.SOP">
+            <summary>
+            SOP
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.ChangeYear.CY01">
+            <summary>
+            CY01
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.ChangeYear.CY02">
+            <summary>
+            CY02
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.ChangeYear.CY03">
+            <summary>
+            CY03
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.ChangeYear.CY04">
+            <summary>
+            CY04
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.ChangeYear.CY05">
+            <summary>
+            CY05
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.ChangeYear.CY06">
+            <summary>
+            CY06
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.ChangeYear.CY07">
+            <summary>
+            CY07
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.ChangeYear.CY08">
+            <summary>
+            CY08
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.ChangeYear.CY09">
+            <summary>
+            CY09
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.ChangeYear.CY10">
+            <summary>
+            CY10
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.ChangeYear.CY11">
+            <summary>
+            CY11
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.ChangeYear.CY12">
+            <summary>
+            CY12
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.ChangeYear.CY13">
+            <summary>
+            CY13
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.ChangeYear.CY14">
+            <summary>
+            CY14
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.ChangeYear.CY15">
+            <summary>
+            CY15
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.ChangeYear.CY16">
+            <summary>
+            CY16
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.ChangeYear.CY17">
+            <summary>
+            CY17
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.ChangeYear.CY18">
+            <summary>
+            CY18
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.ChangeYear.CY19">
+            <summary>
+            CY19
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.ChangeYear.CY20">
+            <summary>
+            CY20
+            </summary>
+        </member>
+        <member name="T:ET.FW.Config.Variants.DisplayType">
+            <summary>
+            Art des Displays.
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.DisplayType.Undefined">
+            <summary>
+            Undefined
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.DisplayType.Tft">
+            <summary>
+            Thin-Film-Transistor (TFT).
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.DisplayType.DotMatrix">
+            <summary>
+            Dot-Matrix (DTM).
+            </summary>
+        </member>
+        <member name="T:ET.FW.Config.Variants.DriveType">
+            <summary>
+            CD/DVD drive type
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.DriveType.Undefined">
+            <summary>
+            Undefined type
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.DriveType.Single">
+            <summary>
+            Single drive
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.DriveType.Changer">
+            <summary>
+            Disc changer
+            </summary>
+        </member>
+        <member name="T:ET.FW.Config.Variants.HULine">
+            <summary>
+            Head unit line
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.HULine.Undefined">
+            <summary>Undefined</summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.HULine.Entry">
+            <summary>Entry</summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.HULine.Mid">
+            <summary>Mid</summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.HULine.High">
+            <summary>High</summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.HULine.BaseRadio">
+            <summary>Base Radio</summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.HULine.Connect5">
+            <summary>
+            Connect5
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.HULine.Dunja">
+            <summary>
+            Dunja
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.HULine.Premium">
+            <summary>
+            Premium
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.HULine.PremiumPlus">
+            <summary>
+            PremiumPlus
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.HULine.PremiumPlusPlus">
+            <summary>
+            PremiumPlusPlus
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.HULine.Ls3Minus">
+            <summary>
+            LS3-
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.HULine.Ls3">
+            <summary>
+            LS3
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.HULine.Ls3Plus">
+            <summary>
+            LS3+
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.HULine.Ls4">
+            <summary>
+            LS4
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.HULine.Ls4Plus">
+            <summary>
+            LS4+
+            </summary>
+        </member>
+        <member name="T:ET.FW.Config.Variants.IcLine">
+            <summary>
+            Enumeration aller unterstützten IC-Lines
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.IcLine.Undefined">
+            <summary>
+            Undefined
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.IcLine.None">
+            <summary>
+            Keine
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.IcLine.Entryline">
+            <summary>
+            Entryline (E)
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.IcLine.Midline">
+            <summary>
+            Midline (M)
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.IcLine.MidlineStar">
+            <summary>
+            Mid-Stern (MS)
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.IcLine.Highline">
+            <summary>
+            Highline (221)
+            </summary>
+        </member>
+        <member name="T:ET.FW.Config.Variants.IcPlatform">
+            <summary>
+            Die Kombi Platform.
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.IcPlatform.Undefined">
+            <summary>
+            No IcPlantform defined. Equals None.
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.IcPlatform.None">
+            <summary>
+            No IcPlantform defined. Equals Undefined.
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.IcPlatform.KIG0">
+            <summary>
+            Kombi Generation 0: 204, 207, 212, 218
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.IcPlatform.KIG1">
+            <summary>
+            Kombi Generation 1: 166, 172, etc.
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.IcPlatform.KIG2">
+            <summary>
+            Kombi Generation 2 (NTG5):
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.IcPlatform.KIG2_5">
+            <summary>
+            Kombi Generation 2.5
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.IcPlatform.KIG2_7">
+            <summary>
+            Kombi Generation 2.7
+            </summary>
+        </member>
+        <member name="T:ET.FW.Config.Variants.Definitions.Languages">
+            <summary>
+            Languages known by the framework
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.Definitions.Languages.Unknown">
+            <summary>
+            Language unknown.
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.Definitions.Languages.German">
+            <summary>
+            Language German
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.Definitions.Languages.EnglishUS">
+            <summary>
+            Language English US
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.Definitions.Languages.EnglishUK">
+            <summary>
+            Language English UK
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.Definitions.Languages.EnglishJP">
+            <summary>
+            Language English Japanese
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.Definitions.Languages.Spanish">
+            <summary>
+            Language Spanish
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.Definitions.Languages.Italian">
+            <summary>
+            Language Italian
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.Definitions.Languages.French">
+            <summary>
+            Language French
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.Definitions.Languages.Japanese">
+            <summary>
+            Language Japanese
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.Definitions.Languages.JapaneseKatakana">
+            <summary>
+            Language Japanese Katakana
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.Definitions.Languages.Danish">
+            <summary>
+            Language Danish
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.Definitions.Languages.Swedish">
+            <summary>
+            Language Swedish
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.Definitions.Languages.Turkish">
+            <summary>
+            Language Turkish
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.Definitions.Languages.Portuguese">
+            <summary>
+            Language Portuguese
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.Definitions.Languages.Dutch">
+            <summary>
+            Language Dutch
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.Definitions.Languages.Russian">
+            <summary>
+            Language Russian
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.Definitions.Languages.Chinese">
+            <summary>
+            Language Chinese
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.Definitions.Languages.ChineseTraditional">
+            <summary>
+            Language Traditional Chinese
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.Definitions.Languages.Korean">
+            <summary>
+            Language Korean
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.Definitions.Languages.Arabic">
+            <summary>
+            Language Arabic
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.Definitions.Languages.Finnish">
+            <summary>
+            Language Finish
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.Definitions.Languages.Polish">
+            <summary>
+            Language Polish
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.Definitions.Languages.Cantonese">
+            <summary>
+            Language Chinese Cantonese
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.Definitions.Languages.Czech">
+            <summary>
+            Language Czech
+            </summary>
+        </member>
+        <member name="T:ET.FW.Config.Variants.Market">
+            <summary>
+            Market code
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.Market.Undefined">
+            <summary>
+            Undefined market
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.Market.ECE">
+            <summary>
+            ECE
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.Market.USA">
+            <summary>
+            USA
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.Market.JPN">
+            <summary>Japan</summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.Market.KOR">
+            <summary>Korea</summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.Market.CHN">
+            <summary>China</summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.Market.ROW">
+            <summary>Rest Of World</summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.Market.TWN">
+            <summary>Taiwan</summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.Market.ASN">
+            <summary>Asia</summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.Market.All">
+            <summary>
+            All
+            </summary>
+        </member>
+        <member name="T:ET.FW.Config.Variants.ArchitectureType">
+            <summary>
+            Enum for architecture.
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.ArchitectureType.Undefined">
+            <summary>
+            Undefined ArchitectureType.
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.ArchitectureType.Star2">
+            <summary>
+            Star 2 architecture.
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.ArchitectureType.Star3">
+            <summary>
+            Star 3 architecture.
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.ArchitectureType.Star35">
+            <summary>
+            Star 3.5 architecture.
+            </summary>
+        </member>
+        <member name="T:ET.FW.Config.Variants.Ntg">
+            <summary>
+            NTG type
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.Ntg.Undefined">
+            <summary>
+            Undefined Ntg.
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.Ntg.Ntg35">
+            <summary>
+            NTG 3.5
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.Ntg.Ntg4">
+            <summary>
+            NTG 4.0
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.Ntg.Ntg45">
+            <summary>
+            NTG 4.5
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.Ntg.Ntg5Star1">
+            <summary>
+            HU - Ntg5 with Star1 CAN, IC - Ntg4.5 (communication is done via ExtKI)
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.Ntg.Ntg5">
+            <summary>
+            NTG 5 (oder NTG5Star2)
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.Ntg.Ntg55">
+            <summary>
+            Ntg 5.5
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.Ntg.Ntg6">
+            <summary>
+            Ntg 6
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.Ntg.Ntg7">
+            <summary>
+            Ntg 7
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.Ntg.Gen20X_i2">
+            <summary>
+            Gen20X_i2
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.Ntg.Gen20X_i3">
+            <summary>
+            Gen20X_i3
+            </summary>
+        </member>
+        <member name="T:ET.FW.Config.Variants.HeadUnitLineRestrictionAttribute">
+            <summary>
+            This attribute helps to know which head unit line variants are supported by the class.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Config.Variants.HeadUnitLineRestrictionAttribute.#ctor(ET.FW.Config.Variants.HULine[])">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="headunitLines">The head unit lines.</param>
+        </member>
+        <member name="P:ET.FW.Config.Variants.HeadUnitLineRestrictionAttribute.HeadunitLines">
+            <summary>
+            Gets or sets the head unit lines.
+            </summary>
+        </member>
+        <member name="T:ET.FW.Config.Variants.MarketRestrictionAttribute">
+            <summary>
+            This attribute helps to know which Market variants are supported by the class.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Config.Variants.MarketRestrictionAttribute.#ctor(ET.FW.Config.Variants.Market[])">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="markets">The markets</param>
+        </member>
+        <member name="P:ET.FW.Config.Variants.MarketRestrictionAttribute.Markets">
+            <summary>
+            Gets or sets the Market.
+            </summary>
+        </member>
+        <member name="T:ET.FW.Config.Variants.NtgRestrictionAttribute">
+            <summary>
+            This attribute helps to know which Ntg variants are supported by the class.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Config.Variants.NtgRestrictionAttribute.#ctor(ET.FW.Config.Variants.Ntg[])">
+            <summary>
+            Constructor
+            </summary>
+            <param name="ntg">The Ntg Variant to support.</param>
+        </member>
+        <member name="P:ET.FW.Config.Variants.NtgRestrictionAttribute.Ntg">
+            <summary>
+            Gets the Ntg Variant.
+            </summary>
+        </member>
+        <member name="T:ET.FW.Config.Variants.RestrictionAttribute">
+            <summary>
+            The base attribute class for all restrictions.
+            </summary>
+        </member>
+        <member name="P:ET.FW.Config.Variants.RestrictionAttribute.Mode">
+            <summary>
+            Gets or sets the mode of the restriction.
+            </summary>
+        </member>
+        <member name="T:ET.FW.Config.Variants.VariantInfoHelper">
+            <summary>
+            Helper class for Variant Info
+            </summary>
+        </member>
+        <member name="M:ET.FW.Config.Variants.VariantInfoHelper.IsCurrentNtgPresent(ET.FW.Config.Variants.Ntg[])">
+            <summary>
+            To check if current configuration NtgType is available in list
+            </summary>
+            <param name="ntgs"></param>
+        </member>
+        <member name="T:ET.FW.Config.Variants.VariantInfoIC">
+            <summary>
+            Instrument cluser variant info.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Config.Variants.VariantInfoIC.#ctor">
+            <summary>
+            Default Constructor
+            </summary>
+        </member>
+        <member name="M:ET.FW.Config.Variants.VariantInfoIC.#ctor(ET.FW.Config.Variants.IVariantInfoIC)">
+            <summary>
+            "Copy" Constructor
+            </summary>
+            <param name="info"></param>
+        </member>
+        <member name="P:ET.FW.Config.Variants.VariantInfoIC.Platform">
+            <summary>
+            NTG type
+            </summary>
+        </member>
+        <member name="P:ET.FW.Config.Variants.VariantInfoIC.ChangeYear">
+            <summary>
+            NTG type
+            </summary>
+        </member>
+        <member name="P:ET.FW.Config.Variants.VariantInfoIC.DisplayType">
+            <summary>
+            NTG type
+            </summary>
+        </member>
+        <member name="P:ET.FW.Config.Variants.VariantInfoIC.ICLine">
+            <summary>
+            NTG type
+            </summary>
+        </member>
+        <member name="M:ET.FW.Config.Variants.VariantInfoIC.ToString">
+            <summary>
+            Return string representation of variant info
+            </summary>
+            <returns>variant info as string</returns>
+        </member>
+        <member name="T:ET.FW.Config.Variants.VariantInfoBase">
+            <summary>
+            Base variant info.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Config.Variants.VariantInfoBase.#ctor">
+            <summary>
+            Default Constructor
+            </summary>
+        </member>
+        <member name="M:ET.FW.Config.Variants.VariantInfoBase.#ctor(ET.FW.Config.Variants.IVariantInfoBase)">
+            <summary>
+            "Copy" Constructor
+            </summary>
+            <param name="info">the info</param>
+        </member>
+        <member name="P:ET.FW.Config.Variants.VariantInfoBase.Key">
+            <summary>
+            Variant info key
+            </summary>
+        </member>
+        <member name="P:ET.FW.Config.Variants.VariantInfoBase.Ntg">
+            <summary>
+            NTG type
+            </summary>
+        </member>
+        <member name="P:ET.FW.Config.Variants.VariantInfoBase.Architecture">
+            <summary>
+            Architecture
+            </summary>
+        </member>
+        <member name="P:ET.FW.Config.Variants.VariantInfoBase.VehicleLine">
+            <summary>
+            Vehicle Line (e.g. BR212 -> 212)
+            </summary>
+        </member>
+        <member name="P:ET.FW.Config.Variants.VariantInfoBase.Market">
+            <summary>
+            The Market
+            </summary>
+        </member>
+        <member name="P:ET.FW.Config.Variants.VariantInfoBase.SampleStage">
+            <summary>
+            The SampleStage
+            </summary>
+        </member>
+        <member name="P:ET.FW.Config.Variants.VariantInfoBase.SoftwareVersion">
+            <summary>
+            Software version
+            </summary>
+        </member>
+        <member name="M:ET.FW.Config.Variants.VariantInfoBase.ToString">
+            <summary>
+            Return string representation of variant info
+            </summary>
+            <returns>variant info as string</returns>
+        </member>
+        <member name="M:ET.FW.Config.Variants.VariantInfoBase.PrepareParams">
+            <summary>
+            prepares the parameters, i.e. reads the CFParams and writes it
+            to the private parameters-Dictionary.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Config.Variants.VariantInfoBase.GetParameter(System.String)">
+            <summary>
+            Returns the parameter set for the given name
+            </summary>
+            <param name="name">the name of the parameter whose value is requested.</param>
+            <returns>the value set for the given name or null or an empty string, if nothing is found.</returns>
+        </member>
+        <member name="T:ET.FW.Config.Variants.IVariantInfoBase">
+            <summary>
+            Base variant info interface.
+            </summary>
+        </member>
+        <member name="P:ET.FW.Config.Variants.IVariantInfoBase.Key">
+            <summary>
+            Variant info key
+            </summary>
+        </member>
+        <member name="P:ET.FW.Config.Variants.IVariantInfoBase.Ntg">
+            <summary>
+            NTG type
+            </summary>
+        </member>
+        <member name="P:ET.FW.Config.Variants.IVariantInfoBase.Architecture">
+            <summary>
+            Architecture
+            </summary>
+        </member>
+        <member name="P:ET.FW.Config.Variants.IVariantInfoBase.VehicleLine">
+            <summary>
+            Vehicle Line (e.g. BR212 -> 212)
+            </summary>
+        </member>
+        <member name="P:ET.FW.Config.Variants.IVariantInfoBase.Market">
+            <summary>
+            Market
+            </summary>
+        </member>
+        <member name="P:ET.FW.Config.Variants.IVariantInfoBase.SampleStage">
+            <summary>
+            Sample stage
+            </summary>
+        </member>
+        <member name="P:ET.FW.Config.Variants.IVariantInfoBase.SoftwareVersion">
+            <summary>
+            Software version
+            </summary>
+        </member>
+        <member name="M:ET.FW.Config.Variants.IVariantInfoBase.GetParameter(System.String)">
+            <summary>
+            Returns the parameter set for the given name
+            </summary>
+            <param name="name">the name of the parameter whose value is requested.</param>
+            <returns>the value set for the given name or null or an empty string, if nothing is found.</returns>
+        </member>
+        <member name="T:ET.FW.Config.Variants.IVariantInfoIC">
+            <summary>
+            Instrument cluster variant info interface.
+            </summary>
+        </member>
+        <member name="P:ET.FW.Config.Variants.IVariantInfoIC.Platform">
+            <summary>
+            Platform
+            </summary>
+        </member>
+        <member name="P:ET.FW.Config.Variants.IVariantInfoIC.ChangeYear">
+            <summary>
+            ChangeYear
+            </summary>
+        </member>
+        <member name="P:ET.FW.Config.Variants.IVariantInfoIC.DisplayType">
+            <summary>
+            Display type
+            </summary>
+        </member>
+        <member name="P:ET.FW.Config.Variants.IVariantInfoIC.ICLine">
+            <summary>
+            NTG type
+            </summary>
+        </member>
+        <member name="T:ET.FW.Config.Variants.IVariantInfo">
+            <summary>
+            Headunit variant info interface.
+            </summary>
+        </member>
+        <member name="P:ET.FW.Config.Variants.IVariantInfo.HULine">
+            <summary>
+            Head unit line (entry, mid, high)
+            </summary>
+        </member>
+        <member name="P:ET.FW.Config.Variants.IVariantInfo.Generation">
+            <summary>
+            Generation (in tenths, e.g. Gen1.5 -> 15)
+            </summary>
+        </member>
+        <member name="P:ET.FW.Config.Variants.IVariantInfo.Drive">
+            <summary>
+            Type of disc drive
+            </summary>
+        </member>
+        <member name="P:ET.FW.Config.Variants.IVariantInfo.Navi">
+            <summary>
+            Flag for HU with navigation
+            </summary>
+            <value>true if navigation is supported</value>
+        </member>
+        <member name="P:ET.FW.Config.Variants.IVariantInfo.SplitView">
+            <summary>
+            SplitView supported
+            </summary>
+        </member>
+        <member name="P:ET.FW.Config.Variants.IVariantInfo.BluetoothAudio">
+            <summary>
+            Bluetoth Audio supported
+            </summary>
+        </member>
+        <member name="P:ET.FW.Config.Variants.IVariantInfo.MediaInterface">
+            <summary>
+            Media Interface (UCI) supported
+            </summary>
+        </member>
+        <member name="T:ET.FW.Config.Variants.VariantInfo">
+            <summary>
+            Headunit variant info.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Config.Variants.VariantInfo.#ctor">
+            <summary>
+            Default Constructor
+            </summary>
+        </member>
+        <member name="M:ET.FW.Config.Variants.VariantInfo.#ctor(ET.FW.Config.Variants.IVariantInfo)">
+            <summary>
+            "Copy" Constructor
+            </summary>
+            <param name="info"></param>
+        </member>
+        <member name="P:ET.FW.Config.Variants.VariantInfo.HULine">
+            <summary>
+            Head unit line (entry, mid, high)
+            </summary>
+        </member>
+        <member name="P:ET.FW.Config.Variants.VariantInfo.Generation">
+            <summary>
+            Generation (in tenths, e.g. Gen1.5 -> 15)
+            </summary>
+        </member>
+        <member name="P:ET.FW.Config.Variants.VariantInfo.Drive">
+            <summary>
+            Type of disc drive
+            </summary>
+        </member>
+        <member name="P:ET.FW.Config.Variants.VariantInfo.Navi">
+            <summary>
+            Flag for HU with navigation
+            </summary>
+            <value>true if navigation is supported</value>
+        </member>
+        <member name="P:ET.FW.Config.Variants.VariantInfo.SplitView">
+            <summary>
+            SplitView supported
+            </summary>
+        </member>
+        <member name="P:ET.FW.Config.Variants.VariantInfo.BluetoothAudio">
+            <summary>
+            Bluetoth Audio supported
+            </summary>
+        </member>
+        <member name="P:ET.FW.Config.Variants.VariantInfo.MediaInterface">
+            <summary>
+            Media Interface (UCI) supported
+            </summary>
+        </member>
+        <member name="M:ET.FW.Config.Variants.VariantInfo.ToString">
+            <summary>
+            Return string representation of variant info
+            </summary>
+            <returns>variant info as string</returns>
+        </member>
+        <member name="T:ET.FW.Config.Variants.RestrictionMode">
+            <summary>
+            The modes of restrictions.
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.RestrictionMode.Supported">
+            <summary>
+            The defined restriction is supported.
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.Variants.RestrictionMode.NotSupported">
+            <summary>
+            The defined restriction is not supported.
+            </summary>
+        </member>
+        <member name="T:ET.FW.Config.Variants.VehicleLineRestrictionAttribute">
+            <summary>
+            This attribute helps to know which vehicle lines are supported by the class.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Config.Variants.VehicleLineRestrictionAttribute.#ctor(System.UInt16[])">
+            <summary>
+            constructor that support single vehicle line.
+            </summary>
+            <param name="lines">The vehicle line.</param>
+        </member>
+        <member name="P:ET.FW.Config.Variants.VehicleLineRestrictionAttribute.Lines">
+            <summary>
+            Gets or sets the lines.
+            </summary>
+        </member>
+        <member name="T:ET.FW.Config.XML.CFBase">
+            <summary>
+            Base-class for every CF...-class except those, which are only parameters
+            </summary>
+        </member>
+        <member name="P:ET.FW.Config.XML.CFBase.Name">
+            <summary>
+            Gets or sets the name.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Config.XML.CFBase.GetCFElementsThisDependsOn">
+            <summary>
+            returns all those configuration-elements, this one depends on, i.e. which must
+            be initialized before this one.
+            </summary>
+            <returns>see summary</returns>
+        </member>
+        <member name="M:ET.FW.Config.XML.CFBase.AddCFElementsThisDependsOn(ET.FW.Config.XML.CFBase[])">
+            <summary>
+            Adds additional Elements this one depends on and which are not located in
+            the properties of this element. Dependencies like this are for example those,
+            which are retrievable from the xml-hierarchie.
+            </summary>
+            <param name="elementsThisDependsOn">the elements to add to the additionalElementsThisDependsOn-list</param>
+        </member>
+        <member name="M:ET.FW.Config.XML.CFBase.ToString">
+            <summary>
+            Toes the String.
+            </summary>
+            <returns>the toed string.</returns>
+        </member>
+        <member name="M:ET.FW.Config.XML.CFBase.Copy(ET.FW.Config.XML.CFBase)">
+            <summary>
+            Copy properties from copy
+            </summary>
+            <param name="copy">Object to copy</param>
+        </member>
+        <member name="T:ET.FW.Config.XML.CFBus">
+            <summary>
+            Configuration-element for a Bus
+            </summary>
+        </member>
+        <member name="P:ET.FW.Config.XML.CFBus.Protocols">
+            <summary>
+            Gets or sets the protocols of this bus
+            </summary>
+            <value>The protocols.</value>
+        </member>
+        <member name="P:ET.FW.Config.XML.CFBus.Class">
+            <summary>
+            Gets or sets the name of implementation class.
+            </summary>
+            <value>The class.</value>
+        </member>
+        <member name="P:ET.FW.Config.XML.CFBus.ChannelAccess">
+            <summary>
+            Gets or sets the channel access connectetd to this bus
+            </summary>
+            <value>The channel access.</value>
+        </member>
+        <member name="M:ET.FW.Config.XML.CFBus.GetCFElementsThisDependsOn">
+            <summary>
+            returns all those configuration-elements, this one depends on, i.e. which must
+            be initialized before this one.
+            </summary>
+            <returns>see summary</returns>
+        </member>
+        <member name="T:ET.FW.Config.XML.CFBusProtocol">
+            <summary>
+            The Structure for the Bus Protocols
+            </summary>
+        </member>
+        <member name="T:ET.FW.Config.XML.CFChannelAccess">
+            <summary>
+            The definition for the Channelaccess
+            </summary>
+        </member>
+        <member name="P:ET.FW.Config.XML.CFChannelAccess.PortType">
+            <summary>
+            Gets or sets the type of the port.
+            </summary>
+            <value>The type of the port.</value>
+        </member>
+        <member name="P:ET.FW.Config.XML.CFChannelAccess.Port">
+            <summary>
+            Gets or sets the port.
+            </summary>
+            <value>The port </value>
+        </member>
+        <member name="P:ET.FW.Config.XML.CFChannelAccess.PortNumber">
+            <summary>
+            Gets or sets the port number. (Obsolete, use <see cref="P:ET.FW.Config.XML.CFChannelAccess.Port"/> instead.)
+            </summary>
+            <value>The port number.</value>
+        </member>
+        <member name="P:ET.FW.Config.XML.CFChannelAccess.PortNumberSpecified">
+            <summary>
+            Gets a value indicating whether <see cref="P:ET.FW.Config.XML.CFChannelAccess.PortNumber"/> should be serialized
+            </summary>
+        </member>
+        <member name="P:ET.FW.Config.XML.CFChannelAccess.WriteToLog">
+            <summary>
+            Gets or sets a value indicating whether [write to log].
+            </summary>
+            <value><c>true</c> if [write to log]; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:ET.FW.Config.XML.CFChannelAccess.EquipmentName">
+            <summary>
+            Name of the Equipment this ChannelAccess belongs to.
+            </summary>
+        </member>
+        <member name="P:ET.FW.Config.XML.CFChannelAccess.EquipmentType">
+            <summary>
+            Type of the Equipment, this ChannelAccess belongs to.
+            </summary>
+        </member>
+        <member name="P:ET.FW.Config.XML.CFChannelAccess.ChannelAccessType">
+            <summary>
+            Type of the ChannelAccess
+            </summary>
+        </member>
+        <member name="M:ET.FW.Config.XML.CFChannelAccess.Copy(ET.FW.Config.XML.CFBase)">
+            <summary>
+            Copy properties from copy
+            </summary>
+            <param name="copy">Object to copy</param>
+            <remarks>It copies only xml properties</remarks>
+        </member>
+        <member name="T:ET.FW.Config.XML.CFDevice">
+            <summary>
+            The External Device
+            </summary>
+        </member>
+        <member name="P:ET.FW.Config.XML.CFDevice.Downlink">
+            <summary>
+            Gets or sets the downlink.
+            </summary>
+            <value>The downlink.</value>
+        </member>
+        <member name="P:ET.FW.Config.XML.CFDevice.Class">
+            <summary>
+            Gets or sets the implementation class name.
+            </summary>
+            <value>The class.</value>
+        </member>
+        <member name="M:ET.FW.Config.XML.CFDevice.GetCFElementsThisDependsOn">
+            <summary>
+            returns all those configuration-elements, this one depends on, i.e. which must
+            be initialized before this one.
+            </summary>
+            <returns>see summary</returns>
+        </member>
+        <member name="T:ET.FW.Config.XML.CFDeviceDownlink">
+            <summary>
+            The Downlink
+            </summary>
+        </member>
+        <member name="T:ET.FW.Config.XML.CFEquipment">
+            <summary>
+            Define the Measurement Equipment
+            </summary>
+        </member>
+        <member name="P:ET.FW.Config.XML.CFEquipment.ChannelAccesses">
+            <summary>
+            Gets or sets the channel access.
+            </summary>
+            <value>The channel access.</value>
+        </member>
+        <member name="P:ET.FW.Config.XML.CFEquipment.DeviceType">
+            <summary>
+            Gets or sets the type of the device.
+            </summary>
+            <value>The type of the device.</value>
+        </member>
+        <member name="P:ET.FW.Config.XML.CFEquipment.DeviceSerial">
+            <summary>
+            Gets or sets the serial number of the device.
+            </summary>
+            <value>The serial number.</value>
+        </member>
+        <member name="P:ET.FW.Config.XML.CFEquipment.TimestampCorrectionName">
+            <summary>
+            The name of the TimestampCorrection to use.
+            </summary>
+        </member>
+        <member name="P:ET.FW.Config.XML.CFEquipment.TimestampCorrection">
+            <summary>
+            Gets or sets the timestamp correction.
+            </summary>
+            <value>The timestamp correction.</value>
+        </member>
+        <member name="P:ET.FW.Config.XML.CFEquipment.LatencySpecified">
+            <summary>
+            Gets or sets the latency is specified
+            </summary>
+            <value>true if specified</value>
+        </member>
+        <member name="P:ET.FW.Config.XML.CFEquipment.Latency">
+            <summary>
+            Gets or sets the latency of timestamp correction.
+            </summary>
+            <value>The timestamp correction.</value>
+        </member>
+        <member name="M:ET.FW.Config.XML.CFEquipment.AddCFElementsThisDependsOn(ET.FW.Config.XML.CFBase[])">
+            <summary>
+            Add additional element, this one depends on.
+            </summary>
+            <param name="elementsThisDependsOn">the elements this one does depend on</param>
+        </member>
+        <member name="M:ET.FW.Config.XML.CFEquipment.Copy(ET.FW.Config.XML.CFBase)">
+            <summary>
+            Copy properties from copy
+            </summary>
+            <param name="copy">Object to copy</param>
+            <remarks>It copies only xml properties</remarks>
+        </member>
+        <member name="P:ET.FW.Config.XML.CFEquipment.IsConfigured">
+            <summary>
+            Indicates that an equipment instance is configured
+            </summary>
+            <value>true if specified</value>
+        </member>
+        <member name="T:ET.FW.Config.XML.CFEquipmentDependency">
+            <summary>
+            class used only in testbench, not intended to be stored within
+            the xml-file.
+            </summary>
+        </member>
+        <member name="T:ET.FW.Config.XML.CFParam">
+            <summary>
+            The Param for all Channelaccess,Devices,Services
+            </summary>
+        </member>
+        <member name="P:ET.FW.Config.XML.CFParam.Name">
+            <summary>
+            Gets or sets the name of the Param.
+            </summary>
+            <value>The name.</value>
+        </member>
+        <member name="P:ET.FW.Config.XML.CFParam.Value">
+            <summary>
+            Gets or sets the value.
+            </summary>
+            <value>The value.</value>
+        </member>
+        <member name="M:ET.FW.Config.XML.CFParam.GetSchema">
+            <summary>
+            Get XML schema method
+            </summary>
+            <returns>the used XmlSchema</returns>
+        </member>
+        <member name="M:ET.FW.Config.XML.CFParam.ReadXml(System.Xml.XmlReader)">
+            <summary>
+            Read XML method
+            </summary>
+            <param name="reader">The reader to read name and value from</param>
+        </member>
+        <member name="M:ET.FW.Config.XML.CFParam.WriteXml(System.Xml.XmlWriter)">
+            <summary>
+            Write XML method
+            </summary>
+            <param name="writer">the XmlWriter to write Name and Value to</param>
+        </member>
+        <member name="M:ET.FW.Config.XML.CFParam.ToString">
+            <summary>
+            Convert Parameter to text (format: "Name=Value")
+            </summary>
+            <returns>Parameter as string</returns>
+        </member>
+        <member name="T:ET.FW.Config.XML.CFProtocol">
+            <summary>
+            The Hard + Softprotocol
+            </summary>
+        </member>
+        <member name="P:ET.FW.Config.XML.CFProtocol.Downlink">
+            <summary>
+            Gets or sets the downlinks.
+            </summary>
+            <value>The downlinks.</value>
+        </member>
+        <member name="P:ET.FW.Config.XML.CFProtocol.ChannelAccess">
+            <summary>
+            Gets or sets the channel access.
+            </summary>
+            <value>The channel access.</value>
+        </member>
+        <member name="P:ET.FW.Config.XML.CFProtocol.CatalogConfiguration">
+            <summary>
+            Gets or sets the OLD Params.
+            </summary>
+            <value>The Param.</value>
+        </member>
+        <member name="P:ET.FW.Config.XML.CFProtocol.Class">
+            <summary>
+            Gets or sets the name of implementation class.
+            </summary>
+            <value>The class name.</value>
+        </member>
+        <member name="P:ET.FW.Config.XML.CFProtocol.Type">
+            <summary>
+            Gets or sets the type.
+            </summary>
+            <value>The type.</value>
+        </member>
+        <member name="P:ET.FW.Config.XML.CFProtocol.WriteToLog">
+            <summary>
+            Gets or sets a value indicating whether [write to log].
+            </summary>
+            <value><c>true</c> if [write to log]; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="M:ET.FW.Config.XML.CFProtocol.GetCFElementsThisDependsOn">
+            <summary>
+            returns all those configuration-elements, this one depends on, i.e. which must
+            be initialized before this one.
+            </summary>
+            <returns>see summary</returns>
+        </member>
+        <member name="M:ET.FW.Config.XML.CFProtocol.ToString">
+            <summary>
+            Toes the string.
+            </summary>
+            <returns>the string</returns>
+        </member>
+        <member name="T:ET.FW.Config.XML.ProtocolType">
+            <summary>
+            Kind of protocol implemenation
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.XML.ProtocolType.Soft">
+            <summary>
+            Protocol is from Type Software => not connected to a Hardware
+            </summary>
+            <remarks>Complete Protocol logic is implemented in software as ET Framework module.</remarks>
+        </member>
+        <member name="F:ET.FW.Config.XML.ProtocolType.SOFT">
+            <summary>
+            Software (obsolete spelling)
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.XML.ProtocolType.Hard">
+            <summary>
+            Protocol is directly connected to a Hardware
+            </summary>
+            <remarks> Protocol logic is implemented inside connected hardware box or device driver.</remarks>
+        </member>
+        <member name="F:ET.FW.Config.XML.ProtocolType.HARD">
+            <summary>
+            Hardware (obsolete spelling)
+            </summary>
+        </member>
+        <member name="T:ET.FW.Config.XML.CFProtocolCatalogConfiguration">
+            <summary>
+            Catalog loader configuration
+            </summary>
+        </member>
+        <member name="P:ET.FW.Config.XML.CFProtocolCatalogConfiguration.Loader">
+            <summary>
+            Gets or sets the Loader of the Catalog.
+            </summary>
+            <value>The name.</value>
+        </member>
+        <member name="P:ET.FW.Config.XML.CFProtocolCatalogConfiguration.Source">
+            <summary>
+            Gets or sets the Source of the Catalogs
+            </summary>
+            <value>The name.</value>
+        </member>
+        <member name="M:ET.FW.Config.XML.CFProtocolCatalogConfiguration.ToString">
+            <summary>
+            Toes the string.
+            </summary>
+            <returns>the string at the toes</returns>
+        </member>
+        <member name="T:ET.FW.Config.XML.CFProtocolChannelAccess">
+            <summary>
+            Channel access for a hardware Protocol
+            </summary>
+        </member>
+        <member name="T:ET.FW.Config.XML.CFProtocolDownlink">
+            <summary>
+            The Downlink for the Software Protocol
+            </summary>
+        </member>
+        <member name="T:ET.FW.Config.XML.CFServiceDependency">
+            <summary>
+            class only used in testbench.cs, not intended to be used
+            within the xml-file itself. <para></para>
+            used to store service-dependencies.
+            </summary>
+        </member>
+        <member name="P:ET.FW.Config.XML.CFServiceDependency.Optional">
+            <summary>
+            Flag, whether the service-dependency is optional (TRUE) or not(FALSE)
+            </summary>
+        </member>
+        <member name="P:ET.FW.Config.XML.CFServiceDependency.ServiceType">
+            <summary>
+            The Type of the service
+            </summary>
+        </member>
+        <member name="T:ET.FW.Config.XML.CFServices">
+            <summary>
+            Configuration-element for a service
+            </summary>	//[System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+        </member>
+        <member name="P:ET.FW.Config.XML.CFServices.Class">
+            <summary>
+            Gets or sets the name of implementation class.
+            </summary>
+            <value>The class name.</value>
+        </member>
+        <member name="P:ET.FW.Config.XML.CFServices.AutoStart">
+            <summary>
+            Gets or sets a value indicating whether [auto start].
+            </summary>
+            <value><c>true</c> if [auto start]; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:ET.FW.Config.XML.CFServices.ServiceType">
+            <summary>
+            Type of the Service
+            </summary>
+        </member>
+        <member name="P:ET.FW.Config.XML.CFServices.InitializedService">
+            <summary>
+            Helper for initialization: reference to the created runtime-service-instance.<para></para>
+            Only used during initialization, set to null afterwards.
+            </summary>
+        </member>
+        <member name="P:ET.FW.Config.XML.CFServices.IsInitialized">
+            <summary>
+            Flag, whether the corresponding service has already been initialized.
+            </summary>
+        </member>
+        <member name="T:ET.FW.Config.XML.CFWithParams">
+            <summary>
+            a configuration-element which may contain some Parameters.
+            </summary>
+        </member>
+        <member name="P:ET.FW.Config.XML.CFWithParams.Param">
+            <summary>
+            Gets or sets the Parameters
+            </summary>
+            <value>The Parameters.</value>
+        </member>
+        <member name="M:ET.FW.Config.XML.CFWithParams.Copy(ET.FW.Config.XML.CFBase)">
+            <summary>
+            Copy properties from copy
+            </summary>
+            <param name="copy">Object to copy</param>
+            <remarks>It copies only xml properties</remarks>
+        </member>
+        <member name="T:ET.FW.Config.XML.CFWithParamsAndAssembly">
+            <summary>
+            Base-CF with Params (from CFWithParams) and an Assembly
+            </summary>
+        </member>
+        <member name="P:ET.FW.Config.XML.CFWithParamsAndAssembly.Assembly">
+            <summary>
+            Gets or sets the assembly.
+            </summary>
+            <value>The assembly.</value>
+        </member>
+        <member name="P:ET.FW.Config.XML.CFWithParamsAndAssembly.HasAssembly">
+            <summary>
+            Returns, whether an Assembly is defined.
+            </summary>
+        </member>
+        <member name="T:ET.FW.Config.XML.TestbenchConfiguration">
+            <summary>
+            Holds an object structure representing the testbench configuration XML file
+            </summary>
+        </member>
+        <member name="M:ET.FW.Config.XML.TestbenchConfiguration.Deserialize(System.IO.Stream)">
+            <summary>
+            Read testbench configuration from given stream
+            </summary>
+            <param name="stream">Stream to read data from</param>
+            <returns>Testbench configuration instance</returns>
+        </member>
+        <member name="M:ET.FW.Config.XML.TestbenchConfiguration.Serialize(System.IO.Stream,ET.FW.Config.XML.TestbenchConfiguration)">
+            <summary>
+            Write testbench configuration to given stream
+            </summary>
+            <param name="stream">Stream to write data to</param>
+            <param name="testbenchConfiguration">The testbench configuration.</param>
+        </member>
+        <member name="M:ET.FW.Config.XML.TestbenchConfiguration.#ctor">
+            <summary>
+            Create an empty configuration
+            </summary>
+        </member>
+        <member name="M:ET.FW.Config.XML.TestbenchConfiguration.Patch">
+            <summary>
+            Method to patch testbench.xml in memory.
+            </summary>
+            <returns>patched testbench configuration</returns>
+        </member>
+        <member name="F:ET.FW.Config.XML.TestbenchConfiguration.noNamespaceSchemaLocation">
+            <summary>
+            Definition for the Namespace and Schema
+            </summary>
+        </member>
+        <member name="P:ET.FW.Config.XML.TestbenchConfiguration.Version">
+            <summary>
+            Gets or sets the version.
+            </summary>
+            <value>The version of the XML-Structure.</value>
+        </member>
+        <member name="P:ET.FW.Config.XML.TestbenchConfiguration.TestbenchInfo">
+            <summary>
+            Gets or sets the TestbenchInfo.
+            </summary>
+            <value>The TestbenchInfo.</value>
+        </member>
+        <member name="P:ET.FW.Config.XML.TestbenchConfiguration.VariantInfos">
+            <summary>
+            Gets or sets the TestbenchInfo.
+            </summary>
+            <value>The TestbenchInfo.</value>
+        </member>
+        <member name="P:ET.FW.Config.XML.TestbenchConfiguration.VariantInfosIC">
+            <summary>
+            Gets or sets the TestbenchInfo.
+            </summary>
+            <value>The TestbenchInfo.</value>
+        </member>
+        <member name="P:ET.FW.Config.XML.TestbenchConfiguration.Equipment">
+            <summary>
+            Gets or sets the channel accesses.
+            </summary>
+            <value>The channel accesses.</value>
+        </member>
+        <member name="P:ET.FW.Config.XML.TestbenchConfiguration.Protocols">
+            <summary>
+            Gets or sets the Hard+Soft Protocols
+            </summary>
+            <value>The channel accesses.</value>
+        </member>
+        <member name="P:ET.FW.Config.XML.TestbenchConfiguration.Devices">
+            <summary>
+            Gets or sets the External Devices
+            </summary>
+            <value>The External Devices.</value>
+        </member>
+        <member name="P:ET.FW.Config.XML.TestbenchConfiguration.Busses">
+            <summary>
+            Gets or sets the Busses
+            </summary>
+            <value>The Busses.</value>
+        </member>
+        <member name="P:ET.FW.Config.XML.TestbenchConfiguration.Services">
+            <summary>
+            Gets or sets the Services
+            </summary>
+            <value>The Services.</value>
+        </member>
+        <member name="P:ET.FW.Config.XML.TestbenchConfiguration.MetaData">
+            <summary>
+            Gets or sets the meta data string.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Config.XML.TestbenchConfiguration.PrepareDependencies">
+            <summary>
+            Prepare the dependencies
+            </summary>
+        </member>
+        <member name="T:ET.FW.Config.XML.TimestampCorrectionType">
+            <summary>
+            Timestamp correction kind to use
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.XML.TimestampCorrectionType.Default">
+            <summary>
+            Default correction
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.XML.TimestampCorrectionType.DEFAULT">
+            <summary>
+            Default correction (obsolete spelling)
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.XML.TimestampCorrectionType.Offset">
+            <summary>
+            Offset correction (fixed offest is added)
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.XML.TimestampCorrectionType.OFFSET">
+            <summary>
+            Offset correction (obsolete spelling)
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.XML.TimestampCorrectionType.Dummy">
+            <summary>
+            Dummy (no timestamp modification)
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.XML.TimestampCorrectionType.DUMMY">
+            <summary>
+            Dummy (obsolete spelling)
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.XML.TimestampCorrectionType.Debug">
+            <summary>
+            Debug correction
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.XML.TimestampCorrectionType.DEBUG">
+            <summary>
+            Debug correction
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.XML.TimestampCorrectionType.ETClock">
+            <summary>
+            ETClock correction (current ET Clock time is used)
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.XML.TimestampCorrectionType.ETCLOCK">
+            <summary>
+            ETClock correction (obsolete spelling)
+            </summary>
+        </member>
+        <member name="F:ET.FW.Config.XML.TimestampCorrectionType.NotSet">
+            <summary>
+            Undefined kind
+            </summary>
+        </member>
+    </members>
+</doc>

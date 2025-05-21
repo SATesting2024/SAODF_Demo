@@ -1,0 +1,567 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ET.FW.Hal.Devices.Socket</name>
+    </assembly>
+    <members>
+        <member name="T:ET.FW.Hal.Devices.Socket.Socket">
+            <summary>
+            Equipment for a Listening socket connection
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Devices.Socket.Socket.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:ET.FW.Hal.Devices.Socket.Socket"/> class.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Devices.Socket.Socket.CreateChannelAccess(System.String,System.String,System.String)">
+            <summary>
+            Create/provide channel access
+            </summary>
+            <param name="portName">Hardware port name</param>
+            <param name="name">Channel access name</param>
+            <param name="portType">Port type for channel access</param>
+            <returns>the created ChannelAccess or null, if none could be created.</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Devices.Socket.Socket.Connect">
+            <summary>
+            Connect to hardware
+            </summary>
+            <returns>true on success</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Devices.Socket.Socket.Disconnect">
+            <summary>
+            Disconnect hardware
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Devices.Socket.Socket.IsConnected">
+            <summary>
+            Check if hardware is connected
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Devices.Socket.Socket.LoggerChannelAccesses">
+            <summary>
+            The ChannelAccess
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Devices.Socket.SocketChannelAccess">
+            <summary>
+            Socket channel access.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Devices.Socket.SocketChannelAccess.#ctor(ET.FW.Hal.Equipments.Equipment,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ET.FW.Hal.Devices.Socket.SocketChannelAccess"/> class.
+            </summary>
+            <param name="equipment">MOST equipment</param>
+            <param name="name">name for this channel access</param>
+        </member>
+        <member name="P:ET.FW.Hal.Devices.Socket.SocketChannelAccess.TextProtocol">
+            <summary>
+            Listening to Text protocol
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Devices.Socket.SocketChannelAccess.Start">
+            <summary>
+            Start the channel access
+            </summary>
+            <returns>true on sucess</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Devices.Socket.SocketChannelAccess.Stop">
+            <summary>
+            Stop the channel access
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Devices.Socket.SocketChannelAccess.IsRunning">
+            <summary>
+            Check if this channel access is running
+            </summary>
+            <value></value>
+        </member>
+        <member name="M:ET.FW.Hal.Devices.Socket.SocketChannelAccess.CreateHardwareProtocol(System.String,System.String)">
+            <summary>
+            Provide Hardware protocol of given type
+            </summary>
+            <param name="type">Type/class name of protocol to provide</param>
+            <param name="name">Name of protocol instance</param>
+            <returns>
+            Matching protocol or null if not available
+            </returns>
+        </member>
+        <member name="P:ET.FW.Hal.Devices.Socket.SocketChannelAccess.IP">
+            <summary>
+            The IP number
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Devices.Socket.SocketChannelAccess.IPAddress">
+            <summary>
+            The IP number as string
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Devices.Socket.SocketChannelAccess.Port">
+            <summary>
+            The Port numner
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Devices.Socket.SocketChannelAccess.ReadTimeout">
+            <summary>
+            The Timeout of a a Socket read in milliseconds
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Devices.Socket.SocketChannelAccess.IsClient">
+            <summary>
+            Socket Client or Server
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Devices.Socket.SocketChannelAccess.SendMessage(ET.FW.Hal.Text.ITextMessage)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ET.FW.Hal.Devices.Socket.SocketManager">
+            <summary>
+            Equipment manager for a tcp socket
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Devices.Socket.SocketManager.#ctor">
+            <summary>
+            The Constructor.
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Devices.Socket.Log">
+            <summary>
+            Static wrapper for loggers of this assembly
+            </summary>
+            <example>
+            The example shows a common call to add a message to log
+            <code>
+            Log.General.Error("An error occured");
+            </code></example>
+        </member>
+        <member name="P:ET.FW.Hal.Devices.Socket.Log.Socket">
+            <summary>
+            Logger with code "ComPort"
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Devices.Socket.SslTlsWrapper">
+            <summary>
+            Native OpenSSL TLS Wrapper. Class with import functions for TLS connection
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Devices.Socket.SslTlsWrapper.LibName">
+            <summary>
+            dll file for TLS functions
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Devices.Socket.SslTlsWrapper.CryptoName">
+            <summary>
+            dll file for TLS certificate read functions
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Devices.Socket.SslTlsWrapper.OpenSSL_version_num">
+             <summary>
+            
+             </summary>
+             <returns></returns>
+        </member>
+        <member name="M:ET.FW.Hal.Devices.Socket.SslTlsWrapper.TLS_client_method">
+            Since v1.1.0 both methods below are handled OpenSSL internally
+                    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl)]
+                    public static extern int OPENSSL_init_ssl();
+                    [DllImport(LibName, CallingConvention = CallingConvention.Cdecl)]
+                    public static extern void OPENSSL_init_crypto(...);
+        </member>
+        <member name="M:ET.FW.Hal.Devices.Socket.SslTlsWrapper.TLSv1_2_client_method">
+            <summary>
+            TLSv1_2_client_method
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ET.FW.Hal.Devices.Socket.SslTlsWrapper.TLSv1_1_client_method">
+            <summary>
+            TLSv1_1_client_method
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ET.FW.Hal.Devices.Socket.SslTlsWrapper.TLSv1_client_method">
+            <summary>
+            TLSv1_client_method
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ET.FW.Hal.Devices.Socket.SslTlsWrapper.SSL_CTX_new(System.IntPtr)">
+            <summary>
+            
+            </summary>
+            <param name="method"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ET.FW.Hal.Devices.Socket.SslTlsWrapper.SSL_CTX_set_ciphersuites(System.IntPtr,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="ctx"></param>
+            <param name="str"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ET.FW.Hal.Devices.Socket.SslTlsWrapper.SSL_CTX_set_cipher_list(System.IntPtr,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="ctx"></param>
+            <param name="str"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ET.FW.Hal.Devices.Socket.SslTlsWrapper.SSL_new(System.IntPtr)">
+            <summary>
+            
+            </summary>
+            <param name="ctx"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ET.FW.Hal.Devices.Socket.SslTlsWrapper.SSL_set_fd(System.IntPtr,System.IntPtr)">
+            <summary>
+            
+            </summary>
+            <param name="ssl"></param>
+            <param name="socket"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ET.FW.Hal.Devices.Socket.SslTlsWrapper.SSL_connect(System.IntPtr)">
+            <summary>
+            
+            </summary>
+            <param name="ssl"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ET.FW.Hal.Devices.Socket.SslTlsWrapper.SSL_write(System.IntPtr,System.Byte[],System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="ssl"></param>
+            <param name="buffer"></param>
+            <param name="num"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ET.FW.Hal.Devices.Socket.SslTlsWrapper.SSL_read(System.IntPtr,System.Byte[],System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="ssl"></param>
+            <param name="buffer"></param>
+            <param name="num"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ET.FW.Hal.Devices.Socket.SslTlsWrapper.SSL_get_peer_certificate(System.IntPtr)">
+            <summary>
+            
+            </summary>
+            <param name="ssl"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ET.FW.Hal.Devices.Socket.SslTlsWrapper.X509_get_subject_name(System.IntPtr)">
+            <summary>
+            
+            </summary>
+            <param name="X509"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ET.FW.Hal.Devices.Socket.SslTlsWrapper.X509_NAME_oneline(System.IntPtr,System.Int32,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="X509_NAME"></param>
+            <param name="buf"></param>
+            <param name="size"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ET.FW.Hal.Devices.Socket.SslTlsWrapper.SSL_CTX_set_options(System.IntPtr,ET.FW.Hal.Devices.Socket.SslOption)">
+            <summary>
+            SSL_CTX_set_options - to disable versions
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:ET.FW.Hal.Devices.Socket.SslOption">
+            <summary>
+            SslOption
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Devices.Socket.SslOption.SSL_OP_LEGACY_SERVER_CONNECT">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Devices.Socket.SslOption.ALLOW_CLIENT_RENEGOTIATION">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Devices.Socket.SslOption.SSL_OP_NO_SESSION_RESUMPTION_ON_RENEGOTIATION">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Devices.Socket.SslOption.SSL_OP_NO_COMPRESSION">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Devices.Socket.SslOption.SSL_OP_ALLOW_UNSAFE_LEGACY_RENEGOTIATION">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Devices.Socket.SslOption.NoSsl3">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Devices.Socket.SslOption.NoTlsv1">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Devices.Socket.SslOption.NoTlsv12">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Devices.Socket.SslOption.NoTlsv11">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Devices.Socket.SslOption.NoTlsv13">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Devices.Socket.TlsVersion">
+            <summary>
+            TLS version
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Devices.Socket.TlsVersion.All">
+            <summary>
+            All TLS Version
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Devices.Socket.TlsVersion.TLSv1">
+            <summary>
+            TLS v1.0
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Devices.Socket.TlsVersion.TLSv1_1">
+            <summary>
+            TLS v1.1
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Devices.Socket.TlsVersion.TLSv1_2">
+            <summary>
+            TLS v1.2
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Devices.Socket.TlsVersion.TLSv1_3">
+            <summary>
+            TLS v1.3
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Devices.Socket.TcpChannel">
+            <summary>
+            TcpChannel is used for creating TCPListener/TCPCLient to send or recieve messages from the configured TCPListener/TCPCLient
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Devices.Socket.TcpChannel.IsWriteonly">
+            <summary>
+            True if you want to write to TCP Client
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Devices.Socket.TcpChannel.IsRunning">
+            <summary>
+            Check if this channel access is running
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ET.FW.Hal.Devices.Socket.TcpChannel.TcpReaderClient">
+            <summary>
+            TCPCLient to send or recieve messages from the configured TCPListener/TCPCLient
+            </summary>
+        </member>
+        <member name="E:ET.FW.Hal.Devices.Socket.TcpChannel.OnMessageRecieved">
+            <summary>
+            Output event which signals all outgoing messages 
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Devices.Socket.TcpChannel.IsReaderTerminating">
+            <summary>
+            Check if this channel access is stoping
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ET.FW.Hal.Devices.Socket.TcpChannel.IsTerminating">
+            <summary>
+            Check if this channel access is stoping
+            </summary>
+            <value></value>
+        </member>
+        <member name="M:ET.FW.Hal.Devices.Socket.TcpChannel.#ctor(System.Net.IPAddress,System.UInt16,System.String,System.Int32,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ET.FW.Hal.Devices.Socket.TcpChannel"/> class.
+            </summary>
+            <param name="ipAddress">IPAddress</param>
+            <param name="port">Port No</param>
+            <param name="name">Name of the Process</param>
+            <param name="readtimeout">Timeout</param>
+            <param name="client">isClient</param>
+        </member>
+        <member name="M:ET.FW.Hal.Devices.Socket.TcpChannel.Start">
+            <summary>
+            Start the channel access
+            </summary>
+            <returns>true on sucess</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Devices.Socket.TcpChannel.Stop">
+            <summary>
+            Stop the channel access
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Devices.Socket.TcpChannel.WritetoClient(System.Byte[])">
+            <summary>
+            writes the data to the TCPclient 
+            </summary>
+            <param name="messageBytes">Message to write.</param>
+            <returns>true on success</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Devices.Socket.TcpChannel.HandleClientComm(System.Object)">
+            <summary>
+            Reads the data from the client 
+            </summary>
+            <param name="client">The tcp client handle.</param>
+        </member>
+        <member name="T:ET.FW.Hal.Devices.Socket.RecieveMessage">
+            <summary>
+            Event handler for message received event
+            </summary>
+            <param name="msgBytes">Message as bytes</param>
+        </member>
+        <member name="T:ET.FW.Hal.Devices.Socket.ITcpChannel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:ET.FW.Hal.Devices.Socket.ITcpChannel.OnMessageRecieved">
+            <summary>
+            Output event which signals all outgoing messages 
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Devices.Socket.ITcpChannel.WritetoClient(System.Byte[])">
+            <summary>
+            
+            </summary>
+            <param name="messageBytes"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ET.FW.Hal.Devices.Socket.ITcpChannel.Stop">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Devices.Socket.LinkStatus">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Devices.Socket.LinkStatus.Connected">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Devices.Socket.LinkStatus.Disconnected">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Devices.Socket.TcpSocketClient">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Devices.Socket.TcpSocketClient.#ctor(System.Net.IPAddress,System.Int32,System.String,System.Boolean,System.Boolean,ET.FW.Hal.Devices.Socket.TlsVersion)">
+            <summary>
+            
+            </summary>
+            <param name="pServerAddress"></param>
+            <param name="pPortNumber"></param>
+            <param name="name"></param>
+            <param name="isTlsConnection"></param>
+            <param name="enableTLSEncryption"></param>
+            <param name="tlsVersion"></param>
+        </member>
+        <member name="P:ET.FW.Hal.Devices.Socket.TcpSocketClient.IsTlsConnection">
+            <summary>
+            Is current TCP connection is TLS
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Devices.Socket.TcpSocketClient.EnableTLSEncryption">
+            <summary>
+            Enable Tls Encryption
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Devices.Socket.TcpSocketClient.TLSVersion">
+            <summary>
+            Set TLS Version
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Devices.Socket.TcpSocketClient.ConnectionStatus">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Devices.Socket.TcpSocketClient.DisconnectFromServer">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Devices.Socket.TcpSocketClient.ConnectToServer">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Devices.Socket.TcpSocketClient.EstablishTlsHandshake(System.Net.Sockets.Socket)">
+            <summary>
+            
+            </summary>
+            <param name="socket"></param>
+        </member>
+        <member name="E:ET.FW.Hal.Devices.Socket.TcpSocketClient.OnMessageRecieved">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Devices.Socket.TcpSocketClient.WritetoClient(System.Byte[])">
+            <summary>
+            writes the data to the TCPclient 
+            </summary>
+            <param name="messageBytes">Message to write.</param>
+            <returns>true on success</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Devices.Socket.TcpSocketClient.Stop">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Devices.Socket.TcpSocketClient.Start">
+            <summary>
+            Start the channel access
+            </summary>
+            <returns>true on sucess</returns>
+        </member>
+        <member name="P:ET.FW.Hal.Devices.Socket.TcpSocketClient.Decoupler">
+            <summary>
+            Decoupler which does the event decoupling
+            </summary>
+        </member>
+    </members>
+</doc>

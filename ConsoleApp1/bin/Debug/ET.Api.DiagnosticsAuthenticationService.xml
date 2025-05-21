@@ -1,0 +1,573 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ET.Api.DiagnosticsAuthenticationService</name>
+    </assembly>
+    <members>
+        <member name="T:ET.Api.DiagnosticsAuthenticationService.IDiagnosticsAuthenticationService">
+            <summary>
+            Interface to define Diagnostics Authentication functions
+            </summary>
+        </member>
+        <member name="M:ET.Api.DiagnosticsAuthenticationService.IDiagnosticsAuthenticationService.Authenticate(System.String,System.String)">
+            <summary>
+            Function to validate the user authentication
+            </summary>
+            <param name="username">Username</param>
+            <param name="password">Password</param>
+        </member>
+        <member name="T:ET.Api.DiagnosticsAuthenticationService.Log">
+            <summary>
+            Static wrapper for loggers of this assembly
+            </summary>
+            <example>
+            The example shows a common call to add a message to log
+            <code>
+            Log.DiagCan.Error("An error occured");
+            </code></example>
+        </member>
+        <member name="P:ET.Api.DiagnosticsAuthenticationService.Log.DiagAuthenticateService">
+            <summary>
+            Logger with code "DiagEthernet"
+            </summary>
+        </member>
+        <member name="T:ET.Api.DiagnosticsAuthenticationService.UserRoles">
+            <summary>
+            Enum containing the list of user roles
+            </summary>
+        </member>
+        <member name="F:ET.Api.DiagnosticsAuthenticationService.UserRoles.AllowZenzefiToDecide">
+            <summary>
+            Default- Allow zenzefi to choose the user role
+            </summary> 
+        </member>
+        <member name="F:ET.Api.DiagnosticsAuthenticationService.UserRoles.Supplier">
+            <summary>
+            Supplier
+            </summary>
+        </member>
+        <member name="F:ET.Api.DiagnosticsAuthenticationService.UserRoles.DevelopmentENHANCED">
+            <summary>
+            DevelopmentENHANCED
+            </summary>
+        </member>
+        <member name="F:ET.Api.DiagnosticsAuthenticationService.UserRoles.Production">
+            <summary>
+            Production
+            </summary>
+        </member>
+        <member name="F:ET.Api.DiagnosticsAuthenticationService.UserRoles.AfterSalesENHANCED">
+            <summary>
+            AfterSalesENHANCED
+            </summary>
+        </member>
+        <member name="F:ET.Api.DiagnosticsAuthenticationService.UserRoles.AfterSalesSTANDARD">
+            <summary>
+            AfterSalesSTANDARD
+            </summary>
+        </member>
+        <member name="F:ET.Api.DiagnosticsAuthenticationService.UserRoles.AfterSalesBASIC">
+            <summary>
+            AfterSalesBASIC
+            </summary>
+        </member>
+        <member name="F:ET.Api.DiagnosticsAuthenticationService.UserRoles.InternalDiagnosticTestTool">
+            <summary>
+            InternalDiagnosticTestTool
+            </summary>
+        </member>
+        <member name="F:ET.Api.DiagnosticsAuthenticationService.UserRoles.ePTITestTool">
+            <summary>
+            ePTITestTool
+            </summary>
+        </member>
+        <member name="T:ET.Api.DiagnosticsAuthenticationService.ZenzefiDiagAuthenticationService">
+            <summary>
+            Zenzefi Diagnostics authentication service
+            </summary>
+        </member>
+        <member name="M:ET.Api.DiagnosticsAuthenticationService.ZenzefiDiagAuthenticationService.#ctor(System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="servicename"></param>
+        </member>
+        <member name="M:ET.Api.DiagnosticsAuthenticationService.ZenzefiDiagAuthenticationService.GetCertificateAsync(System.Byte[],System.String,System.Byte[],System.String)">
+            <summary>
+            Function to get the diagnostic certificate for the given certificate identifier and ecuname 
+            </summary>
+            <param name="certificateIdentifierHex">Backend certificate subject key identifier</param>
+            <param name="ecuName">ecu name</param>
+            <param name="vin">vin for the specific ECU</param>
+            <param name="userRole">UserRole specific to the zenzefi certificate for the ECU</param>
+            <returns>Diagnostics certificate details</returns>
+        </member>
+        <member name="M:ET.Api.DiagnosticsAuthenticationService.ZenzefiDiagAuthenticationService.GetSignatureOwnership(System.Byte[])">
+            <summary>
+            Function to get the signature ownership data using the ecuchallenge
+            </summary>
+            <param name="ecuChllenge">ecuChllenge</param>
+            <returns>signature ownership data</returns>
+        </member>
+        <member name="M:ET.Api.DiagnosticsAuthenticationService.ZenzefiDiagAuthenticationService.GetSecuredVariantCodingOutput(System.Byte[],System.Byte[],System.String,System.String)">
+            <summary>
+            Function to get the SecuredVariantCoding using backendSubjectKeyIdentifier,vin,vcData and ecuName
+            </summary>
+            <param name="backendSubjectKeyIdentifier">backendSubjectKeyIdentifier</param>
+            <param name="vin">vin</param>
+            <param name="vcData">vcData</param>
+            <param name="ecuName">ecuName</param>
+            <returns>SecuredVariantCoding</returns>
+        </member>
+        <member name="M:ET.Api.DiagnosticsAuthenticationService.ZenzefiDiagAuthenticationService.GetCertificates">
+            <summary>
+            Function to get the Zenzefi certificates 
+            </summary>
+            <returns>the list of Zenzefi certificates </returns>
+        </member>
+        <member name="M:ET.Api.DiagnosticsAuthenticationService.ZenzefiDiagAuthenticationService.GetSignature(System.String,System.String,System.Byte[],System.String)">
+            <summary>
+            Function to get the Signature using backendSubjectKeyIdentifier,ecuId,challenge and ecuSerialNumber
+            </summary>
+            <param name="backendSubjectKeyIdentifier">backendSubjectKeyIdentifier</param>
+            <param name="ecuId">ecuId</param>
+            <param name="challenge">challenge</param>
+            <param name="ecuSerialNumber">ecuSerialNumber</param>
+            <returns></returns>
+        </member>
+        <member name="M:ET.Api.DiagnosticsAuthenticationService.ZenzefiDiagAuthenticationService.SearchTimeCert(System.Byte[],System.Byte[],System.Byte[],System.String)">
+            <summary>
+            Function to get the TimeCertificate using backendSubjectKeyIdentifier, nounce,vin and ecuName
+            </summary>
+            <param name="backendSubjectKeyIdentifier">backendSubjectKeyIdentifier</param>
+            <param name="nounce">nounce</param>
+            <param name="vin">vin</param>
+            <param name="ecuName">ecuName</param>
+            <returns></returns>
+        </member>
+        <member name="M:ET.Api.DiagnosticsAuthenticationService.ZenzefiDiagAuthenticationService.GetCurrentUserLoginState">
+            <summary>
+            Function to get the zenzefi login state
+            </summary>
+            <returns>returns the zenzefi login state</returns>
+        </member>
+        <member name="M:ET.Api.DiagnosticsAuthenticationService.ZenzefiDiagAuthenticationService.HexString2B64String(System.String)">
+            <summary>
+            Function to convert hex string to base64 string
+            </summary>
+            <param name="input">gets the hex string</param>
+            <returns>returns the base64 string</returns>
+        </member>
+        <member name="M:ET.Api.DiagnosticsAuthenticationService.ZenzefiDiagAuthenticationService.HexStringToHex(System.String)">
+            <summary>
+            Function to convert hex string to hex
+            </summary>
+            <param name="inputHex">gets the hex string</param>
+            <returns>returns the bytes</returns>
+        </member>
+        <member name="M:ET.Api.DiagnosticsAuthenticationService.ZenzefiDiagAuthenticationService.Authenticate(System.String,System.String)">
+            <summary>
+            Function to check if the user is authenticated by zenzefi
+            </summary>
+            <param name="username">username</param>
+            <param name="password">password</param>
+        </member>
+        <member name="M:ET.Api.DiagnosticsAuthenticationService.ZenzefiDiagAuthenticationService.Start">
+            <summary>
+            start
+            </summary>
+            <returns>returns true</returns>
+        </member>
+        <member name="M:ET.Api.DiagnosticsAuthenticationService.ZenzefiDiagAuthenticationService.Stop">
+            <summary>
+            stop
+            </summary>
+        </member>
+        <member name="P:ET.Api.DiagnosticsAuthenticationService.ZenzefiDiagAuthenticationService.IsRunning">
+            <summary>
+            is running
+            </summary>
+        </member>
+        <member name="M:ET.Api.DiagnosticsAuthenticationService.ZenzefiDiagAuthenticationService.Init">
+            <summary>
+            init 
+            </summary>
+            <returns>returns true</returns>
+        </member>
+        <member name="M:ET.Api.DiagnosticsAuthenticationService.ZenzefiDiagAuthenticationService.Dispose">
+            <summary>
+            dispose
+            </summary>
+        </member>
+        <member name="T:ET.Api.DiagnosticsAuthenticationService.ZenzefiUser">
+            <summary>
+            ZenzefiUser
+            </summary>
+        </member>
+        <member name="P:ET.Api.DiagnosticsAuthenticationService.ZenzefiUser.userName">
+            <summary>
+            userName
+            </summary>
+        </member>
+        <member name="P:ET.Api.DiagnosticsAuthenticationService.ZenzefiUser.userPassword">
+            <summary>
+            userPassword
+            </summary>
+        </member>
+        <member name="T:ET.Api.DiagnosticsAuthenticationService.CertificateResponse">
+            <summary>
+            class which contains the CertificateResponse data
+            </summary>
+        </member>
+        <member name="P:ET.Api.DiagnosticsAuthenticationService.CertificateResponse.errorMessage">
+            <summary>
+            errorMessage
+            </summary>
+        </member>
+        <member name="P:ET.Api.DiagnosticsAuthenticationService.CertificateResponse.certificateData">
+            <summary>
+            certificateData
+            </summary>
+        </member>
+        <member name="P:ET.Api.DiagnosticsAuthenticationService.CertificateResponse.serialNumber">
+            <summary>
+            serialNumber
+            </summary>
+        </member>
+        <member name="T:ET.Api.DiagnosticsAuthenticationService.ProofofOwnershipResponse">
+            <summary>
+            class which contains the ProofofOwnershipResponse
+            </summary>
+        </member>
+        <member name="P:ET.Api.DiagnosticsAuthenticationService.ProofofOwnershipResponse.EcuProofOfOwnership">
+            <summary>
+            ecuProofOfOwnership
+            </summary>
+        </member>
+        <member name="P:ET.Api.DiagnosticsAuthenticationService.ProofofOwnershipResponse.ErrorMessage">
+            <summary>
+            errorMessage
+            </summary>
+        </member>
+        <member name="T:ET.Api.DiagnosticsAuthenticationService.ProofOfOwnershipRequest">
+            <summary>
+            class which contains ProofOfOwnershipRequest
+            </summary>
+        </member>
+        <member name="P:ET.Api.DiagnosticsAuthenticationService.ProofOfOwnershipRequest.backendCertSubjKeyId">
+            <summary>
+            backend Certificate Subject KeyId
+            </summary>
+        </member>
+        <member name="P:ET.Api.DiagnosticsAuthenticationService.ProofOfOwnershipRequest.serialNumber">
+            <summary>
+            serialNumber
+            </summary>
+        </member>
+        <member name="P:ET.Api.DiagnosticsAuthenticationService.ProofOfOwnershipRequest.ecuChallenge">
+            <summary>
+            ecuChallenge
+            </summary>
+        </member>
+        <member name="T:ET.Api.DiagnosticsAuthenticationService.SecuredVariantCodingOutput">
+            <summary>
+            class for SecuredVariantCodingOutput
+            </summary>
+        </member>
+        <member name="P:ET.Api.DiagnosticsAuthenticationService.SecuredVariantCodingOutput.SerialNumber">
+            <summary>
+            serialNumber
+            </summary>
+        </member>
+        <member name="P:ET.Api.DiagnosticsAuthenticationService.SecuredVariantCodingOutput.Signature">
+            <summary>
+            signature
+            </summary>
+        </member>
+        <member name="P:ET.Api.DiagnosticsAuthenticationService.SecuredVariantCodingOutput.VarCodingCertificate">
+            <summary>
+            varCodingCertificate
+            </summary>
+        </member>
+        <member name="P:ET.Api.DiagnosticsAuthenticationService.SecuredVariantCodingOutput.ExpirationDate">
+            <summary>
+            expirationDate
+            </summary>
+        </member>
+        <member name="P:ET.Api.DiagnosticsAuthenticationService.SecuredVariantCodingOutput.ErrorMessage">
+            <summary>
+            errorMessage
+            </summary>
+        </member>
+        <member name="T:ET.Api.DiagnosticsAuthenticationService.SecuredVariantCodingInput">
+            <summary>
+            class for SecuredVariantCodingInput
+            </summary>
+        </member>
+        <member name="P:ET.Api.DiagnosticsAuthenticationService.SecuredVariantCodingInput.backendSubjectKeyIdentifier">
+            <summary>
+            backendSubjectKeyIdentifier
+            </summary>
+        </member>
+        <member name="P:ET.Api.DiagnosticsAuthenticationService.SecuredVariantCodingInput.data">
+            <summary>
+            data
+            </summary>
+        </member>
+        <member name="P:ET.Api.DiagnosticsAuthenticationService.SecuredVariantCodingInput.targetVIN">
+            <summary>
+            targetVIN
+            </summary>
+        </member>
+        <member name="P:ET.Api.DiagnosticsAuthenticationService.SecuredVariantCodingInput.targetECU">
+            <summary>
+            targetECU
+            </summary>
+        </member>
+        <member name="T:ET.Api.DiagnosticsAuthenticationService.Certificates">
+            <summary>
+            Zenzefi Certificates
+            </summary>
+        </member>
+        <member name="P:ET.Api.DiagnosticsAuthenticationService.Certificates.SubjectKeyIdentifier">
+            <summary>
+            subjectKeyIdentifier
+            </summary>
+        </member>
+        <member name="P:ET.Api.DiagnosticsAuthenticationService.Certificates.SubjectPublicKey">
+            <summary>
+            subjectPublicKey
+            </summary>
+        </member>
+        <member name="P:ET.Api.DiagnosticsAuthenticationService.Certificates.TargetEcu">
+            <summary>
+            targetECU
+            </summary>
+        </member>
+        <member name="P:ET.Api.DiagnosticsAuthenticationService.Certificates.TargetSubjectKeyIdentifier">
+            <summary>
+            targetSubjectKeyIdentifier
+            </summary>
+        </member>
+        <member name="P:ET.Api.DiagnosticsAuthenticationService.Certificates.TargetVin">
+            <summary>
+            targetVIN
+            </summary>
+        </member>
+        <member name="P:ET.Api.DiagnosticsAuthenticationService.Certificates.Nonce">
+            <summary>
+            nonce
+            </summary>
+        </member>
+        <member name="P:ET.Api.DiagnosticsAuthenticationService.Certificates.SerialNo">
+            <summary>
+            serialNo
+            </summary>
+        </member>
+        <member name="P:ET.Api.DiagnosticsAuthenticationService.Certificates.Signature">
+            <summary>
+            signature
+            </summary>
+        </member>
+        <member name="P:ET.Api.DiagnosticsAuthenticationService.Certificates.SignatureBase64">
+            <summary>
+            signatureBase64
+            </summary>
+        </member>
+        <member name="P:ET.Api.DiagnosticsAuthenticationService.Certificates.SpecialEcu">
+            <summary>
+            specialECU
+            </summary>
+        </member>
+        <member name="P:ET.Api.DiagnosticsAuthenticationService.Certificates.AuthorityKeyIdentifier">
+            <summary>
+            authorityKeyIdentifier
+            </summary>
+        </member>
+        <member name="P:ET.Api.DiagnosticsAuthenticationService.Certificates.BaseCertificateId">
+            <summary>
+            baseCertificateID
+            </summary>
+        </member>
+        <member name="P:ET.Api.DiagnosticsAuthenticationService.Certificates.UniqueEcuid">
+            <summary>
+            uniqueECUID
+            </summary>
+        </member>
+        <member name="P:ET.Api.DiagnosticsAuthenticationService.Certificates.Type">
+            <summary>
+            type
+            </summary>
+        </member>
+        <member name="P:ET.Api.DiagnosticsAuthenticationService.Certificates.UserRole">
+            <summary>
+            userRole
+            </summary>
+        </member>
+        <member name="T:ET.Api.DiagnosticsAuthenticationService.SignEcuInput">
+            <summary>
+            SignEcuInput
+            </summary>
+        </member>
+        <member name="P:ET.Api.DiagnosticsAuthenticationService.SignEcuInput.backendSubjectKeyIdentifier">
+            <summary>
+            backendSubjectKeyIdentifier
+            </summary>
+        </member>
+        <member name="P:ET.Api.DiagnosticsAuthenticationService.SignEcuInput.challenge">
+            <summary>
+            challenge
+            </summary>
+        </member>
+        <member name="P:ET.Api.DiagnosticsAuthenticationService.SignEcuInput.ecuId">
+            <summary>
+            ecuId
+            </summary>
+        </member>
+        <member name="P:ET.Api.DiagnosticsAuthenticationService.SignEcuInput.ecuSerialNumber">
+            <summary>
+            ecuSerialNumber
+            </summary>
+        </member>
+        <member name="T:ET.Api.DiagnosticsAuthenticationService.SignEcuOutput">
+            <summary>
+            class for SignEcuOutput
+            </summary>
+        </member>
+        <member name="P:ET.Api.DiagnosticsAuthenticationService.SignEcuOutput.EcuCertificate">
+            <summary>
+            ecuCertificate
+            </summary>
+        </member>
+        <member name="P:ET.Api.DiagnosticsAuthenticationService.SignEcuOutput.SerialNumber">
+            <summary>
+            serialNumber
+            </summary>
+        </member>
+        <member name="P:ET.Api.DiagnosticsAuthenticationService.SignEcuOutput.Signature">
+            <summary>
+            signature
+            </summary>
+        </member>
+        <member name="P:ET.Api.DiagnosticsAuthenticationService.SignEcuOutput.ExpirationDate">
+            <summary>
+            expirationDate
+            </summary>
+        </member>
+        <member name="P:ET.Api.DiagnosticsAuthenticationService.SignEcuOutput.ErrorMessage">
+            <summary>
+            errorMessage
+            </summary>
+        </member>
+        <member name="T:ET.Api.DiagnosticsAuthenticationService.TimeCertificateInput">
+            <summary>
+            class for timecertificate input
+            </summary>
+        </member>
+        <member name="P:ET.Api.DiagnosticsAuthenticationService.TimeCertificateInput.TargetVin">
+            <summary>
+            TargetVIN
+            </summary>
+        </member>
+        <member name="P:ET.Api.DiagnosticsAuthenticationService.TimeCertificateInput.Nonce">
+            <summary>
+            Nonce
+            </summary>
+        </member>
+        <member name="T:ET.Api.DiagnosticsAuthenticationService.TimeCertificateOutput">
+            <summary>
+            class for timecertificate output
+            </summary>
+        </member>
+        <member name="P:ET.Api.DiagnosticsAuthenticationService.TimeCertificateOutput.CertificateData">
+            <summary>
+            certificateData
+            </summary>
+        </member>
+        <member name="P:ET.Api.DiagnosticsAuthenticationService.TimeCertificateOutput.Signature">
+            <summary>
+            signature
+            </summary>
+        </member>
+        <member name="P:ET.Api.DiagnosticsAuthenticationService.TimeCertificateOutput.ErrorMessage">
+            <summary>
+            errorMessage
+            </summary>
+        </member>
+        <member name="T:ET.Api.DiagnosticsAuthenticationService.CurrentUserOutput">
+            <summary>
+            Class which contains the current user details
+            </summary>
+        </member>
+        <member name="P:ET.Api.DiagnosticsAuthenticationService.CurrentUserOutput.FirstName">
+            <summary>
+            firstName
+            </summary>
+        </member>
+        <member name="P:ET.Api.DiagnosticsAuthenticationService.CurrentUserOutput.LastName">
+            <summary>
+            lastName
+            </summary>
+        </member>
+        <member name="P:ET.Api.DiagnosticsAuthenticationService.CurrentUserOutput.UserName">
+            <summary>
+            userName
+            </summary>
+        </member>
+        <member name="P:ET.Api.DiagnosticsAuthenticationService.CurrentUserOutput.CheckLocalPassword">
+            <summary>
+            check the LocalPassword
+            </summary>
+        </member>
+        <member name="P:ET.Api.DiagnosticsAuthenticationService.CurrentUserOutput.TransitionValid">
+            <summary>
+            is the transitionValid
+            </summary>
+        </member>
+        <member name="P:ET.Api.DiagnosticsAuthenticationService.CurrentUserOutput.DefaultUser">
+            <summary>
+            defaultUser
+            </summary>
+        </member>
+        <member name="P:ET.Api.DiagnosticsAuthenticationService.CurrentUserOutput.NewUser">
+            <summary>
+            newUser
+            </summary>
+        </member>
+        <member name="P:ET.Api.DiagnosticsAuthenticationService.CurrentUserOutput.AuthenticationAgainstBackend">
+            <summary>
+            authenticationAgainstBackend
+            </summary>
+        </member>
+        <member name="P:ET.Api.DiagnosticsAuthenticationService.CurrentUserOutput.ErrorMessage">
+            <summary>
+            errorMessage
+            </summary>
+        </member>
+        <member name="T:ET.Api.DiagnosticsAuthenticationService.ZenzefiLoginState">
+            <summary>
+            enum which returns the ZenzefiLoginState
+            </summary>
+        </member>
+        <member name="F:ET.Api.DiagnosticsAuthenticationService.ZenzefiLoginState.NotLoggedIn">
+            <summary>
+            NotLoggedIn
+            </summary>
+        </member>
+        <member name="F:ET.Api.DiagnosticsAuthenticationService.ZenzefiLoginState.LoggedInOffline">
+            <summary>
+            LoggedInOffline
+            </summary>
+        </member>
+        <member name="F:ET.Api.DiagnosticsAuthenticationService.ZenzefiLoginState.LoggedInOnline">
+            <summary>
+            LoggedInOnline
+            </summary>
+        </member>
+        <member name="F:ET.Api.DiagnosticsAuthenticationService.ZenzefiLoginState.LoginStateUnknown">
+            <summary>
+            LoginStateUnknown
+            </summary>
+        </member>
+    </members>
+</doc>

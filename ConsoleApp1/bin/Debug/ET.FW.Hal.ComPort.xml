@@ -1,0 +1,344 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ET.FW.Hal.ComPort</name>
+    </assembly>
+    <members>
+        <member name="T:ET.FW.Hal.ComPort.ComPortBinProtocol">
+            <summary>
+            Hardware protocol handling text messages over ComPort.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.ComPort.ComPortBinProtocol.#ctor(ET.FW.Core.Hal.IOutputChannelAccess{ET.FW.Hal.Messaging.IBinaryMessage})">
+            <summary>
+            Initializes a new instance of the <see cref="T:ET.FW.Hal.ComPort.ComPortBinProtocol"/> class.
+            </summary>
+            <param name="channelaccess">Transmitter for HW access</param>
+        </member>
+        <member name="T:ET.FW.Hal.ComPort.ComPortControlMessage">
+            <summary>
+            Message used for controling the ComPort.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.ComPort.ComPortControlMessage.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:ET.FW.Hal.ComPort.ComPortControlMessage"/> class.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.ComPort.ComPortControlMessage.#ctor(System.Collections.Generic.IList{ET.FW.Hal.ComPort.ComPortControlState})">
+            <summary>
+            Initializes a new instance of the <see cref="T:ET.FW.Hal.ComPort.ComPortControlMessage"/> class.
+            </summary>
+            <param name="controlStates">List of control states.</param>
+        </member>
+        <member name="P:ET.FW.Hal.ComPort.ComPortControlMessage.ControlStates">
+            <summary>
+            Gets or sets the list of control states.
+            </summary>
+            <value>List of control states.</value>
+        </member>
+        <member name="T:ET.FW.Hal.ComPort.ComPortControlProtocol">
+            <summary>
+            Hardware protocol handling control messages.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.ComPort.ComPortControlProtocol.#ctor(ET.FW.Hal.Messaging.ITransmitter{ET.FW.Hal.Messaging.IControlMessage})">
+            <summary>
+            Initializes a new instance of the <see cref="T:ET.FW.Hal.ComPort.ComPortControlProtocol"/> class.
+            </summary>
+            <param name="transmitter">Transmitter for HW access</param>
+        </member>
+        <member name="T:ET.FW.Hal.ComPort.ComPortMessageFactory">
+            <summary>
+            ET Framework factory for ComPort messages
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.ComPort.ComPortMessageFactory.Instance">
+            <summary>
+            The only one ComPort message factory
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.ComPort.ComPortMessageFactory.#ctor">
+            <summary>
+            Private constructor, to avoid explicit instantiation
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.ComPort.ComPortMessageFactory.MessageType">
+            <summary>
+            Represents the supported ComPort message types.
+            </summary>
+            <remarks>
+            TAKE CARE:
+            Enum value must match index of corresponding message types in 'types' array
+            </remarks>
+        </member>
+        <member name="F:ET.FW.Hal.ComPort.ComPortMessageFactory.MessageType.Undefined">
+            <summary>Message type undefined.</summary>
+        </member>
+        <member name="F:ET.FW.Hal.ComPort.ComPortMessageFactory.MessageType.Text">
+            <summary>Text message.</summary>
+        </member>
+        <member name="F:ET.FW.Hal.ComPort.ComPortMessageFactory.MessageType.TextRequest">
+            <summary>Text request message.</summary>
+        </member>
+        <member name="F:ET.FW.Hal.ComPort.ComPortMessageFactory.MessageType.TextResponse">
+            <summary>Text response message.</summary>
+        </member>
+        <member name="F:ET.FW.Hal.ComPort.ComPortMessageFactory.MessageType.Binary">
+            <summary>Binary message.</summary>
+        </member>
+        <member name="F:ET.FW.Hal.ComPort.ComPortMessageFactory.MessageType.Control">
+            <summary>Control message.</summary>
+        </member>
+        <member name="F:ET.FW.Hal.ComPort.ComPortMessageFactory.types">
+            <summary>
+            Array of all supported message types
+            </summary>
+            <remarks>
+            TAKE CARE:
+            Array index must match corresponding MessageType enum value - 1
+            </remarks>
+        </member>
+        <member name="P:ET.FW.Hal.ComPort.ComPortMessageFactory.Types">
+            <summary>
+            List of all supported types
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.ComPort.ComPortMessageFactory.CreateMessage(System.Byte,ET.FW.Core.Messaging.IProtocol)">
+            <summary>
+            Internal method to create message based on message type number
+            </summary>
+            <param name="no">message type number</param>
+            <param name="protocol">protocol to assign to the message</param>
+            <returns>the newly created message</returns>
+        </member>
+        <member name="T:ET.FW.Hal.ComPort.ComPortTextProtocol">
+            <summary>
+            Hardware protocol handling text messages over ComPort.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.ComPort.ComPortTextProtocol.#ctor(ET.FW.Core.Hal.IOutputChannelAccess{ET.FW.Hal.Messaging.IBinaryMessage})">
+            <summary>
+            Initializes a new instance of the <see cref="T:ET.FW.Hal.ComPort.ComPortTextProtocol"/> class.
+            </summary>
+            <param name="channelaccess">Transmitter for HW access</param>
+        </member>
+        <member name="T:ET.FW.Hal.ComPort.ComPortControlLine">
+            <summary>
+            Enumeration of the ComPort control lines.
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.ComPort.ComPortControlLine.Undefined">
+            <summary>
+            Undefined value.
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.ComPort.ComPortControlLine.RTS">
+            <summary>
+            RTS line.
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.ComPort.ComPortControlLine.CTS">
+            <summary>
+            CTS line.
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.ComPort.ComPortControlLine.DTR">
+            <summary>
+            DTR line.
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.ComPort.ComPortControlLine.DSR">
+            <summary>
+            DSR line.
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.ComPort.ComPortControlLine.CD">
+            <summary>
+            CD line.
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.ComPort.ComPortControlState">
+            <summary>
+            The state of one control line.
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.ComPort.ComPortControlState.ControlLine">
+            <summary>
+            Contains the control line.
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.ComPort.ComPortControlState.State">
+            <summary>
+            Contains the state of this control line.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.ComPort.ComPortControlState.#ctor(ET.FW.Hal.ComPort.ComPortControlLine,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ET.FW.Hal.ComPort.ComPortControlState"/> struct.
+            </summary>
+            <param name="controlLine">The control line.</param>
+            <param name="state">The state of the control line.</param>
+        </member>
+        <member name="T:ET.FW.Hal.ComPort.IComPortControlMessage">
+            <summary>
+            Interface used for ComPort control messages.
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.ComPort.IComPortControlMessage.ControlStates">
+            <summary>
+            Gets or sets the control states.
+            </summary>
+            <value>The control states.</value>
+        </member>
+        <member name="T:ET.FW.Hal.ComPort.Log">
+            <summary>
+            Static wrapper for loggers of this assembly
+            </summary>
+            <example>
+            The example shows a common call to add a message to log
+            <code>
+            Log.Messages.Error("An error occured");
+            </code></example>
+        </member>
+        <member name="P:ET.FW.Hal.ComPort.Log.ComPort">
+            <summary>
+            Logger with code "ComPort"
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.ComPort.OfflineComPortBinProtocol">
+            <summary>
+            Uplink only binary protocol for  serial port
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.ComPort.OfflineComPortBinProtocol.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ET.FW.Hal.ComPort.OfflineComPortBinProtocol"/> class.
+            </summary>
+            <param name="name">The name of the Protocol.</param>
+            <remarks>
+            Class provides some dummy parameter properties for offline/import usage
+            </remarks>
+        </member>
+        <member name="P:ET.FW.Hal.ComPort.OfflineComPortBinProtocol.FixedLength">
+            <summary>
+            Dummy property for parameter handling during import. Value is ignored.
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.ComPort.OfflineComPortBinProtocol.StartSequence">
+            <summary>
+            Dummy property for parameter handling during import. Value is ignored.
+            </summary>
+            <value>The start sequence string.</value>
+        </member>
+        <member name="P:ET.FW.Hal.ComPort.OfflineComPortBinProtocol.StopSequence">
+            <summary>
+            Dummy property for parameter handling during import. Value is ignored.
+            </summary>
+            <value>The stop sequence string.</value>
+        </member>
+        <member name="P:ET.FW.Hal.ComPort.OfflineComPortBinProtocol.LengthTagPosition">
+            <summary>
+            Dummy property for parameter handling during import. Value is ignored.
+            </summary>
+            <value>The position of the length tag.</value>
+        </member>
+        <member name="P:ET.FW.Hal.ComPort.OfflineComPortBinProtocol.LengthTagLength">
+            <summary>
+            Dummy property for parameter handling during import. Value is ignored.
+            </summary>
+            <value>The length of the length tag.</value>
+        </member>
+        <member name="P:ET.FW.Hal.ComPort.OfflineComPortBinProtocol.UseLittleEndian">
+            <summary>
+            Dummy property for parameter handling during import. Value is ignored.
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.ComPort.OfflineComPortBinProtocol.ResponseTimeout">
+            <summary>
+            Dummy property for parameter handling during import. Value is ignored.
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.ComPort.OfflineComPortChannelAccess">
+            <summary>
+            COM port channel access for offline mode
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.ComPort.OfflineComPortChannelAccess.#ctor(ET.FW.Core.Hal.IEquipment,System.String,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ET.FW.Hal.ComPort.OfflineComPortChannelAccess" /> class.
+            </summary>
+            <param name="equipment">The equipment.</param>
+            <param name="portName">Name of the port.</param>
+            <param name="name">The name.</param>
+            <param name="portType">Port type for channel access</param>
+        </member>
+        <member name="M:ET.FW.Hal.ComPort.OfflineComPortChannelAccess.CreateHardwareProtocol(System.String,System.String)">
+            <summary>
+            Provide offline hardware protocol of given type
+            </summary>
+            <param name="type">Type/class name of protocol to provide</param>
+            <param name="name">Name of protocol instance</param>
+            <returns>
+            Matching protocol or null if not available
+            </returns>
+        </member>
+        <member name="T:ET.FW.Hal.ComPort.OfflineComPortTextProtocol">
+            <summary>
+            Uplink only text protocol for serial port
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.ComPort.OfflineComPortTextProtocol.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ET.FW.Hal.ComPort.OfflineComPortTextProtocol"/> class.
+            </summary>
+            <param name="name">The name of the Protocol.</param>
+            <remarks>
+            Class provides some dummy parameter properties for offline/import usage
+            </remarks>
+        </member>
+        <member name="P:ET.FW.Hal.ComPort.OfflineComPortTextProtocol.DelimiterString">
+            <summary>
+            Dummy property for parameter handling during import. Value is ignored.
+            </summary>
+            <value>The delimiter string.</value>
+        </member>
+        <member name="P:ET.FW.Hal.ComPort.OfflineComPortTextProtocol.AppendDelimiterStringOnRx">
+            <summary>
+            Dummy property for parameter handling during import. Value is ignored.
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.ComPort.OfflineComPortTextProtocol.ResponseTimeout">
+            <summary>
+            Dummy property for parameter handling during import. Value is ignored.
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.ComPort.TextstreamLinesSoftwareProtocol">
+            <summary>
+            Protocol for handling text in a stream limited by \\n or \\r
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.ComPort.TextstreamLinesSoftwareProtocol.#ctor(System.String,ET.FW.Core.Messaging.IProtocol{ET.FW.Hal.Text.ITextMessage})">
+            <summary>
+            Constructor for dynamic creation
+            </summary>
+            <param name="name">Name of the protocol</param>
+            <param name="downlink">Protocol underneeth</param>
+        </member>
+        <member name="M:ET.FW.Hal.ComPort.TextstreamLinesSoftwareProtocol.Downlink_Output(System.Object,ET.FW.Core.Messaging.MessageEventArgs{ET.FW.Hal.Text.ITextMessage})">
+            <summary>
+            Handler for upcoming messages from downlink protocol
+            In English: It forwards a message upwards
+            </summary>
+            <param name="sender">downlink protocol</param>
+            <param name="e">event parameter containing the message</param>
+        </member>
+        <member name="M:ET.FW.Hal.ComPort.TextstreamLinesSoftwareProtocol.BuildMessage(ET.FW.Hal.Text.ITextMessage)">
+            <summary>
+            Build up a new Message with parametern of given Message
+            </summary>
+            <param name="lastPart">given message</param>
+            <returns>new message</returns>
+        </member>
+    </members>
+</doc>

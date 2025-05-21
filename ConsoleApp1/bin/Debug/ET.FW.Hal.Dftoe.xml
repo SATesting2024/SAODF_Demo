@@ -1,0 +1,1430 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ET.FW.Hal.Dftoe</name>
+    </assembly>
+    <members>
+        <member name="T:ET.FW.Hal.Dftoe.Catalogs.DftoeCatalog">
+            <summary>
+            Dftoe catalog.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Dftoe.Catalogs.DftoeCatalog.#ctor">
+            <summary>
+            Constructor.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Dftoe.Catalogs.DftoeCatalog.Translate(ET.FW.Core.Messaging.IMessage)">
+            <summary>
+            Translage message.
+            </summary>
+            <param name="message">message to translate</param>
+            <returns>translation</returns>
+        </member>
+        <member name="T:ET.FW.Hal.Dftoe.Catalogs.IDftoeCatalog">
+            <summary>
+            Dftoe catalog interface.
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Dftoe.ConnectionStateChangedReceivedHandler">
+            <summary>
+            Connection changed received delegate.
+            </summary>
+            <param name="state"></param>
+        </member>
+        <member name="T:ET.FW.Hal.Dftoe.DftoeDevicePingReceivedHandler">
+            <summary>
+            Dftoe device ping received delegate.
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Dftoe.InvalidFunctionIdReceivedHandler">
+            <summary>
+            Invalid function id received delegate.
+            </summary>
+            <param name="functionId"></param>
+        </member>
+        <member name="T:ET.FW.Hal.Dftoe.InvalidParameterReceivedHandler">
+            <summary>
+            Invalid parameter received delegate.
+            </summary>
+            <param name="functionId"></param>
+            <param name="parameterId"></param>
+        </member>
+        <member name="T:ET.FW.Hal.Dftoe.ErrorMessageReceivedHandler">
+            <summary>
+            Error message received delegate.
+            </summary>
+            <param name="errorMessage"></param>
+        </member>
+        <member name="T:ET.FW.Hal.Dftoe.HardwareMessageReceivedHandler">
+            <summary>
+            Hardware message received delegate.
+            </summary>
+            <param name="functionId"></param>
+            <param name="messageData"></param>
+        </member>
+        <member name="T:ET.FW.Hal.Dftoe.DftoeDatatype">
+            <summary>
+            Bytestream datatypes
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Dftoe.DftoeDatatype.D4TUInt32">
+            <summary>
+            UInt32
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Dftoe.DftoeDatatype.D4TInt32">
+            <summary>
+            Int32
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Dftoe.DftoeDatatype.D4TUInt16">
+            <summary>
+            UInt16
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Dftoe.DftoeDatatype.D4TInt16">
+            <summary>
+            Int16
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Dftoe.DftoeDatatype.D4TUInt8">
+            <summary>
+            UInt8
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Dftoe.DftoeDatatype.D4TInt8">
+            <summary>
+            Int8
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Dftoe.DftoeDatatype.D4TString">
+            <summary>
+            String
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Dftoe.DftoeDatatype.D4TBool">
+            <summary>
+            Bool
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Dftoe.DftoeDatatype.D4TByteArray">
+            <summary>
+            Byte Array (Byte[])
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Dftoe.DftoeDatatype.D4TUInt64">
+            <summary>
+            UInt64
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Dftoe.DftoeDatatype.D4TInt64">
+            <summary>
+            Int64
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Dftoe.DftoeStringFormat">
+            <summary>
+            String formats.
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Dftoe.DftoeStringFormat.ASCII">
+            <summary>
+            String is in ASCII Format
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Dftoe.DftoeStringFormat.UTF8">
+            <summary>
+            String is in UTF8 format
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Dftoe.DftoeStringFormat.UTF16">
+            <summary>
+            String is in UTF16 format
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Dftoe.DftoeFunctionId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Dftoe.DftoeFunctionId.OnConnectionChanged">
+            <summary>
+            On connection changed message.
+            </summary>
+            <remarks>
+            There is no real hardware message with this id,
+            it is just defined by et framework for consistently
+            message handling.
+            </remarks>
+        </member>
+        <member name="F:ET.FW.Hal.Dftoe.DftoeFunctionId.OnDftoeDevicePing">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Dftoe.DftoeFunctionId.OnInvalidFunctionId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Dftoe.DftoeFunctionId.OnInvalidParameter">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Dftoe.DftoeFunctionId.OnGeneralError">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Dftoe.DftoeFunctionId.OnKeyStatus">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Dftoe.DftoeFunctionId.OnRotaryControlEvent">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Dftoe.DftoeFunctionId.GetKeyStatus">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Dftoe.DftoeFunctionId.SetKeyStatus">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Dftoe.DftoeFunctionId.NotifyOnKeyChange">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Dftoe.DftoeFunctionId.TriggerRotaryControlEvent">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Dftoe.DftoeFunctionId.NotifyOnRotraryControlChange">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Dftoe.DftoeFunctionId.TriggerReset">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Dftoe.DftoeFunctionId.OnScreenshotReady">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Dftoe.DftoeFunctionId.OnScreenshotData">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Dftoe.DftoeFunctionId.TriggerRemoteScreenshot">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Dftoe.DftoeFunctionId.RequestScreenshotData">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Dftoe.DftoeFunctionId.OnMasksStatus">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Dftoe.DftoeFunctionId.OnListLengthStatus">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Dftoe.DftoeFunctionId.OnListPositionStatus">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Dftoe.DftoeFunctionId.OnDataStatus">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Dftoe.DftoeFunctionId.GetMasks">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Dftoe.DftoeFunctionId.SetMasks">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Dftoe.DftoeFunctionId.GetListLength">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Dftoe.DftoeFunctionId.GetListPosition">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Dftoe.DftoeFunctionId.NavigateList">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Dftoe.DftoeFunctionId.GetData">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Dftoe.DftoeFunctionId.SetData">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Dftoe.DftoeFunctionId.InvalidFunctionIdDummy">
+            <summary>
+            used for test
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Dftoe.WidgetPathString">
+            <summary>
+            A path to a widget inside of the HMI application in string format.
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Dftoe.WidgetPathString.widgetPath">
+            <summary>
+            widget path in string format
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Dftoe.WidgetPathString.#ctor(System.String)">
+            <summary>
+            creates a new widgetpath from a string
+            </summary>
+            <param name="widgetPath">a path to a widget in string format</param>
+        </member>
+        <member name="M:ET.FW.Hal.Dftoe.WidgetPathString.ToString">
+            <summary>
+            converts the widgetpath into a string
+            </summary>
+            <returns>string which contains the path of the widget in readable format</returns>
+        </member>
+        <member name="T:ET.FW.Hal.Dftoe.WidgetPointer">
+            <summary>
+            a pointer to a widget inside of the hmi application.
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Dftoe.WidgetPointer.pointer">
+            <summary>
+            widget pointer in native format
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Dftoe.WidgetPointer.#ctor(System.UInt32)">
+            <summary>
+            creates a new widgetpointer from an unsigned int
+            </summary>
+            <param name="pointer">a pointer to a widget in uint32 format</param>
+        </member>
+        <member name="M:ET.FW.Hal.Dftoe.WidgetPointer.#ctor(System.Int32)">
+            <summary>
+            creates a new widgetpointer from an int
+            </summary>
+            <param name="pointer">a pointer to a widget in int32 format</param>
+        </member>
+        <member name="M:ET.FW.Hal.Dftoe.WidgetPointer.op_Implicit(ET.FW.Hal.Dftoe.WidgetPointer)~System.UInt32">
+            <summary>
+            converts a widgetpointer to a uint32
+            </summary>
+            <param name="widget">the widgetpointer which shall be converted</param>
+            <returns>a widgetpointer in uint32 format</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Dftoe.WidgetPointer.op_Explicit(ET.FW.Hal.Dftoe.WidgetPointer)~System.Int32">
+            <summary>
+            converts a widgetpointer to a int32
+            </summary>
+            <param name="widget">the widgetpointer which shall be converted</param>
+            <returns>a widgetpointer in int32 format</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Dftoe.WidgetPointer.op_Explicit(System.UInt32)~ET.FW.Hal.Dftoe.WidgetPointer">
+            <summary>
+            allows to cast a pointer in uint32 format into a new widgetpointer class
+            </summary>
+            <param name="pointer">a pointer to a widget in uint32 format</param>
+            <returns>a new widgetpointer class which points to the widget</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Dftoe.WidgetPointer.ToString">
+            <summary>
+            converts the widgetpointer into a string
+            </summary>
+            <returns>string which contains the address of the widget in hexadecimal format</returns>
+        </member>
+        <member name="T:ET.FW.Hal.Dftoe.WidgetListItem">
+            <summary>
+            The class <c>WidgetListItem</c> can be used to store information about a single widget.
+            The widget is identified by its unique <c>WidgetPointer</c> and its class and instance name.
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Dftoe.WidgetListItem.widgetPath">
+            <summary>
+            A path to a widget
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Dftoe.WidgetListItem.className">
+            <summary>
+            The widgets class name
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Dftoe.WidgetListItem.instanceName">
+            <summary>
+            The widgets instance name
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Dftoe.WidgetProperty">
+            <summary>
+            <c>WidgetProperty</c> is used to store the name and value of a widget property.
+            The widget property can use different types. The type is stored in <c>valueType</c>.
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Dftoe.WidgetProperty.name">
+            <summary>The name of the property</summary>
+        </member>
+        <member name="F:ET.FW.Hal.Dftoe.WidgetProperty.valueType">
+            <summary>The type of the widget property</summary>
+        </member>
+        <member name="F:ET.FW.Hal.Dftoe.WidgetProperty.uintValue">
+            <summary>uint value of the property</summary>
+        </member>
+        <member name="F:ET.FW.Hal.Dftoe.WidgetProperty.intValue">
+            <summary>int value of the property</summary>
+        </member>
+        <member name="F:ET.FW.Hal.Dftoe.WidgetProperty.boolValue">
+            <summary>boolean value of the property</summary>
+        </member>
+        <member name="F:ET.FW.Hal.Dftoe.WidgetProperty.stringValue">
+            <summary>string value of the property</summary>
+        </member>
+        <member name="T:ET.FW.Hal.Dftoe.DftoeStreamUtility">
+            <summary>
+            Stream utility.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Dftoe.DftoeStreamUtility.ByteToUint(System.Byte[])">
+            <summary>
+            Convert byte array to uint array.
+            </summary>
+            <param name="bytes"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ET.FW.Hal.Dftoe.DftoeStreamUtility.ToByteArray(System.UInt32[])">
+            <summary>
+            Convert uint array to byte array.
+            </summary>
+            <param name="messageData"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ET.FW.Hal.Dftoe.DftoeStreamUtility.readASCIIString(System.Byte[],System.Int32@,System.String@)">
+            <summary>
+            Reads an ASCII String from a byte stream.
+            </summary>
+            <param name="data">The byte stream where all data is stored</param>
+            <param name="offset">Offset of the ASCII String to the beginning of the <c>data</c>.
+            The offset is automatically increased in case of success to the position after the read string in the data stream.</param>
+            <param name="readString">Returns the read string if successful, otherwise null</param>
+            <returns>True if an ASCII string was found and could be read at the <c>offset</c> position.
+            Otherwise False</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Dftoe.DftoeStreamUtility.readUTF8String(System.Byte[],System.Int32@,System.String@)">
+            <summary>
+            Reads an UTF8 String from a byte stream.
+            </summary>
+            <param name="data">The byte stream where all data is stored</param>
+            <param name="offset">Offset of the UTF8 String to the beginning of the <c>data</c>.
+            The offset is automatically increased in case of success to the position after the read string in the data stream.</param>
+            <param name="readString">Returns the read string if successful, otherwise null</param>
+            <returns>True if an UTF8 string was found and could be read at the <c>offset</c> position.
+            Otherwise False</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Dftoe.DftoeStreamUtility.readUTF16String(System.Byte[],System.Int32@,System.String@)">
+            <summary>
+            Reads an UTF16 String from a byte stream.
+            </summary>
+            <param name="data">The byte stream where all data is stored</param>
+            <param name="offset">Offset of the UTF16 String to the beginning of the <c>data</c>.
+            The offset is automatically increased in case of success to the position after the read string in the data stream.</param>
+            <param name="readString">Returns the read string if successful, otherwise null</param>
+            <returns>True if an UTF16 string was found and could be read at the <c>offset</c> position.
+            Otherwise False</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Dftoe.DftoeStreamUtility.writeASCIIString(System.Byte[],System.Int32@,System.String)">
+            <summary>
+            Writes the string <c>outString</c> into the byte stream <c>data</c> using the D4T ASCII format.
+            </summary>
+            <param name="data">The byte stream where the string shall be written</param>
+            <param name="offset">Determines to offset to the beginning of <c>data</c> for storing the string
+            The offset is automatically increased in case of success to the position after the written string in the data stream.</param>
+            <param name="outString">The string that shall be written to the byte stream</param>
+            <returns>True if the string was written to the byte stream. False if the byte stream had not the required legnth to store the string.</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Dftoe.DftoeStreamUtility.writeUTF8String(System.Byte[],System.Int32@,System.String)">
+            <summary>
+            Writes the string <c>outString</c> into the byte stream <c>data</c> using the D4T UTF8 format.
+            </summary>
+            <param name="data">The byte stream where the string shall be written</param>
+            <param name="offset">Determines to offset to the beginning of <c>data</c> for storing the string.
+            The offset is automatically increased in case of success to the position after the written string in the data stream.</param>
+            <param name="outString">The string that shall be written to the byte stream</param>
+            <returns>True if the string was written to the byte stream. False if the byte stream had not the required legnth to store the string.</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Dftoe.DftoeStreamUtility.writeUTF16String(System.Byte[],System.Int32@,System.String)">
+            <summary>
+            Writes the string <c>outString</c> into the byte stream <c>data</c> using the D4T UTF16 format.
+            </summary>
+            <param name="data">The byte stream where the string shall be written</param>
+            <param name="offset">Determines to offset to the beginning of <c>data</c> for storing the string.
+            The offset is automatically increased in case of success to the position after the written string in the data stream.</param>
+            <param name="outString">The string that shall be written to the byte stream</param>
+            <returns>True if the string was written to the byte stream. False if the byte stream had not the required legnth to store the string.</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Dftoe.DftoeStreamUtility.getASCIIByteLength(System.String)">
+            <summary>
+            Returns the required bytes to store <c>aString</c> using the D4T ASCII Format.
+            The byte numbers includes the D4T string header, the actual bytes for storing the string, the termination and the padding for creating a 32Bit alignment.
+            </summary>
+            <param name="aString">The string for which the number of required bytes shall be calculated</param>
+            <returns>The required bytes to store <c>aString</c> using the D4T ASCII Format.</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Dftoe.DftoeStreamUtility.getUTF8ByteLength(System.String)">
+            <summary>
+            Returns the required bytes to store <c>aString</c> using the D4T UTF8 Format.
+            The byte numbers includes the D4T string header, the actual bytes for storing the string, the termination and the padding for creating a 32Bit alignment.
+            </summary>
+            <param name="aString">The string for which the number of required bytes shall be calculated</param>
+            <returns>The required bytes to store <c>aString</c> using the D4T UTF8 Format.</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Dftoe.DftoeStreamUtility.getUTF16ByteLength(System.String)">
+            <summary>
+            Returns the required bytes to store <c>aString</c> using the D4T UTF16 Format.
+            The byte numbers includes the D4T string header, the actual bytes for storing the string, the termination and the padding for creating a 32Bit alignment.
+            </summary>
+            <param name="aString">The string for which the number of required bytes shall be calculated</param>
+            <returns>The required bytes to store <c>aString</c> using the D4T UTF16 Format.</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Dftoe.DftoeStreamUtility.readInt32(System.Byte[],System.Int32@,System.Int32@)">
+            <summary>
+            Reads an 32Bit signed integer value from the <c>data</c> byte stream.
+            </summary>
+            <param name="data">The byte stream where all data is stored</param>
+            <param name="offset">Offset of the int value to the beginning of the <c>data</c> stream.
+            The offset is automatically increased in case of success to the next position in the data stream.</param>
+            <param name="readInt32">Returns the read int value</param>
+            <returns>True if an value was read from the byte stream, otherwise false.</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Dftoe.DftoeStreamUtility.readString(System.Byte[],System.Int32@,System.String@)">
+            <summary>
+            Reads a string from the <c>data</c> byte stream.
+            </summary>
+            <param name="data">The byte stream where all data is stored</param>
+            <param name="offset">Offset of the uint value to the beginning of the <c>data</c> stream.
+            The offset is automatically increased in case of success to the next position in the data stream.</param>
+            <param name="readString">Returns the read string value</param>
+            <returns>True if an value was read from the byte stream, otherwise false.</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Dftoe.DftoeStreamUtility.readUInt32(System.Byte[],System.Int32@,System.UInt32@)">
+            <summary>
+            Reads an 32Bit unsigned integer value from the <c>data</c> byte stream.
+            </summary>
+            <param name="data">The byte stream where all data is stored</param>
+            <param name="offset">Offset of the uint value to the beginning of the <c>data</c> stream.
+            The offset is automatically increased in case of success to the next position in the data stream.</param>
+            <param name="readUInt32">Returns the read uint value</param>
+            <returns>True if an value was read from the byte stream, otherwise false.</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Dftoe.DftoeStreamUtility.writeInt32(System.Byte[],System.Int32@,System.Int32)">
+            <summary>
+            Writes an 32Bit integer value to the <c>data</c> byte stream.
+            </summary>
+            <param name="data">The byte stream where all data is stored</param>
+            <param name="offset">Describes the offset to the beginning of the <c>data</c> stream where the value shall be written.
+            The offset is automatically increased in case of success to the next position in the data stream.</param>
+            <param name="int32">The int value that shall be written to the data stream.</param>
+            <returns>True if an value was written to the byte stream, otherwise false.</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Dftoe.DftoeStreamUtility.writeUInt32(System.Byte[],System.Int32@,System.UInt32)">
+            <summary>
+            Writes an 32Bit unsigned integer value to the <c>data</c> byte stream.
+            </summary>
+            <param name="data">The byte stream where all data is stored</param>
+            <param name="offset">Describes the offset to the beginning of the <c>data</c> stream where the value shall be written.
+            The offset is automatically increased in case of success to the next position in the data stream.</param>
+            <param name="uint32">The uint value that shall be written to the data stream.</param>
+            <returns>True if an value was written to the byte stream, otherwise false.</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Dftoe.DftoeStreamUtility.readBool(System.Byte[],System.Int32@,System.Boolean@)">
+            <summary>
+            Reads an 32Bit boolean value from the <c>data</c> byte stream.
+            </summary>
+            <param name="data">The byte stream where all data is stored</param>
+            <param name="offset">Offset of the boolean value to the beginning of the <c>data</c> stream.
+            The offset is automatically increased in case of success to the next position in the data stream.</param>
+            <param name="boolVal">Returns the read boolean value</param>
+            <returns>True if an value was read from the byte stream, otherwise false.</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Dftoe.DftoeStreamUtility.writeBool(System.Byte[],System.Int32@,System.Boolean)">
+            <summary>
+            Writes an 32Bit boolean value to the <c>data</c> byte stream.
+            </summary>
+            <param name="data">The byte stream where all data is stored</param>
+            <param name="offset">Describes the offset to the beginning of the <c>data</c> stream where the value shall be written.
+            The offset is automatically increased in case of success to the next position in the data stream.</param>
+            <param name="boolVal">The bool value that shall be written to the data stream.</param>
+            <returns>True if an value was read from the byte stream, otherwise false.</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Dftoe.DftoeStreamUtility.toString(ET.FW.Hal.Dftoe.DftoeDatatype)">
+            <summary>
+            Provides a String representation of a <c>D4TTypeID</c>
+            </summary>
+            <param name="id">The TypeID which shall be converted to a String</param>
+            <returns>A String representation of <c>D4TTypeID</c></returns>
+        </member>
+        <member name="T:ET.FW.Hal.Dftoe.Exceptions.DftoeUnconnectedException">
+            <summary>
+            Dftoe unconnected exception.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Dftoe.Exceptions.DftoeUnconnectedException.#ctor(ET.FW.Hal.Dftoe.DftoeFunctionId,System.String,System.Byte[])">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="functionId">function id</param>
+            <param name="errorMessage">error message</param>
+            <param name="messageData">message data</param>
+        </member>
+        <member name="T:ET.FW.Hal.Dftoe.Exceptions.DftoeBytestreamException">
+            <summary>
+            Dftoe bytestream exception.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Dftoe.Exceptions.DftoeBytestreamException.#ctor(ET.FW.Hal.Dftoe.DftoeFunctionId,System.String,System.Byte[])">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="functionId">function id</param>
+            <param name="errorMessage">error message</param>
+            <param name="messageData">message data</param>
+        </member>
+        <member name="T:ET.FW.Hal.Dftoe.Exceptions.DftoeGeneralException">
+            <summary>
+            Dftoe general exception
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Dftoe.Exceptions.DftoeGeneralException.#ctor(ET.FW.Hal.Dftoe.DftoeFunctionId,System.String,System.Byte[])">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="functionId">function id</param>
+            <param name="errorMessage">error message</param>
+            <param name="messageData">message data</param>
+        </member>
+        <member name="P:ET.FW.Hal.Dftoe.Exceptions.DftoeGeneralException.FunctionId">
+            <summary>
+            Function id accessor.
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Dftoe.Exceptions.DftoeGeneralException.MessageData">
+            <summary>
+            Message data accessor.
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Dftoe.Exceptions.DftoeTimeoutException">
+            <summary>
+            Dftoe timeout exception.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Dftoe.Exceptions.DftoeTimeoutException.#ctor(ET.FW.Hal.Dftoe.DftoeFunctionId,System.String,System.Byte[])">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="functionId">function id</param>
+            <param name="errorMessage">error message</param>
+            <param name="messageData">message data</param>
+        </member>
+        <member name="T:ET.FW.Hal.Dftoe.Log">
+            <summary>
+            Logging handler.
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Dftoe.Log.Dftoe">
+            <summary>
+            Associated logging object.
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Dftoe.Messages.DftoeKeyboardControlMessage">
+            <summary>
+            Dftoe keyboard control message.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Dftoe.Messages.DftoeKeyboardControlMessage.#ctor">
+            <summary>
+            The Constructor.<para></para>
+            Changed to public for DB
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Dftoe.Messages.DftoeMessage">
+            <summary>
+            Dftoe message.
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Dftoe.Messages.DftoeMessage.FunctionId">
+            <summary>
+            Function id accessor.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Dftoe.Messages.DftoeMessage.Serialize(System.IO.BinaryWriter)">
+            <summary>
+            Serializes the CanMessage using the specified writer.
+            </summary>
+            <param name="writer">The writer.</param>
+        </member>
+        <member name="M:ET.FW.Hal.Dftoe.Messages.DftoeMessage.Deserialize(System.IO.BinaryReader)">
+            <summary>
+            Deserializes the CanMessage using the the specified reader.
+            </summary>
+            <param name="reader">The reader.</param>
+        </member>
+        <member name="T:ET.FW.Hal.Dftoe.Messages.DftoeMessageFactory">
+            <summary>
+            Dftoe message factory.
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Dftoe.Messages.DftoeMessageFactory.MessageType">
+            <summary>
+            Supported messages.
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Dftoe.Messages.DftoeMessageFactory.instance">
+            <summary>
+            Message factory singleton instance.
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Dftoe.Messages.DftoeMessageFactory.types">
+            <summary>
+            Message types matrix
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Dftoe.Messages.DftoeMessageFactory.#ctor">
+            <summary>
+            Constructor.
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Dftoe.Messages.DftoeMessageFactory.Instance">
+            <summary>
+            Message factory accssor.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Dftoe.Messages.DftoeMessageFactory.CreateMessage``1(System.UInt32)">
+            <summary>
+            Create message method.
+            </summary>
+            <typeparam name="T">message type</typeparam>
+            <param name="functionId">function id</param>
+            <returns>created message</returns>
+        </member>
+        <member name="P:ET.FW.Hal.Dftoe.Messages.DftoeMessageFactory.Types">
+            <summary>
+            Message types matrix accessor.
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Dftoe.Messages.DftoeRemoteResetMessage">
+            <summary>
+            Dftoe remote reset message.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Dftoe.Messages.DftoeRemoteResetMessage.#ctor">
+            <summary>
+            Constructor.<para></para>
+            Changed to public for DB
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Dftoe.Messages.DftoeScreenshotsMessage">
+            <summary>
+            Dftoe screenshots message.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Dftoe.Messages.DftoeScreenshotsMessage.#ctor">
+            <summary>
+            Constructor.<para></para>
+            Changed to public for DB
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Dftoe.Messages.DftoeTraceAndModifyMessage">
+            <summary>
+            Dftoe trace and modify message.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Dftoe.Messages.DftoeTraceAndModifyMessage.#ctor">
+            <summary>
+            Constructor.<para></para>
+            Changed to public for DB
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Dftoe.Messages.IDftoeKeyboardControlMessage">
+            <summary>
+            Dftoe keyboard control message interface.
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Dftoe.Messages.IDftoeMessage">
+            <summary>
+            Dftoe message interface.
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Dftoe.Messages.IDftoeMessage.FunctionId">
+            <summary>
+            Function id.
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Dftoe.Messages.IDftoeMessageFactory">
+            <summary>
+            Dftoe message interface.
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Dftoe.Messages.IDftoeRemoteResetMessage">
+            <summary>
+            Dftoe remote reset message interface.
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Dftoe.Messages.IDftoeScreenshotsMessage">
+            <summary>
+            Dftoe screenshots message interface.
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Dftoe.Messages.IDftoeTraceAndModifyMessage">
+            <summary>
+            Dftoe trace and modify message interface.
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Dftoe.Protocols.DftoeKeyboardControlProtocol">
+            <summary>
+            Dftoe keyboard control protocol.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Dftoe.Protocols.DftoeKeyboardControlProtocol.#ctor(ET.FW.Hal.Messaging.ITransmitter{ET.FW.Hal.Dftoe.Messages.IDftoeKeyboardControlMessage})">
+            <summary>
+            Initializes a new instance of the <see cref="T:ET.FW.Hal.Dftoe.Protocols.DftoeKeyboardControlProtocol"/> class.
+            </summary>
+            <param name="transmitter">associated transmitter</param>
+        </member>
+        <member name="P:ET.FW.Hal.Dftoe.Protocols.DftoeKeyboardControlProtocol.Port">
+            <summary>
+            Port number to access keyboard control hardware interface.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Dftoe.Protocols.DftoeKeyboardControlProtocol.CreateMessage(ET.FW.Hal.Dftoe.DftoeFunctionId,ET.FW.Core.Messaging.RxTx,System.Byte[])">
+            <summary>
+            Create keyboard control message.
+            </summary>
+            <param name="functionId">function id</param>
+            <param name="direction">transportation direction</param>
+            <param name="messageData">message data</param>
+            <returns>new keyboard control message</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Dftoe.Protocols.DftoeKeyboardControlProtocol.SendMessage(ET.FW.Hal.Dftoe.Messages.IDftoeKeyboardControlMessage)">
+            <summary>
+            Send keyboard control message.
+            </summary>
+            <param name="message">keyboard control message</param>
+            <returns>sending message result</returns>
+        </member>
+        <member name="T:ET.FW.Hal.Dftoe.Protocols.DftoeProtocol`1">
+            <summary>
+            Dftoe base protocol.
+            </summary>
+            <typeparam name="TMessage">Message Type</typeparam>
+        </member>
+        <member name="E:ET.FW.Hal.Dftoe.Protocols.DftoeProtocol`1.OnDftoeDevicePingReceived">
+            <summary>
+            Dftoe device ping received handler.
+            </summary>
+        </member>
+        <member name="E:ET.FW.Hal.Dftoe.Protocols.DftoeProtocol`1.OnConnectionStateChangedReceived">
+            <summary>
+            Connection state changed received handler.
+            </summary>
+        </member>
+        <member name="E:ET.FW.Hal.Dftoe.Protocols.DftoeProtocol`1.OnInvalidFunctionIdReceived">
+            <summary>
+            Invalid function id received handler.
+            </summary>
+        </member>
+        <member name="E:ET.FW.Hal.Dftoe.Protocols.DftoeProtocol`1.OnInvalidParameterReceived">
+            <summary>
+            Invalid parameter received handler.
+            </summary>
+        </member>
+        <member name="E:ET.FW.Hal.Dftoe.Protocols.DftoeProtocol`1.OnErrorMessageReceived">
+            <summary>
+            Error message received handler.
+            </summary>
+        </member>
+        <member name="E:ET.FW.Hal.Dftoe.Protocols.DftoeProtocol`1.OnHardwareMessageReceived">
+            <summary>
+            Hardware message received handler.
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Dftoe.Protocols.DftoeProtocol`1.Transmitter">
+            <summary>
+            Transmitter accessor.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Dftoe.Protocols.DftoeProtocol`1.#ctor(ET.FW.Hal.Messaging.ITransmitter{`0})">
+            <summary>
+            The Constructor.
+            </summary>
+            <param name="transmitter">associated transmitter</param>
+        </member>
+        <member name="P:ET.FW.Hal.Dftoe.Protocols.DftoeProtocol`1.IsConnected">
+            <summary>
+            Check for headunit connection.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ET.FW.Hal.Dftoe.Protocols.DftoeProtocol`1.Connect">
+            <summary>
+            Connect to headunit.
+            </summary>
+            <returns>True if connected</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Dftoe.Protocols.DftoeProtocol`1.Disconnect">
+            <summary>
+            Disconnect from headunit.
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Dftoe.Protocols.DftoeProtocol`1.Port">
+            <summary>
+            Hardware port number accessor.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Dftoe.Protocols.DftoeProtocol`1.CreateMessage(ET.FW.Hal.Dftoe.DftoeFunctionId,ET.FW.Core.Messaging.RxTx,System.Byte[])">
+            <summary>
+            Create keyboard control message.
+            </summary>
+            <param name="functionId">function id</param>
+            <param name="direction">transportation direction</param>
+            <param name="messageData">message data</param>
+            <returns>new keyboard control message</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Dftoe.Protocols.DftoeProtocol`1.SendMessage(`0)">
+            <summary>
+            Send keyboard control message.
+            </summary>
+            <param name="message">keyboard control message</param>
+            <returns>sending message result</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Dftoe.Protocols.DftoeProtocol`1.OnConnectionStateChangedReceivedHandler(System.Boolean)">
+            <summary>
+            On connection state changed received handler.
+            </summary>
+            <param name="newConnectionState">New connection state</param>
+        </member>
+        <member name="M:ET.FW.Hal.Dftoe.Protocols.DftoeProtocol`1.OnDftoeDevicePingReceivedHandler">
+            <summary>
+            On dftoe device ping received handler.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Dftoe.Protocols.DftoeProtocol`1.OnInvalidFunctionIdReceivedHandler(ET.FW.Hal.Dftoe.DftoeFunctionId,System.Byte[])">
+            <summary>
+            On invalid function received handler.
+            </summary>
+            <param name="functionID">Function ID</param>
+            <param name="messageData">Message data</param>
+        </member>
+        <member name="M:ET.FW.Hal.Dftoe.Protocols.DftoeProtocol`1.OnInvalidParameterReceivedHandler(ET.FW.Hal.Dftoe.DftoeFunctionId,System.UInt32,System.Byte[])">
+            <summary>
+            On invalid parameter received handler.
+            </summary>
+            <param name="function">Function ID</param>
+            <param name="parameterNr">Parameter ID</param>
+            <param name="messageData">Message data</param>
+        </member>
+        <member name="M:ET.FW.Hal.Dftoe.Protocols.DftoeProtocol`1.OnErrorMessageReceivedHandler(System.String,System.Byte[])">
+            <summary>
+            On error message received handler.
+            </summary>
+            <param name="errorMsg">Error message</param>
+            <param name="messageData">Message data</param>
+        </member>
+        <member name="M:ET.FW.Hal.Dftoe.Protocols.DftoeProtocol`1.OnHardwareMessageReceivedHandler(ET.FW.Hal.Dftoe.DftoeFunctionId,System.Byte[])">
+            <summary>
+            Handle messages received from hardware.
+            </summary>
+            <param name="functionId">function id</param>
+            <param name="messageData">message data</param>
+        </member>
+        <member name="T:ET.FW.Hal.Dftoe.Protocols.DftoeRemoteResetProtocol">
+            <summary>
+            Dftoe remote reset protocol.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Dftoe.Protocols.DftoeRemoteResetProtocol.#ctor(ET.FW.Hal.Messaging.ITransmitter{ET.FW.Hal.Dftoe.Messages.IDftoeRemoteResetMessage})">
+            <summary>
+            Initializes a new instance of the <see cref="T:ET.FW.Hal.Dftoe.Protocols.DftoeRemoteResetProtocol"/> class.
+            </summary>
+            <param name="transmitter">associated transmitter</param>
+        </member>
+        <member name="P:ET.FW.Hal.Dftoe.Protocols.DftoeRemoteResetProtocol.Port">
+            <summary>
+            Port number to access remote reset hardware interface.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Dftoe.Protocols.DftoeRemoteResetProtocol.CreateMessage(ET.FW.Hal.Dftoe.DftoeFunctionId,ET.FW.Core.Messaging.RxTx,System.Byte[])">
+            <summary>
+            Create remote reset message.
+            </summary>
+            <param name="functionId">function id</param>
+            <param name="direction">transportation direction</param>
+            <param name="messageData">message data</param>
+            <returns>new remote reset message</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Dftoe.Protocols.DftoeRemoteResetProtocol.SendMessage(ET.FW.Hal.Dftoe.Messages.IDftoeRemoteResetMessage)">
+            <summary>
+            Send remote reset message.
+            </summary>
+            <param name="message">remote reset message</param>
+            <returns>sending message result</returns>
+        </member>
+        <member name="T:ET.FW.Hal.Dftoe.Protocols.DftoeScreenshotsProtocol">
+            <summary>
+            Dftoe screenshots protocol.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Dftoe.Protocols.DftoeScreenshotsProtocol.#ctor(ET.FW.Hal.Messaging.ITransmitter{ET.FW.Hal.Dftoe.Messages.IDftoeScreenshotsMessage})">
+            <summary>
+            Initializes a new instance of the <see cref="T:ET.FW.Hal.Dftoe.Protocols.DftoeScreenshotsProtocol"/> class.
+            </summary>
+            <param name="transmitter">associated transmitter</param>
+        </member>
+        <member name="P:ET.FW.Hal.Dftoe.Protocols.DftoeScreenshotsProtocol.Port">
+            <summary>
+            Port number to access screenshots hardware interface.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Dftoe.Protocols.DftoeScreenshotsProtocol.CreateMessage(ET.FW.Hal.Dftoe.DftoeFunctionId,ET.FW.Core.Messaging.RxTx,System.Byte[])">
+            <summary>
+            Create screenshots message.
+            </summary>
+            <param name="functionId">function id</param>
+            <param name="direction">transportation direction</param>
+            <param name="messageData">message data</param>
+            <returns>new screenshots message</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Dftoe.Protocols.DftoeScreenshotsProtocol.SendMessage(ET.FW.Hal.Dftoe.Messages.IDftoeScreenshotsMessage)">
+            <summary>
+            Send screenshots message.
+            </summary>
+            <param name="message">screenshots message</param>
+            <returns>sending message result</returns>
+        </member>
+        <member name="T:ET.FW.Hal.Dftoe.Protocols.DftoeTraceAndModifyProtocol">
+            <summary>
+            Dftoe trace and modify protocol.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Dftoe.Protocols.DftoeTraceAndModifyProtocol.#ctor(ET.FW.Hal.Messaging.ITransmitter{ET.FW.Hal.Dftoe.Messages.IDftoeTraceAndModifyMessage})">
+            <summary>
+            Initializes a new instance of the <see cref="T:ET.FW.Hal.Dftoe.Protocols.DftoeTraceAndModifyProtocol"/> class.
+            </summary>
+            <param name="transmitter">associated transmitter</param>
+        </member>
+        <member name="P:ET.FW.Hal.Dftoe.Protocols.DftoeTraceAndModifyProtocol.Port">
+            <summary>
+            Port number to access trace and modify hardware interface.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Dftoe.Protocols.DftoeTraceAndModifyProtocol.CreateMessage(ET.FW.Hal.Dftoe.DftoeFunctionId,ET.FW.Core.Messaging.RxTx,System.Byte[])">
+            <summary>
+            Create trace and modify message.
+            </summary>
+            <param name="functionId">function id</param>
+            <param name="direction">transportation direction</param>
+            <param name="messageData">message data</param>
+            <returns>new trace and modify message</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Dftoe.Protocols.DftoeTraceAndModifyProtocol.SendMessage(ET.FW.Hal.Dftoe.Messages.IDftoeTraceAndModifyMessage)">
+            <summary>
+            Send trace and modify message.
+            </summary>
+            <param name="message">trace and modify message</param>
+            <returns>sending message result</returns>
+        </member>
+        <member name="T:ET.FW.Hal.Dftoe.Protocols.IDftoeKeyboardControlProtocol">
+            <summary>
+            Dftoe keyboard control protocol.
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Dftoe.Protocols.IDftoeProtocol`1">
+            <summary>
+            Dftoe base protocol.
+            </summary>
+            <typeparam name="TMessage">Message type</typeparam>
+        </member>
+        <member name="E:ET.FW.Hal.Dftoe.Protocols.IDftoeProtocol`1.OnDftoeDevicePingReceived">
+            <summary>
+            Dftoe device ping received handler.
+            </summary>
+        </member>
+        <member name="E:ET.FW.Hal.Dftoe.Protocols.IDftoeProtocol`1.OnConnectionStateChangedReceived">
+            <summary>
+            Connection state changed received handler.
+            </summary>
+        </member>
+        <member name="E:ET.FW.Hal.Dftoe.Protocols.IDftoeProtocol`1.OnInvalidFunctionIdReceived">
+            <summary>
+            Invalid function id received handler.
+            </summary>
+        </member>
+        <member name="E:ET.FW.Hal.Dftoe.Protocols.IDftoeProtocol`1.OnInvalidParameterReceived">
+            <summary>
+            Invalid parameter received handler.
+            </summary>
+        </member>
+        <member name="E:ET.FW.Hal.Dftoe.Protocols.IDftoeProtocol`1.OnErrorMessageReceived">
+            <summary>
+            Error message received handler.
+            </summary>
+        </member>
+        <member name="E:ET.FW.Hal.Dftoe.Protocols.IDftoeProtocol`1.OnHardwareMessageReceived">
+            <summary>
+            Hardware message received handler.
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Dftoe.Protocols.IDftoeProtocol`1.IsConnected">
+            <summary>
+            Check headunit connection.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Dftoe.Protocols.IDftoeProtocol`1.Connect">
+            <summary>
+            Connect to headunit.
+            </summary>
+            <returns>True if connected</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Dftoe.Protocols.IDftoeProtocol`1.Disconnect">
+            <summary>
+            Disconnect from headunit.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Dftoe.Protocols.IDftoeProtocol`1.CreateMessage(ET.FW.Hal.Dftoe.DftoeFunctionId,ET.FW.Core.Messaging.RxTx,System.Byte[])">
+            <summary>
+            Create screenshots message.
+            </summary>
+            <param name="functionId">function id</param>
+            <param name="direction">transportation direction</param>
+            <param name="messageData">message data similar to network stream</param>
+            <returns>typed message</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Dftoe.Protocols.IDftoeProtocol`1.SendMessage(`0)">
+            <summary>
+            Send base message.
+            </summary>
+            <param name="message">typed message</param>
+            <returns>result sending message</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Dftoe.Protocols.IDftoeProtocol`1.OnHardwareMessageReceivedHandler(ET.FW.Hal.Dftoe.DftoeFunctionId,System.Byte[])">
+            <summary>
+            Processes receiving message from hardware.
+            </summary>
+            <param name="functionId">message id</param>
+            <param name="messageData">message data</param>
+        </member>
+        <member name="P:ET.FW.Hal.Dftoe.Protocols.IDftoeProtocol`1.Transmitter">
+            <summary>
+            Transmitter accessor.
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Dftoe.Protocols.IDftoeProtocol`1.Port">
+            <summary>
+            Hardware port number.
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Dftoe.Protocols.IDftoeRemoteResetProtocol">
+            <summary>
+            Dftoe remote reset protocol.
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Dftoe.Protocols.IDftoeScreenshotsProtocol">
+            <summary>
+            Dftoe screenshots protocol.
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Dftoe.Protocols.IDftoeTraceAndModifyProtocol">
+            <summary>
+            Dftoe trace and modify protocol.
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Dftoe.Transmitters.DftoeTransmitter">
+            <summary>
+            Dftoe transmitter.
+            </summary>
+        </member>
+        <member name="E:ET.FW.Hal.Dftoe.Transmitters.DftoeTransmitter.OnConnectionStateChangedReceived">
+            <summary>
+            Connection state changed received handler.
+            </summary>
+        </member>
+        <member name="E:ET.FW.Hal.Dftoe.Transmitters.DftoeTransmitter.OnDftoeDevicePingReceived">
+            <summary>
+            Dftoe device ping received handler.
+            </summary>
+        </member>
+        <member name="E:ET.FW.Hal.Dftoe.Transmitters.DftoeTransmitter.OnInvalidFunctionIdReceived">
+            <summary>
+            Invalid function id received handler.
+            </summary>
+        </member>
+        <member name="E:ET.FW.Hal.Dftoe.Transmitters.DftoeTransmitter.OnInvalidParameterReceived">
+            <summary>
+            Invalid parameter received handler.
+            </summary>
+        </member>
+        <member name="E:ET.FW.Hal.Dftoe.Transmitters.DftoeTransmitter.OnErrorMessageReceived">
+            <summary>
+            Error message received handler.
+            </summary>
+        </member>
+        <member name="E:ET.FW.Hal.Dftoe.Transmitters.DftoeTransmitter.OnHardwareMessageReceived">
+            <summary>
+            hardware message received handler.
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Dftoe.Transmitters.DftoeTransmitter.ListenProcState">
+            <summary>
+            Listen Proc State
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Dftoe.Transmitters.DftoeTransmitter.listenThreadEnd">
+            <summary>
+            Stop listen thread object.
+            </summary>
+        </member>
+        <member name="F:ET.FW.Hal.Dftoe.Transmitters.DftoeTransmitter.listenThread">
+            <summary>The receive thread</summary>
+        </member>
+        <member name="F:ET.FW.Hal.Dftoe.Transmitters.DftoeTransmitter.ipclient">
+            <summary>Contains the IP connection</summary>
+        </member>
+        <member name="F:ET.FW.Hal.Dftoe.Transmitters.DftoeTransmitter.ipstream">
+            <summary>Contains the IP connection</summary>
+        </member>
+        <member name="P:ET.FW.Hal.Dftoe.Transmitters.DftoeTransmitter.IP">
+            <summary>
+            Hardware ip address accessor.
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Dftoe.Transmitters.DftoeTransmitter.Port">
+            <summary>
+            Hardware port number accessor.
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Dftoe.Transmitters.DftoeTransmitter.Name">
+            <summary>
+            Protocol name accessor.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Dftoe.Transmitters.DftoeTransmitter.#ctor(System.String)">
+            <summary>
+            The Constructor.
+            </summary>
+            <param name="name">transmitter name</param>
+        </member>
+        <member name="M:ET.FW.Hal.Dftoe.Transmitters.DftoeTransmitter.SendMessage(ET.FW.Hal.Dftoe.Messages.IDftoeKeyboardControlMessage)">
+            <summary>
+            Send dftoe logging message.
+            </summary>
+            <param name="message">dftoe keyboard and logging message</param>
+            <returns>sending message result</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Dftoe.Transmitters.DftoeTransmitter.SendMessage(ET.FW.Hal.Dftoe.Messages.IDftoeRemoteResetMessage)">
+            <summary>
+            Send dftoe remote reset message.
+            </summary>
+            <param name="message">dftoe remote reset message</param>
+            <returns>sending message result</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Dftoe.Transmitters.DftoeTransmitter.SendMessage(ET.FW.Hal.Dftoe.Messages.IDftoeTraceAndModifyMessage)">
+            <summary>
+            Send dftoe trace and modify message.
+            </summary>
+            <param name="message">dftoe trace and modify message</param>
+            <returns>sending message result</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Dftoe.Transmitters.DftoeTransmitter.SendMessage(ET.FW.Hal.Dftoe.Messages.IDftoeScreenshotsMessage)">
+            <summary>
+            Send dftoe screenshots message.
+            </summary>
+            <param name="message">dftoe screenshots message</param>
+            <returns>sending message result</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Dftoe.Transmitters.DftoeTransmitter.SendMessage(ET.FW.Hal.Dftoe.Messages.IDftoeMessage)">
+            <summary>
+            Send dftoe message. Message will be transformed to a network
+            stream and sent to associated hardware.
+            </summary>
+            <param name="message">dftoe message</param>
+            <returns>sending message result</returns>
+        </member>
+        <member name="P:ET.FW.Hal.Dftoe.Transmitters.DftoeTransmitter.IsConnected">
+            <summary>
+            IsConnected accessor.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ET.FW.Hal.Dftoe.Transmitters.DftoeTransmitter.Connect">
+            <summary>
+            Connect to hardware.
+            </summary>
+            <returns>True if connected</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Dftoe.Transmitters.DftoeTransmitter.Disconnect">
+            <summary>
+            Disconnect from hardware.
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Dftoe.Transmitters.DftoeTransmitter.ListenerThread">
+            <summary>
+            Listener Thread
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Dftoe.Transmitters.DftoeTransmitter.HardwareMessageAnalyzer(ET.FW.Hal.Dftoe.DftoeFunctionId,System.Byte[])">
+            <summary>
+            Hardware Messag eAnalyzer
+            </summary>
+            <param name="functionId">Function ID</param>
+            <param name="messageData">Message data</param>
+        </member>
+        <member name="M:ET.FW.Hal.Dftoe.Transmitters.DftoeTransmitter.StringToByteArray(System.String)">
+            <summary>
+            Comverts String To ByteArray
+            </summary>
+            <param name="stringAddress">String adress</param>
+            <returns>Byte array</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Dftoe.Transmitters.DftoeTransmitter.SendToHardware(ET.FW.Hal.Dftoe.DftoeFunctionId,System.Byte[])">
+            <summary>
+            Send data to hardware.
+            </summary>
+            <param name="functionID">Function ID</param>
+            <param name="parameters">Byte parameters</param>
+        </member>
+        <member name="M:ET.FW.Hal.Dftoe.Transmitters.DftoeTransmitter.MessageDataToString(System.Byte[])">
+            <summary>
+            Converts Message data to string
+            </summary>
+            <param name="data">Message data</param>
+            <returns>String of data</returns>
+        </member>
+        <member name="T:ET.FW.Hal.Dftoe.Transmitters.ExtendedConnectionStateChangedReceivedHandler">
+            <summary>
+            Connection changed received delegate.
+            </summary>
+            <param name="state">The State</param>
+        </member>
+        <member name="T:ET.FW.Hal.Dftoe.Transmitters.ExtendedDftoeDevicePingReceivedHandler">
+            <summary>
+            Dftoe device ping received delegate.
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Dftoe.Transmitters.ExtendedInvalidFunctionIdReceivedHandler">
+            <summary>
+            Invalid function id received delegate.
+            </summary>
+            <param name="functionId">Function ID</param>
+            <param name="messageData">message data</param>
+        </member>
+        <member name="T:ET.FW.Hal.Dftoe.Transmitters.ExtendedInvalidParameterReceivedHandler">
+            <summary>
+            Invalid parameter received delegate.
+            </summary>
+            <param name="functionId">Function ID</param>
+            <param name="parameterId">Parameter ID</param>
+            <param name="messageData">message data</param>
+        </member>
+        <member name="T:ET.FW.Hal.Dftoe.Transmitters.ExtendedErrorMessageReceivedHandler">
+            <summary>
+            Error message received delegate.
+            </summary>
+            <param name="errorMessage">Error message</param>
+            <param name="messageData">message data</param>
+        </member>
+        <member name="T:ET.FW.Hal.Dftoe.Transmitters.IDftoeTransmitter">
+            <summary>
+            Transmitter interface.
+            </summary>
+        </member>
+        <member name="E:ET.FW.Hal.Dftoe.Transmitters.IDftoeTransmitter.OnDftoeDevicePingReceived">
+            <summary>
+            Dftoe device ping received handler.
+            </summary>
+        </member>
+        <member name="E:ET.FW.Hal.Dftoe.Transmitters.IDftoeTransmitter.OnConnectionStateChangedReceived">
+            <summary>
+            Connection state changed received handler.
+            </summary>
+        </member>
+        <member name="E:ET.FW.Hal.Dftoe.Transmitters.IDftoeTransmitter.OnInvalidFunctionIdReceived">
+            <summary>
+            Invalid function id received handler.
+            </summary>
+        </member>
+        <member name="E:ET.FW.Hal.Dftoe.Transmitters.IDftoeTransmitter.OnInvalidParameterReceived">
+            <summary>
+            Invalid parameter received handler.
+            </summary>
+        </member>
+        <member name="E:ET.FW.Hal.Dftoe.Transmitters.IDftoeTransmitter.OnErrorMessageReceived">
+            <summary>
+            Error message received handler.
+            </summary>
+        </member>
+        <member name="E:ET.FW.Hal.Dftoe.Transmitters.IDftoeTransmitter.OnHardwareMessageReceived">
+            <summary>
+            Hardware message received handler.
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Dftoe.Transmitters.IDftoeTransmitter.IP">
+            <summary>
+            Hardware ip address.
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Dftoe.Transmitters.IDftoeTransmitter.Port">
+            <summary>
+            Hardware port number.
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Dftoe.Transmitters.IDftoeTransmitter.IsConnected">
+            <summary>
+            Is Connected
+            </summary>
+        </member>
+        <member name="M:ET.FW.Hal.Dftoe.Transmitters.IDftoeTransmitter.Connect">
+            <summary>
+            Connect method.
+            </summary>
+            <returns>connection state</returns>
+        </member>
+        <member name="M:ET.FW.Hal.Dftoe.Transmitters.IDftoeTransmitter.Disconnect">
+            <summary>
+            Disconnect method.
+            </summary>
+        </member>
+    </members>
+</doc>

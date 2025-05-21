@@ -1,0 +1,1453 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ET.Api.Diagnostics</name>
+    </assembly>
+    <members>
+        <member name="T:ET.Api.Diagnostics.AuthenticationDirectionType">
+            <summary>
+            Authentication Direction Type
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.AuthenticationDirectionType.Unidirectional">
+            <summary>AuthenticationDirectionType</summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.AuthenticationDirectionType.Bidirectional">
+            <summary>Stop Routine - positive response required</summary>
+        </member>
+        <member name="T:ET.Api.Diagnostics.AuthenticationTaskType">
+            <summary>
+            Authentication Task Type
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.AuthenticationTaskType.InitiateAuthentication">
+            <summary>Verify Certificate (Initiate Authentication)</summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.AuthenticationTaskType.VerifyCertificateOwnership">
+            <summary>Verify Certificate Ownership</summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.AuthenticationTaskType.DeAuthenticate">
+            <summary>DeAuthenticate</summary>
+        </member>
+        <member name="T:ET.Api.Diagnostics.AuthenticationVerificationResult">
+            <summary>
+            Authentication Verification Result
+            </summary>//todo Update for remianing results from odx-d file
+        </member>
+        <member name="F:ET.Api.Diagnostics.AuthenticationVerificationResult.CertificateVerified">
+            <summary>Certificate verified, Ownership verification necessary</summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.AuthenticationVerificationResult.AuthenticationComplete">
+            <summary>Ownership verified, authentication complete</summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.AuthenticationVerificationResult.DeAuthentication">
+            <summary>
+            De-authentication successful
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.AuthenticationVerificationResult.OwnershipVerified">
+             <summary>
+            Ownership verified, authentication complete, central authentication broadcast triggered
+             </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.AuthenticationVerificationResult.CertificateVerifiedTimeSet">
+             <summary>
+            Certificate verified, Time set
+             </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.AuthenticationVerificationResult.InvalidTimePeriod">
+             <summary>
+            Certificate verification failed - Invalid Time Period
+             </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.AuthenticationVerificationResult.InvalidSignature">
+             <summary>
+            Certificate verification failed - Invalid Signature
+             </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.AuthenticationVerificationResult.InvalidChainOfTrust">
+             <summary>
+            Certificate verification failed - Invalid Chain of Trust
+             </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.AuthenticationVerificationResult.InvalidType">
+             <summary>
+            Certificate verification failed - Invalid Type
+             </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.AuthenticationVerificationResult.InvalidFormat">
+             <summary>
+            Certificate verification failed - Invalid Format
+             </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.AuthenticationVerificationResult.InvalidContent">
+             <summary>
+            Certificate verification failed - Invalid Content
+             </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.AuthenticationVerificationResult.InvalidScope">
+             <summary>
+            Certificate verification failed - Invalid Scope (wrong vehicle, ECU, …)
+             </summary>
+        </member>
+        <member name="T:ET.Api.Diagnostics.BaseDiagnosticsService">
+            <summary>
+            Diagnostics services base class
+            </summary>
+        </member>
+        <member name="M:ET.Api.Diagnostics.BaseDiagnosticsService.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ET.Api.Diagnostics.BaseDiagnosticsService"/> class.
+            </summary>
+            <param name="name">Service name</param>
+        </member>
+        <member name="M:ET.Api.Diagnostics.BaseDiagnosticsService.Dispose">
+            <summary>
+            Shutdown service
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.BaseDiagnosticsService.Ecus">
+            <summary>
+            Collection of ECUs, collection buffers all ECUs which are querried via Read... or Get methods
+            </summary>
+        </member>
+        <member name="T:ET.Api.Diagnostics.Dtc">
+            <summary>
+            ECU error (Diagnostic trouble code)
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.Dtc.Code">
+            <summary>
+            DTC code
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.Dtc.State">
+            <summary>
+            DTC state
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.Dtc.Priority">
+            <summary>
+            DTC priority
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.Dtc.Meaning">
+            <summary>
+            Description of DTC
+            </summary>
+        </member>
+        <member name="T:ET.Api.Diagnostics.Ecu">
+            <summary>
+            Diagnostic wrapper for an ECU
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.Ecu.Type">
+            <summary>
+            Generic type of this ECU
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.Ecu.Info">
+            <summary>
+            ECU information part numbers, versions, etc
+            </summary>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ecu.ReadCurrentDtcs">
+            <summary>
+            Read all identified DTCs
+            </summary>
+            <returns>collection of DTCs</returns>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ecu.ReadSupportedDtcs">
+            <summary>
+            Read all supported DTCs
+            </summary>
+            <returns>collection of DTCs</returns>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ecu.ClearDtc(System.UInt32)">
+            <summary>
+            Clear single DTC
+            </summary>
+            <param name="code">DTC code to clear</param>
+            <returns>
+            Job to monitor async operation
+            </returns>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ecu.ClearAllDtcs">
+            <summary>
+            Clear all identified DTCs
+            </summary>
+            <returns>
+            Job to monitor async operation
+            </returns>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ecu.CreateVariantCoder">
+            <summary>
+            Creates a variant coder
+            </summary>
+            <returns>VariantCoder object</returns>
+        </member>
+        <member name="M:ET.Api.Diagnostics.Ecu.Reset">
+            <summary>
+            Send reset request to this ECU.
+            </summary>
+            <remarks>
+            Some ECUs do not execute the reset immediately, this devices wait for the HU reset to execute own reset.
+            </remarks>
+            <returns>Job which handles the async operation.</returns>
+        </member>
+        <member name="T:ET.Api.Diagnostics.EcuCollection">
+            <summary>
+            Access to ECU objects for diagnostics
+            Abstract base class for data handling, info reading should be implemented in derived classes
+            </summary>
+        </member>
+        <member name="M:ET.Api.Diagnostics.EcuCollection.ReadOne(ET.Api.Diagnostics.EcuType)">
+            <summary>
+            Read information of one ECU 
+            If info is already buffered it is retrieved again
+            </summary>
+            <param name="type">Type of ECU to read from</param>
+            <returns>job to monitor async reading, the job result contains the requested information</returns>
+        </member>
+        <member name="M:ET.Api.Diagnostics.EcuCollection.ReadAll">
+            <summary>
+            Read information of all ECUs, retrieved information is stored in EcuInfos collection
+            If info is already buffered it is retrieved again
+            </summary>
+            <returns>Array of jobs to monitor async read operations, job results are the retrieved information objects</returns>
+        </member>
+        <member name="P:ET.Api.Diagnostics.EcuCollection.AllTypes">
+            <summary>
+            Get array with all ECU types to read 
+            </summary>
+            <remarks>
+            Default implementation returns all EcuTypes except for Undefined
+            </remarks>
+        </member>
+        <member name="M:ET.Api.Diagnostics.EcuCollection.Get(ET.Api.Diagnostics.EcuType)">
+            <summary>
+            Get information of one ECU: If ECU information is in buffer it is returned directly, otherwise ReadOne() is used
+            </summary>
+            <param name="type">Type of ECU to read from</param>
+            <returns>job to monitor async reading, the job result contains the requested information</returns>
+        </member>
+        <member name="P:ET.Api.Diagnostics.EcuCollection.Item(ET.Api.Diagnostics.EcuType)">
+            <summary>
+            Retrieve information for one ECU from buffer
+            </summary>
+            <param name="type">ECU type to get info from</param>
+            <returns>ECU information if available, otherwise null</returns>
+        </member>
+        <member name="F:ET.Api.Diagnostics.EcuCollection.ecus">
+            <summary>
+            Internal buffer for ECU information
+            </summary>
+        </member>
+        <member name="M:ET.Api.Diagnostics.EcuCollection.Remove(ET.Api.Diagnostics.EcuType)">
+            <summary>
+            Removes the specified ECU/type from collection
+            </summary>
+            <param name="type">The type to remove.</param>
+        </member>
+        <member name="M:ET.Api.Diagnostics.EcuCollection.GetEnumerator">
+            <summary>
+            Get typesafe enumerator for ECU infos.
+            </summary>
+            <returns>The enumerator</returns>
+        </member>
+        <member name="M:ET.Api.Diagnostics.EcuCollection.System#Collections#IEnumerable#GetEnumerator">
+            <summary>
+            Get enumerator for ECUs.
+            </summary>
+            <returns>The enumerator</returns>
+        </member>
+        <member name="T:ET.Api.Diagnostics.IAuthenticateDiagnosticsUser">
+            <summary>
+            Interface for AuthenticateDiagnosticsUser Job
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.IAuthenticateDiagnosticsUser.VerificationResult">
+            <summary>
+            Verification result from the "Authenticate_Diagnostic_User_or_Tester_Start" routine
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.IAuthenticateDiagnosticsUser.AuthenticationResult">
+            <summary>
+            Authentication result as byte array from the resp
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.IAuthenticateDiagnosticsUser.Result">
+            <summary>
+            Result of the RoutineControl
+            Returns Completed if the RoutineControl is completed successfully
+            </summary>
+        </member>
+        <member name="T:ET.Api.Diagnostics.IReadEcuInfoJob">
+            <summary>
+            Common interface for jobs which read ECU information
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.IReadEcuInfoJob.EcuType">
+            <summary>
+            Gets the type of the ECU which is queried
+            </summary>
+        </member>
+        <member name="T:ET.Api.Diagnostics.IReadEcuVariantJob">
+            <summary>
+            Reads the ECU variant information
+            </summary>
+        </member>
+        <member name="M:ET.Api.Diagnostics.IReadEcuVariantJob.GetCurrentVariant">
+            <summary>
+            Gets the current variant from ECU
+            </summary>
+        </member>
+        <member name="T:ET.Api.Diagnostics.IReadSystemDate">
+            <summary>
+            Interface for ReadSystemDate Job
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.IReadSystemDate.Date">
+            <summary>
+            Stores the System data read from the ECU
+            </summary>
+        </member>
+        <member name="T:ET.Api.Diagnostics.IReadVcdJob">
+            <summary>
+            Interface for reading the vcd information from an ECU
+            </summary>
+        </member>
+        <member name="T:ET.Api.Diagnostics.ISecuredVariantCoding">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.ISecuredVariantCoding.ErrorText">
+            <summary>
+            ErrorText
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.ISecuredVariantCoding.Identifier">
+            <summary>
+            Service Id
+            </summary>
+        </member>
+        <member name="T:ET.Api.Diagnostics.ISynchronizeSecuredSystemDate">
+            <summary>
+            Interface for SynchronizeSecuredSystemDate routine control
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.ISynchronizeSecuredSystemDate.Nonce">
+            <summary>
+            Extracts the Nonce byte from the response data
+            </summary>
+        </member>
+        <member name="T:ET.Api.Diagnostics.IVcdJob">
+            <summary>
+            Interface for the VCD related jobs
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.IVcdJob.vcdInfo">
+            <summary>
+            Information of VCD to read
+            </summary>
+        </member>
+        <member name="T:ET.Api.Diagnostics.IWriteVcdJob">
+            <summary>
+            Interface to write the VCD info of an ECU
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.IWriteVcdJob.vcd">
+            <summary>
+            VCD to write to ECU
+            </summary>
+        </member>
+        <member name="T:ET.Api.Diagnostics.Log">
+            <summary>
+            Static wrapper for loggers of this assembly
+            </summary>
+            <example>
+            The example shows a common call to add a message to log
+            <code>
+            Log.Diag.Error("An error occured");
+            </code></example>
+        </member>
+        <member name="P:ET.Api.Diagnostics.Log.Diag">
+            <summary>
+            Logger with code "DiagCan"
+            </summary>
+        </member>
+        <member name="T:ET.Api.Diagnostics.VariantCoding.EcuVariantInfo">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.VariantCoding.EcuVariantInfo.Name">
+            <summary>
+            ECU Variant name
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.VariantCoding.EcuVariantInfo.MatchingPatterns">
+            <summary>
+            List of Patters for the ECU variant
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.VariantCoding.EcuVariantInfo.VariantCodingSecurity">
+            <summary>
+            Variant coding security information.
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.VariantCoding.EcuVariantInfo.CeBasSecurity">
+            <summary>
+            CeBas Security information. We can decide whether the diagnostic authentication is required or not based on this.
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.VariantCoding.EcuVariantInfo.IsBaseVariant">
+            <summary>
+            Base Variant
+            </summary>
+        </member>
+        <member name="T:ET.Api.Diagnostics.VariantCoding.EcuPattern">
+            <summary>
+            ECU patterns for a variant
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.VariantCoding.EcuPattern.MatchingInfos">
+            <summary>
+            List of matching information for variant
+            </summary>
+        </member>
+        <member name="T:ET.Api.Diagnostics.VariantCoding.VariantMatchingInfo">
+            <summary>
+            Variant matching information
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.VariantCoding.VariantMatchingInfo.ExpectedValue">
+            <summary>
+            Expected value of Param for the variant
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.VariantCoding.VariantMatchingInfo.DiagServiceName">
+            <summary>
+            Diag serivce to use for querying Param
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.VariantCoding.VariantMatchingInfo.ParamName">
+            <summary>
+            Param to query to identify variant
+            </summary>
+        </member>
+        <member name="T:ET.Api.Diagnostics.VariantCoding.FragmentStructure">
+            <summary>
+            Fragment structure
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.VariantCoding.FragmentStructure.StartByte">
+            <summary>
+            Start byte of the structure
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.VariantCoding.FragmentStructure.Length">
+            <summary>
+            Length in bytes of the structure
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.VariantCoding.FragmentStructure.Fragments">
+            <summary>
+            Fragments of the structure
+            </summary>
+        </member>
+        <member name="T:ET.Api.Diagnostics.VariantCoding.CodingData">
+            <summary>
+            Common base class for Coding Info and Coding String classes
+            </summary>
+            <remarks>
+            Class holds common XML structures for both file formats
+            </remarks>
+        </member>
+        <member name="P:ET.Api.Diagnostics.VariantCoding.CodingData.CbfName">
+            <summary>
+            CBF name of coding invo
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.VariantCoding.CodingData.QntName">
+            <summary>
+            QNT name of coding info
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.VariantCoding.CodingData.Yap">
+            <summary>
+            YAP
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.VariantCoding.CodingData.VersionText">
+            <summary>
+            Internal field used for XML parsing
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.VariantCoding.CodingData.Version">
+            <summary>
+            Version of coding info file
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.VariantCoding.CodingData.SWPartNumbers">
+            <summary>
+            SW part numbers of devices supported by coding info
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.VariantCoding.CodingData.ProtocolType">
+            <summary>
+            Diagnostic communication protocol of devices
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.VariantCoding.CodingData.ExtendedSession">
+            <summary>
+            Command sequence for switching to extended diagnostic session
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.VariantCoding.CodingData.StandardSession">
+            <summary>
+            Command sequence for switchin to standard diagnostic session
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.VariantCoding.CodingData.RequestID">
+            <summary>
+            CAN ID for diag requests
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.VariantCoding.CodingData.D_RQ">
+            <summary>
+            Internal field used for XML parsing
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.VariantCoding.CodingData.ResponseID">
+            <summary>
+            CAN ID for diag responses
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.VariantCoding.CodingData.D_RS">
+            <summary>
+            Internal field used for XML parsing
+            </summary>
+        </member>
+        <member name="M:ET.Api.Diagnostics.VariantCoding.CodingData.ParseUShort(System.String)">
+            <summary>
+            Parse unsigned number, number can be decimal or hex coded
+            </summary>
+            <param name="valueText">number as string (hex numbers must be are prefixed with "0x"</param>
+            <returns>result value</returns>
+        </member>
+        <member name="T:ET.Api.Diagnostics.VariantCoding.VcdBase">
+            <summary>
+            VCD base class with VCD elements which are common to Coding Info and Coding String VCDs
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.VariantCoding.VcdBase.Name">
+            <summary>
+            Description of VCD
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.VariantCoding.VcdBase.ReadIdentifier">
+            <summary>
+            Can diag protocol command sequence for reading of VCD string
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.VariantCoding.VcdBase.WriteIdentifier">
+            <summary>
+            CAN diag protocol command sequence for writing of VCD string
+            </summary>
+        </member>
+        <member name="T:ET.Api.Diagnostics.VariantCoding.CodingInfo">
+            <summary>
+            Variant coding information file "Nutzinformationen"
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.VariantCoding.CodingInfo.noNamespaceSchemaLocation">
+            <summary>
+            Xml Schema
+            </summary>
+        </member>
+        <member name="M:ET.Api.Diagnostics.VariantCoding.CodingInfo.ReadXml(System.String)">
+            <summary>
+            Read Coding Info from XML file
+            </summary>
+            <remarks>
+            XML file is validated against schema during deserialization, validation errors are written to log
+            </remarks>
+            <param name="filename">name of XML-file to read</param>
+            <returns>CodingInfo from file, null on error</returns>
+        </member>
+        <member name="M:ET.Api.Diagnostics.VariantCoding.CodingInfo.ValidateXml(System.String)">
+            <summary>
+            Validate given Coding Info file against Coding Info schema
+            </summary>
+            <param name="filename">Coding Info file name</param>
+            <returns>true if validation succeeds</returns>
+        </member>
+        <member name="M:ET.Api.Diagnostics.VariantCoding.CodingInfo.CreateValidationSettings(System.String)">
+            <summary>
+            Create XmlReader settings with validation
+            </summary>
+            <param name="filename">Coding info filename (used to find schema file)</param>
+            <returns>bewly vreated settings</returns>
+        </member>
+        <member name="F:ET.Api.Diagnostics.VariantCoding.CodingInfo.schema">
+            <summary>
+            Schema for XML validation
+            </summary>
+        </member>
+        <member name="T:ET.Api.Diagnostics.VariantCoding.CodingInfo.VcdInfo">
+            <summary>
+            Coding Info VCD (Variant Coding Domain) information
+            </summary>
+        </member>
+        <member name="T:ET.Api.Diagnostics.VariantCoding.CodingInfo.VcdInfo.FragmentInfo">
+            <summary>
+            Fragment of VCD (a fragment can be a range of bytes or a range of bits
+            </summary>
+        </member>
+        <member name="T:ET.Api.Diagnostics.VariantCoding.CodingInfo.VcdInfo.FragmentInfo.FragmentValue">
+            <summary>
+            Possible value / meaning for an segment
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.VariantCoding.CodingInfo.VcdInfo.FragmentInfo.FragmentValue.Name">
+            <summary>
+            Value name
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.VariantCoding.CodingInfo.VcdInfo.FragmentInfo.FragmentValue.Selected">
+            <summary>
+            Selected flag
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.VariantCoding.CodingInfo.VcdInfo.FragmentInfo.FragmentValue.Data">
+            <summary>
+            Coding data for this value
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.VariantCoding.CodingInfo.VcdInfo.FragmentInfo.FragmentValue.SupplementKey">
+            <summary>
+            Supplement key
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.VariantCoding.CodingInfo.VcdInfo.FragmentInfo.FragmentValue.Code">
+            <summary>
+            Codes string
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.VariantCoding.CodingInfo.VcdInfo.FragmentInfo.FragmentValue.Conversion">
+            <summary>
+            Conversion info for the Fragment Value
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.VariantCoding.CodingInfo.VcdInfo.FragmentInfo.FragmentValue.IsInvalid">
+            <summary>
+            Value is Invalid
+            </summary>
+        </member>
+        <member name="T:ET.Api.Diagnostics.VariantCoding.CodingInfo.VcdInfo.FragmentInfo.FragmentValue.ConversionInfo">
+            <summary>
+            Conversion information for Framgment values.
+            </summary>
+        </member>
+        <member name="M:ET.Api.Diagnostics.VariantCoding.CodingInfo.VcdInfo.FragmentInfo.FragmentValue.ConversionInfo.#ctor">
+            <summary>
+            Constuctor
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.VariantCoding.CodingInfo.VcdInfo.FragmentInfo.FragmentValue.ConversionInfo.UpperLimit">
+            <summary>
+            Upper Limit for Value
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.VariantCoding.CodingInfo.VcdInfo.FragmentInfo.FragmentValue.ConversionInfo.LowerLimit">
+            <summary>
+            Lower Limit for Value
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.VariantCoding.CodingInfo.VcdInfo.FragmentInfo.FragmentValue.ConversionInfo.Offset">
+            <summary>
+            Offset
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.VariantCoding.CodingInfo.VcdInfo.FragmentInfo.FragmentValue.ConversionInfo.NumeratorFactor">
+            <summary>
+            Factor used for Numerator
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.VariantCoding.CodingInfo.VcdInfo.FragmentInfo.FragmentValue.ConversionInfo.DenominatorFactor">
+            <summary>
+            Factor used for Denominator
+            </summary>
+        </member>
+        <member name="T:ET.Api.Diagnostics.VariantCoding.CodingInfo.VcdInfo.FragmentInfo.TERMINATION">
+            <summary>
+            Termination Min Max Length Type
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.VariantCoding.CodingInfo.VcdInfo.FragmentInfo.TERMINATION.ENDOFPDU">
+            <summary>
+            End of Pdu Termination
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.VariantCoding.CodingInfo.VcdInfo.FragmentInfo.TERMINATION.ZERO">
+            <summary>
+            Zero Termination
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.VariantCoding.CodingInfo.VcdInfo.FragmentInfo.TERMINATION.HEXFF">
+            <summary>
+            Hex Termination
+            </summary>
+        </member>
+        <member name="T:ET.Api.Diagnostics.VariantCoding.CodingInfo.VcdInfo.FragmentInfo.DATATYPE">
+            <summary>
+            Termination Min Max Length Type
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.VariantCoding.CodingInfo.VcdInfo.FragmentInfo.DATATYPE.A_INT32">
+            <remarks/>
+        </member>
+        <member name="F:ET.Api.Diagnostics.VariantCoding.CodingInfo.VcdInfo.FragmentInfo.DATATYPE.A_UINT32">
+            <remarks/>
+        </member>
+        <member name="F:ET.Api.Diagnostics.VariantCoding.CodingInfo.VcdInfo.FragmentInfo.DATATYPE.A_FLOAT32">
+            <remarks/>
+        </member>
+        <member name="F:ET.Api.Diagnostics.VariantCoding.CodingInfo.VcdInfo.FragmentInfo.DATATYPE.A_FLOAT64">
+            <remarks/>
+        </member>
+        <member name="F:ET.Api.Diagnostics.VariantCoding.CodingInfo.VcdInfo.FragmentInfo.DATATYPE.A_ASCIISTRING">
+            <remarks/>
+        </member>
+        <member name="F:ET.Api.Diagnostics.VariantCoding.CodingInfo.VcdInfo.FragmentInfo.DATATYPE.A_UTF8STRING">
+            <remarks/>
+        </member>
+        <member name="F:ET.Api.Diagnostics.VariantCoding.CodingInfo.VcdInfo.FragmentInfo.DATATYPE.A_UNICODE2STRING">
+            <remarks/>
+        </member>
+        <member name="F:ET.Api.Diagnostics.VariantCoding.CodingInfo.VcdInfo.FragmentInfo.DATATYPE.A_BYTEFIELD">
+            <remarks/>
+        </member>
+        <member name="F:ET.Api.Diagnostics.VariantCoding.CodingInfo.VcdInfo.FragmentInfo.DATATYPE.A_UINT64">
+            <remarks/>
+        </member>
+        <member name="F:ET.Api.Diagnostics.VariantCoding.CodingInfo.VcdInfo.FragmentInfo.DATATYPE.A_LEADING_LEGNTH_BYTEFIELD">
+            <remarks/>
+        </member>
+        <member name="F:ET.Api.Diagnostics.VariantCoding.CodingInfo.VcdInfo.FragmentInfo.DATATYPE.MIN_MAX_LENGTH_TYPE">
+            <remarks/>
+        </member>
+        <member name="F:ET.Api.Diagnostics.VariantCoding.CodingInfo.VcdInfo.FragmentInfo.DATATYPE.A_NONE">
+            <remarks/>
+        </member>
+        <member name="P:ET.Api.Diagnostics.VariantCoding.CodingInfo.VcdInfo.FragmentInfo.Name">
+            <summary>
+            Fragment name
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.VariantCoding.CodingInfo.VcdInfo.FragmentInfo.Startbyte">
+            <summary>
+            Index of first byte of fragment
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.VariantCoding.CodingInfo.VcdInfo.FragmentInfo.Startbit">
+            <summary>
+            Index of first fragment byte in Startbyte
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.VariantCoding.CodingInfo.VcdInfo.FragmentInfo.BitLength">
+            <summary>
+            Fragment size in bits
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.VariantCoding.CodingInfo.VcdInfo.FragmentInfo.MinBitLength">
+            <summary>
+            Fragment size Min Bit Length
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.VariantCoding.CodingInfo.VcdInfo.FragmentInfo.TerminationType">
+            <summary>
+            Termination Type
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.VariantCoding.CodingInfo.VcdInfo.FragmentInfo.DataType">
+            <summary>
+            Data Type
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.VariantCoding.CodingInfo.VcdInfo.FragmentInfo.BaseDataType">
+            <summary>
+            Data Type
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.VariantCoding.CodingInfo.VcdInfo.FragmentInfo.DisplayInfo">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.VariantCoding.CodingInfo.VcdInfo.FragmentInfo.Values">
+            <summary>
+            Possible values for the fragment ("Meaning" inm XML)
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.VariantCoding.CodingInfo.VcdInfo.FragmentInfo.DefaultValue">
+            <summary>
+            Default value
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.VariantCoding.CodingInfo.VcdInfo.FragmentInfo.ConstantValue">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.VariantCoding.CodingInfo.VcdInfo.Default">
+            <summary>
+            Default value as hex string
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.VariantCoding.CodingInfo.VcdInfo.Fragments">
+            <summary>
+            Fragments of VCD
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.VariantCoding.CodingInfo.VcdInfo.EndOfPduFragmentStructure">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.VariantCoding.CodingInfo.Date">
+            <summary>
+            Change time of Coding Info
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.VariantCoding.CodingInfo.Vcds">
+            <summary>
+            VCDs of this ECU
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.VariantCoding.CodingInfo.VehicleLine">
+            <summary>
+            Vehicle Line (e.g. BR212 -> 212)
+            </summary>
+            <remarks>Value is extracted from XML-File name</remarks>
+            <value>vehicle line number, 0 for undefined</value>
+        </member>
+        <member name="T:ET.Api.Diagnostics.VariantCoding.DisplayDetails">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.VariantCoding.DisplayDetails.Type">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.VariantCoding.DisplayDetails.Precision">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:ET.Api.Diagnostics.VariantCoding.DisplayType">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.VariantCoding.DisplayType.Undefined">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.VariantCoding.DisplayType.Hexadecimal">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.VariantCoding.DisplayType.Decimal">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.VariantCoding.DisplayType.Binary">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.VariantCoding.DisplayType.Octal">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.VariantCoding.DisplayType.Float">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:ET.Api.Diagnostics.VariantCoding.DiagServiceType">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.VariantCoding.DiagServiceType.VariantCodingData">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.VariantCoding.DiagServiceType.CurrentData">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.VariantCoding.DiagServiceType.StoredData">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.VariantCoding.DiagServiceType.Control">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.VariantCoding.DiagServiceType.Routine">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.VariantCoding.DiagServiceType.Identification">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.VariantCoding.DiagServiceType.Fault">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.VariantCoding.DiagServiceType.Function">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.VariantCoding.DiagServiceType.Session">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.VariantCoding.DiagServiceType.Communication">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.VariantCoding.DiagServiceType.TesterPresent">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.VariantCoding.DiagServiceType.SAR">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.VariantCoding.DiagServiceType.FileTransfer">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.VariantCoding.DiagServiceType.Security">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.VariantCoding.DiagServiceType.Unknown">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:ET.Api.Diagnostics.VariantCoding.DiagServiceInfo">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:ET.Api.Diagnostics.VariantCoding.DiagServiceInfo.#ctor">
+            <summary>
+            Contructor for DiagServiceInfo class
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.VariantCoding.DiagServiceInfo.Name">
+            <summary>
+            Description of Service
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.VariantCoding.DiagServiceInfo.RequestInfo">
+            <summary>
+            Diag service request
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.VariantCoding.DiagServiceInfo.ResponseInfo">
+            <summary>
+            Diag service Response
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.VariantCoding.DiagServiceInfo.Type">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.VariantCoding.DiagServiceInfo.PreConditions">
+            <summary>
+            Diag Preconditions
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.VariantCoding.DiagServiceInfo.EnabledAudiences">
+            <summary>
+            Enabled Audience References
+            </summary>
+        </member>
+        <member name="T:ET.Api.Diagnostics.VariantCoding.CodingStringVcd">
+            <summary>
+            Coding String VCD - Variant Coding Domain
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.VariantCoding.CodingStringVcd.Varcode">
+            <summary>
+            Variant code as binary data
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.VariantCoding.CodingStringVcd.Fragments">
+            <summary>
+            List of Fragment meanings
+            </summary>
+        </member>
+        <member name="M:ET.Api.Diagnostics.VariantCoding.CodingStringVcd.Create(System.String,System.Byte[],ET.Api.Diagnostics.VariantCoding.CodingInfo)">
+            <summary>
+            Create VCD from binary data
+            </summary>
+            <param name="name">VCD name</param>
+            <param name="varcode">data bytes</param>
+            <param name="codingInfo">CodingInfo for data interpretation</param>
+            <returns>VCD with translated meanings from binary data</returns>
+        </member>
+        <member name="T:ET.Api.Diagnostics.VariantCoding.FragmentMeaning">
+            <summary>
+            Class encapsulates meaning of one fragment
+            </summary>
+        </member>
+        <member name="M:ET.Api.Diagnostics.VariantCoding.FragmentMeaning.#ctor">
+            <summary>
+            Default Constructor
+            </summary>
+        </member>
+        <member name="M:ET.Api.Diagnostics.VariantCoding.FragmentMeaning.#ctor(System.String,System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="name">Fragment name</param>
+            <param name="value">Fragment value</param>
+        </member>
+        <member name="P:ET.Api.Diagnostics.VariantCoding.FragmentMeaning.Name">
+            <summary>
+            Fragment name
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.VariantCoding.FragmentMeaning.Value">
+            <summary>
+            Fragment value as text
+            </summary>
+        </member>
+        <member name="M:ET.Api.Diagnostics.VariantCoding.FragmentMeaning.Create(System.Byte[],ET.Api.Diagnostics.VariantCoding.CodingInfo.VcdInfo.FragmentInfo)">
+            <summary>
+            Extract new Fragment meaning from binary VCD data
+            </summary>
+            <param name="varCode"></param>
+            <param name="info"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ET.Api.Diagnostics.VariantCoding.FragmentMeaning.DecodeBytes(System.Byte[],ET.Api.Diagnostics.VariantCoding.CodingInfo.VcdInfo.FragmentInfo)">
+            <summary>
+            Decode fragment which consists of complete bytes
+            </summary>
+            <param name="varCode">binary fragment data</param>
+            <param name="info">fragment information</param>
+            <returns>meaning as text</returns>
+        </member>
+        <member name="M:ET.Api.Diagnostics.VariantCoding.FragmentMeaning.ExtractActualBytes(System.Byte[],ET.Api.Diagnostics.VariantCoding.CodingInfo.VcdInfo.FragmentInfo)">
+            <summary>
+            Extract Actual Bytes from the byte arrray
+            </summary>
+            <param name="varcode">Byte Array</param>
+            <param name="info">Fragment Info</param>
+            <returns>Byte array with actual Bytes with same start position</returns>
+        </member>
+        <member name="M:ET.Api.Diagnostics.VariantCoding.FragmentMeaning.GetUnicodeByteArray(System.Byte[],System.Byte[])">
+            <summary>
+            GetUnicodeByte Array without Termination
+            </summary>
+            <param name="unicodeByteArray"></param>
+            <param name="pattern"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ET.Api.Diagnostics.VariantCoding.FragmentMeaning.DecodeBits(System.Byte,ET.Api.Diagnostics.VariantCoding.CodingInfo.VcdInfo.FragmentInfo)">
+            <summary>
+            Decode bitcoded fragment (all bits must fit into one byte)
+            </summary>
+            <param name="code">code byte</param>
+            <param name="info">fragment information</param>
+            <returns>meaning as text</returns>
+        </member>
+        <member name="T:ET.Api.Diagnostics.VariantCoding.VcdPool">
+            <summary>
+            Pool of all coding infos
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.VariantCoding.VcdPool.VcdPoolPath">
+            <summary>
+            Variant coding pool base path
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.VariantCoding.VcdPool.CodingInfoPath">
+            <summary>
+            Variant coding information (Nutzinformationen) pool path 
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.VariantCoding.VcdPool.CodingStringsPath">
+            <summary>
+            Variant coding strings (Kodierstring) path
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.VariantCoding.VcdPool.InfoFilemask">
+            <summary>
+            Coding info filename mask
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.VariantCoding.VcdPool.StringFilemask">
+            <summary>
+            Coding Strings filename mask
+            </summary>
+        </member>
+        <member name="M:ET.Api.Diagnostics.VariantCoding.VcdPool.Reset">
+            <summary>
+            Clear all loaded data
+            </summary>
+        </member>
+        <member name="M:ET.Api.Diagnostics.VariantCoding.VcdPool.FindCodingInfoForEcuVariant(System.String,System.String)">
+            <summary>
+            Find Coding information which matches Ecu Name
+            </summary> 
+            <param name="ecuName">Name of the Ecu</param>
+            <param name="variantName"></param>
+            <returns>Coding info for the variant is returned</returns>
+        </member>
+        <member name="M:ET.Api.Diagnostics.VariantCoding.VcdPool.FindDtcTableForEcuVariant(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="ecuName"></param>
+            <param name="variantName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ET.Api.Diagnostics.VariantCoding.VcdPool.FindDiagInfoForEcuVariant(System.String,System.String)">
+            <summary>
+            Find Diag information which matches Ecu Name
+            </summary> 
+            <param name="ecuName">Name of the Ecu</param>
+            <param name="variantName"></param>
+            <returns>Diag info for the variant is returned</returns>
+        </member>
+        <member name="M:ET.Api.Diagnostics.VariantCoding.VcdPool.GetAvailableVariantsForEcu(System.String)">
+            <summary>
+            Find list of avaialble variants for the Ecu
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ET.Api.Diagnostics.VariantCoding.VcdPool.UpdateEcuCodingInfo(System.String,System.Collections.Generic.Dictionary{System.String,ET.Api.Diagnostics.VariantCoding.CodingInfo})">
+            <summary>
+            Add Coding info for a Ecu variant
+            </summary>
+            <param name="ecuName">Variant name</param>
+            <param name="table">Table of CodingInfos for different variants</param>
+        </member>
+        <member name="M:ET.Api.Diagnostics.VariantCoding.VcdPool.UpdateEcuDiagnosticsInfo(System.String,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{ET.Api.Diagnostics.VariantCoding.DiagServiceInfo}})">
+            <summary>
+            Add Diag info for a Ecu variant
+            </summary>
+            <param name="ecuName">Variant name</param>
+            <param name="diagServiceInfoTable">Table of DiagInfos for different variants</param>
+        </member>
+        <member name="M:ET.Api.Diagnostics.VariantCoding.VcdPool.UpdateEcuDtcTable(System.String,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.Dictionary{System.UInt32,System.String}})">
+            <summary>
+            
+            </summary>
+            <param name="ecuName"></param>
+            <param name="dtcTable"></param>
+        </member>
+        <member name="M:ET.Api.Diagnostics.VariantCoding.VcdPool.UpdateEcuVariants(System.String,System.Collections.Generic.List{ET.Api.Diagnostics.VariantCoding.EcuVariantInfo})">
+            <summary>
+            
+            </summary>
+            <param name="ecuName"></param>
+            <param name="list"></param>
+        </member>
+        <member name="P:ET.Api.Diagnostics.VariantCoding.VcdPool.CodingInfos">
+            <summary>
+            All coding infos from pool directory
+            </summary>
+            <remarks>
+            All Coding Info files are parsed on first access
+            </remarks>
+        </member>
+        <member name="P:ET.Api.Diagnostics.VariantCoding.VcdPool.CodingStrings">
+            <summary>
+            All coding strings from pool directory
+            </summary>
+            <remarks>
+            All Coding String files are parsed on first access
+            </remarks>
+        </member>
+        <member name="M:ET.Api.Diagnostics.VariantCoding.VcdPool.FindCodingInfos(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Find Coding informations which matches at least one of the given SW part numbers
+            </summary>
+            <param name="swPartNumbers">SW part numbers to search</param>
+            <returns>Collection of matching coding info datas, sorted by version</returns>
+        </member>
+        <member name="M:ET.Api.Diagnostics.VariantCoding.VcdPool.FindCodingInfo(System.UInt16,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Find Coding information for vehicle line which matches at least one of the given SW part numbers
+            </summary>
+            <param name="vehicleLine">vehicle line to search</param>
+            <param name="swPartNumbers">SW part numbers to search</param>
+            <returns>Matching coding info data, null if none found</returns>
+            <remarks>If multiple files for the vehicle line are found, the first Coding Info is returned</remarks>
+        </member>
+        <member name="M:ET.Api.Diagnostics.VariantCoding.VcdPool.FindCodingInfo(System.UInt16,System.String[])">
+            <summary>
+            Find Coding information for vehicle line which matches at least one of the given SW part numbers
+            </summary>
+            <param name="vehicleLine">vehicle line to search</param>
+            <param name="swPartNumbers">SW part numbers to search</param>
+            <returns>Matching coding info data, null if none found</returns>
+        </member>
+        <member name="M:ET.Api.Diagnostics.VariantCoding.VcdPool.FindBestCodingInfo(System.UInt16,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Find best fitting Coding info, if no Coding Info for given vehicle line is found, other vehicle lines are considered too.
+            </summary>
+            <param name="vehicleLine">vehicle line to search for</param>
+            <param name="swPartNumbers">SW part number(s) to search</param>
+            <returns>Coding info which mathes the given parameters best</returns>
+        </member>
+        <member name="M:ET.Api.Diagnostics.VariantCoding.VcdPool.FindBestCodingInfo(System.UInt16,System.Collections.Generic.IEnumerable{ET.Api.Diagnostics.VersionInfo})">
+            <summary>
+            Find best fitting Coding info, if no Coding Info for given vehicle line is found, other vehicle lines are considered too.
+            </summary>
+            <param name="vehicleLine">vehicle line to search for</param>
+            <param name="swVersions">SW version informations of ECU to search, HW or data versions are ignored</param>
+            <returns>Coding info which mathes the given parameters best</returns>
+        </member>
+        <member name="M:ET.Api.Diagnostics.VariantCoding.VcdPool.FindBestCodingInfo(System.UInt16,System.String[])">
+            <summary>
+            Find best fitting Coding info, if no Coding Info for given vehicle line is found, other vehicle lines are considered too.
+            </summary>
+            <param name="vehicleLine">vehicle line to search for</param>
+            <param name="swPartNumbers">SW part number(s) to search</param>
+            <returns>Coding info which mathes the given parameters best</returns>
+        </member>
+        <member name="M:ET.Api.Diagnostics.VariantCoding.VcdPool.PartNumbersToString(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Create text from part numbers
+            </summary>
+            <param name="swPartNumbers">part numbers</param>
+            <returns>Comma separeted list of part numbers</returns>
+        </member>
+        <member name="M:ET.Api.Diagnostics.VariantCoding.VcdPool.FindCodingStrings(ET.Api.Diagnostics.VariantCoding.CodingInfo)">
+            <summary>
+            Find all coding strings which match given Coding info
+            Coding Strings are searched by the QNT name of Coding Info file
+            </summary>
+            <param name="info">coding info</param>
+            <returns>Collection of ETA Numbers of Coding String which match given Coding Info</returns>
+        </member>
+        <member name="M:ET.Api.Diagnostics.VariantCoding.VcdPool.FindCodingStrings(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Find all coding strings which match at least one of the given SW part numbers
+            </summary>
+            <param name="swPartNumbers">SW part number(s) to search</param>
+            <returns>Collection of ETA Numbers of Coding String which match given part number(s)</returns>
+        </member>
+        <member name="M:ET.Api.Diagnostics.VariantCoding.VcdPool.FindCodingStrings(System.String[])">
+            <summary>
+            Find all coding strings which match at least one of the given SW part numbers
+            </summary>
+            <param name="swPartNumbers">SW part number(s) to search</param>
+            <returns>Collection of ETA Numbers of Coding String which match given part number(s)</returns>
+        </member>
+        <member name="M:ET.Api.Diagnostics.VariantCoding.VcdPool.GetCodingString(System.String)">
+            <summary>
+            Get Coding String which matches given ETA number
+            </summary>
+            <param name="etaNumber">ETA number to search</param>
+            <returns>Coding String, null if not found</returns>
+        </member>
+        <member name="T:ET.Api.Diagnostics.VariantCoding.CodingString">
+            <summary>
+            Variant Coding String, containig one set of VCDs with specific fragment values
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.VariantCoding.CodingString.NoNamespaceSchemaLocation">
+            <summary>
+            Xml Schema
+            </summary>
+        </member>
+        <member name="M:ET.Api.Diagnostics.VariantCoding.CodingString.ReadXml(System.String)">
+            <summary>
+            Read Coding String from XML file
+            </summary>
+            <param name="filename">name of XML-file to read</param>
+            <returns>CodingString from file, null on error</returns>
+        </member>
+        <member name="M:ET.Api.Diagnostics.VariantCoding.CodingString.ValidateXml(System.String)">
+            <summary>
+            Validate given Coding String file against Coding String schema
+            </summary>
+            <param name="filename">Coding String file name</param>
+            <returns>true if validation succeeds</returns>
+        </member>
+        <member name="M:ET.Api.Diagnostics.VariantCoding.CodingString.CreateValidationSettings(System.String)">
+            <summary>
+            Create XmlReader settings with validation
+            </summary>
+            <param name="filename">Coding info filename (used to find schema file)</param>
+            <returns>bewly vreated settings</returns>
+        </member>
+        <member name="F:ET.Api.Diagnostics.VariantCoding.CodingString.schema">
+            <summary>
+            Schema for XML validation
+            </summary>
+        </member>
+        <member name="M:ET.Api.Diagnostics.VariantCoding.CodingString.WriteXml(System.String)">
+            <summary>
+            Write coding string to XML file
+            </summary>
+            <param name="filename">Name of XML-file to write</param>
+            <returns>true on success</returns>
+        </member>
+        <member name="M:ET.Api.Diagnostics.VariantCoding.CodingString.WriteToEcu(ET.Api.Diagnostics.IVariantCoder)">
+            <summary>
+            Write this coding data to ECU
+            </summary>
+            <param name="varCoder">variant Coder of ECU</param>
+            <returns>job to monitor the async operation</returns>
+        </member>
+        <member name="M:ET.Api.Diagnostics.VariantCoding.CodingString.ReadFromEcu(ET.Api.Diagnostics.VariantCoding.CodingInfo,ET.Api.Diagnostics.IVariantCoder)">
+            <summary>
+            Read complete coding data from ECU and create corresponding Coding String
+            </summary>
+            <param name="codingInfo">codind info for ECU</param>
+            <param name="varCoder">variant coder of ECU</param>
+            <returns>Job to monitor the async operation, on success the job result is the new CodingString object</returns>
+        </member>
+        <member name="M:ET.Api.Diagnostics.VariantCoding.CodingString.Test(ET.Api.Diagnostics.VariantCoding.CodingString,ET.Api.Diagnostics.VariantCoding.CodingInfo)">
+            <summary>
+            Test method: create copy based only on binary VCD data and Coding info
+            </summary>
+            <param name="source">The source</param>
+            <param name="info">The info</param>
+            <returns>Coding string</returns>
+        </member>
+        <member name="P:ET.Api.Diagnostics.VariantCoding.CodingString.EtaNumber">
+            <summary>
+            Unique ETA identification of coding string 
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.VariantCoding.CodingString.EtaComment">
+            <summary>
+            ETA comment to coding string
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.VariantCoding.CodingString.CodingInfoDate">
+            <summary>
+            Change time of corresponding Coding Info
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.VariantCoding.CodingString.SaveDate">
+            <summary>
+            Change time of this Coding String
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.VariantCoding.CodingString.Vcds">
+            <summary>
+            VCDs of this ECU
+            </summary>
+        </member>
+        <member name="T:ET.Api.Diagnostics.VariantCoding.CodingString.ReadEcuJob">
+            <summary>
+            Job to read variant coding data from ECU and create Coding string
+            </summary>
+        </member>
+        <member name="M:ET.Api.Diagnostics.VariantCoding.CodingString.ReadEcuJob.#ctor(ET.Api.Diagnostics.VariantCoding.CodingInfo,ET.Api.Diagnostics.IVariantCoder)">
+            <summary>
+            The Constructor.
+            </summary>
+            <param name="codingInfo">coding info for ECU</param>
+            <param name="varCoder">variant coder of ECU</param>
+        </member>
+        <member name="F:ET.Api.Diagnostics.VariantCoding.CodingString.ReadEcuJob.CodingInfo">
+            <summary>
+            Coding information for ECU
+            </summary>
+        </member>
+        <member name="F:ET.Api.Diagnostics.VariantCoding.CodingString.ReadEcuJob.VariantCoder">
+            <summary>
+            ECUI variant coder
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.VariantCoding.CodingString.ReadEcuJob.Result">
+            <summary>
+            Read coding string containig ECU coding data
+            Property is valid only if job is completed successfully
+            </summary>
+        </member>
+        <member name="M:ET.Api.Diagnostics.VariantCoding.CodingString.ReadEcuJob.Execute">
+            <summary>
+            job main implementation
+            </summary>
+        </member>
+        <member name="T:ET.Api.Diagnostics.Vcd">
+            <summary>
+            Variant Coding Domain
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.Vcd.Name">
+            <summary>
+            Name / domain
+            </summary>
+        </member>
+        <member name="P:ET.Api.Diagnostics.Vcd.Data">
+            <summary>
+            Binary data (code string)
+            </summary>
+            <value>Coding bytes array or null if not read</value>
+        </member>
+        <member name="T:ET.FW.Hal.Diagnostics.IReadEcuBackendCertificateIdentifier">
+            <summary>
+            Interface for reading Backend_CA_Certificate_Identification via UDS
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Diagnostics.IReadEcuBackendCertificateIdentifier.CertificateIdentifier">
+            <summary>
+            Property to store the Certificate Identifier read via uds service
+            </summary>
+        </member>
+        <member name="T:ET.FW.Hal.Diagnostics.IReadVinDataIdentifier">
+            <summary>
+            Interface for ReadVinDataIdentifier
+            </summary>
+        </member>
+        <member name="P:ET.FW.Hal.Diagnostics.IReadVinDataIdentifier.VinIdentifier">
+            <summary>
+            Stores the Vin read from the Ecu
+            </summary>
+        </member>
+    </members>
+</doc>
